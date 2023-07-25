@@ -1,0 +1,157 @@
+<div
+  class="container-fluid p-h-0 p-v-20 h-100 bg"
+  style="background-image: url('assets/images/others/login-3.png')"
+>
+  <div class="d-flex flex-column justify-content-between h-100">
+    <div class="d-none d-md-block"></div>
+    <div class="container">
+      <div class="row align-items-center">
+        <div class="col-md-7 col-lg-5 m-h-auto">
+          <nz-card class="m-b-60 shadow-lg">
+            <div class="d-flex align-items-center justify-content-between">
+              <img
+                class="img-fluid"
+                alt=""
+                src="assets/images/logo/logo.png"
+              />
+              <h2 class="m-b-0">Sign up</h2>
+            </div>
+            <div class="flex justify-end">
+              <span class="text-[14px] text-muted"
+                >Already have an account?
+                <a class="small" [routerLink]="['/auth/login']"> Login</a></span
+              >
+            </div>
+
+            <form
+              nz-form
+              [formGroup]="signupForm"
+              class="login-form"
+              nzLayout="vertical"
+              (ngSubmit)="submitForm()"
+            >
+              <div class="mt-4" nz-row nzJustify="space-between">
+                <nz-col>
+                  <nz-form-item>
+                    <nz-form-label nzRequired nzFor="first_name"
+                      >Firstname</nz-form-label
+                    >
+                    <nz-form-control nzErrorTip="Please input your firstname!">
+                      <input
+                        type="text"
+                        nz-input
+                        formControlName="first_name"
+                        placeholder="Firstname"
+                        id="first_name"
+                      />
+                    </nz-form-control>
+                  </nz-form-item>
+                </nz-col>
+                <nz-col>
+                  <nz-form-item>
+                    <nz-form-label nzRequired nzFor="last_name"
+                      >Lastname</nz-form-label
+                    >
+                    <nz-form-control nzErrorTip="Please input your lastname!">
+                      <input
+                        type="text"
+                        nz-input
+                        formControlName="last_name"
+                        placeholder="Lastname"
+                        id="last_name"
+                      />
+                    </nz-form-control>
+                  </nz-form-item>
+                </nz-col>
+              </div>
+              <nz-form-item>
+                <nz-form-label nzRequired nzFor="username"
+                  >Username</nz-form-label
+                >
+                <nz-form-control nzErrorTip="Please input your username!">
+                  <input
+                    type="text"
+                    nz-input
+                    formControlName="username"
+                    placeholder="Username"
+                    id="username"
+                  />
+                </nz-form-control>
+              </nz-form-item>
+              <nz-form-item>
+                <nz-form-label nzRequired nzFor="email">Email</nz-form-label>
+                <nz-form-control nzErrorTip="The input is not valid E-mail!">
+                  <input
+                    type="text"
+                    nz-input
+                    formControlName="email"
+                    placeholder="Email"
+                    id="email"
+                  />
+                </nz-form-control>
+              </nz-form-item>
+              <nz-form-item>
+                <nz-form-label nzRequired nzFor="password"
+                  >Password</nz-form-label
+                >
+                <nz-form-control nzErrorTip="Please input your Password!">
+                  <input
+                    type="password"
+                    nz-input
+                    formControlName="password"
+                    placeholder="Password"
+                    id="password"
+                  />
+                </nz-form-control>
+              </nz-form-item>
+              <nz-form-item>
+                <nz-form-label nzFor="checkPassword" nzRequired
+                  >Confirm Password</nz-form-label
+                >
+                <nz-form-control nzErrorTip="Please confirm your password!">
+                  <input
+                    nz-input
+                    type="password"
+                    formControlName="checkPassword"
+                    placeholder="Confirm Password"
+                    id="checkPassword"
+                  />
+                </nz-form-control>
+              </nz-form-item>
+              <!-- <div class="d-flex align-items-center justify-content-start">
+                <nz-form-item>
+                  <nz-form-control>
+                    <label nz-checkbox formControlName="agree">
+                      <span>I have read the <a>agreement</a></span>
+                    </label>
+                  </nz-form-control>
+                </nz-form-item>
+              </div> -->
+
+              <button
+                nz-button
+                nzBlock
+                class="login-form-button"
+                [nzType]="'primary'"
+                [nzLoading]="loading"
+              >
+                {{ loading ? "Signing up" : "Sign up" }}
+              </button>
+            </form>
+          </nz-card>
+        </div>
+      </div>
+    </div>
+    <div class="d-none d-md-flex p-h-40 justify-content-between">
+      <span class="">© 2023 Contempo Construction</span>
+      <ul class="list-inline">
+        <li class="list-inline-item">
+          <a class="text-dark text-link" href="">Legal</a>
+        </li>
+        <li class="list-inline-item">
+          <a class="text-dark text-link" href="">Privacy</a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</div>
