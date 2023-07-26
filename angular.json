@@ -28,11 +28,13 @@
               }
             ],
             "styles": [
-              "src/styles.scss" 
+              "src/styles.scss",
+              "node_modules/summernote/dist/summernote-lite.min.css"
             ],
             "scripts": [
               "node_modules/jquery/dist/jquery.js",
-              "src/assets/lib/hljs/highlight.pack.js"
+              "src/assets/lib/hljs/highlight.pack.js",
+              "node_modules/summernote/dist/summernote-lite.min.js"
             ],
             "vendorChunk": true,
             "extractLicenses": false,
@@ -96,14 +98,15 @@
             "polyfills": "src/polyfills.ts",
             "tsConfig": "tsconfig.spec.json",
             "karmaConfig": "karma.conf.js",
-            "assets": [
-              "src/favicon.ico",
-              "src/assets"
-            ],
+            "assets": ["src/favicon.ico", "src/assets"],
             "styles": [
-              "src/styles.css"
+              "src/styles.css",
+              "node_modules/summernote/dist/summernote-lite.min.css"
             ],
-            "scripts": []
+            "scripts": [
+              "node_modules/summernote/dist/summernote-lite.min.js",
+              "node_modules/jquery/dist/jquery.js"
+            ]
           }
         },
         "e2e": {

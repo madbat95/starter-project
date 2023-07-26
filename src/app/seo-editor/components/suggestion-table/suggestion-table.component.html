@@ -1,0 +1,70 @@
+<nz-table
+  #groupingTable
+  nzBordered
+  nzSize="middle"
+  [nzData]="listOfData"
+  [nzScroll]="{ y: '240px' }"
+>
+  <thead>
+    <tr>
+      <th class="table-head" rowspan="4" nzAlign="center" nzWidth="10%">
+        Suggestions
+      </th>
+    </tr>
+
+    <tr>
+      <th class="table-head" colspan="2" nzAlign="center">Meta Title</th>
+      <th class="table-head" colspan="2" nzAlign="center">Meta Description</th>
+      <th class="table-head" colspan="2" nzAlign="center">H1</th>
+      <th class="table-head" colspan="2" nzAlign="center">H2</th>
+      <th class="table-head" colspan="2" nzAlign="center">H3</th>
+      <th class="table-head" colspan="2" nzAlign="center">H4</th>
+      <th class="table-head" colspan="2" nzAlign="center">H5</th>
+      <th class="table-head" colspan="2" nzAlign="center">H6</th>
+      <th class="table-head" colspan="2" nzAlign="center">Content</th>
+    </tr>
+    <tr>
+      <th class="table-head" nzAlign="center">C</th>
+      <th class="table-head" nzAlign="center">R</th>
+      <th class="table-head" nzAlign="center">C</th>
+      <th class="table-head" nzAlign="center">R</th>
+      <th class="table-head" nzAlign="center">C</th>
+      <th class="table-head" nzAlign="center">R</th>
+      <th class="table-head" nzAlign="center">C</th>
+      <th class="table-head" nzAlign="center">R</th>
+      <th class="table-head" nzAlign="center">C</th>
+      <th class="table-head" nzAlign="center">R</th>
+      <th class="table-head" nzAlign="center">C</th>
+      <th class="table-head" nzAlign="center">R</th>
+      <th class="table-head" nzAlign="center">C</th>
+      <th class="table-head" nzAlign="center">R</th>
+      <th class="table-head" nzAlign="center">C</th>
+      <th class="table-head" nzAlign="center">R</th>
+      <th class="table-head" nzAlign="center">C</th>
+      <th class="table-head" nzAlign="center">R</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let data of groupingTable.data">
+      <td class="table-head" nzLeft nzAlign="center">{{ data.name }}</td>
+      <td nzAlign="center">C</td>
+      <td nzAlign="center">R</td>
+      <td nzAlign="center">C</td>
+      <td nzAlign="center">R</td>
+      <td nzAlign="center">C</td>
+      <td nzAlign="center">R</td>
+      <td nzAlign="center">C</td>
+      <td nzAlign="center">R</td>
+      <td nzAlign="center">C</td>
+      <td nzAlign="center">R</td>
+      <td nzAlign="center">C</td>
+      <td nzAlign="center">R</td>
+      <td nzAlign="center">C</td>
+      <td nzAlign="center">R</td>
+      <td nzAlign="center">C</td>
+      <td nzAlign="center">R</td>
+      <td nzAlign="center">C</td>
+      <td nzAlign="center">R</td>
+    </tr>
+  </tbody>
+</nz-table>
