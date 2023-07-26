@@ -22,7 +22,7 @@ import { NzCalendarModule } from 'ng-zorro-antd/calendar';
 import { NzToolTipModule } from 'ng-zorro-antd/tooltip';
 import { NzCheckboxModule } from 'ng-zorro-antd/checkbox';
 import { NzSkeletonModule } from 'ng-zorro-antd/skeleton';
-import { NzModalModule } from 'ng-zorro-antd/modal';
+import { NzModalModule, NzModalRef } from 'ng-zorro-antd/modal';
 import { NzDividerModule } from 'ng-zorro-antd/divider';
 import { SeoEditorComponent } from './seo-editor.component';
 import { SuggestionTableComponent } from './components/suggestion-table/suggestion-table.component';
@@ -61,6 +61,7 @@ const antdModule = [
   NzGridModule,
   NzRadioModule,
   NzInputModule,
+  NzModalModule,
 ];
 
 @NgModule({
