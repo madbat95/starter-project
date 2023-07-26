@@ -8,7 +8,13 @@
   <label nz-radio-button nzValue="Entity">Entities</label>
 </nz-radio-group>
 
-<nz-table #table nzBordered nzSize="middle" [nzData]="data">
+<nz-table
+  #table
+  nzBordered
+  nzSize="middle"
+  [nzFrontPagination]="false"
+  [nzData]="data"
+>
   <thead>
     <tr>
       <th class="table-head" nzAlign="center">Name</th>
