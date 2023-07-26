@@ -1,30 +1,37 @@
-<nz-radio-group
-  [(ngModel)]="selectedTable"
-  (ngModelChange)="onTableSelectionChange()"
-  nzButtonStyle="solid"
->
-  <label nz-radio-button nzValue="Variation">Variation</label>
-  <label nz-radio-button nzValue="LSI">LSI Keywords</label>
-  <label nz-radio-button nzValue="Entity">Entities</label>
-</nz-radio-group>
+<div nz-row nzAlign="center" nzJustify="center" [nzGutter]="[0, 16]">
+  <div nz-col>
+    <nz-radio-group
+      [(ngModel)]="selectedTable"
+      nzSize="small"
+      nzButtonStyle="solid"
+      (ngModelChange)="onTableSelectionChange()"
+    >
+      <label nz-radio-button nzValue="Variation">Variation</label>
+      <label nz-radio-button nzValue="LSI">LSI Keywords</label>
+      <label nz-radio-button nzValue="Entity">Entities</label>
+    </nz-radio-group>
+  </div>
 
-<nz-table
-  #table
-  nzBordered
-  nzSize="middle"
-  [nzFrontPagination]="false"
-  [nzData]="data"
->
-  <thead>
-    <tr>
-      <th class="table-head" nzAlign="center">Name</th>
-      <th class="table-head" nzAlign="center">Quantity</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr *ngFor="let data of table.data">
-      <td nzAlign="center">{{ data.name }}</td>
-      <td nzAlign="center">{{ data.quantity }}</td>
-    </tr>
-  </tbody>
-</nz-table>
+  <div nz-col class="w-full">
+    <nz-table
+      #table
+      nzBordered
+      nzSize="middle"
+      [nzFrontPagination]="false"
+      [nzData]="data"
+    >
+      <thead>
+        <tr>
+          <th class="table-head" nzAlign="center">Name</th>
+          <th class="table-head" nzAlign="center">Quantity</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let data of table.data">
+          <td nzAlign="center">{{ data.name }}</td>
+          <td nzAlign="center">{{ data.quantity }}</td>
+        </tr>
+      </tbody>
+    </nz-table>
+  </div>
+</div>
