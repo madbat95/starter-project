@@ -1,11 +1,8 @@
-<div nz-row>
-  <input
-    nz-input
-    nz-col
-    nzSpan="14"
-    placeholder="Welcome to scrpae"
-    nzSize="default"
-  />
-
-  <button nz-button nz-col nzType="primary">Scrape</button>
+<div nz-row [nzGutter]="16">
+  <div nz-col>
+    <input nz-input placeholder="Welcome to scrape" nzSize="default" />
+  </div>
+  <div nz-col>
+    <button nz-button nzType="primary">Scrape</button>
+  </div>
 </div>
