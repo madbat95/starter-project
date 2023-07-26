@@ -9,7 +9,7 @@ export class SummernoteComponent {
   editorConfig = {
     placeholder: 'Add text here...',
     tabsize: 2,
-    height: 100,
+    height: 255,
     uploadImagePath: '/api/upload',
     toolbar: [
       ['misc', ['codeview', 'undo', 'redo']],
