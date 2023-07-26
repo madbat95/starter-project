@@ -37,6 +37,8 @@ import { MetaComponent } from './components/meta/meta.component';
 import { SummernoteComponent } from './components/summernote/summernote.component';
 import { NgxSummernoteModule } from 'ngx-summernote';
 import { MetaInfoComponent } from './components/meta/components/meta-info/meta-info.component';
+import { NzFormModule } from 'ng-zorro-antd/form';
+import { ReactiveFormsModule } from '@angular/forms';
 
 const antdModule = [
   NzButtonModule,
@@ -62,6 +64,7 @@ const antdModule = [
   NzRadioModule,
   NzInputModule,
   NzModalModule,
+  NzFormModule,
 ];
 
 @NgModule({
@@ -71,6 +74,7 @@ const antdModule = [
     SharedModule,
     NgChartjsModule,
     NgxSummernoteModule,
+    ReactiveFormsModule,
     ...antdModule,
   ],
   exports: [],

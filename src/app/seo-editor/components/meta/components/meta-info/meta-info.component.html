@@ -1,1 +1,48 @@
-<p>meta-info works!</p>
+<form nz-form [formGroup]="metaForm">
+  <div nz-row [nzGutter]="[8, 16]">
+    <nz-form-item style="width: 100%" nz-row>
+      <nz-form-label nzRequired="yes" nz-col nzSpan="24">
+        <div class="bold-label">Title</div>
+      </nz-form-label>
+      <nz-form-control nz-col nzSpan="24">
+        <input
+          nzSize="default"
+          style="width: 100%"
+          required="true"
+          nz-input
+          formControlName="title"
+          placeholder="title"
+        />
+      </nz-form-control>
+    </nz-form-item>
+
+    <nz-form-item style="width: 100%" nz-row>
+      <nz-form-label nzRequired="yes" nz-col nzSpan="24">
+        <div class="bold-label">Description</div>
+      </nz-form-label>
+      <nz-form-control nz-col nzSpan="24">
+        <textarea
+          nzSize="default"
+          style="width: 100%"
+          required="true"
+          nz-input
+          rows="5"
+          formControlName="description"
+          placeholder="Description"
+        >
+        </textarea>
+      </nz-form-control>
+    </nz-form-item>
+  </div>
+
+  <div nz-row nzJustify="end">
+    <button
+      nz-button
+      nzSize="small"
+      nzType="primary"
+      [disabled]="metaForm.invalid"
+    >
+      Submit
+    </button>
+  </div>
+</form>
