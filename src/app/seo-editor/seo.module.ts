@@ -36,6 +36,7 @@ import { UploadReportComponent } from './components/upload-report/upload-report.
 import { MetaComponent } from './components/meta/meta.component';
 import { SummernoteComponent } from './components/summernote/summernote.component';
 import { NgxSummernoteModule } from 'ngx-summernote';
+import { MetaInfoComponent } from './components/meta/components/meta-info/meta-info.component';
 
 const antdModule = [
   NzButtonModule,
@@ -81,6 +82,7 @@ const antdModule = [
     UploadReportComponent,
     MetaComponent,
     SummernoteComponent,
+    MetaInfoComponent,
   ],
   providers: [ThemeConstantService],
 })
