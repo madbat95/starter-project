@@ -17,4 +17,12 @@ export const ROUTES: SideNavInterface[] = [
     icon: 'rocket',
     submenu: [],
   },
+  {
+    path: '/admin/report',
+    title: 'Report',
+    iconType: 'nzIcon',
+    iconTheme: 'outline',
+    icon: 'diff',
+    submenu: [],
+  },
 ];
