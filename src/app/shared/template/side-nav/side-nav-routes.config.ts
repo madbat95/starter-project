@@ -14,7 +14,7 @@ export const ROUTES: SideNavInterface[] = [
     title: 'SEO',
     iconType: 'nzIcon',
     iconTheme: 'outline',
-    icon: 'dashboard',
+    icon: 'rocket',
     submenu: [],
   },
 ];
