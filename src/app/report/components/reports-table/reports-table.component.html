@@ -1,0 +1,77 @@
+<nz-card
+  style="margin-left: 0; margin-right: 0; padding-left: 0; padding-right: 0"
+  nzTitle="Reports"
+  [nzExtra]="extraTemplate"
+>
+  <nz-table
+    #basicTable
+    nzSize="small"
+    [nzFrontPagination]="false"
+    [nzScroll]="{ x: '1200px' }"
+  >
+    <thead>
+      <tr>
+        <th>REPORT KEYWORD</th>
+        <th>COUNTRY</th>
+        <th>LANGUAGE</th>
+        <th>CREATED</th>
+        <th>WORD COUNT</th>
+        <th>CONTENT GRADE</th>
+        <th>USER</th>
+        <th></th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>kitchen remodeling los angeles</td>
+        <td>US</td>
+        <td>EN</td>
+        <td>an hour ago</td>
+        <td>0</td>
+        <td>
+          <nz-tag [nzColor]="'red'">1/10</nz-tag>
+        </td>
+        <td>Saad Wakeel</td>
+        <td>
+          <span nz-icon nzType="delete" nzTheme="outline"></span>
+        </td>
+      </tr>
+      <tr>
+        <td>personal injury attorney los angeles</td>
+        <td>US</td>
+        <td>EN</td>
+        <td>an hour ago</td>
+        <td>0</td>
+        <td>
+          <nz-tag [nzColor]="'red'">1/10</nz-tag>
+        </td>
+        <td>Saad Wakeel</td>
+        <td>
+          <span nz-icon nzType="delete" nzTheme="outline"></span>
+        </td>
+      </tr>
+      <tr>
+        <td>public adjuster los angeles</td>
+        <td>US</td>
+        <td>EN</td>
+        <td>an hour ago</td>
+        <td>0</td>
+        <td>
+          <nz-tag [nzColor]="'red'">1/10</nz-tag>
+        </td>
+        <td>Saad Wakeel</td>
+        <td>
+          <span nz-icon nzType="delete" nzTheme="outline"></span>
+        </td>
+      </tr>
+    </tbody>
+  </nz-table>
+</nz-card>
+<ng-template #extraTemplate>
+  <nz-input-group [nzPrefix]="prefixTemplateUser">
+    <input type="text" nz-input placeholder="Search Reports" />
+  </nz-input-group>
+  <ng-template #prefixTemplateUser
+    ><span nz-icon nzType="search"></span
+  ></ng-template>
+</ng-template>
