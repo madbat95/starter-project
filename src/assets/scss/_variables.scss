@@ -19,6 +19,7 @@ $lime: #a0d911 !default;
 $geekblue: #2f54eb !default;
 
 // Create grayscale
+$light-orange: #ff963f !default;
 $gray-dark: #2a2a2a !default;
 $gray: #53535f !default;
 $gray-light: #72849a !default;
@@ -395,7 +396,7 @@ $checkbox-line-height: 1 !default;
 $checkbox-top-adjust: -0.09em !default;
 $checkbox-position-left: 0.325rem !default;
 $checkbox-position-top: 0.535rem !default;
-$checkbox-disable-bg: $gray-lighter !default;
+$checkbox-disable-bg: $light-orange !default;
 
 $radio-theme-color: $brand-primary !default;
 $radio-width-height: 1.25rem !default;
@@ -403,7 +404,7 @@ $radio-gutter: 0.625rem !default;
 $radio-dot-size: 0.625rem !default;
 $radio-position-left: 0.1875rem !default;
 $radio-position-top: 0.1875rem !default;
-$radio-disable-bg: $gray-lighter !default;
+$radio-disable-bg: $light-orange !default;
 $radip-btn-padding-x: 1rem !default;
 
 $switch-theme-color: $brand-primary !default;
