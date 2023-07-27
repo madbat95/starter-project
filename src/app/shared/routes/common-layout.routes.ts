@@ -12,4 +12,9 @@ export const CommonLayout_ROUTES: Routes = [
     loadChildren: () =>
       import('../../seo-editor/seo.module').then((m) => m.SeoModule),
   },
+  {
+    path: 'report',
+    loadChildren: () =>
+      import('../../report/report.module').then((m) => m.ReportModule),
+  },
 ];

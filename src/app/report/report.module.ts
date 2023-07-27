@@ -33,6 +33,7 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { ReportComponent } from './report.component';
 import { ReportRoutingModule } from './report-routing.module';
 import { CreateReportComponent } from './components/create-report/create-report.component';
+import { NzSelectModule } from 'ng-zorro-antd/select';
 
 const antdModule = [
   NzButtonModule,
@@ -60,6 +61,7 @@ const antdModule = [
   NzModalModule,
   NzFormModule,
   NzCardModule,
+  NzSelectModule,
 ];
 
 @NgModule({
