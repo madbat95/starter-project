@@ -1,13 +1,13 @@
 <div class="p-[20px]">
-  <div nz-row nzAlign="middle" [nzGutter]="[16, 0]">
-    <div nz-col [nzSpan]="5">
-      <div nz-row [nzGutter]="[0, 32]" nzJustify="center">
+  <div nz-row nzAlign="middle" [nzGutter]="[16, 16]">
+    <div nz-col [nzMd]="24" [nzLg]="5" [nzXl]="5">
+      <div nz-row [nzGutter]="[16, 32]" nzJustify="center" nzAlign="middle">
         <div nz-col><scrape-search></scrape-search></div>
 
         <div nz-col><filter></filter></div>
 
         <div nz-col>
-          <div nz-row nzJustify="center" [nzGutter]="8">
+          <div nz-row nzJustify="center" [nzGutter]="[8, 8]">
             <div nz-col>
               <upload-report></upload-report>
             </div>
@@ -20,16 +20,16 @@
       </div>
     </div>
 
-    <div nz-col [nzSpan]="19">
+    <div nz-col [nzMd]="24" [nzLg]="19" [nzXl]="19">
       <app-suggestion-table></app-suggestion-table>
     </div>
   </div>
 
   <div nz-row nzJustify="center" [nzGutter]="[16, 0]">
-    <div nz-col nzSpan="5">
+    <div nz-col [nzMd]="24" [nzLg]="5" [nzXl]="5">
       <app-variation-table></app-variation-table>
     </div>
-    <div nz-col [nzSpan]="19">
+    <div nz-col [nzMd]="24" [nzLg]="19" [nzXl]="19">
       <app-summernote></app-summernote>
     </div>
   </div>
