@@ -4,7 +4,11 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NZ_I18N, en_US } from 'ng-zorro-antd/i18n';
 import { NzBreadCrumbModule } from 'ng-zorro-antd/breadcrumb';
 
-import { registerLocaleData, PathLocationStrategy, LocationStrategy } from '@angular/common';
+import {
+  registerLocaleData,
+  PathLocationStrategy,
+  LocationStrategy,
+} from '@angular/common';
 import en from '@angular/common/locales/en';
 
 import { AppRoutingModule } from './app-routing.module';
@@ -25,42 +29,39 @@ import { NzMessageModule } from 'ng-zorro-antd/message';
 registerLocaleData(en);
 
 @NgModule({
-    declarations: [
-        AppComponent,
-        CommonLayoutComponent,
-    ],
-    imports: [
-        JwtModule.forRoot({
-            config: {
-              tokenGetter: () => {
-                return localStorage.getItem('access_token');
-              },
-              allowedDomains: [environment.apiUrl], // replace with your domain
-              disallowedRoutes: [environment.apiUrl + '/auth/login'], // replace with your login endpoint
-            },
-          }),
-        BrowserModule,
-        BrowserAnimationsModule,
-        AppRoutingModule,
-        NzBreadCrumbModule,
-        TemplateModule,
-        SharedModule,
-        NzMessageModule
-    ],
-    providers: [
-        { 
-            provide: NZ_I18N,
-            useValue: en_US, 
+  declarations: [AppComponent, CommonLayoutComponent],
+  imports: [
+    JwtModule.forRoot({
+      config: {
+        tokenGetter: () => {
+          return localStorage.getItem('access_token');
         },
-        {
-            provide: LocationStrategy, 
-            useClass: PathLocationStrategy
-        },
-        ThemeConstantService,
-        httpInterceptorProvider,
-        jwtInterceptorProvider,
-        JwtHelperService,
-    ],
-    bootstrap: [AppComponent]
+        allowedDomains: [environment.apiUrl], // replace with your domain
+        disallowedRoutes: [environment.apiUrl + '/auth/login'], // replace with your login endpoint
+      },
+    }),
+    BrowserModule,
+    BrowserAnimationsModule,
+    AppRoutingModule,
+    NzBreadCrumbModule,
+    TemplateModule,
+    SharedModule,
+    NzMessageModule,
+  ],
+  providers: [
+    {
+      provide: NZ_I18N,
+      useValue: en_US,
+    },
+    {
+      provide: LocationStrategy,
+      useClass: PathLocationStrategy,
+    },
+    ThemeConstantService,
+    httpInterceptorProvider,
+    jwtInterceptorProvider,
+    JwtHelperService,
+  ],
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}
