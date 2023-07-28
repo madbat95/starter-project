@@ -1,4 +1,9 @@
-<nz-card nzTitle="Reports" [nzCover]="basicTable" [nzExtra]="extraTemplate">
+<nz-card
+  [nzTitle]="CardHeading"
+  [nzCover]="basicTable"
+  [nzExtra]="extraTemplate"
+  class="custom-card"
+>
   <nz-table
     #basicTable
     nzSize="small"
@@ -26,7 +31,21 @@
         <td nzAlign="center">{{ data.created }}</td>
         <td nzAlign="center">{{ data.wordCount }}</td>
         <td nzAlign="center">
-          <nz-tag [nzColor]="'red'">{{ data.contentGrade }}</nz-tag>
+          <nz-tag class="custom-tag">{{ data.contentGrade }}</nz-tag>
+        </td>
+        <td nzAlign="center">{{ data.user }}</td>
+        <td nzAlign="center">
+          <span nz-icon nzType="delete" nzTheme="outline"></span>
+        </td>
+      </tr>
+      <tr *ngFor="let data of reportsData">
+        <td nzAlign="center">{{ data.reportKeyword }}</td>
+        <td nzAlign="center">{{ data.country }}</td>
+        <td nzAlign="center">{{ data.language }}</td>
+        <td nzAlign="center">{{ data.created }}</td>
+        <td nzAlign="center">{{ data.wordCount }}</td>
+        <td nzAlign="center">
+          <nz-tag class="custom-tag">{{ data.contentGrade }}</nz-tag>
         </td>
         <td nzAlign="center">{{ data.user }}</td>
         <td nzAlign="center">
@@ -44,3 +63,4 @@
     ><span nz-icon nzType="search"></span
   ></ng-template>
 </ng-template>
+<ng-template #CardHeading><h3>Reports</h3></ng-template>

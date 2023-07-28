@@ -1,4 +1,4 @@
-<nz-card nzTitle="Create New Report">
+<nz-card [nzTitle]="CardHeading">
   <div nz-row nzJustify="center" nzAlign="middle" [nzGutter]="[8, 8]">
     <div nz-col [nzXs]="12" [nzMd]="6">
       <div nz-row>
@@ -8,7 +8,7 @@
           </nz-form-label>
           <nz-form-control nz-col nzSpan="24">
             <input
-              nzSize="default"
+              nzSize="small"
               style="width: 100%"
               required="true"
               nz-input
@@ -60,7 +60,7 @@
           </nz-form-label>
           <nz-form-control nz-col nzSpan="24">
             <input
-              nzSize="default"
+              nzSize="small"
               style="width: 100%"
               required="true"
               nz-input
@@ -75,3 +75,4 @@
     </div>
   </div>
 </nz-card>
+<ng-template #CardHeading><h3>Create New Report</h3></ng-template>
