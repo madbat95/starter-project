@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl } from '@angular/forms';
+import { WordCountService } from '../../service/word-count.service';
 
 @Component({
   selector: 'app-summernote',
@@ -47,12 +48,12 @@ export class SummernoteComponent implements OnInit {
     ],
   };
 
-  ngOnInit(): void {
-    // console.log('Word Count Data:', this.wordCountData);
-  }
+  constructor(private wordCountService: WordCountService) {}
+
+  ngOnInit(): void {}
 
   onEditorKeyUp(text: string) {
-    this.wordCountData = {}; // Reset the word count data
+    this.wordCountService.wordCountData = {}; // Reset the word count data
     this.uniqueWords.clear(); // Clear the uniqueWords Set
 
     // Remove HTML entities representing spaces (&nbsp;), <p> tags, and <br> tags from the text
@@ -69,14 +70,14 @@ export class SummernoteComponent implements OnInit {
           // Use a Set to keep track of unique words and only count them once
           if (!this.uniqueWords.has(word)) {
             this.uniqueWords.add(word);
-            this.wordCountData[word] = 1;
+            this.wordCountService.wordCountData[word] = 1;
           } else {
-            this.wordCountData[word]++;
+            this.wordCountService.wordCountData[word]++;
           }
         });
       }
     });
 
-    console.log('Word Count Data:', this.wordCountData);
+    console.log('Word Count Data:', this.wordCountService.wordCountData);
   }
 }

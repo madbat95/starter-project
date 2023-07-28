@@ -39,6 +39,7 @@ import { NgxSummernoteModule } from 'ngx-summernote';
 import { MetaInfoComponent } from './components/meta/components/meta-info/meta-info.component';
 import { NzFormModule } from 'ng-zorro-antd/form';
 import { ReactiveFormsModule } from '@angular/forms';
+import { WordCountService } from './service/word-count.service';
 
 const antdModule = [
   NzButtonModule,
@@ -89,6 +90,6 @@ const antdModule = [
     SummernoteComponent,
     MetaInfoComponent,
   ],
-  providers: [ThemeConstantService],
+  providers: [ThemeConstantService, WordCountService],
 })
 export class SeoModule {}
