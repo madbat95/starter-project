@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { FormControl } from '@angular/forms';
 import { WordCountService } from '../../service/word-count.service';
 
@@ -11,6 +11,7 @@ export class SummernoteComponent implements OnInit {
   editorContent = '';
   uniqueWords: Set<string> = new Set();
   wordCountData: { [word: string]: number } = {};
+  @Output() onWordCount = new EventEmitter<{ [word: string]: number }>();
   editorConfig = {
     placeholder: 'Add text here...',
     tabsize: 2,
@@ -53,7 +54,7 @@ export class SummernoteComponent implements OnInit {
   ngOnInit(): void {}
 
   onEditorKeyUp(text: string) {
-    this.wordCountService.wordCountData = {}; // Reset the word count data
+    this.wordCountData = {}; // Reset the word count data
     this.uniqueWords.clear(); // Clear the uniqueWords Set
 
     // Remove HTML entities representing spaces (&nbsp;), <p> tags, and <br> tags from the text
@@ -70,14 +71,17 @@ export class SummernoteComponent implements OnInit {
           // Use a Set to keep track of unique words and only count them once
           if (!this.uniqueWords.has(word)) {
             this.uniqueWords.add(word);
-            this.wordCountService.wordCountData[word] = 1;
+            // this.wordCountService.wordCountData[word] = 1;
+            this.wordCountData[word] = 1;
           } else {
-            this.wordCountService.wordCountData[word]++;
+            // this.wordCountService.wordCountData[word]++;
+            this.wordCountData[word]++;
           }
         });
       }
     });
 
-    console.log('Word Count Data:', this.wordCountService.wordCountData);
+    console.log('Word Count Data:', this.wordCountData);
+    this.onWordCount.emit(this.wordCountData);
   }
 }

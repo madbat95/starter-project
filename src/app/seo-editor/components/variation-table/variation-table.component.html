@@ -1,4 +1,7 @@
 <div nz-row nzAlign="center" nzJustify="center" [nzGutter]="[0, 16]">
+  <div>
+    {{ json.stringify(data) }}
+  </div>
   <div nz-col>
     <nz-radio-group
       [(ngModel)]="selectedTable"

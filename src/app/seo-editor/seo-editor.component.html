@@ -27,10 +27,12 @@
 
   <div nz-row nzJustify="center" [nzGutter]="[16, 0]">
     <div nz-col [nzMd]="24" [nzLg]="5" [nzXl]="5">
-      <app-variation-table></app-variation-table>
+      <app-variation-table
+        [data]="mapDataToTable(wordCountData)"
+      ></app-variation-table>
     </div>
     <div nz-col [nzMd]="24" [nzLg]="19" [nzXl]="19">
-      <app-summernote></app-summernote>
+      <app-summernote (onWordCount)="onChange($event)"></app-summernote>
     </div>
   </div>
 </div>
