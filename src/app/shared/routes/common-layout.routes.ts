@@ -17,4 +17,10 @@ export const CommonLayout_ROUTES: Routes = [
     loadChildren: () =>
       import('../../report/report.module').then((m) => m.ReportModule),
   },
+  {
+    path: 'setting',
+    loadChildren: () =>
+      import('../../setting/setting.module').then((m) => m.SettingModule),
+  },
 ];
+``;

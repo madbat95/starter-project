@@ -25,4 +25,12 @@ export const ROUTES: SideNavInterface[] = [
     icon: 'diff',
     submenu: [],
   },
+  {
+    path: 'setting/profile',
+    title: 'Profile',
+    iconType: 'nzIcon',
+    iconTheme: 'outline',
+    icon: 'user',
+    submenu: [],
+  },
 ];
