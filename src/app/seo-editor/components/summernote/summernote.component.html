@@ -1,1 +1,5 @@
-<div [ngxSummernote]="editorConfig"></div>
+<div
+  [ngxSummernote]="editorConfig"
+  [(ngModel)]="editorContent"
+  (ngModelChange)="onEditorKeyUp($event)"
+></div>

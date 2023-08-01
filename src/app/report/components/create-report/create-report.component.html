@@ -1,0 +1,81 @@
+<nz-card [nzTitle]="CardHeading">
+  <div nz-row nzJustify="center" nzAlign="middle" [nzGutter]="[8, 8]">
+    <div nz-col [nzXs]="12" [nzMd]="6">
+      <div nz-row>
+        <nz-form-item style="width: 100%">
+          <nz-form-label nzRequired="yes" nz-col nzSpan="24">
+            <div class="bold-label">Add Keyword</div>
+          </nz-form-label>
+          <nz-form-control nz-col nzSpan="24">
+            <input
+              nzSize="small"
+              style="width: 100%"
+              required="true"
+              nz-input
+              placeholder="e.g. SEO company LA"
+            />
+          </nz-form-control>
+        </nz-form-item>
+      </div>
+    </div>
+    <div nz-col [nzXs]="12" [nzMd]="6">
+      <div nz-row>
+        <nz-form-item style="width: 100%">
+          <nz-form-label nzRequired="yes" nz-col nzSpan="24">
+            <div class="bold-label">Country</div>
+          </nz-form-label>
+          <nz-form-control nz-col nzSpan="24">
+            <nz-select
+              nzSize="small"
+              style="width: 100%"
+              required="true"
+              nzPlaceHolder="USA"
+            ></nz-select>
+          </nz-form-control>
+        </nz-form-item>
+      </div>
+    </div>
+    <div nz-col [nzXs]="12" [nzMd]="6">
+      <div nz-row>
+        <nz-form-item style="width: 100%">
+          <nz-form-label nzRequired="yes" nz-col nzSpan="24">
+            <div class="bold-label">City</div>
+          </nz-form-label>
+          <nz-form-control nz-col nzSpan="24">
+            <nz-select
+              nzSize="small"
+              style="width: 100%"
+              required="true"
+              nzPlaceHolder="Los Angeles, USA"
+            ></nz-select>
+          </nz-form-control>
+        </nz-form-item>
+      </div>
+    </div>
+    <div nz-col [nzXs]="12" [nzMd]="6">
+      <div nz-row>
+        <nz-form-item style="width: 100%">
+          <nz-form-label nzRequired="yes" nz-col nzSpan="24">
+            <div class="bold-label">Enter Related Keywords</div>
+          </nz-form-label>
+          <nz-form-control nz-col nzSpan="24">
+            <input
+              nzSize="small"
+              style="width: 100%"
+              required="true"
+              nz-input
+              placeholder="Keyword1, Keyword2 etc."
+            />
+          </nz-form-control>
+        </nz-form-item>
+      </div>
+    </div>
+    <div nz-col>
+      <button nz-button class="bold-label" nzType="primary">
+        <span nz-icon nzType="plus"></span>
+        Generate Report
+      </button>
+    </div>
+  </div>
+</nz-card>
+<ng-template #CardHeading><h3>Create New Report</h3></ng-template>

@@ -24,22 +24,17 @@ import { NzCheckboxModule } from 'ng-zorro-antd/checkbox';
 import { NzSkeletonModule } from 'ng-zorro-antd/skeleton';
 import { NzModalModule, NzModalRef } from 'ng-zorro-antd/modal';
 import { NzDividerModule } from 'ng-zorro-antd/divider';
-import { SeoEditorComponent } from './seo-editor.component';
-import { SuggestionTableComponent } from './components/suggestion-table/suggestion-table.component';
-import { SeoRoutingModule } from './seo-routing.module';
-import { VariationTableComponent } from './components/variation-table/variation-table.component';
+
 import { NzGridModule } from 'ng-zorro-antd/grid';
-import { SearchComponent } from './components/search/search.component';
 import { NzInputModule } from 'ng-zorro-antd/input';
-import { FilterComponent } from './components/filter/filter.component';
-import { UploadReportComponent } from './components/upload-report/upload-report.component';
-import { MetaComponent } from './components/meta/meta.component';
-import { SummernoteComponent } from './components/summernote/summernote.component';
-import { NgxSummernoteModule } from 'ngx-summernote';
-import { MetaInfoComponent } from './components/meta/components/meta-info/meta-info.component';
+
 import { NzFormModule } from 'ng-zorro-antd/form';
 import { ReactiveFormsModule } from '@angular/forms';
-import { WordCountService } from './service/word-count.service';
+import { ReportComponent } from './report.component';
+import { ReportRoutingModule } from './report-routing.module';
+import { CreateReportComponent } from './components/create-report/create-report.component';
+import { NzSelectModule } from 'ng-zorro-antd/select';
+import { ReportsTableComponent } from './components/reports-table/reports-table.component';
 
 const antdModule = [
   NzButtonModule,
@@ -66,30 +61,21 @@ const antdModule = [
   NzInputModule,
   NzModalModule,
   NzFormModule,
+  NzCardModule,
+  NzSelectModule,
 ];
 
 @NgModule({
   imports: [
-    SeoRoutingModule,
+    ReportRoutingModule,
     CommonModule,
     SharedModule,
     NgChartjsModule,
-    NgxSummernoteModule,
     ReactiveFormsModule,
     ...antdModule,
   ],
   exports: [],
-  declarations: [
-    SeoEditorComponent,
-    SuggestionTableComponent,
-    VariationTableComponent,
-    SearchComponent,
-    FilterComponent,
-    UploadReportComponent,
-    MetaComponent,
-    SummernoteComponent,
-    MetaInfoComponent,
-  ],
-  providers: [ThemeConstantService, WordCountService],
+  declarations: [ReportComponent, CreateReportComponent, ReportsTableComponent],
+  providers: [ThemeConstantService],
 })
-export class SeoModule {}
+export class ReportModule {}

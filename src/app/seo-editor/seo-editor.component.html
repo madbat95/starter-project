@@ -1,20 +1,38 @@
-<div nz-row>
-  <div nz-col nzSpan="8">
-    <scrape-search></scrape-search>
-    <filter></filter>
-    <upload-report></upload-report>
-    <meta-button></meta-button>
-  </div>
-  <div nz-col nzSpan="16">
-    <app-suggestion-table></app-suggestion-table>
-  </div>
-</div>
+<div class="">
+  <div nz-row nzAlign="middle" [nzGutter]="[16, 16]">
+    <div nz-col [nzMd]="24" [nzLg]="5" [nzXl]="5">
+      <div nz-row [nzGutter]="[16, 32]" nzJustify="center" nzAlign="middle">
+        <div nz-col><scrape-search></scrape-search></div>
 
-<div nz-row>
-  <div nz-col nzSpan="8">
-    <app-variation-table></app-variation-table>
+        <div nz-col><filter></filter></div>
+
+        <div nz-col>
+          <div nz-row nzJustify="center" [nzGutter]="[8, 8]">
+            <div nz-col>
+              <upload-report></upload-report>
+            </div>
+
+            <div nz-col>
+              <meta-button></meta-button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div nz-col [nzMd]="24" [nzLg]="19" [nzXl]="19">
+      <app-suggestion-table></app-suggestion-table>
+    </div>
   </div>
-  <div nz-col nzSpan="16">
-    <app-summernote></app-summernote>
+
+  <div nz-row nzJustify="center" [nzGutter]="[16, 0]">
+    <div nz-col [nzMd]="24" [nzLg]="5" [nzXl]="5">
+      <app-variation-table
+        [data]="mapDataToTable(wordCountData)"
+      ></app-variation-table>
+    </div>
+    <div nz-col [nzMd]="24" [nzLg]="19" [nzXl]="19">
+      <app-summernote (onWordCount)="onChange($event)"></app-summernote>
+    </div>
   </div>
 </div>

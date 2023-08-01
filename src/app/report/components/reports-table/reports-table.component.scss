@@ -1,0 +1,19 @@
+::ng-deep .custom-card .ant-card-body {
+  padding: 0px !important;
+  height: 0px;
+}
+
+// ::ng-deep .ant-tag {
+//   color: white !important;
+//   background: red !important;
+//   border-color: transparent !important;
+//   font-weight: bold !important;
+//   margin: 0;
+// }
+::ng-deep .custom-tag {
+  color: white !important;
+  background: red !important;
+  border-color: transparent !important;
+  font-weight: bold !important;
+  margin: 0;
+}

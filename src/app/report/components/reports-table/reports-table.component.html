@@ -1,0 +1,66 @@
+<nz-card
+  [nzTitle]="CardHeading"
+  [nzCover]="basicTable"
+  [nzExtra]="extraTemplate"
+  class="custom-card"
+>
+  <nz-table
+    #basicTable
+    nzSize="small"
+    [nzFrontPagination]="false"
+    [nzScroll]="{ x: '1200px' }"
+    [nzData]="reportsData"
+  >
+    <thead>
+      <tr>
+        <th nzAlign="center">REPORT KEYWORD</th>
+        <th nzAlign="center">COUNTRY</th>
+        <th nzAlign="center">LANGUAGE</th>
+        <th nzAlign="center">CREATED</th>
+        <th nzAlign="center">WORD COUNT</th>
+        <th nzAlign="center">CONTENT GRADE</th>
+        <th nzAlign="center">USER</th>
+        <th nzAlign="center"></th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let data of reportsData">
+        <td nzAlign="center">{{ data.reportKeyword }}</td>
+        <td nzAlign="center">{{ data.country }}</td>
+        <td nzAlign="center">{{ data.language }}</td>
+        <td nzAlign="center">{{ data.created }}</td>
+        <td nzAlign="center">{{ data.wordCount }}</td>
+        <td nzAlign="center">
+          <nz-tag class="custom-tag">{{ data.contentGrade }}</nz-tag>
+        </td>
+        <td nzAlign="center">{{ data.user }}</td>
+        <td nzAlign="center">
+          <span nz-icon nzType="delete" nzTheme="outline"></span>
+        </td>
+      </tr>
+      <tr *ngFor="let data of reportsData">
+        <td nzAlign="center">{{ data.reportKeyword }}</td>
+        <td nzAlign="center">{{ data.country }}</td>
+        <td nzAlign="center">{{ data.language }}</td>
+        <td nzAlign="center">{{ data.created }}</td>
+        <td nzAlign="center">{{ data.wordCount }}</td>
+        <td nzAlign="center">
+          <nz-tag class="custom-tag">{{ data.contentGrade }}</nz-tag>
+        </td>
+        <td nzAlign="center">{{ data.user }}</td>
+        <td nzAlign="center">
+          <span nz-icon nzType="delete" nzTheme="outline"></span>
+        </td>
+      </tr>
+    </tbody>
+  </nz-table>
+</nz-card>
+<ng-template #extraTemplate>
+  <nz-input-group [nzPrefix]="prefixTemplateUser">
+    <input type="text" nz-input placeholder="Search Reports" />
+  </nz-input-group>
+  <ng-template #prefixTemplateUser
+    ><span nz-icon nzType="search"></span
+  ></ng-template>
+</ng-template>
+<ng-template #CardHeading><h3>Reports</h3></ng-template>
