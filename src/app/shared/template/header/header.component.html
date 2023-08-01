@@ -138,7 +138,7 @@
                 </div>
               </div>
             </li>
-            <li nz-menu-item>
+            <li nz-menu-item [routerLink]="['/admin/setting/profile']">
               <a
                 class="p-v-5 d-flex align-items-center justify-content-between"
               >
@@ -201,7 +201,7 @@
                 ></i>
               </a>
             </li> -->
-            <li nz-menu-item>
+            <li nz-menu-item (click)="signOut()">
               <a
                 class="p-v-5 d-flex align-items-center justify-content-between"
               >
