@@ -132,7 +132,8 @@
                 <nz-avatar nz-icon nzType="user" nzSize="large"></nz-avatar>
                 <div class="m-l-10">
                   <p class="m-b-0 text-dark font-weight-semibold">
-                    Saad Wakeel
+                    {{ user.first_name | titlecase }}
+                    {{ user.last_name | titlecase }}
                   </p>
                   <p class="m-b-0 opacity-07">SEO</p>
                 </div>

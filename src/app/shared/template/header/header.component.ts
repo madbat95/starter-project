@@ -1,6 +1,8 @@
 import { Component } from '@angular/core';
 import { ThemeConstantService } from '../../services/theme-constant.service';
 import { AuthService } from '../../services/auth.service';
+import { User } from '../../interfaces/user.type';
+import { NotificationService } from '../../services/notification.service';
 
 @Component({
   selector: 'app-header',
@@ -11,13 +13,24 @@ export class HeaderComponent {
   quickViewVisible: boolean = false;
   isFolded: boolean;
   isExpand: boolean;
+  user!: User;
 
   constructor(
     private themeService: ThemeConstantService,
-    private authService: AuthService
+    private authService: AuthService,
+    private notificationService: NotificationService
   ) {}
 
   ngOnInit(): void {
+    this.authService.getLoggedInUser().subscribe({
+      next: (user: User) => {
+        this.user = user;
+      },
+      error: () => {
+        this.notificationService.error('Error fetching user details:');
+      },
+    });
+
     this.themeService.isMenuFoldedChanges.subscribe(
       (isFolded) => (this.isFolded = isFolded)
     );
