@@ -7,6 +7,17 @@ import { Component, OnInit } from '@angular/core';
 })
 export class SeoEditorComponent implements OnInit {
   wordCountData: { [word: string]: number } = {};
+  tableData: any[] = [];
+  selectedTable: string = '';
+
+  onTableSelection(selectedTable: any): void {
+    this.selectedTable = selectedTable;
+  }
+
+  onDataReceived(data: any[]): void {
+    console.log('onDataReceived', data);
+    this.tableData = data;
+  }
 
   onChange(wordCountData): void {
     console.log('onchange', wordCountData);

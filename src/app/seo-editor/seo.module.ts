@@ -40,6 +40,7 @@ import { MetaInfoComponent } from './components/meta/components/meta-info/meta-i
 import { NzFormModule } from 'ng-zorro-antd/form';
 import { ReactiveFormsModule } from '@angular/forms';
 import { WordCountService } from './service/word-count.service';
+import { TableRadioComponent } from './components/table-radio/table-radio.component';
 
 const antdModule = [
   NzButtonModule,
@@ -89,6 +90,7 @@ const antdModule = [
     MetaComponent,
     SummernoteComponent,
     MetaInfoComponent,
+    TableRadioComponent,
   ],
   providers: [ThemeConstantService, WordCountService],
 })

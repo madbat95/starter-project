@@ -56,7 +56,7 @@ export class SummernoteComponent implements OnInit {
   onEditorKeyUp(text: string) {
     this.wordCountData = {}; // Reset the word count data
     this.uniqueWords.clear(); // Clear the uniqueWords Set
-
+    console.log('text entered', text);
     // Remove HTML entities representing spaces (&nbsp;), <p> tags, and <br> tags from the text
     const cleanedText = text.replace(/(&nbsp;|<p>|<\/p>|<br>)/g, '');
 
@@ -81,7 +81,7 @@ export class SummernoteComponent implements OnInit {
       }
     });
 
-    console.log('Word Count Data:', this.wordCountData);
+    // console.log('Word Count Data:', this.wordCountData);
     this.onWordCount.emit(this.wordCountData);
   }
 }

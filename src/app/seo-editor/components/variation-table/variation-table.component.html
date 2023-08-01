@@ -1,20 +1,4 @@
 <div nz-row nzAlign="center" nzJustify="center" [nzGutter]="[0, 16]">
-  <div>
-    {{ json.stringify(data) }}
-  </div>
-  <div nz-col>
-    <nz-radio-group
-      [(ngModel)]="selectedTable"
-      nzSize="small"
-      nzButtonStyle="solid"
-      (ngModelChange)="onTableSelectionChange()"
-    >
-      <label nz-radio-button nzValue="Variation">Variation</label>
-      <label nz-radio-button nzValue="LSI">LSI Keywords</label>
-      <label nz-radio-button nzValue="Entity">Entities</label>
-    </nz-radio-group>
-  </div>
-
   <div nz-col class="w-[88%]">
     <nz-table
       #table
