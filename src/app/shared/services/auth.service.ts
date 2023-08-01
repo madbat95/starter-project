@@ -88,6 +88,9 @@ export class AuthService {
   updateUser(data: any) {
     return this.http.put('auth/users/me/', data);
   }
+  updateLoggedInUserProfile(data: any): Observable<any> {
+    return this.http.get('profile/me/', data);
+  }
 
   getRefreshToken(): string {
     return localStorage.getItem(this.refreshTokenKey);
