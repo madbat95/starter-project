@@ -191,7 +191,7 @@
     .ant-radio-group-solid
       .ant-radio-button-wrapper-checked:not(.ant-radio-button-wrapper-disabled),
     .ant-checkbox-checked .ant-checkbox-inner {
-      background-color: #{nth($theme, 2)};
+      background-color: #{nth($theme, 2)} !important;
     }
 
     .ant-btn-primary,
