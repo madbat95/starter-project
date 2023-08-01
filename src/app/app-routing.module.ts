@@ -15,12 +15,12 @@ const appRoutes: Routes = [
     canActivate: [AppGuard],
   },
 
-  {
-    path: '',
-    loadChildren: () =>
-      import('./front/front.module').then((m) => m.FrontModule),
-    canActivate: [AuthGuard],
-  },
+  // {
+  //   path: '',
+  //   loadChildren: () =>
+  //     import('./front/front.module').then((m) => m.FrontModule),
+  //   canActivate: [AuthGuard],
+  // },
 
   {
     path: 'seo',
@@ -35,8 +35,8 @@ const appRoutes: Routes = [
   },
 
   {
-    path: 'admin',
-    redirectTo: 'admin/dashboard',
+    path: '',
+    redirectTo: '/admin/dashboard',
     pathMatch: 'full',
   },
   {
@@ -48,7 +48,7 @@ const appRoutes: Routes = [
 
   {
     path: '**',
-    redirectTo: '',
+    redirectTo: '/admin/dashboard',
   },
 ];
 
