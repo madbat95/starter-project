@@ -53,10 +53,23 @@ export class SummernoteComponent implements OnInit {
 
   ngOnInit(): void {}
 
-  onEditorKeyUp(text: string) {
+  getAllHeadings(html) {
+    const parser = new DOMParser();
+    const doc = parser.parseFromString(html, 'text/html');
+
+    const headings = doc.querySelectorAll('h1, h2, h3, h4, h5, h6');
+    const headingTexts = Array.from(headings).map(
+      (heading: any) => heading.innerText
+    );
+
+    console.log(headingTexts); // Outputs an array containing the text of all headings
+    return headingTexts;
+  }
+
+  onEditorKeyUp(text: any) {
     this.wordCountData = {}; // Reset the word count data
     this.uniqueWords.clear(); // Clear the uniqueWords Set
-    console.log('text entered', text);
+    console.log('text entered', text, this.getAllHeadings(text));
     // Remove HTML entities representing spaces (&nbsp;), <p> tags, and <br> tags from the text
     const cleanedText = text.replace(/(&nbsp;|<p>|<\/p>|<br>)/g, '');
 

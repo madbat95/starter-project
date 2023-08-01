@@ -184,6 +184,10 @@
 
 @each $theme in $theme-color-loop {
   .#{nth($theme, 1)} {
+    .ant-tabs-ink-bar {
+      background: #{nth($theme, 2)} !important;
+    }
+
     .header,
     .ant-table thead > tr > th,
     .table-col,
@@ -201,12 +205,30 @@
     .ant-menu-inline .ant-menu-item:after,
     .ant-menu-vertical .ant-menu-item:after,
     .ant-menu-vertical-left .ant-menu-item:after,
-    .ant-menu-vertical-right .ant-menu-item:after {
+    .ant-menu-vertical-right .ant-menu-item:after,
+    .ant-radio-group
+      .ant-radio-button-wrapper-checked:not(.ant-radio-button-wrapper-disabled),
+    .ant-radio-button-wrapper-checked:not(
+        .ant-radio-button-wrapper-disabled
+      ):before,
+    .ant-radio-button-wrapper-checked:not(
+        .ant-radio-button-wrapper-disabled
+      ):before,
+    .ant-radio-button-wrapper:hover {
       border-color: #{nth($theme, 2)};
     }
 
-    .ant-menu:not(.ant-menu-horizontal) .ant-menu-item-selected a {
-      //   color: #{nth($theme, 2)};
+    .ant-radio-button-wrapper-checked:not(
+        .ant-radio-button-wrapper-disabled
+      ):before {
+      background-color: #{nth($theme, 2)};
+    }
+
+    .ant-radio-group
+      .ant-radio-button-wrapper-checked:not(.ant-radio-button-wrapper-disabled),
+    .ant-radio-button-wrapper:hover,
+    .ant-tabs-tab.ant-tabs-tab-active .ant-tabs-tab-btn {
+      color: #{nth($theme, 2)};
     }
 
     .ant-menu {

@@ -20,7 +20,7 @@ export class SeoEditorComponent implements OnInit {
   }
 
   onChange(wordCountData): void {
-    console.log('onchange', wordCountData);
+    // console.log('onchange', wordCountData);
     this.wordCountData = wordCountData;
   }
 

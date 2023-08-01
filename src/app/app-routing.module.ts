@@ -35,7 +35,7 @@ const appRoutes: Routes = [
   },
 
   {
-    path: '',
+    path: 'admin',
     redirectTo: '/admin/dashboard',
     pathMatch: 'full',
   },
