@@ -224,12 +224,12 @@
       background-color: #{nth($theme, 2)};
     }
 
-    .ant-radio-group
-      .ant-radio-button-wrapper-checked:not(.ant-radio-button-wrapper-disabled),
-    .ant-radio-button-wrapper:hover,
-    .ant-tabs-tab.ant-tabs-tab-active .ant-tabs-tab-btn {
-      color: #{nth($theme, 2)};
-    }
+    // .ant-radio-group
+    //   .ant-radio-button-wrapper-checked:not(.ant-radio-button-wrapper-disabled),
+    // .ant-radio-button-wrapper:hover,
+    // .ant-tabs-tab.ant-tabs-tab-active .ant-tabs-tab-btn {
+    //   color: #{nth($theme, 2)};
+    // }
 
     .ant-menu {
       font-size: $font-size-base;

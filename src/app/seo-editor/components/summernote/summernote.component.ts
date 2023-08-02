@@ -57,19 +57,35 @@ export class SummernoteComponent implements OnInit {
     const parser = new DOMParser();
     const doc = parser.parseFromString(html, 'text/html');
 
-    const headings = doc.querySelectorAll('h1, h2, h3, h4, h5, h6');
-    const headingTexts = Array.from(headings).map(
-      (heading: any) => heading.innerText
-    );
+    const headingCounts = {};
 
-    console.log(headingTexts); // Outputs an array containing the text of all headings
-    return headingTexts;
+    ['h1', 'h2', 'h3', 'h4', 'h5', 'h6'].forEach((tagName) => {
+      const headings = doc.querySelectorAll(tagName);
+      const headingTexts = Array.from(headings).map(
+        (heading: any) => heading.innerText
+      );
+      let wordCount = 0;
+      headingTexts.forEach((headingText) => {
+        const words = headingText.trim().split(/\s+/);
+        wordCount += words.length;
+      });
+
+      headingCounts[tagName] = wordCount;
+    });
+
+    console.log('Heading Word Count:', headingCounts);
+    return headingCounts;
   }
 
   onEditorKeyUp(text: any) {
     this.wordCountData = {}; // Reset the word count data
     this.uniqueWords.clear(); // Clear the uniqueWords Set
-    console.log('text entered', text, this.getAllHeadings(text));
+
+    console.log('text entered', text);
+
+    // Count words in headings
+    const headingCounts = this.getAllHeadings(text);
+
     // Remove HTML entities representing spaces (&nbsp;), <p> tags, and <br> tags from the text
     const cleanedText = text.replace(/(&nbsp;|<p>|<\/p>|<br>)/g, '');
 
@@ -84,17 +100,15 @@ export class SummernoteComponent implements OnInit {
           // Use a Set to keep track of unique words and only count them once
           if (!this.uniqueWords.has(word)) {
             this.uniqueWords.add(word);
-            // this.wordCountService.wordCountData[word] = 1;
             this.wordCountData[word] = 1;
           } else {
-            // this.wordCountService.wordCountData[word]++;
             this.wordCountData[word]++;
           }
         });
       }
     });
 
-    // console.log('Word Count Data:', this.wordCountData);
+    console.log('Word Count Data:', this.wordCountData);
     this.onWordCount.emit(this.wordCountData);
   }
 }

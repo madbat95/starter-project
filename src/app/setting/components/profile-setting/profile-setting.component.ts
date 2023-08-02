@@ -235,8 +235,8 @@ export class ProfileSettingComponent {
         last_name: this.profileForm.value.last_name,
       };
       const updatedUserProfile = {
+        user_id: this.user.id,
         phone_number: this.profileForm.value.phone_number,
-
         address: this.profileForm.value.address,
         state: this.profileForm.value.state,
         country: this.profileForm.value.country,

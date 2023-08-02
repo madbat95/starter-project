@@ -89,7 +89,7 @@ export class AuthService {
     return this.http.put('auth/users/me/', data);
   }
   updateLoggedInUserProfile(data: any): Observable<any> {
-    return this.http.get('profile/me/', data);
+    return this.http.post('profile/me/', data);
   }
 
   getRefreshToken(): string {
