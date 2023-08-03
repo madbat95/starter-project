@@ -51,6 +51,29 @@ export class SummernoteComponent implements OnInit {
 
   ngOnInit(): void {}
 
+  parseElement(element, resultMap, isHeading = false) {
+    let tagName = element.tagName.toLowerCase();
+
+    if (tagName.startsWith('h') && tagName.length === 2 && !isNaN(tagName[1])) {
+      var innerText = element.innerText.trim();
+      var wordCount = innerText.split(/\s+/).length;
+      resultMap[tagName] = (resultMap[tagName] || 0) + wordCount; // Increment the count for the heading tag
+      // if (element.children.length) {
+      //   resultMap = this.iterateBodyElements(element.children, resultMap, true);
+      //   return;
+      // }
+    } else {
+      // If it's not a heading tag, process the text content without counting child elements
+      const cleanedText = element.innerText.replace(/\s+/g, ' ').trim();
+
+      if (cleanedText !== '') {
+        // Only count non-empty text
+        let wordCount = cleanedText.split(/\s+/).length;
+        resultMap['content'] = (resultMap['content'] || 0) + wordCount; // Increment the content count
+      }
+    }
+    return { resultMap, isHeading };
+  }
   getAllHeadings(html) {
     const parser = new DOMParser();
     const doc = parser.parseFromString(html, 'text/html');
@@ -112,37 +135,16 @@ export class SummernoteComponent implements OnInit {
 
   //   return resultMap;
   // }
-  iterateBodyElements(element, resultMap = {}) {
+  iterateBodyElements(element, resultMap = {}, isHeading = false) {
     var children = element.children;
-    console.log('children', children);
     for (let i = 0; i < children.length; i++) {
-      let tagName = children[i].tagName.toLowerCase();
-      // console.log('eklement', element);
-      if (
-        tagName.startsWith('h') &&
-        tagName.length === 2 &&
-        !isNaN(tagName[1])
-      ) {
-        var innerText = children[i].innerText.trim();
-        var wordCount = innerText.split(/\s+/).length;
-        resultMap[tagName] = (resultMap[tagName] || 0) + wordCount; // Increment the count for the heading tag
-      } else {
-        // If it's not a heading tag, process the text content without counting child elements
-        const cleanedText = children[i].innerText.replace(/\s+/g, ' ').trim();
-
-        if (cleanedText !== '') {
-          // Only count non-empty text
-          console.log('cleanedText', cleanedText);
-          let wordCount = cleanedText.split(/\s+/).length;
-          console.log('word count', wordCount);
-          resultMap['content'] = (resultMap['content'] || 0) + wordCount; // Increment the content count
-
-          // console.log('Words in content:', cleanedText.split(/\s+/));
-        }
-      }
-      this.iterateBodyElements(children[i], resultMap);
+      const { resultMap: re, isHeading: h } = this.parseElement(
+        children[i],
+        resultMap,
+        isHeading
+      );
+      this.iterateBodyElements(children[i], re, h);
     }
-
     return resultMap;
   }
 
@@ -151,15 +153,18 @@ export class SummernoteComponent implements OnInit {
     const doc = parser.parseFromString(text, 'text/html');
     this.wordCountData = {}; // Reset the word count data
     this.uniqueWords.clear(); // Clear the uniqueWords Set
-    // console.log('text: ', text);
-    console.log('doc body: ', doc.body);
-    // console.log('text entered', text);
 
-    // Count words in headings
-    const headingCounts = this.getAllHeadings(text);
-    // console.log();
-    var c = this.iterateBodyElements(doc.body);
-    // console.log('final', c);
+    var children = doc.body.children;
+    var resultMap = {};
+    var isHeading = false;
+    if (!children.length) {
+      console.log('no children', children);
+      var a = this.parseElement(doc.body, {});
+      resultMap = a.resultMap;
+    } else {
+      resultMap = this.iterateBodyElements(doc.body);
+    }
+    console.log('final', resultMap);
 
     // Remove HTML entities representing spaces (&nbsp;), <p> tags, and <br> tags from the text
     const cleanedText = text.replace(/<\/?[^>]+(>|$)/g, ' ');
@@ -179,7 +184,7 @@ export class SummernoteComponent implements OnInit {
       }
     });
 
-    console.log('Word Count Data:', this.wordCountData);
+    // console.log('Word Count Data:', this.wordCountData);
 
     this.onWordCount.emit(this.wordCountData);
   }
