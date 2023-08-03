@@ -19,12 +19,12 @@
 @import url("../node_modules/@fortawesome/fontawesome-free/css/all.min.css");
 @import "./assets/scss/app.scss";
 
-@import url("https://fonts.googleapis.com/css2?family=Lato&display=swap");
-// @import "~tui-image-editor/dist/tui-image-editor.min.css";
-* {
-  font-family: "Lato";
-  font-style: normal;
-}
+// @import url("https://fonts.googleapis.com/css2?family=Lato&display=swap");
+// // @import "~tui-image-editor/dist/tui-image-editor.min.css";
+// * {
+//   font-family: "Lato";
+//   font-style: normal;
+// }
 //removing number arrows from input field
 input::-webkit-outer-spin-button,
 input::-webkit-inner-spin-button {
