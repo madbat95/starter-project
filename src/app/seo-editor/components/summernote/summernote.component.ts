@@ -48,7 +48,9 @@ export class SummernoteComponent implements OnInit {
       'Times',
     ],
   };
-  WordObject = {
+  @Output() onWordObject = new EventEmitter<any>();
+
+  wordObject = {
     Entity: {
       h1: [
         {
@@ -204,7 +206,9 @@ export class SummernoteComponent implements OnInit {
     },
   };
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.onWordObject.emit(this.wordObject);
+  }
 
   countWordsInHeadersAndContent(
     element,
@@ -258,9 +262,9 @@ export class SummernoteComponent implements OnInit {
   }
 
   isWordInWordObject(word) {
-    for (const dataTypes of Object.values(this.WordObject)) {
-      for (const dataType of Object.values(dataTypes)) {
-        for (const data of dataType) {
+    for (const EntityName of Object.values(this.wordObject)) {
+      for (const Entity of Object.values(EntityName)) {
+        for (const data of Entity) {
           if (data.word === word) {
             return true;
           }
@@ -296,7 +300,7 @@ export class SummernoteComponent implements OnInit {
 
     words.forEach((word) => {
       // Check if the word is not empty and not containing only spaces
-      if (word.trim().length > 0) {
+      if (word.trim().length > 0 && this.isWordInWordObject(word)) {
         // Use a Set to keep track of unique words and only count them once
         if (!this.uniqueWords.has(word)) {
           this.uniqueWords.add(word);

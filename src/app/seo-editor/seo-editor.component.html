@@ -21,7 +21,7 @@
     </div>
 
     <div nz-col [nzMd]="24" [nzLg]="19" [nzXl]="19">
-      <app-suggestion-table></app-suggestion-table>
+      <app-suggestion-table [data]="wordObject"></app-suggestion-table>
     </div>
   </div>
 
@@ -48,7 +48,10 @@
     </div>
 
     <div nz-col [nzMd]="24" [nzLg]="19" [nzXl]="19">
-      <app-summernote (onWordCount)="onChange($event)"></app-summernote>
+      <app-summernote
+        (onWordObject)="onWordObject($event)"
+        (onWordCount)="onChange($event)"
+      ></app-summernote>
     </div>
   </div>
 </div>

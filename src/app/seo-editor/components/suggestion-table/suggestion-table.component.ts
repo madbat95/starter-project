@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-suggestion-table',
@@ -7,7 +7,7 @@ import { Component, OnInit } from '@angular/core';
 })
 export class SuggestionTableComponent implements OnInit {
   listOfData: any[] = [];
-
+  @Input() data: any;
   ngOnInit(): void {
     this.listOfData = [
       {
