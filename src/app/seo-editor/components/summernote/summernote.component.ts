@@ -91,103 +91,6 @@ export class SummernoteComponent implements OnInit {
 
   ngOnInit(): void {}
 
-  parseElement(element, resultMap, isHeading = false) {
-    let tagName = element.tagName.toLowerCase();
-
-    if (tagName.startsWith('h') && tagName.length === 2 && !isNaN(tagName[1])) {
-      var innerText = element.innerText.trim();
-      var wordCount = innerText.split(/\s+/).length;
-      resultMap[tagName] = (resultMap[tagName] || 0) + wordCount; // Increment the count for the heading tag
-      // if (element.children.length) {
-      //   resultMap = this.iterateBodyElements(element.children, resultMap, true);
-      //   return;
-      // }
-    } else {
-      // If it's not a heading tag, process the text content without counting child elements
-      const cleanedText = element.innerText.replace(/\s+/g, ' ').trim();
-
-      if (cleanedText !== '') {
-        // Only count non-empty text
-        let wordCount = cleanedText.split(/\s+/).length;
-        resultMap['content'] = (resultMap['content'] || 0) + wordCount; // Increment the content count
-      }
-    }
-    return { resultMap, isHeading };
-  }
-  getAllHeadings(html) {
-    const parser = new DOMParser();
-    const doc = parser.parseFromString(html, 'text/html');
-    // console.log('doc here', doc);
-    const headingCounts = {};
-    // Initialize an array to hold content from non-heading tags
-    let content = [];
-    const heading = ['h1', 'h2', 'h3', 'h4', 'h5', 'h6'];
-    heading.forEach((tagName) => {
-      const headings = doc.querySelectorAll(tagName);
-      const headingTexts = Array.from(headings).map(
-        (heading: any) => heading.innerText
-      );
-      let wordCount = 0;
-      headingTexts.forEach((headingText) => {
-        const words = headingText.trim().split(/\s+/);
-        wordCount += words.length;
-      });
-      headingCounts[tagName] = wordCount;
-    });
-    // Iterate through other tags and collect their content
-    const nonHeadingTags = ['p', 'div', 'span', 'a']; // Add more tags as needed
-    nonHeadingTags.forEach((tagName) => {
-      const elements = doc.querySelectorAll(tagName);
-      elements.forEach((element: any) => {
-        content.push(element.innerText);
-      });
-    });
-    // Join the content array and split into words to count
-    const contentText = content.join(' ');
-    const contentWords = contentText.trim().split(/\s+/);
-    headingCounts['content'] = contentWords.length;
-    console.log('Heading Word Count:', headingCounts);
-    return headingCounts;
-  }
-
-  // iterateBodyElements(element, resultMap = {}) {
-  //   var tagName = element.tagName.toLowerCase();
-  //   var innerText = element.innerText.trim();
-  //   var wordCount = innerText.split(/\s+/).length;
-
-  //   if (tagName.startsWith('h') && tagName.length === 2 && !isNaN(tagName[1])) {
-  //     resultMap[tagName] = wordCount;
-  //   } else {
-  //     if ('content' in resultMap) {
-  //       resultMap['content'] += wordCount;
-  //       console.log('wordCount :', wordCount);
-  //       console.log('resultmap: ', resultMap['content']);
-  //     } else {
-  //       resultMap['content'] = wordCount;
-  //     }
-  //   }
-
-  //   var children = element.children;
-
-  //   for (var i = 0; i < children.length; i++) {
-  //     this.iterateBodyElements(children[i], resultMap);
-  //   }
-
-  //   return resultMap;
-  // }
-  iterateBodyElements(element, resultMap = {}, isHeading = false) {
-    var children = element.children;
-    for (let i = 0; i < children.length; i++) {
-      const { resultMap: re, isHeading: h } = this.parseElement(
-        children[i],
-        resultMap,
-        isHeading
-      );
-      this.iterateBodyElements(children[i], re, h);
-    }
-    return resultMap;
-  }
-
   countWordsInHeadersAndContent(
     element,
     headerAncestors = ['H1', 'H2', 'H3', 'H4', 'H5', 'H6']
@@ -243,23 +146,10 @@ export class SummernoteComponent implements OnInit {
       'H4',
       'H5',
       'H6',
-      'content',
     ]);
     console.log(wordCount);
     this.wordCountData = {}; // Reset the word count data
     this.uniqueWords.clear(); // Clear the uniqueWords Set
-
-    // var children = doc.body.children;
-    // var resultMap = {};
-    // var isHeading = false;
-    // if (!children.length) {
-    //   console.log('no children', children);
-    //   var a = this.parseElement(doc.body, {});
-    //   resultMap = a.resultMap;
-    // } else {
-    //   resultMap = this.iterateBodyElements(doc.body);
-    // }
-    // console.log('final', resultMap);
 
     // Remove HTML entities representing spaces (&nbsp;), <p> tags, and <br> tags from the text
     const cleanedText = text.replace(/<\/?[^>]+(>|$)/g, ' ');
