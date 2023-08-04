@@ -49,6 +49,46 @@ export class SummernoteComponent implements OnInit {
     ],
   };
 
+  WordObject = {
+    Entity: {
+      h1: [
+        {
+          privacy: 0,
+        },
+      ],
+      h2: [
+        {
+          data: 0,
+        },
+      ],
+      h3: [
+        {
+          folder: 0,
+        },
+      ],
+      h4: [
+        {
+          security: 0,
+        },
+      ],
+      h5: [
+        {
+          access: 0,
+        },
+      ],
+      h6: [
+        {
+          transfer: 0,
+        },
+      ],
+      content: [
+        {
+          authorize: 0,
+        },
+      ],
+    },
+  };
+
   ngOnInit(): void {}
 
   parseElement(element, resultMap, isHeading = false) {
@@ -148,23 +188,78 @@ export class SummernoteComponent implements OnInit {
     return resultMap;
   }
 
+  countWordsInHeadersAndContent(
+    element,
+    headerAncestors = ['H1', 'H2', 'H3', 'H4', 'H5', 'H6']
+  ) {
+    const result = {
+      content: '',
+      headers: {},
+    };
+
+    const nodeName = element.nodeName.toUpperCase();
+    const isHeader = headerAncestors.includes(nodeName);
+
+    if (isHeader) {
+      result.headers[nodeName] =
+        (result.headers[nodeName] || 0) + this.countWordsInElement(element);
+    } else {
+      if (element.nodeType === Node.TEXT_NODE) {
+        result.content += element.textContent.trim() + ' ';
+      } else {
+        const childNodes = element.childNodes;
+        for (let i = 0; i < childNodes.length; i++) {
+          const childResult = this.countWordsInHeadersAndContent(
+            childNodes[i],
+            headerAncestors
+          );
+          result.content += childResult.content;
+          Object.entries(childResult.headers).forEach(([headerTag, count]) => {
+            result.headers[headerTag] =
+              (result.headers[headerTag] || 0) + count;
+          });
+        }
+      }
+    }
+
+    return result;
+  }
+
+  countWordsInElement(element) {
+    return element.textContent.trim().split(/\s+/).length;
+  }
+
+  // Example usage:
+
   onEditorKeyUp(text: any) {
     const parser = new DOMParser();
     const doc = parser.parseFromString(text, 'text/html');
+    console.log(doc.body);
+    // const body = document.body;
+    const wordCount = this.countWordsInHeadersAndContent(doc.body, [
+      'H1',
+      'H2',
+      'H3',
+      'H4',
+      'H5',
+      'H6',
+      'content',
+    ]);
+    console.log(wordCount);
     this.wordCountData = {}; // Reset the word count data
     this.uniqueWords.clear(); // Clear the uniqueWords Set
 
-    var children = doc.body.children;
-    var resultMap = {};
-    var isHeading = false;
-    if (!children.length) {
-      console.log('no children', children);
-      var a = this.parseElement(doc.body, {});
-      resultMap = a.resultMap;
-    } else {
-      resultMap = this.iterateBodyElements(doc.body);
-    }
-    console.log('final', resultMap);
+    // var children = doc.body.children;
+    // var resultMap = {};
+    // var isHeading = false;
+    // if (!children.length) {
+    //   console.log('no children', children);
+    //   var a = this.parseElement(doc.body, {});
+    //   resultMap = a.resultMap;
+    // } else {
+    //   resultMap = this.iterateBodyElements(doc.body);
+    // }
+    // console.log('final', resultMap);
 
     // Remove HTML entities representing spaces (&nbsp;), <p> tags, and <br> tags from the text
     const cleanedText = text.replace(/<\/?[^>]+(>|$)/g, ' ');
