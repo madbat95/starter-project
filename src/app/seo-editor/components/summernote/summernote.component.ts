@@ -219,12 +219,8 @@ export class SummernoteComponent implements OnInit {
     const isHeader = headerAncestors.includes(nodeName);
 
     if (isHeader) {
-      const headerWord = this.getHeaderWord(nodeName);
-      if (headerWord) {
-        result.headers[nodeName] =
-          (result.headers[nodeName] || 0) +
-          this.countWordsInElement(element, headerWord);
-      }
+      result.headers[nodeName] =
+        (result.headers[nodeName] || 0) + this.countWordsInElement(element);
     } else {
       if (element.nodeType === Node.TEXT_NODE) {
         result.content += this.countWordsInElement(element);
@@ -247,28 +243,31 @@ export class SummernoteComponent implements OnInit {
     return result;
   }
 
-  getHeaderWord(headerTag) {
-    const wordObject = this.WordObject.Entity[headerTag.toLowerCase()];
-    if (wordObject && wordObject.length > 0) {
-      return wordObject[0].word;
-    }
-    return null;
+  countWordsInElement(element) {
+    const text = element.textContent.trim();
+    const words = text.split(/\s+/);
+    let count = 0;
+
+    words.forEach((word) => {
+      if (this.isWordInWordObject(word)) {
+        count++;
+      }
+    });
+
+    return count;
   }
 
-  countWordsInElement(element, wordToCount = null) {
-    const text = element.textContent.trim();
-    if (!wordToCount) {
-      return text.split(/\s+/).length;
-    } else {
-      const words = text.split(/\s+/);
-      const count = words.reduce((total, word) => {
-        if (word.toLowerCase() === wordToCount.toLowerCase()) {
-          return total + 1;
+  isWordInWordObject(word) {
+    for (const dataTypes of Object.values(this.WordObject)) {
+      for (const dataType of Object.values(dataTypes)) {
+        for (const data of dataType) {
+          if (data.word === word) {
+            return true;
+          }
         }
-        return total;
-      }, 0);
-      return count;
+      }
     }
+    return false;
   }
 
   // Example usage:
