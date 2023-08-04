@@ -48,7 +48,6 @@ export class SummernoteComponent implements OnInit {
       'Times',
     ],
   };
-
   WordObject = {
     Entity: {
       h1: [
@@ -220,8 +219,12 @@ export class SummernoteComponent implements OnInit {
     const isHeader = headerAncestors.includes(nodeName);
 
     if (isHeader) {
-      result.headers[nodeName] =
-        (result.headers[nodeName] || 0) + this.countWordsInElement(element);
+      const headerWord = this.getHeaderWord(nodeName);
+      if (headerWord) {
+        result.headers[nodeName] =
+          (result.headers[nodeName] || 0) +
+          this.countWordsInElement(element, headerWord);
+      }
     } else {
       if (element.nodeType === Node.TEXT_NODE) {
         result.content += this.countWordsInElement(element);
@@ -244,8 +247,28 @@ export class SummernoteComponent implements OnInit {
     return result;
   }
 
-  countWordsInElement(element) {
-    return element.textContent.trim().split(/\s+/).length;
+  getHeaderWord(headerTag) {
+    const wordObject = this.WordObject.Entity[headerTag.toLowerCase()];
+    if (wordObject && wordObject.length > 0) {
+      return wordObject[0].word;
+    }
+    return null;
+  }
+
+  countWordsInElement(element, wordToCount = null) {
+    const text = element.textContent.trim();
+    if (!wordToCount) {
+      return text.split(/\s+/).length;
+    } else {
+      const words = text.split(/\s+/);
+      const count = words.reduce((total, word) => {
+        if (word.toLowerCase() === wordToCount.toLowerCase()) {
+          return total + 1;
+        }
+        return total;
+      }, 0);
+      return count;
+    }
   }
 
   // Example usage:
