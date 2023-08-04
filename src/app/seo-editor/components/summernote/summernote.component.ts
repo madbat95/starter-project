@@ -53,37 +53,153 @@ export class SummernoteComponent implements OnInit {
     Entity: {
       h1: [
         {
-          privacy: 0,
+          word: 'privacy',
+          required: '0',
+          count: '0',
         },
       ],
       h2: [
         {
-          data: 0,
+          word: 'access',
+          required: '0',
+          count: '0',
         },
       ],
       h3: [
         {
-          folder: 0,
+          word: 'data',
+          required: '0',
+          count: '0',
         },
       ],
       h4: [
         {
-          security: 0,
+          word: 'authorize',
+          required: '0',
+          count: '0',
         },
       ],
       h5: [
         {
-          access: 0,
+          word: 'security',
+          required: '0',
+          count: '0',
         },
       ],
       h6: [
         {
-          transfer: 0,
+          word: 'password',
+          required: '0',
+          count: '0',
         },
       ],
       content: [
         {
-          authorize: 0,
+          word: 'security',
+          required: '0',
+          count: '0',
+        },
+      ],
+    },
+    Variations: {
+      h1: [
+        {
+          word: 'privacy',
+          required: '0',
+          count: '0',
+        },
+      ],
+      h2: [
+        {
+          word: 'access',
+          required: '0',
+          count: '0',
+        },
+      ],
+      h3: [
+        {
+          word: 'data',
+          required: '0',
+          count: '0',
+        },
+      ],
+      h4: [
+        {
+          word: 'authorize',
+          required: '0',
+          count: '0',
+        },
+      ],
+      h5: [
+        {
+          word: 'security',
+          required: '0',
+          count: '0',
+        },
+      ],
+      h6: [
+        {
+          word: 'password',
+          required: '0',
+          count: '0',
+        },
+      ],
+      content: [
+        {
+          word: 'security',
+          required: '0',
+          count: '0',
+        },
+      ],
+    },
+    LSIKeywords: {
+      h1: [
+        {
+          word: 'privacy',
+          required: '0',
+          count: '0',
+        },
+      ],
+      h2: [
+        {
+          word: 'access',
+          required: '0',
+          count: '0',
+        },
+      ],
+      h3: [
+        {
+          word: 'data',
+          required: '0',
+          count: '0',
+        },
+      ],
+      h4: [
+        {
+          word: 'authorize',
+          required: '0',
+          count: '0',
+        },
+      ],
+      h5: [
+        {
+          word: 'security',
+          required: '0',
+          count: '0',
+        },
+      ],
+      h6: [
+        {
+          word: 'password',
+          required: '0',
+          count: '0',
+        },
+      ],
+      content: [
+        {
+          word: 'security',
+          required: '0',
+          count: '0',
         },
       ],
     },
@@ -96,7 +212,7 @@ export class SummernoteComponent implements OnInit {
     headerAncestors = ['H1', 'H2', 'H3', 'H4', 'H5', 'H6']
   ) {
     const result = {
-      content: '',
+      content: 0,
       headers: {},
     };
 
@@ -108,7 +224,7 @@ export class SummernoteComponent implements OnInit {
         (result.headers[nodeName] || 0) + this.countWordsInElement(element);
     } else {
       if (element.nodeType === Node.TEXT_NODE) {
-        result.content += element.textContent.trim() + ' ';
+        result.content += this.countWordsInElement(element);
       } else {
         const childNodes = element.childNodes;
         for (let i = 0; i < childNodes.length; i++) {
