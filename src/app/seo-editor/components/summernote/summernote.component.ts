@@ -51,159 +51,96 @@ export class SummernoteComponent implements OnInit {
   @Output() onWordObject = new EventEmitter<any>();
 
   wordObject = {
-    Entity: {
-      h1: [
-        {
-          word: 'privacy',
-          required: '0',
-          count: '0',
-        },
-      ],
-      h2: [
-        {
-          word: 'access',
-          required: '0',
-          count: '0',
-        },
-      ],
-      h3: [
-        {
-          word: 'data',
-          required: '0',
-          count: '0',
-        },
-      ],
-      h4: [
-        {
-          word: 'authorize',
-          required: '0',
-          count: '0',
-        },
-      ],
-      h5: [
-        {
-          word: 'security',
-          required: '0',
-          count: '0',
-        },
-      ],
-      h6: [
-        {
-          word: 'password',
-          required: '0',
-          count: '0',
-        },
-      ],
-      content: [
-        {
-          word: 'security',
-          required: '0',
-          count: '0',
-        },
-      ],
-    },
-    Variations: {
-      h1: [
-        {
-          word: 'privacy',
-          required: '0',
-          count: '0',
-        },
-      ],
-      h2: [
-        {
-          word: 'access',
-          required: '0',
-          count: '0',
-        },
-      ],
-      h3: [
-        {
-          word: 'data',
-          required: '0',
-          count: '0',
-        },
-      ],
-      h4: [
-        {
-          word: 'authorize',
-          required: '0',
-          count: '0',
-        },
-      ],
-      h5: [
-        {
-          word: 'security',
-          required: '0',
-          count: '0',
-        },
-      ],
-      h6: [
-        {
-          word: 'password',
-          required: '0',
-          count: '0',
-        },
-      ],
-      content: [
-        {
-          word: 'security',
-          required: '0',
-          count: '0',
-        },
-      ],
-    },
-    LSIKeywords: {
-      h1: [
-        {
-          word: 'privacy',
-          required: '0',
-          count: '0',
-        },
-      ],
-      h2: [
-        {
-          word: 'access',
-          required: '0',
-          count: '0',
-        },
-      ],
-      h3: [
-        {
-          word: 'data',
-          required: '0',
-          count: '0',
-        },
-      ],
-      h4: [
-        {
-          word: 'authorize',
-          required: '0',
-          count: '0',
-        },
-      ],
-      h5: [
-        {
-          word: 'security',
-          required: '0',
-          count: '0',
-        },
-      ],
-      h6: [
-        {
-          word: 'password',
-          required: '0',
-          count: '0',
-        },
-      ],
-      content: [
-        {
-          word: 'security',
-          required: '0',
-          count: '0',
-        },
-      ],
-    },
+    Entity: [
+      {
+        word: 'privacy',
+        count: 0,
+      },
+      {
+        word: 'data',
+        count: 0,
+      },
+      {
+        word: 'virginia',
+        count: 0,
+      },
+      {
+        word: 'veritext',
+        count: 0,
+      },
+      {
+        word: 'access',
+        count: 0,
+      },
+      {
+        word: 'security',
+        count: 0,
+      },
+      {
+        word: 'finance',
+        count: 0,
+      },
+    ],
+    Variations: [
+      {
+        word: 'alexandria',
+        count: 0,
+      },
+      {
+        word: 'videographers',
+        count: 0,
+      },
+      {
+        word: 'north',
+        count: 0,
+      },
+      {
+        word: 'breach',
+        count: 0,
+      },
+      {
+        word: 'statistics',
+        count: 0,
+      },
+      {
+        word: 'logistics',
+        count: 0,
+      },
+      {
+        word: 'finance',
+        count: 0,
+      },
+    ],
+    LSIKeywords: [
+      {
+        word: 'paper',
+        count: 0,
+      },
+      {
+        word: 'testimony',
+        count: 0,
+      },
+      {
+        word: 'chicago',
+        count: 0,
+      },
+      {
+        word: 'united',
+        count: 0,
+      },
+      {
+        word: 'manchester',
+        count: 0,
+      },
+      {
+        word: 'city',
+        count: 0,
+      },
+      {
+        word: 'trial',
+        count: 0,
+      },
+    ],
   };
 
   ngOnInit(): void {
@@ -262,12 +199,10 @@ export class SummernoteComponent implements OnInit {
   }
 
   isWordInWordObject(word) {
-    for (const EntityName of Object.values(this.wordObject)) {
-      for (const Entity of Object.values(EntityName)) {
-        for (const data of Entity) {
-          if (data.word === word) {
-            return true;
-          }
+    for (const entityName of Object.values(this.wordObject)) {
+      for (const entity of entityName) {
+        if (entity.word === word) {
+          return true;
         }
       }
     }
