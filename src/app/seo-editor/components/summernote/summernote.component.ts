@@ -10,7 +10,11 @@ import { WordCountService } from '../../service/word-count.service';
 export class SummernoteComponent implements OnInit {
   editorContent = '';
   uniqueWords: Set<string> = new Set();
-  wordCountData: { [word: string]: number } = {};
+  wordCountData: { [entity: string]: { [word: string]: number } } = {
+    Entity: {},
+    Variations: {},
+    LSIKeywords: {},
+  };
   @Output() onWordCount = new EventEmitter<{ [word: string]: number }>();
   editorConfig = {
     placeholder: 'Add text here...',
@@ -199,23 +203,22 @@ export class SummernoteComponent implements OnInit {
   }
 
   isWordInWordObject(word) {
-    for (const entityName of Object.values(this.wordObject)) {
-      for (const entity of entityName) {
+    for (const entityName of Object.keys(this.wordObject)) {
+      const entityArray = this.wordObject[entityName];
+      for (const entity of entityArray) {
         if (entity.word === word) {
-          return true;
+          return entityName;
         }
       }
     }
-    return false;
+    return null;
   }
-
-  // Example usage:
 
   onEditorKeyUp(text: any) {
     const parser = new DOMParser();
     const doc = parser.parseFromString(text, 'text/html');
     console.log(doc.body);
-    // const body = document.body;
+
     const wordCount = this.countWordsInHeadersAndContent(doc.body, [
       'H1',
       'H2',
@@ -225,7 +228,12 @@ export class SummernoteComponent implements OnInit {
       'H6',
     ]);
     console.log(wordCount);
-    this.wordCountData = {}; // Reset the word count data
+
+    // Reset the word count data for each entity
+    for (const entity of Object.keys(this.wordCountData)) {
+      this.wordCountData[entity] = {};
+    }
+
     this.uniqueWords.clear(); // Clear the uniqueWords Set
 
     // Remove HTML entities representing spaces (&nbsp;), <p> tags, and <br> tags from the text
@@ -235,19 +243,24 @@ export class SummernoteComponent implements OnInit {
 
     words.forEach((word) => {
       // Check if the word is not empty and not containing only spaces
-      if (word.trim().length > 0 && this.isWordInWordObject(word)) {
-        // Use a Set to keep track of unique words and only count them once
-        if (!this.uniqueWords.has(word)) {
-          this.uniqueWords.add(word);
-          this.wordCountData[word] = 1;
-        } else {
-          this.wordCountData[word]++;
+      if (word.trim().length > 0) {
+        const entityName = this.isWordInWordObject(word);
+        if (entityName) {
+          if (!this.uniqueWords.has(word)) {
+            this.uniqueWords.add(word);
+            this.wordCountData[entityName][word] = 1;
+          } else {
+            if (!this.wordCountData[entityName][word]) {
+              this.wordCountData[entityName][word] = 1;
+            } else {
+              this.wordCountData[entityName][word]++;
+            }
+          }
         }
       }
     });
 
-    // console.log('Word Count Data:', this.wordCountData);
-
-    this.onWordCount.emit(this.wordCountData);
+    console.log('wordcountdata', this.wordCountData);
+    // this.onWordCount.emit(this.wordCountData);
   }
 }
