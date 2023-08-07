@@ -1,6 +1,4 @@
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
-import { FormControl } from '@angular/forms';
-import { WordCountService } from '../../service/word-count.service';
 
 @Component({
   selector: 'app-summernote',
@@ -247,18 +245,20 @@ export class SummernoteComponent implements OnInit {
       if (word.trim().length > 0) {
         const entityName = this.isWordInWordObject(word);
         if (entityName) {
-          const entityArray = this.wordObject[entityName];
-          const matchingWord = entityArray.find(
-            (entity) => entity.word === word
-          );
-          if (matchingWord) {
-            matchingWord.count++;
+          // Loop through both 'Entity' and 'Variations' arrays
+          for (const entityType of ['Entity', 'Variations', 'LSIKeywords']) {
+            const entityArray = this.wordObject[entityType];
+            const matchingWord = entityArray.find(
+              (entity) => entity.word === word
+            );
+            if (matchingWord) {
+              matchingWord.count++;
+            }
           }
         }
       }
     });
 
-    console.log('Updated wordObject:', this.wordObject);
     this.onWordObject.emit(this.wordObject);
   }
 }
