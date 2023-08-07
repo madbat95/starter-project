@@ -8,10 +8,40 @@ import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 export class SummernoteComponent implements OnInit {
   editorContent = '';
   uniqueWords: Set<string> = new Set();
-  wordCountData: { [entity: string]: { [word: string]: number } } = {
-    Entity: {},
-    Variations: {},
-    LSIKeywords: {},
+  wordCount: any = {
+    Entity: {
+      content: 0,
+      headers: {
+        H1: 0,
+        H2: 0,
+        H3: 0,
+        H4: 0,
+        H5: 0,
+        H6: 0,
+      },
+    },
+    Variations: {
+      content: 0,
+      headers: {
+        H1: 0,
+        H2: 0,
+        H3: 0,
+        H4: 0,
+        H5: 0,
+        H6: 0,
+      },
+    },
+    LSIKeywords: {
+      content: 0,
+      headers: {
+        H1: 0,
+        H2: 0,
+        H3: 0,
+        H4: 0,
+        H5: 0,
+        H6: 0,
+      },
+    },
   };
   editorConfig = {
     placeholder: 'Add text here...',
@@ -155,6 +185,7 @@ export class SummernoteComponent implements OnInit {
 
   ngOnInit(): void {
     this.onWordObject.emit(this.wordObject);
+    this.onWordCount.emit(this.wordCount);
   }
 
   countWordsInHeadersAndContent(
