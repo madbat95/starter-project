@@ -15,7 +15,6 @@ export class SummernoteComponent implements OnInit {
     Variations: {},
     LSIKeywords: {},
   };
-  // @Output() onWordCount = new EventEmitter<{ [word: string]: number }>();
   editorConfig = {
     placeholder: 'Add text here...',
     tabsize: 2,
@@ -217,7 +216,7 @@ export class SummernoteComponent implements OnInit {
   onEditorKeyUp(text: any) {
     const parser = new DOMParser();
     const doc = parser.parseFromString(text, 'text/html');
-    console.log(doc.body);
+    console.log('doc', doc.body);
 
     const wordCount = this.countWordsInHeadersAndContent(doc.body, [
       'H1',
@@ -260,7 +259,6 @@ export class SummernoteComponent implements OnInit {
     });
 
     console.log('Updated wordObject:', this.wordObject);
-    // Emit the updated wordObject if needed
     this.onWordObject.emit(this.wordObject);
   }
 }

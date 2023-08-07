@@ -8,7 +8,6 @@ import { Component, Input, OnInit } from '@angular/core';
 export class VariationTableComponent implements OnInit {
   tableData: { word: string; count: number }[] = [];
   @Input() set data(val: { word: string; count: number }[]) {
-    console.log('val', val);
     this.tableData = val;
   }
   @Input() selectedTable: string = '';
