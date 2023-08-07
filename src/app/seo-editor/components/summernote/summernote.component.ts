@@ -50,6 +50,7 @@ export class SummernoteComponent implements OnInit {
     ],
   };
   @Output() onWordObject = new EventEmitter<any>();
+  @Output() onWordCount = new EventEmitter<any>();
 
   wordObject = {
     Entity: [
@@ -163,15 +164,36 @@ export class SummernoteComponent implements OnInit {
     const result = {
       Entity: {
         content: 0,
-        headers: {},
+        headers: {
+          H1: 0,
+          H2: 0,
+          H3: 0,
+          H4: 0,
+          H5: 0,
+          H6: 0,
+        },
       },
       Variations: {
         content: 0,
-        headers: {},
+        headers: {
+          H1: 0,
+          H2: 0,
+          H3: 0,
+          H4: 0,
+          H5: 0,
+          H6: 0,
+        },
       },
       LSIKeywords: {
         content: 0,
-        headers: {},
+        headers: {
+          H1: 0,
+          H2: 0,
+          H3: 0,
+          H4: 0,
+          H5: 0,
+          H6: 0,
+        },
       },
     };
 
@@ -252,7 +274,8 @@ export class SummernoteComponent implements OnInit {
       'H5',
       'H6',
     ]);
-    console.log(wordCount);
+    console.log('wordCount', wordCount);
+    this.onWordCount.emit(wordCount);
 
     // this code block will reset the word counts
     for (const entityType of ['Entity', 'Variations', 'LSIKeywords']) {

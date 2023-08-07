@@ -43,7 +43,10 @@
     </div>
 
     <div nz-col [nzMd]="24" [nzLg]="19" [nzXl]="19">
-      <app-summernote (onWordObject)="onWordObject($event)"></app-summernote>
+      <app-summernote
+        (onWordObject)="onWordObject($event)"
+        (onWordCount)="onWordCount($event)"
+      ></app-summernote>
     </div>
   </div>
 </div>

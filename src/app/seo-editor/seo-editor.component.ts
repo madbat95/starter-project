@@ -7,6 +7,7 @@ import { Component, OnInit } from '@angular/core';
 })
 export class SeoEditorComponent implements OnInit {
   wordObject: any;
+  wordCount: any;
 
   tableData: any[] = [];
   selectedTable: string = 'Entity';
@@ -18,6 +19,10 @@ export class SeoEditorComponent implements OnInit {
   onWordObject(onWordObject): void {
     console.log('onWordObject', onWordObject);
     this.wordObject = onWordObject;
+  }
+  onWordCount(onWordCount): void {
+    console.log('onWordCount', onWordCount);
+    this.wordCount = onWordCount;
   }
 
   getData() {
