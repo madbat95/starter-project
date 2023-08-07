@@ -230,8 +230,10 @@ export class SummernoteComponent implements OnInit {
     console.log(wordCount);
 
     // Reset the word count data for each entity
-    for (const entity of Object.keys(this.wordCountData)) {
-      this.wordCountData[entity] = {};
+    for (const entity of Object.keys(this.wordObject)) {
+      for (const word of this.wordObject[entity]) {
+        word.count = 0;
+      }
     }
 
     this.uniqueWords.clear(); // Clear the uniqueWords Set
@@ -246,21 +248,19 @@ export class SummernoteComponent implements OnInit {
       if (word.trim().length > 0) {
         const entityName = this.isWordInWordObject(word);
         if (entityName) {
-          if (!this.uniqueWords.has(word)) {
-            this.uniqueWords.add(word);
-            this.wordCountData[entityName][word] = 1;
-          } else {
-            if (!this.wordCountData[entityName][word]) {
-              this.wordCountData[entityName][word] = 1;
-            } else {
-              this.wordCountData[entityName][word]++;
-            }
+          const entityArray = this.wordObject[entityName];
+          const matchingWord = entityArray.find(
+            (entity) => entity.word === word
+          );
+          if (matchingWord) {
+            matchingWord.count++;
           }
         }
       }
     });
 
-    console.log('wordcountdata', this.wordCountData);
-    // this.onWordCount.emit(this.wordCountData);
+    console.log('Updated wordObject:', this.wordObject);
+    // Emit the updated wordObject if needed
+    this.onWordObject.emit(this.wordObject);
   }
 }
