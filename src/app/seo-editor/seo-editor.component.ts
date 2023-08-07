@@ -6,8 +6,8 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./seo-editor.component.css'],
 })
 export class SeoEditorComponent implements OnInit {
-  wordObject: any;
-  wordCount: any;
+  wordObject: any; //this is for variation table
+  wordCount: any; //this is for suggestion table
 
   tableData: any[] = [];
   selectedTable: string = 'Entity';
@@ -21,7 +21,7 @@ export class SeoEditorComponent implements OnInit {
     this.wordObject = onWordObject;
   }
   onWordCount(onWordCount): void {
-    console.log('onWordCount', onWordCount);
+    console.log('from seo editor onWordCount', onWordCount);
     this.wordCount = onWordCount;
   }
 
