@@ -15,7 +15,7 @@ export class SummernoteComponent implements OnInit {
     Variations: {},
     LSIKeywords: {},
   };
-  @Output() onWordCount = new EventEmitter<{ [word: string]: number }>();
+  // @Output() onWordCount = new EventEmitter<{ [word: string]: number }>();
   editorConfig = {
     placeholder: 'Add text here...',
     tabsize: 2,

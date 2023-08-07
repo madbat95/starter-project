@@ -1,3 +1,4 @@
+<pre>{{ tableData | json }}</pre>
 <div nz-row nzJustify="center" [nzGutter]="[0, 16]">
   <div nz-col class="w-[88%]">
     <nz-table
@@ -5,7 +6,7 @@
       nzBordered
       nzSize="small"
       [nzFrontPagination]="false"
-      [nzData]="data"
+      [nzData]="tableData"
     >
       <thead>
         <tr>
@@ -15,8 +16,8 @@
       </thead>
       <tbody>
         <tr *ngFor="let data of table.data">
-          <td nzAlign="center">{{ data.name }}</td>
-          <td nzAlign="center">{{ data.quantity }}</td>
+          <td nzAlign="center">{{ data.word }}</td>
+          <td nzAlign="center">{{ data.count }}</td>
         </tr>
       </tbody>
     </nz-table>

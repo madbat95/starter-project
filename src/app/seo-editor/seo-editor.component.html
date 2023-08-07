@@ -36,11 +36,7 @@
         </div>
         <div nz-col nzSpan="24">
           <app-variation-table
-            [data]="
-              selectedTable != 'Variation'
-                ? tableData
-                : mapDataToTable(wordCountData)
-            "
+            [data]="getData()"
             [selectedTable]="selectedTable"
           ></app-variation-table>
         </div>

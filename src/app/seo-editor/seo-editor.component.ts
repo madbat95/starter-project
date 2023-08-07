@@ -9,7 +9,7 @@ export class SeoEditorComponent implements OnInit {
   wordObject: any;
   wordCountData: { [word: string]: number } = {};
   tableData: any[] = [];
-  selectedTable: string = '';
+  selectedTable: string = 'Entity';
 
   onTableSelection(selectedTable: any): void {
     this.selectedTable = selectedTable;
@@ -26,17 +26,28 @@ export class SeoEditorComponent implements OnInit {
   }
 
   onWordObject(onWordObject): void {
+    console.log('onWordObject', onWordObject);
     this.wordObject = onWordObject;
   }
 
-  mapDataToTable(wordCountData: {
-    [word: string]: number;
-  }): { name: string; quantity: number }[] {
-    return Object.entries(wordCountData).map(([name, quantity]) => ({
-      name,
-      quantity,
-    }));
+  getData() {
+    console.log('wordObject', this.wordObject);
+    console.log('selectedTable', this.selectedTable);
+    return this.wordObject ? this.wordObject[this.selectedTable] : [];
   }
+
+  // mapDataToTable(entityName: string, wordObject: any): any[] {
+  // const entityData = [];
+
+  // wordObject[entityName].forEach((word) => {
+  //   entityData.push({ name: word.word, quantity: word.count });
+  // });
+
+  // console.log('entityData', entityData);
+  // return entityData;
+
+  // return this.wordObject[entityName]
+  // }
 
   ngOnInit(): void {}
 }
