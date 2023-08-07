@@ -21,7 +21,6 @@ export class SeoEditorComponent implements OnInit {
     this.wordObject = onWordObject;
   }
   onWordCount(onWordCount): void {
-    console.log('from seo editor onWordCount', onWordCount);
     this.wordCount = onWordCount;
   }
 
@@ -30,7 +29,6 @@ export class SeoEditorComponent implements OnInit {
   }
 
   getWordCount() {
-    console.log('from  getWordCount', this.wordCount);
     return this.wordCount ? this.wordCount : [];
   }
 

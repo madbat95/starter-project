@@ -77,6 +77,7 @@ const antdModule = [
     NgChartjsModule,
     NgxSummernoteModule,
     ReactiveFormsModule,
+    NzBadgeModule,
     ...antdModule,
   ],
   exports: [],
