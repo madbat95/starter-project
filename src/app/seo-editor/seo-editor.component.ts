@@ -29,5 +29,10 @@ export class SeoEditorComponent implements OnInit {
     return this.wordObject ? this.wordObject[this.selectedTable] : [];
   }
 
+  getWordCount() {
+    console.log('from  getWordCount', this.wordCount);
+    return this.wordCount ? this.wordCount : [];
+  }
+
   ngOnInit(): void {}
 }

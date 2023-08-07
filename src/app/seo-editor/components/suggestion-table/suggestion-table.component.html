@@ -2,7 +2,8 @@
   #groupingTable
   nzBordered
   nzSize="small"
-  [nzData]="listOfData"
+  [nzData]="tableData"
+  [nzNoResult]=""
   [nzFrontPagination]="false"
   [nzScroll]="{ x: '1150px' }"
 >
@@ -70,65 +71,65 @@
     <tr>
       <td nzLeft nzAlign="center" class="table-col">Entities</td>
       <td nzAlign="center">0</td>
-      <td nzAlign="center">ENT009</td>
+      <td nzAlign="center">meta title R</td>
       <td nzAlign="center">0</td>
-      <td nzAlign="center">ENT008</td>
-      <td nzAlign="center">0</td>
-      <td nzAlign="center">ENT002</td>
-      <td nzAlign="center">0</td>
-      <td nzAlign="center">ENT003</td>
-      <td nzAlign="center">0</td>
-      <td nzAlign="center">ENT004</td>
-      <td nzAlign="center">0</td>
-      <td nzAlign="center">ENT005</td>
-      <td nzAlign="center">0</td>
-      <td nzAlign="center">ENT006</td>
-      <td nzAlign="center">0</td>
-      <td nzAlign="center">ENT007</td>
-      <td nzAlign="center">0</td>
-      <td nzAlign="center">ENT018</td>
+      <td nzAlign="center">meta desc R</td>
+      <td nzAlign="center">{{ tableData["Entity"]?.headers?.H1 ?? 0 }}</td>
+      <td nzAlign="center">H1 R</td>
+      <td nzAlign="center">{{ tableData["Entity"]?.headers?.H2 ?? 0 }}</td>
+      <td nzAlign="center">H2 R</td>
+      <td nzAlign="center">{{ tableData["Entity"]?.headers?.H3 ?? 0 }}</td>
+      <td nzAlign="center">H3 R</td>
+      <td nzAlign="center">{{ tableData["Entity"]?.headers?.H4 ?? 0 }}</td>
+      <td nzAlign="center">H4 R</td>
+      <td nzAlign="center">{{ tableData["Entity"]?.headers?.H5 ?? 0 }}</td>
+      <td nzAlign="center">H5 R</td>
+      <td nzAlign="center">{{ tableData["Entity"]?.headers?.H6 ?? 0 }}</td>
+      <td nzAlign="center">H6 R</td>
+      <td nzAlign="center">{{ tableData["Entity"]?.content ?? 0 }}</td>
+      <td nzAlign="center">H6 R</td>
     </tr>
     <tr>
       <td nzLeft nzAlign="center" class="table-col">LSI Keywords</td>
       <td nzAlign="center">0</td>
-      <td nzAlign="center">LSI001</td>
+      <td nzAlign="center">meta title R</td>
       <td nzAlign="center">0</td>
-      <td nzAlign="center">LSI003</td>
-      <td nzAlign="center">0</td>
-      <td nzAlign="center">LSI005</td>
-      <td nzAlign="center">0</td>
-      <td nzAlign="center">LSI006</td>
-      <td nzAlign="center">0</td>
-      <td nzAlign="center">LSI007</td>
-      <td nzAlign="center">0</td>
-      <td nzAlign="center">LSI008</td>
-      <td nzAlign="center">0</td>
-      <td nzAlign="center">LSI009</td>
-      <td nzAlign="center">0</td>
-      <td nzAlign="center">LSI010</td>
-      <td nzAlign="center">0</td>
-      <td nzAlign="center">LSI002</td>
+      <td nzAlign="center">meta desc R</td>
+      <td nzAlign="center">{{ tableData["LSIKeywords"]?.headers?.H1 ?? 0 }}</td>
+      <td nzAlign="center">H1 R</td>
+      <td nzAlign="center">{{ tableData["LSIKeywords"]?.headers?.H2 ?? 0 }}</td>
+      <td nzAlign="center">H2 R</td>
+      <td nzAlign="center">{{ tableData["LSIKeywords"]?.headers?.H3 ?? 0 }}</td>
+      <td nzAlign="center">H3 R</td>
+      <td nzAlign="center">{{ tableData["LSIKeywords"]?.headers?.H4 ?? 0 }}</td>
+      <td nzAlign="center">H4 R</td>
+      <td nzAlign="center">{{ tableData["LSIKeywords"]?.headers?.H5 ?? 0 }}</td>
+      <td nzAlign="center">H5 R</td>
+      <td nzAlign="center">{{ tableData["LSIKeywords"]?.headers?.H6 ?? 0 }}</td>
+      <td nzAlign="center">H6 R</td>
+      <td nzAlign="center">{{ tableData["LSIKeywords"]?.content ?? 0 }}</td>
+      <td nzAlign="center">H6 R</td>
     </tr>
     <tr>
       <td nzLeft nzAlign="center" class="table-col">Variations</td>
       <td nzAlign="center">0</td>
-      <td nzAlign="center">CP481</td>
+      <td nzAlign="center">meta title R</td>
       <td nzAlign="center">0</td>
-      <td nzAlign="center">CP381</td>
-      <td nzAlign="center">0</td>
-      <td nzAlign="center">CP152</td>
-      <td nzAlign="center">0</td>
-      <td nzAlign="center">CP165</td>
-      <td nzAlign="center">0</td>
-      <td nzAlign="center">CP169</td>
-      <td nzAlign="center">0</td>
-      <td nzAlign="center">CP173</td>
-      <td nzAlign="center">0</td>
-      <td nzAlign="center">CP181</td>
-      <td nzAlign="center">0</td>
-      <td nzAlign="center">CP185</td>
-      <td nzAlign="center">0</td>
-      <td nzAlign="center">CP469</td>
+      <td nzAlign="center">meta desc R</td>
+      <td nzAlign="center">{{ tableData["Variations"]?.headers?.H1 ?? 0 }}</td>
+      <td nzAlign="center">H1 R</td>
+      <td nzAlign="center">{{ tableData["Variations"]?.headers?.H2 ?? 0 }}</td>
+      <td nzAlign="center">H2 R</td>
+      <td nzAlign="center">{{ tableData["Variations"]?.headers?.H3 ?? 0 }}</td>
+      <td nzAlign="center">H3 R</td>
+      <td nzAlign="center">{{ tableData["Variations"]?.headers?.H4 ?? 0 }}</td>
+      <td nzAlign="center">H4 R</td>
+      <td nzAlign="center">{{ tableData["Variations"]?.headers?.H5 ?? 0 }}</td>
+      <td nzAlign="center">H5 R</td>
+      <td nzAlign="center">{{ tableData["Variations"]?.headers?.H6 ?? 0 }}</td>
+      <td nzAlign="center">H6 R</td>
+      <td nzAlign="center">{{ tableData["Variations"]?.content ?? 0 }}</td>
+      <td nzAlign="center">H6 R</td>
     </tr>
     <tr>
       <td nzLeft nzAlign="center" class="table-col">Words/Tags</td>

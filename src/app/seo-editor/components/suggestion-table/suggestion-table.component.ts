@@ -6,22 +6,27 @@ import { Component, Input, OnInit } from '@angular/core';
   styleUrls: ['./suggestion-table.component.scss'],
 })
 export class SuggestionTableComponent implements OnInit {
-  listOfData: any[] = [];
-  @Input() data: any;
+  // listOfData: any[] = [];
+  tableData: any;
+  @Input() set data(val: any) {
+    this.tableData = val;
+    console.log('setter in suggestion table', this.tableData);
+  }
+
   ngOnInit(): void {
-    this.listOfData = [
-      {
-        name: 'Entities',
-      },
-      {
-        name: 'LSI Keywords',
-      },
-      {
-        name: 'Variations',
-      },
-      {
-        name: 'Words/Tags',
-      },
-    ];
+    // this.listOfData = [
+    //   {
+    //     name: 'Entities',
+    //   },
+    //   {
+    //     name: 'LSI Keywords',
+    //   },
+    //   {
+    //     name: 'Variations',
+    //   },
+    //   {
+    //     name: 'Words/Tags',
+    //   },
+    // ];
   }
 }
