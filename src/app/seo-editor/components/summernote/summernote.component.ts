@@ -161,19 +161,37 @@ export class SummernoteComponent implements OnInit {
     headerAncestors = ['H1', 'H2', 'H3', 'H4', 'H5', 'H6']
   ) {
     const result = {
-      content: 0,
-      headers: {},
+      Entity: {
+        content: 0,
+        headers: {},
+      },
+      Variations: {
+        content: 0,
+        headers: {},
+      },
+      LSIKeywords: {
+        content: 0,
+        headers: {},
+      },
     };
 
     const nodeName = element.nodeName.toUpperCase();
     const isHeader = headerAncestors.includes(nodeName);
 
     if (isHeader) {
-      result.headers[nodeName] =
-        (result.headers[nodeName] || 0) + this.countWordsInElement(element);
+      for (const entityType of ['Entity', 'Variations', 'LSIKeywords']) {
+        result[entityType].headers[nodeName] =
+          (result[entityType].headers[nodeName] || 0) +
+          this.countWordsInElement(element, entityType);
+      }
     } else {
       if (element.nodeType === Node.TEXT_NODE) {
-        result.content += this.countWordsInElement(element);
+        for (const entityType of ['Entity', 'Variations', 'LSIKeywords']) {
+          result[entityType].content += this.countWordsInElement(
+            element,
+            entityType
+          );
+        }
       } else {
         const childNodes = element.childNodes;
         for (let i = 0; i < childNodes.length; i++) {
@@ -181,11 +199,15 @@ export class SummernoteComponent implements OnInit {
             childNodes[i],
             headerAncestors
           );
-          result.content += childResult.content;
-          Object.entries(childResult.headers).forEach(([headerTag, count]) => {
-            result.headers[headerTag] =
-              (result.headers[headerTag] || 0) + count;
-          });
+          for (const entityType of ['Entity', 'Variations', 'LSIKeywords']) {
+            result[entityType].content += childResult[entityType].content;
+            Object.entries(childResult[entityType].headers).forEach(
+              ([headerTag, count]) => {
+                result[entityType].headers[headerTag] =
+                  (result[entityType].headers[headerTag] || 0) + count;
+              }
+            );
+          }
         }
       }
     }
@@ -193,13 +215,13 @@ export class SummernoteComponent implements OnInit {
     return result;
   }
 
-  countWordsInElement(element) {
+  countWordsInElement(element, entityType) {
     const text = element.textContent.trim();
     const words = text.split(/\s+/);
     let count = 0;
 
     words.forEach((word) => {
-      if (this.isWordInWordObject(word)) {
+      if (this.isWordInWordObject(word, entityType)) {
         count++;
       }
     });
@@ -207,16 +229,14 @@ export class SummernoteComponent implements OnInit {
     return count;
   }
 
-  isWordInWordObject(word) {
-    for (const entityName of Object.keys(this.wordObject)) {
-      const entityArray = this.wordObject[entityName];
-      for (const entity of entityArray) {
-        if (entity.word === word) {
-          return entityName;
-        }
+  isWordInWordObject(word, entityType) {
+    const entityArray = this.wordObject[entityType];
+    for (const entity of entityArray) {
+      if (entity.word === word) {
+        return true;
       }
     }
-    return null;
+    return false;
   }
 
   onEditorKeyUp(text: any) {
@@ -234,9 +254,9 @@ export class SummernoteComponent implements OnInit {
     ]);
     console.log(wordCount);
 
-    // Reset the word count data for each entity
-    for (const entity of Object.keys(this.wordObject)) {
-      for (const word of this.wordObject[entity]) {
+    // this code block will reset the word counts
+    for (const entityType of ['Entity', 'Variations', 'LSIKeywords']) {
+      for (const word of this.wordObject[entityType]) {
         word.count = 0;
       }
     }
@@ -251,9 +271,8 @@ export class SummernoteComponent implements OnInit {
     words.forEach((word) => {
       // Check if the word is not empty and not containing only spaces
       if (word.trim().length > 0) {
-        const entityName = this.isWordInWordObject(word);
-        if (entityName) {
-          for (const entityType of ['Entity', 'Variations', 'LSIKeywords']) {
+        for (const entityType of ['Entity', 'Variations', 'LSIKeywords']) {
+          if (this.isWordInWordObject(word, entityType)) {
             const entityArray = this.wordObject[entityType];
             const matchingWord = entityArray.find(
               (entity) => entity.word === word
