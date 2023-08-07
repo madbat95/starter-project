@@ -84,6 +84,10 @@ export class SummernoteComponent implements OnInit {
     ],
     Variations: [
       {
+        word: 'privacy',
+        count: 0,
+      },
+      {
         word: 'alexandria',
         count: 0,
       },
@@ -113,6 +117,10 @@ export class SummernoteComponent implements OnInit {
       },
     ],
     LSIKeywords: [
+      {
+        word: 'privacy',
+        count: 0,
+      },
       {
         word: 'paper',
         count: 0,
@@ -245,7 +253,6 @@ export class SummernoteComponent implements OnInit {
       if (word.trim().length > 0) {
         const entityName = this.isWordInWordObject(word);
         if (entityName) {
-          // Loop through both 'Entity' and 'Variations' arrays
           for (const entityType of ['Entity', 'Variations', 'LSIKeywords']) {
             const entityArray = this.wordObject[entityType];
             const matchingWord = entityArray.find(
