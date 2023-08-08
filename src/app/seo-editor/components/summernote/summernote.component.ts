@@ -53,8 +53,7 @@ export class SummernoteComponent implements OnInit {
   @Output() onWordCount = new EventEmitter<any>();
 
   ngOnInit(): void {
-    this.onWordObject.emit(this.wordCounter.wordObject);
-    // this.onWordCount.emit(this.wordCounter.wordCount);
+    // this.onWordObject.emit(this.wordCounter.wordObject);
   }
 
   onEditorKeyUp(text: any) {
@@ -71,7 +70,12 @@ export class SummernoteComponent implements OnInit {
       'H6',
     ]);
     console.log('wordCount', wordCount);
-    this.onWordCount.emit(wordCount);
+    for (const entityType of ['Entity', 'Variations', 'LSIKeywords']) {
+      this.wordCounter.wordCount[entityType].headers =
+        wordCount[entityType].headers;
+      this.wordCounter.wordCount[entityType].content =
+        wordCount[entityType].content;
+    }
 
     // this code block will reset the word counts
     for (const entityType of ['Entity', 'Variations', 'LSIKeywords']) {

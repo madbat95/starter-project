@@ -5,9 +5,8 @@ import {
   FormGroup,
   Validators,
 } from '@angular/forms';
-import { NzModalRef, NzModalService } from 'ng-zorro-antd/modal';
+import { NzModalRef } from 'ng-zorro-antd/modal';
 import { WordCounterService } from 'src/app/seo-editor/service/word-counter.service';
-import { NotificationService } from 'src/app/shared/services/notification.service';
 
 @Component({
   selector: 'app-meta-info',
@@ -17,7 +16,6 @@ import { NotificationService } from 'src/app/shared/services/notification.servic
 export class MetaInfoComponent {
   @Output() metaTitle = new EventEmitter<any>();
   @Output() metaDescription = new EventEmitter<any>();
-  @Output() formValuesEmitter = new EventEmitter<any>();
   metaForm!: FormGroup;
   constructor(
     private wordCounter: WordCounterService,
@@ -25,8 +23,8 @@ export class MetaInfoComponent {
     private fb: FormBuilder
   ) {
     this.metaForm = this.fb.group({
-      metaTitle: new FormControl('', Validators.required),
-      metaDescription: new FormControl('', Validators.required),
+      metaTitle: new FormControl('privacy', Validators.required),
+      metaDescription: new FormControl('privacy', Validators.required),
     });
   }
 
@@ -42,11 +40,7 @@ export class MetaInfoComponent {
         doc.body,
         []
       );
-      console.log(
-        'metaElementCount',
-        metaElementCount,
-        this.metaForm.value.metaTitle
-      );
+
       this.metaTitle.emit(metaElementCount);
 
       const parser2 = new DOMParser();
@@ -58,15 +52,13 @@ export class MetaInfoComponent {
         doc2.body,
         []
       );
-      console.log(
-        'metaElementCount2',
-        metaElementCount2,
-        this.metaForm.value.metaDescription
-      );
+
       this.metaDescription.emit(metaElementCount2);
 
-      this.formValuesEmitter.emit(this.metaForm.value);
-      this.modal.close();
+      this.modal.close({
+        title: metaElementCount,
+        description: metaElementCount2,
+      });
     }
   }
 }

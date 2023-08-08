@@ -40,6 +40,7 @@ export class MetaComponent {
           this.wordCounter.wordCount[entityType].metaDescription =
             metaDescription[entityType].content;
         }
+        console.log('wordcount', this.wordCounter.wordCount);
       }
     );
   }

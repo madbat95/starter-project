@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { WordCounterService } from './service/word-counter.service';
 
 @Component({
   selector: 'app-seo-editor',
@@ -12,6 +13,7 @@ export class SeoEditorComponent implements OnInit {
   // metaDescription: any = ''; //description for summernote
   tableData: any[] = [];
   selectedTable: string = 'Entity';
+  constructor(private wordCounter: WordCounterService) {}
 
   // onMetaTitle(metaTitle: any) {
   //   this.metaTitle = metaTitle;
@@ -25,19 +27,22 @@ export class SeoEditorComponent implements OnInit {
   }
 
   onWordObject(onWordObject): void {
-    console.log('onWordObject', onWordObject);
+    // console.log('onWordObject', onWordObject);
     this.wordObject = onWordObject;
   }
   onWordCount(onWordCount): void {
+    console.log('word count', onWordCount);
     this.wordCount = onWordCount;
   }
 
   getData() {
-    return this.wordObject ? this.wordObject[this.selectedTable] : [];
+    return this.wordObject
+      ? this.wordObject[this.selectedTable]
+      : this.wordCounter.wordObject[this.selectedTable];
   }
 
   getWordCount() {
-    return this.wordCount ? this.wordCount : [];
+    return this.wordCount ? this.wordCount : this.wordCounter.wordCount;
   }
 
   // getMetaTitle() {

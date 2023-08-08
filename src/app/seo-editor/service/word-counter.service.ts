@@ -202,8 +202,6 @@ export class WordCounterService {
   ) {
     const result = {
       Entity: {
-        metaTitle: 0,
-        metaDescription: 0,
         content: 0,
         headers: {
           H1: 0,
@@ -215,8 +213,6 @@ export class WordCounterService {
         },
       },
       Variations: {
-        metaTitle: 0,
-        metaDescription: 0,
         content: 0,
         headers: {
           H1: 0,
@@ -228,8 +224,6 @@ export class WordCounterService {
         },
       },
       LSIKeywords: {
-        metaTitle: 0,
-        metaDescription: 0,
         content: 0,
         headers: {
           H1: 0,
