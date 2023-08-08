@@ -27,6 +27,7 @@ export class MetaComponent {
     modal.componentInstance.formValuesEmitter.subscribe((formValues: any) => {
       this.metaTitle.emit(formValues.metaTitle);
       this.metaDescription.emit(formValues.metaDescription);
+      console.log('formValues', formValues);
     });
   }
 }

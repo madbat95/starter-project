@@ -31,6 +31,7 @@ export class MetaInfoComponent {
   onSubmit() {
     if (this.metaForm.valid) {
       this.formValuesEmitter.emit(this.metaForm.value);
+      this.modal.close();
     }
   }
 }

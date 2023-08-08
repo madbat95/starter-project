@@ -1,4 +1,4 @@
-import { Component, EventEmitter, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output, Input } from '@angular/core';
 
 @Component({
   selector: 'app-summernote',
@@ -6,10 +6,14 @@ import { Component, EventEmitter, OnInit, Output } from '@angular/core';
   styleUrls: ['./summernote.component.scss'],
 })
 export class SummernoteComponent implements OnInit {
+  @Input() metaTitle: string;
+  @Input() metaDescription: string;
   editorContent = '';
   uniqueWords: Set<string> = new Set();
   wordCount: any = {
     Entity: {
+      metaTitle: 0,
+      metaDescription: 0,
       content: 0,
       contentR: 0,
       headers: {
@@ -27,6 +31,8 @@ export class SummernoteComponent implements OnInit {
       },
     },
     Variations: {
+      metaTitle: 0,
+      metaDescription: 0,
       content: 0,
       contentR: 0,
       headers: {
@@ -44,6 +50,8 @@ export class SummernoteComponent implements OnInit {
       },
     },
     LSIKeywords: {
+      metaTitle: 0,
+      metaDescription: 0,
       content: 0,
       contentR: 0,
       headers: {
@@ -97,6 +105,7 @@ export class SummernoteComponent implements OnInit {
       'Times',
     ],
   };
+
   @Output() onWordObject = new EventEmitter<any>();
   @Output() onWordCount = new EventEmitter<any>();
 
