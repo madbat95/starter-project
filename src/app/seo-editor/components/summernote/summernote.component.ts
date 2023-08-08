@@ -90,6 +90,7 @@ export class SummernoteComponent implements OnInit {
     const cleanedText = text.replace(/<\/?[^>]+(>|$)/g, ' ');
 
     const words = cleanedText.split(/\s+/);
+    // words.trim('&nbsp;');
 
     words.forEach((word) => {
       // Check if the word is not empty and not containing only spaces
