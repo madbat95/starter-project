@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Output, EventEmitter } from '@angular/core';
 import {
   FormBuilder,
   FormControl,
@@ -14,6 +14,7 @@ import { NotificationService } from 'src/app/shared/services/notification.servic
   styleUrls: ['./meta-info.component.scss'],
 })
 export class MetaInfoComponent {
+  @Output() formValuesEmitter = new EventEmitter<any>();
   metaForm!: FormGroup;
   constructor(
     private modalService: NzModalService,
@@ -22,8 +23,14 @@ export class MetaInfoComponent {
     private notificationService: NotificationService
   ) {
     this.metaForm = this.fb.group({
-      title: new FormControl('', Validators.required),
-      description: new FormControl('', Validators.required),
+      metaTitle: new FormControl('', Validators.required),
+      metaDescription: new FormControl('', Validators.required),
     });
+  }
+
+  onSubmit() {
+    if (this.metaForm.valid) {
+      this.formValuesEmitter.emit(this.metaForm.value);
+    }
   }
 }

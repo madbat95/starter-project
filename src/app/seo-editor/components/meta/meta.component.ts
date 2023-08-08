@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Output, EventEmitter } from '@angular/core';
 import { NzModalRef, NzModalService } from 'ng-zorro-antd/modal';
 import { MetaInfoComponent } from './components/meta-info/meta-info.component';
 
@@ -9,6 +9,8 @@ import { MetaInfoComponent } from './components/meta-info/meta-info.component';
 })
 export class MetaComponent {
   constructor(private modalService: NzModalService) {}
+  @Output() metaTitle = new EventEmitter<any>();
+  @Output() metaDescription = new EventEmitter<any>();
 
   addMeta(): void {
     const modal = this.modalService.create({
@@ -21,6 +23,10 @@ export class MetaComponent {
         // 'max-height': '500px',
         // 'max-width': '1000px',
       },
+    });
+    modal.componentInstance.formValuesEmitter.subscribe((formValues: any) => {
+      this.metaTitle.emit(formValues.metaTitle);
+      this.metaDescription.emit(formValues.metaDescription);
     });
   }
 }

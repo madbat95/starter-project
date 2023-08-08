@@ -10,7 +10,7 @@
           style="width: 100%"
           required="true"
           nz-input
-          formControlName="title"
+          formControlName="metaTitle"
           placeholder="title"
         />
       </nz-form-control>
@@ -27,7 +27,7 @@
           required="true"
           nz-input
           rows="5"
-          formControlName="description"
+          formControlName="metaDescription"
           placeholder="Description"
         >
         </textarea>
@@ -41,6 +41,7 @@
       nzSize="small"
       nzType="primary"
       [disabled]="metaForm.invalid"
+      (click)="onSubmit()"
     >
       Submit
     </button>
