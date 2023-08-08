@@ -13,10 +13,7 @@
             </div>
 
             <div nz-col>
-              <meta-button
-                (metaTitle)="onMetaTitle($event)"
-                (metaDescription)="onMetaDescription($event)"
-              ></meta-button>
+              <meta-button></meta-button>
             </div>
           </div>
         </div>
@@ -47,8 +44,6 @@
 
     <div nz-col [nzMd]="24" [nzLg]="19" [nzXl]="19">
       <app-summernote
-        [metaTitle]="getMetaTitle()"
-        [metaDescription]="getMetaDescription()"
         (onWordObject)="onWordObject($event)"
         (onWordCount)="onWordCount($event)"
       ></app-summernote>

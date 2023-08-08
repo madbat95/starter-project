@@ -70,10 +70,10 @@
     </tr> -->
     <tr>
       <td nzLeft nzAlign="center" class="table-col">Entities</td>
-      <td nzAlign="center">0</td>
-      <td nzAlign="center">0</td>
-      <td nzAlign="center">0</td>
-      <td nzAlign="center">0</td>
+      <td nzAlign="center">{{ tableData["Entity"]?.metaTitle ?? 0 }}</td>
+      <td nzAlign="center">{{ tableData["Entity"]?.metaTitleR ?? 0 }}</td>
+      <td nzAlign="center">{{ tableData["Entity"]?.metaDescription ?? 0 }}</td>
+      <td nzAlign="center">{{ tableData["Entity"]?.metaDescriptionR ?? 0 }}</td>
       <td nzAlign="center">{{ tableData["Entity"]?.headers?.H1 ?? 0 }}</td>
       <td nzAlign="center">{{ tableData["Entity"]?.headers?.H1R ?? 0 }}</td>
       <td nzAlign="center">{{ tableData["Entity"]?.headers?.H2 ?? 0 }}</td>
@@ -91,13 +91,15 @@
     </tr>
     <tr>
       <td nzLeft nzAlign="center" class="table-col">LSI Keywords</td>
-      <td nzAlign="center">0</td>
-      <td nzAlign="center">0</td>
-      <td nzAlign="center">0</td>
-      <td nzAlign="center">0</td>
+      <td nzAlign="center">{{ tableData["LSIKeywords"]?.metaTitle ?? 0 }}</td>
+      <td nzAlign="center">{{ tableData["LSIKeywords"]?.metaTitleR ?? 0 }}</td>
       <td nzAlign="center">
-        {{ tableData["LSIKeywords"]?.headers?.H1 ?? 0 }}
+        {{ tableData["LSIKeywords"]?.metaDescription ?? 0 }}
       </td>
+      <td nzAlign="center">
+        {{ tableData["LSIKeywords"]?.metaDescriptionR ?? 0 }}
+      </td>
+      <td nzAlign="center">{{ tableData["LSIKeywords"]?.headers?.H1 ?? 0 }}</td>
       <td nzAlign="center">
         {{ tableData["LSIKeywords"]?.headers?.H1R ?? 0 }}
       </td>
@@ -126,10 +128,14 @@
     </tr>
     <tr>
       <td nzLeft nzAlign="center" class="table-col">Variations</td>
-      <td nzAlign="center">0</td>
-      <td nzAlign="center">0</td>
-      <td nzAlign="center">0</td>
-      <td nzAlign="center">0</td>
+      <td nzAlign="center">{{ tableData["Variations"]?.metaTitle ?? 0 }}</td>
+      <td nzAlign="center">{{ tableData["Variations"]?.metaTitleR ?? 0 }}</td>
+      <td nzAlign="center">
+        {{ tableData["Variations"]?.metaDescription ?? 0 }}
+      </td>
+      <td nzAlign="center">
+        {{ tableData["Variations"]?.metaDescriptionR ?? 0 }}
+      </td>
       <td nzAlign="center">{{ tableData["Variations"]?.headers?.H1 ?? 0 }}</td>
       <td nzAlign="center">{{ tableData["Variations"]?.headers?.H1R ?? 0 }}</td>
       <td nzAlign="center">{{ tableData["Variations"]?.headers?.H2 ?? 0 }}</td>

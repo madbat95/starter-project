@@ -1,6 +1,7 @@
 import { Component, Output, EventEmitter } from '@angular/core';
 import { NzModalRef, NzModalService } from 'ng-zorro-antd/modal';
 import { MetaInfoComponent } from './components/meta-info/meta-info.component';
+import { WordCounterService } from '../../service/word-counter.service';
 
 @Component({
   selector: 'meta-button',
@@ -8,9 +9,12 @@ import { MetaInfoComponent } from './components/meta-info/meta-info.component';
   styleUrls: ['./meta.component.css'],
 })
 export class MetaComponent {
-  constructor(private modalService: NzModalService) {}
-  @Output() metaTitle = new EventEmitter<any>();
-  @Output() metaDescription = new EventEmitter<any>();
+  constructor(
+    private modalService: NzModalService,
+    private wordCounter: WordCounterService
+  ) {}
+  // @Output() metaTitle = new EventEmitter<any>();
+  // @Output() metaDescription = new EventEmitter<any>();
 
   addMeta(): void {
     const modal = this.modalService.create({
@@ -24,10 +28,19 @@ export class MetaComponent {
         // 'max-width': '1000px',
       },
     });
-    modal.componentInstance.formValuesEmitter.subscribe((formValues: any) => {
-      this.metaTitle.emit(formValues.metaTitle);
-      this.metaDescription.emit(formValues.metaDescription);
-      console.log('formValues', formValues);
+    modal.componentInstance.metaTitle.subscribe((metaTitle: any) => {
+      for (const entityType of ['Entity', 'Variations', 'LSIKeywords']) {
+        this.wordCounter.wordCount[entityType].metaTitle =
+          metaTitle[entityType].content;
+      }
     });
+    modal.componentInstance.metaDescription.subscribe(
+      (metaDescription: any) => {
+        for (const entityType of ['Entity', 'Variations', 'LSIKeywords']) {
+          this.wordCounter.wordCount[entityType].metaDescription =
+            metaDescription[entityType].content;
+        }
+      }
+    );
   }
 }
