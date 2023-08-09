@@ -17,7 +17,7 @@
               [nzActive]="searchValue.length > 0"
               [nzDropdownMenu]="menu"
             >
-              <span nz-icon nzType="search"></span>
+              <span nz-icon nzType="search" style="font-size: 15px"></span>
             </nz-filter-trigger>
           </th>
           <th class="table-head" nzAlign="center">Quantity</th>
@@ -25,7 +25,7 @@
       </thead>
       <tbody>
         <tr *ngFor="let data of tableData">
-          <td class="cell-hover-show">
+          <td nzAlign="center" class="cell-hover-show">
             <span
               nz-icon
               nzType="close-circle"
