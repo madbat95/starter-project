@@ -194,7 +194,8 @@
     .ant-btn-primary,
     .ant-radio-group-solid
       .ant-radio-button-wrapper-checked:not(.ant-radio-button-wrapper-disabled),
-    .ant-checkbox-checked .ant-checkbox-inner {
+    .ant-checkbox-checked .ant-checkbox-inner,
+    .ant-badge-count {
       background-color: #{nth($theme, 2)} !important;
     }
 
