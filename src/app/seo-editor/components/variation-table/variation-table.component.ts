@@ -9,12 +9,13 @@ export class VariationTableComponent {
   searchValue = '';
   visible = false;
   tableData: { word: string; count: number }[] = [];
+  originalData: any;
   @Input() set data(val: { word: string; count: number }[]) {
     this.tableData = val;
+    this.originalData = [...this.tableData];
   }
   @Input() selectedTable: string = '';
 
-  // tableData = [...this.tableData];
   reset(): void {
     this.searchValue = '';
     this.search();
@@ -22,7 +23,7 @@ export class VariationTableComponent {
 
   search(): void {
     this.visible = false;
-    this.tableData = this.tableData.filter(
+    this.tableData = this.originalData.filter(
       (item) => item.word.indexOf(this.searchValue) !== -1
     );
   }

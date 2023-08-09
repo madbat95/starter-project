@@ -29,6 +29,7 @@ export class MetaComponent {
       },
     });
     modal.componentInstance.metaTitle.subscribe((metaTitle: any) => {
+      console.log('this is my consoled metaTitle:', metaTitle);
       for (const entityType of ['Entity', 'Variations', 'LSIKeywords']) {
         this.wordCounter.wordCount[entityType].metaTitle =
           metaTitle[entityType].content;
