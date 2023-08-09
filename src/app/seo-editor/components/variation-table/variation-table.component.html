@@ -36,7 +36,7 @@
             <span class="ml-2">{{ data.word }}</span>
           </td>
           <td nzAlign="center">
-            <nz-badge nzStandalone [nzCount]="data.count" nzShowZero></nz-badge>
+            <badge [data]="data.count"></badge>
           </td>
         </tr>
       </tbody>
