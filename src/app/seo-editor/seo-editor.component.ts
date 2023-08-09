@@ -42,7 +42,7 @@ export class SeoEditorComponent implements OnInit {
   }
 
   getWordCount() {
-    return this.wordCount ? this.wordCount : this.wordCounter.wordCount;
+    return this.wordCounter.wordCount;
   }
 
   // getMetaTitle() {

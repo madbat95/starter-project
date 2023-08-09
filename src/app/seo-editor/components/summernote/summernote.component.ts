@@ -69,10 +69,20 @@ export class SummernoteComponent implements OnInit {
       'H5',
       'H6',
     ]);
-    console.log('wordCount', wordCount);
+
     for (const entityType of ['Entity', 'Variations', 'LSIKeywords']) {
-      this.wordCounter.wordCount[entityType].headers =
-        wordCount[entityType].headers;
+      this.wordCounter.wordCount[entityType].headers.H1 =
+        wordCount[entityType].headers.H1;
+      this.wordCounter.wordCount[entityType].headers.H2 =
+        wordCount[entityType].headers.H2;
+      this.wordCounter.wordCount[entityType].headers.H3 =
+        wordCount[entityType].headers.H3;
+      this.wordCounter.wordCount[entityType].headers.H4 =
+        wordCount[entityType].headers.H4;
+      this.wordCounter.wordCount[entityType].headers.H5 =
+        wordCount[entityType].headers.H5;
+      this.wordCounter.wordCount[entityType].headers.H6 =
+        wordCount[entityType].headers.H6;
       this.wordCounter.wordCount[entityType].content =
         wordCount[entityType].content;
     }

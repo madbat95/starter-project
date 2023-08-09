@@ -9,9 +9,9 @@ export class WordCounterService {
   wordCount: any = {
     Entity: {
       metaTitle: 0,
-      metaTitleR: 0,
+      metaTitleR: 10,
       metaDescription: 0,
-      metaDescriptionR: 0,
+      metaDescriptionR: 10,
       content: 0,
       contentR: 0,
       headers: {
@@ -26,6 +26,7 @@ export class WordCounterService {
         H5: 0,
         H5R: 5,
         H6: 0,
+        H6R: 0,
       },
     },
     Variations: {
@@ -47,6 +48,7 @@ export class WordCounterService {
         H5: 0,
         H5R: 5,
         H6: 0,
+        H6R: 0,
       },
     },
     LSIKeywords: {
@@ -68,6 +70,7 @@ export class WordCounterService {
         H5: 0,
         H5R: 5,
         H6: 0,
+        H6R: 0,
       },
     },
   };
