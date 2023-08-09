@@ -6,10 +6,20 @@
       nzSize="small"
       [nzFrontPagination]="false"
       [nzData]="tableData"
+      nzTableLayout="fixed"
     >
       <thead>
         <tr>
-          <th class="table-head" nzAlign="center">Name</th>
+          <th class="table-head" nzAlign="center" nzCustomFilter>
+            Name
+            <nz-filter-trigger
+              [(nzVisible)]="visible"
+              [nzActive]="searchValue.length > 0"
+              [nzDropdownMenu]="menu"
+            >
+              <span nz-icon nzType="search"></span>
+            </nz-filter-trigger>
+          </th>
           <th class="table-head" nzAlign="center">Quantity</th>
         </tr>
       </thead>
@@ -22,5 +32,27 @@
         </tr>
       </tbody>
     </nz-table>
+    <nz-dropdown-menu #menu="nzDropdownMenu">
+      <div class="ant-table-filter-dropdown">
+        <div class="search-box">
+          <input
+            type="text"
+            nz-input
+            placeholder="Search name"
+            [(ngModel)]="searchValue"
+          />
+          <button
+            nz-button
+            nzSize="small"
+            nzType="primary"
+            (click)="search()"
+            class="search-button"
+          >
+            Search
+          </button>
+          <button nz-button nzSize="small" (click)="reset()">Reset</button>
+        </div>
+      </div>
+    </nz-dropdown-menu>
   </div>
 </div>
