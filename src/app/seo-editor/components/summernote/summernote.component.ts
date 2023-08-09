@@ -77,10 +77,10 @@ export class SummernoteComponent implements OnInit {
         wordCount[entityType].content;
     }
 
-    // this code block will reset the word counts
+    // // this code block will reset the word counts
     for (const entityType of ['Entity', 'Variations', 'LSIKeywords']) {
       for (const word of this.wordCounter.wordObject[entityType]) {
-        word.count = 0;
+        word.count.summer_note = 0;
       }
     }
 
@@ -90,9 +90,9 @@ export class SummernoteComponent implements OnInit {
     const cleanedText = text.replace(/<\/?[^>]+(>|$)/g, ' ');
 
     const words = cleanedText.split(/\s+/);
-    // words.trim('&nbsp;');
+    console.log(words);
 
-    this.wordCounter.wordCountCalculate(cleanedText);
+    this.wordCounter.wordCountCalculate(cleanedText, 'summer_note');
 
     // this.onWordObject.emit(this.wordCounter.wordObject);
   }

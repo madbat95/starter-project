@@ -42,6 +42,10 @@ export class MetaInfoComponent {
       );
 
       this.metaTitle.emit(metaElementCount);
+      this.wordCounter.wordCountCalculate(
+        this.metaForm.value.metaTitle,
+        'meta'
+      );
 
       const parser2 = new DOMParser();
       const doc2 = parser2.parseFromString(
@@ -54,6 +58,10 @@ export class MetaInfoComponent {
       );
 
       this.metaDescription.emit(metaElementCount2);
+      this.wordCounter.wordCountCalculate(
+        this.metaForm.value.metaDescription,
+        'meta'
+      );
 
       this.modal.close({
         title: metaElementCount,

@@ -76,99 +76,99 @@ export class WordCounterService {
     Entity: [
       {
         word: 'privacy',
-        count: 0,
+        count: { summer_note: 0, meta: 0 },
       },
       {
         word: 'data',
-        count: 0,
+        count: { summer_note: 0, meta: 0 },
       },
       {
         word: 'virginia',
-        count: 0,
+        count: { summer_note: 0, meta: 0 },
       },
       {
         word: 'veritext',
-        count: 0,
+        count: { summer_note: 0, meta: 0 },
       },
       {
         word: 'access',
-        count: 0,
+        count: { summer_note: 0, meta: 0 },
       },
       {
         word: 'security',
-        count: 0,
+        count: { summer_note: 0, meta: 0 },
       },
       {
         word: 'finance',
-        count: 0,
+        count: { summer_note: 0, meta: 0 },
       },
     ],
     Variations: [
       {
         word: 'privacy',
-        count: 0,
+        count: { summer_note: 0, meta: 0 },
       },
       {
         word: 'alexandria',
-        count: 0,
+        count: { summer_note: 0, meta: 0 },
       },
       {
         word: 'videographers',
-        count: 0,
+        count: { summer_note: 0, meta: 0 },
       },
       {
         word: 'north',
-        count: 0,
+        count: { summer_note: 0, meta: 0 },
       },
       {
         word: 'breach',
-        count: 0,
+        count: { summer_note: 0, meta: 0 },
       },
       {
         word: 'statistics',
-        count: 0,
+        count: { summer_note: 0, meta: 0 },
       },
       {
         word: 'logistics',
-        count: 0,
+        count: { summer_note: 0, meta: 0 },
       },
       {
         word: 'finance',
-        count: 0,
+        count: { summer_note: 0, meta: 0 },
       },
     ],
     LSIKeywords: [
       {
         word: 'privacy',
-        count: 0,
+        count: { summer_note: 0, meta: 0 },
       },
       {
         word: 'paper',
-        count: 0,
+        count: { summer_note: 0, meta: 0 },
       },
       {
         word: 'testimony',
-        count: 0,
+        count: { summer_note: 0, meta: 0 },
       },
       {
         word: 'chicago',
-        count: 0,
+        count: { summer_note: 0, meta: 0 },
       },
       {
         word: 'united',
-        count: 0,
+        count: { summer_note: 0, meta: 0 },
       },
       {
         word: 'manchester',
-        count: 0,
+        count: { summer_note: 0, meta: 0 },
       },
       {
         word: 'city',
-        count: 0,
+        count: { summer_note: 0, meta: 0 },
       },
       {
         word: 'trial',
-        count: 0,
+        count: { summer_note: 0, meta: 0 },
       },
     ],
   };
@@ -276,7 +276,7 @@ export class WordCounterService {
     return result;
   }
 
-  wordCountCalculate(text) {
+  wordCountCalculate(text, source: string) {
     const words = text.split(/\s+/);
     words.forEach((word) => {
       if (word.trim().length > 0) {
@@ -287,7 +287,7 @@ export class WordCounterService {
               (entity) => entity.word === word
             );
             if (matchingWord) {
-              matchingWord.count++;
+              matchingWord.count[source]++;
             }
           }
         }
