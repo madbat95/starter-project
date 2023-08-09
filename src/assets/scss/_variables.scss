@@ -662,7 +662,7 @@ $loading-color: $brand-primary !default;
 // Badge
 //
 // Define Badge size & colors
-$badge-count-bg: #f5222d !default;
+$badge-count-bg: saturate($brand-primary, 20%) !default;
 $badge-count-height: 1.25rem !default;
 $badge-count-font-size: $font-size-base !default;
 $badge-dot-size: 0.4375rem !default;

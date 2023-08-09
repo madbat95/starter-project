@@ -17,15 +17,7 @@
         <tr *ngFor="let data of table.data">
           <td nzAlign="center">{{ data.word }}</td>
           <td nzAlign="center">
-            <nz-badge
-              nzStandalone
-              [nzCount]="data.count"
-              nzShowZero
-              [nzStyle]="{
-                color: 'green !important',
-                boxShadow: '0 0 0 1px #d9d9d9 inset'
-              }"
-            ></nz-badge>
+            <nz-badge nzStandalone [nzCount]="data.count" nzShowZero></nz-badge>
           </td>
         </tr>
       </tbody>
