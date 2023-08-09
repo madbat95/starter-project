@@ -24,20 +24,19 @@
         </tr>
       </thead>
       <tbody>
-        <tr *ngFor="let data of table.data">
-          <td nzAlign="center" class="cell-hover-show">
+        <tr *ngFor="let data of tableData">
+          <td class="cell-hover-show">
             <span
               nz-icon
               nzType="close-circle"
-              [nzTheme]="'twotone'"
-              [nzTwotoneColor]="'red'"
-              class="icon-hover-show icon-left-align"
+              [nzTheme]="'outline'"
+              class="icon-hover-show"
               (click)="deleteRow(data.word)"
             ></span>
-            {{ data.word }}
+            <span class="ml-2">{{ data.word }}</span>
           </td>
           <td nzAlign="center">
-            <badge [data]="data.count"></badge>
+            <nz-badge nzStandalone [nzCount]="data.count" nzShowZero></nz-badge>
           </td>
         </tr>
       </tbody>

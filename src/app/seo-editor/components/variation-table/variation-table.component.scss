@@ -1,6 +1,3 @@
-.table-head {
-}
-
 .search-box {
   padding: 8px;
 }
@@ -20,23 +17,20 @@
   color: white;
 }
 
-.anticon,
-.anticon svg {
+.table-head .anticon,
+.table-head .anticon svg {
   display: inline-block;
   color: white;
 }
 
-.cell-hover-show .icon-hover-show {
-  opacity: 0;
-  transition: opacity 0.3s;
+.icon-hover-show {
   cursor: pointer;
+  visibility: hidden;
+  opacity: 0;
+  transition: opacity 0.3s, visibility 0.3s;
 }
 
 .cell-hover-show:hover .icon-hover-show {
+  visibility: visible;
   opacity: 1;
-}
-
-.icon-left-align {
-  vertical-align: middle;
-  margin-right: 8px;
 }
