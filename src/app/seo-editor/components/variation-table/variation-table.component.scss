@@ -25,3 +25,18 @@
   display: inline-block;
   color: white;
 }
+
+.cell-hover-show .icon-hover-show {
+  opacity: 0;
+  transition: opacity 0.3s;
+  cursor: pointer;
+}
+
+.cell-hover-show:hover .icon-hover-show {
+  opacity: 1;
+}
+
+.icon-left-align {
+  vertical-align: middle;
+  margin-right: 8px;
+}

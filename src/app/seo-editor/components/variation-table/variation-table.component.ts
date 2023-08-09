@@ -26,4 +26,8 @@ export class VariationTableComponent {
       (item) => item.word.indexOf(this.searchValue) !== -1
     );
   }
+
+  deleteRow(word: string): void {
+    this.tableData = this.tableData.filter((deleted) => deleted.word !== word);
+  }
 }
