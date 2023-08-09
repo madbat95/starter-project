@@ -92,23 +92,8 @@ export class SummernoteComponent implements OnInit {
     const words = cleanedText.split(/\s+/);
     // words.trim('&nbsp;');
 
-    words.forEach((word) => {
-      // Check if the word is not empty and not containing only spaces
-      if (word.trim().length > 0) {
-        for (const entityType of ['Entity', 'Variations', 'LSIKeywords']) {
-          if (this.wordCounter.isWordInWordObject(word, entityType)) {
-            const entityArray = this.wordCounter.wordObject[entityType];
-            const matchingWord = entityArray.find(
-              (entity) => entity.word === word
-            );
-            if (matchingWord) {
-              matchingWord.count++;
-            }
-          }
-        }
-      }
-    });
+    this.wordCounter.wordCountCalculate(cleanedText);
 
-    this.onWordObject.emit(this.wordCounter.wordObject);
+    // this.onWordObject.emit(this.wordCounter.wordObject);
   }
 }

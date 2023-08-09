@@ -276,10 +276,9 @@ export class WordCounterService {
     return result;
   }
 
-  wordCountCalculate(text, initial) {
+  wordCountCalculate(text) {
     const words = text.split(/\s+/);
     words.forEach((word) => {
-      // Check if the word is not empty and not containing only spaces
       if (word.trim().length > 0) {
         for (const entityType of ['Entity', 'Variations', 'LSIKeywords']) {
           if (this.isWordInWordObject(word, entityType)) {
