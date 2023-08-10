@@ -78,6 +78,14 @@ export class WordCounterService {
   wordObject = {
     Entity: [
       {
+        word: 'security',
+        count: { summer_note: 0, meta: 0 },
+      },
+      {
+        word: 'security service',
+        count: { summer_note: 0, meta: 0 },
+      },
+      {
         word: 'privacy',
         count: { summer_note: 0, meta: 0 },
       },
@@ -98,7 +106,7 @@ export class WordCounterService {
         count: { summer_note: 0, meta: 0 },
       },
       {
-        word: 'security',
+        word: 'security security',
         count: { summer_note: 0, meta: 0 },
       },
       {
@@ -175,28 +183,32 @@ export class WordCounterService {
       },
     ],
   };
+  isPhraseInWordObject(phrase, entityType) {
+    const entityArray = this.wordObject[entityType];
+    for (const entity of entityArray) {
+      if (phrase === entity.word) {
+        return true;
+      }
+    }
+    return false;
+  }
+
   countWordsInElement(element, entityType) {
     const text = element.textContent.trim();
     const words = text.split(/\s+/);
     let count = 0;
 
-    words.forEach((word) => {
-      if (this.isWordInWordObject(word, entityType)) {
-        count++;
-      }
-    });
-
-    return count;
-  }
-
-  isWordInWordObject(word, entityType) {
-    const entityArray = this.wordObject[entityType];
-    for (const entity of entityArray) {
-      if (entity.word === word) {
-        return true;
+    for (let i = 0; i < words.length; i++) {
+      for (let j = i + 1; j <= words.length; j++) {
+        const phrase = words.slice(i, j).join(' ');
+        if (this.isPhraseInWordObject(phrase, entityType)) {
+          count++;
+          i = j - 1; //this line skips all the words in the current phrase
+        }
       }
     }
-    return false;
+
+    return count;
   }
 
   countWordsInHeadersAndContent(
@@ -281,20 +293,24 @@ export class WordCounterService {
 
   wordCountCalculate(text, source: string) {
     const words = text.split(/\s+/);
-    words.forEach((word) => {
-      if (word.trim().length > 0) {
-        for (const entityType of ['Entity', 'Variations', 'LSIKeywords']) {
-          if (this.isWordInWordObject(word, entityType)) {
-            const entityArray = this.wordObject[entityType];
-            const matchingWord = entityArray.find(
-              (entity) => entity.word === word
-            );
-            if (matchingWord) {
-              matchingWord.count[source]++;
+
+    for (let i = 0; i < words.length; i++) {
+      for (let j = i + 1; j <= words.length; j++) {
+        const phrase = words.slice(i, j).join(' ');
+        if (phrase.trim().length > 0) {
+          for (const entityType of ['Entity', 'Variations', 'LSIKeywords']) {
+            if (this.isPhraseInWordObject(phrase, entityType)) {
+              const entityArray = this.wordObject[entityType];
+              const matchingPhrase = entityArray.find(
+                (entity) => entity.word === phrase
+              );
+              if (matchingPhrase) {
+                matchingPhrase.count[source]++;
+              }
             }
           }
         }
       }
-    });
+    }
   }
 }
