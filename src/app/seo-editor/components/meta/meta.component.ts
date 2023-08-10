@@ -13,38 +13,40 @@ export class MetaComponent {
   constructor(private wordCounter: WordCounterService) {}
 
   updateWordCounts() {
-    for (const entityType of ['Entity', 'Variations', 'LSIKeywords']) {
-      for (const word of this.wordCounter.wordObject[entityType]) {
-        word.count.meta = 0;
-      }
-    }
+    this.resetWordCounts();
 
     const parser = new DOMParser();
-    const docTitle = parser.parseFromString(this.metaTitle, 'text/html');
-    const metaTitleElementCount =
-      this.wordCounter.countWordsInHeadersAndContent(docTitle.body, []);
 
-    this.wordCounter.wordCountCalculate(this.metaTitle, 'meta');
-
-    for (const entityType of ['Entity', 'Variations', 'LSIKeywords']) {
-      this.wordCounter.wordCount[entityType].metaTitle =
-        metaTitleElementCount[entityType].content;
-    }
-
-    ////////////////////////////////////////////
-
-    const docDescription = parser.parseFromString(
+    this.updateCountsForElement(this.metaTitle, 'metaTitle', parser);
+    this.updateCountsForElement(
       this.metaDescription,
-      'text/html'
+      'metaDescription',
+      parser
     );
-    const metaDescriptionElementCount =
-      this.wordCounter.countWordsInHeadersAndContent(docDescription.body, []);
+  }
 
-    this.wordCounter.wordCountCalculate(this.metaDescription, 'meta');
-
+  resetWordCounts() {
     for (const entityType of ['Entity', 'Variations', 'LSIKeywords']) {
-      this.wordCounter.wordCount[entityType].metaDescription =
-        metaDescriptionElementCount[entityType].content;
+      this.wordCounter.wordObject[entityType].forEach((word) => {
+        word.count.meta = 0;
+      });
+    }
+  }
+
+  updateCountsForElement(
+    elementContent: string,
+    entityType: string,
+    parser: DOMParser
+  ) {
+    const docElement = parser.parseFromString(elementContent, 'text/html');
+    const elementContentWordCount =
+      this.wordCounter.countWordsInHeadersAndContent(docElement.body, []);
+
+    this.wordCounter.wordCountCalculate(elementContent, 'meta');
+
+    for (const type of ['Entity', 'Variations', 'LSIKeywords']) {
+      this.wordCounter.wordCount[type][entityType] =
+        elementContentWordCount[type].content;
     }
   }
 }
