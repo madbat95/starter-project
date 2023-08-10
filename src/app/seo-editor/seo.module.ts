@@ -39,7 +39,9 @@ import { NgxSummernoteModule } from 'ngx-summernote';
 import { MetaInfoComponent } from './components/meta/components/meta-info/meta-info.component';
 import { NzFormModule } from 'ng-zorro-antd/form';
 import { ReactiveFormsModule } from '@angular/forms';
-import { WordCountService } from './service/word-count.service';
+import { TableRadioComponent } from './components/table-radio/table-radio.component';
+import { WordCounterService } from './service/word-counter.service';
+import { TableDataRowComponent } from './components/suggestion-table/components/table-data-row/table-data-row.component';
 
 const antdModule = [
   NzButtonModule,
@@ -76,6 +78,7 @@ const antdModule = [
     NgChartjsModule,
     NgxSummernoteModule,
     ReactiveFormsModule,
+    NzBadgeModule,
     ...antdModule,
   ],
   exports: [],
@@ -89,7 +92,9 @@ const antdModule = [
     MetaComponent,
     SummernoteComponent,
     MetaInfoComponent,
+    TableRadioComponent,
+    TableDataRowComponent,
   ],
-  providers: [ThemeConstantService, WordCountService],
+  providers: [ThemeConstantService, WordCounterService],
 })
 export class SeoModule {}

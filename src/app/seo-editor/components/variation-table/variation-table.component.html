@@ -1,40 +1,67 @@
-<div nz-row nzAlign="center" nzJustify="center" [nzGutter]="[0, 16]">
-  <div>
-    {{ json.stringify(data) }}
-  </div>
-  <div nz-col>
-    <nz-radio-group
-      [(ngModel)]="selectedTable"
-      nzSize="small"
-      nzButtonStyle="solid"
-      (ngModelChange)="onTableSelectionChange()"
-    >
-      <label nz-radio-button nzValue="Variation">Variation</label>
-      <label nz-radio-button nzValue="LSI">LSI Keywords</label>
-      <label nz-radio-button nzValue="Entity">Entities</label>
-    </nz-radio-group>
-  </div>
-
+<div nz-row nzJustify="center" [nzGutter]="[0, 16]">
   <div nz-col class="w-[88%]">
     <nz-table
       #table
       nzBordered
       nzSize="small"
       [nzFrontPagination]="false"
-      [nzData]="data"
+      [nzData]="tableData"
+      nzTableLayout="fixed"
     >
       <thead>
         <tr>
-          <th class="table-head" nzAlign="center">Name</th>
+          <th class="table-head" nzAlign="center" nzCustomFilter>
+            Name
+            <nz-filter-trigger
+              [(nzVisible)]="visible"
+              [nzActive]="searchValue.length > 0"
+              [nzDropdownMenu]="menu"
+            >
+              <span nz-icon nzType="search" style="font-size: 15px"></span>
+            </nz-filter-trigger>
+          </th>
           <th class="table-head" nzAlign="center">Quantity</th>
         </tr>
       </thead>
       <tbody>
-        <tr *ngFor="let data of table.data">
-          <td nzAlign="center">{{ data.name }}</td>
-          <td nzAlign="center">{{ data.quantity }}</td>
+        <tr *ngFor="let data of tableData">
+          <td nzAlign="center" class="cell-hover-show">
+            <span
+              nz-icon
+              nzType="close-circle"
+              [nzTheme]="'outline'"
+              class="icon-hover-show"
+              (click)="deleteRow(data.word)"
+            ></span>
+            <span class="ml-2">{{ data.word }}</span>
+          </td>
+          <td nzAlign="center">
+            <badge [data]="data.count.summer_note + data.count.meta"></badge>
+          </td>
         </tr>
       </tbody>
     </nz-table>
+    <nz-dropdown-menu #menu="nzDropdownMenu">
+      <div class="ant-table-filter-dropdown">
+        <div class="search-box">
+          <input
+            type="text"
+            nz-input
+            placeholder="Search name"
+            [(ngModel)]="searchValue"
+          />
+          <button
+            nz-button
+            nzSize="small"
+            nzType="primary"
+            (click)="search()"
+            class="search-button"
+          >
+            Search
+          </button>
+          <button nz-button nzSize="small" (click)="reset()">Reset</button>
+        </div>
+      </div>
+    </nz-dropdown-menu>
   </div>
 </div>

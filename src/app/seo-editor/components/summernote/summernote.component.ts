@@ -1,6 +1,5 @@
-import { Component, EventEmitter, OnInit, Output } from '@angular/core';
-import { FormControl } from '@angular/forms';
-import { WordCountService } from '../../service/word-count.service';
+import { Component, EventEmitter, OnInit, Output, Input } from '@angular/core';
+import { WordCounterService } from '../../service/word-counter.service';
 
 @Component({
   selector: 'app-summernote',
@@ -8,10 +7,11 @@ import { WordCountService } from '../../service/word-count.service';
   styleUrls: ['./summernote.component.scss'],
 })
 export class SummernoteComponent implements OnInit {
+  constructor(private wordCounter: WordCounterService) {}
+
   editorContent = '';
   uniqueWords: Set<string> = new Set();
-  wordCountData: { [word: string]: number } = {};
-  @Output() onWordCount = new EventEmitter<{ [word: string]: number }>();
+
   editorConfig = {
     placeholder: 'Add text here...',
     tabsize: 2,
@@ -49,39 +49,61 @@ export class SummernoteComponent implements OnInit {
     ],
   };
 
-  constructor(private wordCountService: WordCountService) {}
+  @Output() onWordObject = new EventEmitter<any>();
+  @Output() onWordCount = new EventEmitter<any>();
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    // this.onWordObject.emit(this.wordCounter.wordObject);
+  }
 
-  onEditorKeyUp(text: string) {
-    this.wordCountData = {}; // Reset the word count data
+  onEditorKeyUp(text: any) {
+    const parser = new DOMParser();
+    const doc = parser.parseFromString(text, 'text/html');
+    console.log('doc', doc.body);
+
+    const wordCount = this.wordCounter.countWordsInHeadersAndContent(doc.body, [
+      'H1',
+      'H2',
+      'H3',
+      'H4',
+      'H5',
+      'H6',
+    ]);
+
+    for (const entityType of ['Entity', 'Variations', 'LSIKeywords']) {
+      this.wordCounter.wordCount[entityType].headers.H1 =
+        wordCount[entityType].headers.H1;
+      this.wordCounter.wordCount[entityType].headers.H2 =
+        wordCount[entityType].headers.H2;
+      this.wordCounter.wordCount[entityType].headers.H3 =
+        wordCount[entityType].headers.H3;
+      this.wordCounter.wordCount[entityType].headers.H4 =
+        wordCount[entityType].headers.H4;
+      this.wordCounter.wordCount[entityType].headers.H5 =
+        wordCount[entityType].headers.H5;
+      this.wordCounter.wordCount[entityType].headers.H6 =
+        wordCount[entityType].headers.H6;
+      this.wordCounter.wordCount[entityType].content =
+        wordCount[entityType].content;
+    }
+
+    // // this code block will reset the word counts
+    for (const entityType of ['Entity', 'Variations', 'LSIKeywords']) {
+      for (const word of this.wordCounter.wordObject[entityType]) {
+        word.count.summer_note = 0;
+      }
+    }
+
     this.uniqueWords.clear(); // Clear the uniqueWords Set
 
     // Remove HTML entities representing spaces (&nbsp;), <p> tags, and <br> tags from the text
-    const cleanedText = text.replace(/(&nbsp;|<p>|<\/p>|<br>)/g, '');
+    const cleanedText = text.replace(/<\/?[^>]+(>|$)/g, ' ');
 
-    const lines = cleanedText.split('\n');
+    const words = cleanedText.split(/\s+/);
+    console.log(words);
 
-    lines.forEach((line) => {
-      // Check if the line is not empty and not containing only spaces
-      if (line.trim().length > 0) {
-        const words = line.trim().split(/\s+/);
+    this.wordCounter.wordCountCalculate(cleanedText, 'summer_note');
 
-        words.forEach((word) => {
-          // Use a Set to keep track of unique words and only count them once
-          if (!this.uniqueWords.has(word)) {
-            this.uniqueWords.add(word);
-            // this.wordCountService.wordCountData[word] = 1;
-            this.wordCountData[word] = 1;
-          } else {
-            // this.wordCountService.wordCountData[word]++;
-            this.wordCountData[word]++;
-          }
-        });
-      }
-    });
-
-    console.log('Word Count Data:', this.wordCountData);
-    this.onWordCount.emit(this.wordCountData);
+    // this.onWordObject.emit(this.wordCounter.wordObject);
   }
 }

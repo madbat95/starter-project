@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
+import { WordCounterService } from '../../service/word-counter.service';
 
 @Component({
   selector: 'app-suggestion-table',
@@ -6,22 +7,13 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./suggestion-table.component.scss'],
 })
 export class SuggestionTableComponent implements OnInit {
-  listOfData: any[] = [];
-
+  tableData: any;
+  // @Input() set data(val: any) {
+  //   this.tableData = val;
+  // }
+  constructor(private wordCounter: WordCounterService) {}
   ngOnInit(): void {
-    this.listOfData = [
-      {
-        name: 'Entities',
-      },
-      {
-        name: 'LSI Keywords',
-      },
-      {
-        name: 'Variations',
-      },
-      {
-        name: 'Words/Tags',
-      },
-    ];
+    this.tableData = this.wordCounter.wordCount;
+    console.log(this.tableData);
   }
 }

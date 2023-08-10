@@ -19,7 +19,7 @@
             "polyfills": "src/polyfills.ts",
             "tsConfig": "tsconfig.app.json",
             "assets": [
-              "src/favicon.ico",
+              "src/Emet-Digital.ico",
               "src/assets",
               {
                 "glob": "**/*",
@@ -98,7 +98,7 @@
             "polyfills": "src/polyfills.ts",
             "tsConfig": "tsconfig.spec.json",
             "karmaConfig": "karma.conf.js",
-            "assets": ["src/favicon.ico", "src/assets"],
+            "assets": ["src/Emet-Digital.ico", "src/assets"],
             "styles": [
               "src/styles.css",
               "node_modules/summernote/dist/summernote-lite.min.css"

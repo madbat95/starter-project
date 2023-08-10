@@ -1,12 +1,12 @@
-import { Component } from '@angular/core';
+import { Component, Output, EventEmitter } from '@angular/core';
 import {
   FormBuilder,
   FormControl,
   FormGroup,
   Validators,
 } from '@angular/forms';
-import { NzModalRef, NzModalService } from 'ng-zorro-antd/modal';
-import { NotificationService } from 'src/app/shared/services/notification.service';
+import { NzModalRef } from 'ng-zorro-antd/modal';
+import { WordCounterService } from 'src/app/seo-editor/service/word-counter.service';
 
 @Component({
   selector: 'app-meta-info',
@@ -14,16 +14,59 @@ import { NotificationService } from 'src/app/shared/services/notification.servic
   styleUrls: ['./meta-info.component.scss'],
 })
 export class MetaInfoComponent {
+  @Output() metaTitle = new EventEmitter<any>();
+  @Output() metaDescription = new EventEmitter<any>();
   metaForm!: FormGroup;
   constructor(
-    private modalService: NzModalService,
+    private wordCounter: WordCounterService,
     private modal: NzModalRef,
-    private fb: FormBuilder,
-    private notificationService: NotificationService
+    private fb: FormBuilder
   ) {
     this.metaForm = this.fb.group({
-      title: new FormControl('', Validators.required),
-      description: new FormControl('', Validators.required),
+      metaTitle: new FormControl('privacy', Validators.required),
+      metaDescription: new FormControl('privacy', Validators.required),
     });
+  }
+
+  onSubmit() {
+    if (this.metaForm.valid) {
+      const parser = new DOMParser();
+      const doc = parser.parseFromString(
+        this.metaForm.value.metaTitle,
+        'text/html'
+      );
+
+      const metaElementCount = this.wordCounter.countWordsInHeadersAndContent(
+        doc.body,
+        []
+      );
+
+      this.metaTitle.emit(metaElementCount);
+      this.wordCounter.wordCountCalculate(
+        this.metaForm.value.metaTitle,
+        'meta'
+      );
+
+      const parser2 = new DOMParser();
+      const doc2 = parser2.parseFromString(
+        this.metaForm.value.metaDescription,
+        'text/html'
+      );
+      const metaElementCount2 = this.wordCounter.countWordsInHeadersAndContent(
+        doc2.body,
+        []
+      );
+
+      this.metaDescription.emit(metaElementCount2);
+      this.wordCounter.wordCountCalculate(
+        this.metaForm.value.metaDescription,
+        'meta'
+      );
+
+      this.modal.close({
+        title: metaElementCount,
+        description: metaElementCount2,
+      });
+    }
   }
 }
