@@ -13,7 +13,6 @@ export class MetaComponent {
   constructor(private wordCounter: WordCounterService) {}
 
   updateWordCounts() {
-    // // this code block will reset the word counts
     for (const entityType of ['Entity', 'Variations', 'LSIKeywords']) {
       for (const word of this.wordCounter.wordObject[entityType]) {
         word.count.meta = 0;
@@ -21,19 +20,31 @@ export class MetaComponent {
     }
 
     const parser = new DOMParser();
-    const doc = parser.parseFromString(this.metaTitle, 'text/html');
-    const metaElementCount = this.wordCounter.countWordsInHeadersAndContent(
-      doc.body,
-      []
-    );
+    const docTitle = parser.parseFromString(this.metaTitle, 'text/html');
+    const metaTitleElementCount =
+      this.wordCounter.countWordsInHeadersAndContent(docTitle.body, []);
+
     this.wordCounter.wordCountCalculate(this.metaTitle, 'meta');
 
-    const parser2 = new DOMParser();
-    const doc2 = parser2.parseFromString(this.metaDescription, 'text/html');
-    const metaElementCount2 = this.wordCounter.countWordsInHeadersAndContent(
-      doc2.body,
-      []
+    for (const entityType of ['Entity', 'Variations', 'LSIKeywords']) {
+      this.wordCounter.wordCount[entityType].metaTitle =
+        metaTitleElementCount[entityType].content;
+    }
+
+    ////////////////////////////////////////////
+
+    const docDescription = parser.parseFromString(
+      this.metaDescription,
+      'text/html'
     );
+    const metaDescriptionElementCount =
+      this.wordCounter.countWordsInHeadersAndContent(docDescription.body, []);
+
     this.wordCounter.wordCountCalculate(this.metaDescription, 'meta');
+
+    for (const entityType of ['Entity', 'Variations', 'LSIKeywords']) {
+      this.wordCounter.wordCount[entityType].metaDescription =
+        metaDescriptionElementCount[entityType].content;
+    }
   }
 }
