@@ -36,7 +36,6 @@ import { UploadReportComponent } from './components/upload-report/upload-report.
 import { MetaComponent } from './components/meta/meta.component';
 import { SummernoteComponent } from './components/summernote/summernote.component';
 import { NgxSummernoteModule } from 'ngx-summernote';
-import { MetaInfoComponent } from './components/meta/components/meta-info/meta-info.component';
 import { NzFormModule } from 'ng-zorro-antd/form';
 import { ReactiveFormsModule } from '@angular/forms';
 import { TableRadioComponent } from './components/table-radio/table-radio.component';
@@ -91,7 +90,7 @@ const antdModule = [
     UploadReportComponent,
     MetaComponent,
     SummernoteComponent,
-    MetaInfoComponent,
+
     TableRadioComponent,
     TableDataRowComponent,
   ],
