@@ -1,3 +1,13 @@
-.bold-label {
+.card-label {
+  padding-top: 5px;
+  padding-bottom: 5px;
+  padding-left: 5px;
+  padding-right: 5px;
   font-weight: bold;
+  background-color: #ff6900;
+  color: white;
+}
+
+::ng-deep .custom-card .ant-card-body {
+  padding: 0px !important;
 }

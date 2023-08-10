@@ -1,20 +1,21 @@
 <div class="">
-  <div nz-row nzAlign="middle" [nzGutter]="[16, 16]">
+  <div nz-row nzJustify="center" nzAlign="middle" [nzGutter]="[16, 16]">
     <div nz-col [nzMd]="24" [nzLg]="5" [nzXl]="5">
-      <div nz-row [nzGutter]="[16, 32]" nzJustify="center" nzAlign="middle">
-        <div nz-col><scrape-search></scrape-search></div>
-
+      <div nz-row [nzGutter]="[8, 8]" nzJustify="center" nzAlign="middle">
         <div nz-col>
-          <div nz-row nzJustify="center" [nzGutter]="[8, 8]">
-            <div nz-col>
-              <upload-report></upload-report>
-            </div>
-
-            <div nz-col>
-              <meta-button></meta-button>
-            </div>
-          </div>
+          <scrape-search></scrape-search>
         </div>
+        <div nz-col>
+          <upload-report></upload-report>
+        </div>
+        <div nz-col nzSpan="24">
+          <meta-button></meta-button>
+        </div>
+        <!-- <div nz-col>
+          <div nz-row nzJustify="center" [nzGutter]="[8, 8]">
+            
+          </div>
+        </div> -->
       </div>
     </div>
 
@@ -23,15 +24,15 @@
     </div>
   </div>
 
-  <div nz-row nzJustify="center" [nzGutter]="[16, 16]">
+  <div nz-row nzJustify="center" nzAlign="middle" [nzGutter]="[16, 16]">
     <div nz-col [nzMd]="24" [nzLg]="5" [nzXl]="5">
-      <div nz-row nzJustify="center" [nzGutter]="[16, 16]">
-        <div nz-col nzSpan="24">
+      <div nz-row nzJustify="center" nzAlign="middle" [nzGutter]="[16, 16]">
+        <div nz-col>
           <app-table-radio
             (selectedTableChange)="onTableSelection($event)"
           ></app-table-radio>
         </div>
-        <div nz-col nzSpan="24">
+        <div nz-col>
           <app-variation-table
             [data]="getData()"
             [selectedTable]="selectedTable"

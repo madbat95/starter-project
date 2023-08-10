@@ -65,7 +65,7 @@
             background-color: rgba($brand-primary, 0.1);
 
             .ant-badge {
-              color: $brand-primary;
+              color: lighten($brand-primary, 20%);
             }
           }
 
@@ -195,8 +195,14 @@
     .ant-radio-group-solid
       .ant-radio-button-wrapper-checked:not(.ant-radio-button-wrapper-disabled),
     .ant-checkbox-checked .ant-checkbox-inner,
-    .ant-badge-count {
+    .card-label {
       background-color: #{nth($theme, 2)} !important;
+    }
+
+    // $lightenAmount: 20%;
+
+    .ant-badge-count {
+      background-color: lighten(nth($theme, 2), 10%) !important;
     }
 
     .ant-btn-primary,

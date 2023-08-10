@@ -1,7 +1,7 @@
-<nz-card>
+<nz-card class="custom-card">
   <div nz-row [nzGutter]="[8, 16]">
     <div nz-col nzSpan="24">
-      <div class="bold-label">Meta Title</div>
+      <div class="card-label">Meta Title</div>
       <textarea
         nz-input
         nzSize="default"
@@ -13,14 +13,14 @@
       ></textarea>
     </div>
     <div nz-col nzSpan="24">
-      <div class="bold-label">Meta Description</div>
+      <div class="card-label">Meta Description</div>
       <textarea
         nz-input
         nzSize="default"
         style="width: 100%"
         [(ngModel)]="metaDescription"
         (input)="updateWordCounts()"
-        rows="5"
+        rows="2"
         placeholder="Description"
       ></textarea>
     </div>
