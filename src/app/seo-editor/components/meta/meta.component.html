@@ -1,28 +1,27 @@
-<nz-card class="custom-card">
-  <div nz-row [nzGutter]="[8, 16]">
-    <div nz-col nzSpan="24">
-      <div class="card-label">Meta Title</div>
-      <textarea
-        nz-input
-        nzSize="default"
-        style="width: 100%"
-        [(ngModel)]="metaTitle"
-        (input)="updateWordCounts()"
-        rows="1"
-        placeholder="Title"
-      ></textarea>
-    </div>
-    <div nz-col nzSpan="24">
-      <div class="card-label">Meta Description</div>
-      <textarea
-        nz-input
-        nzSize="default"
-        style="width: 100%"
-        [(ngModel)]="metaDescription"
-        (input)="updateWordCounts()"
-        rows="2"
-        placeholder="Description"
-      ></textarea>
-    </div>
-  </div>
-</nz-card>
+<div nz-row [nzGutter]="[8, 0]">
+  <nz-card nz-col nzSpan="24" class="p-0 custom-card">
+    <div class="card-label">Meta Title</div>
+    <textarea
+      nz-input
+      nzSize="default"
+      style="width: 100%"
+      [(ngModel)]="metaTitle"
+      (input)="updateWordCounts()"
+      rows="1"
+      placeholder="Title"
+    ></textarea>
+  </nz-card>
+
+  <nz-card nz-col nzSpan="24" class="p-0 custom-card">
+    <div class="card-label">Meta Description</div>
+    <textarea
+      nz-input
+      nzSize="default"
+      style="width: 100%"
+      [(ngModel)]="metaDescription"
+      (input)="updateWordCounts()"
+      rows="2"
+      placeholder="Description"
+    ></textarea>
+  </nz-card>
+</div>
