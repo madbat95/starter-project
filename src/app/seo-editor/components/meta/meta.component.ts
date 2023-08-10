@@ -1,48 +1,39 @@
-import { Component, Output, EventEmitter } from '@angular/core';
-import { NzModalRef, NzModalService } from 'ng-zorro-antd/modal';
-import { MetaInfoComponent } from './components/meta-info/meta-info.component';
+import { Component } from '@angular/core';
 import { WordCounterService } from '../../service/word-counter.service';
 
 @Component({
   selector: 'meta-button',
   templateUrl: './meta.component.html',
-  styleUrls: ['./meta.component.css'],
+  styleUrls: ['./meta.component.scss'],
 })
 export class MetaComponent {
-  constructor(
-    private modalService: NzModalService,
-    private wordCounter: WordCounterService
-  ) {}
-  // @Output() metaTitle = new EventEmitter<any>();
-  // @Output() metaDescription = new EventEmitter<any>();
+  metaTitle: string = '';
+  metaDescription: string = '';
 
-  addMeta(): void {
-    const modal = this.modalService.create({
-      nzTitle: 'Add Meta',
-      nzContent: MetaInfoComponent,
-      nzFooter: null,
-      nzCentered: true,
-      nzStyle: {
-        'overflow-y': 'auto',
-        // 'max-height': '500px',
-        // 'max-width': '1000px',
-      },
-    });
-    modal.componentInstance.metaTitle.subscribe((metaTitle: any) => {
-      console.log('this is my consoled metaTitle:', metaTitle);
-      for (const entityType of ['Entity', 'Variations', 'LSIKeywords']) {
-        this.wordCounter.wordCount[entityType].metaTitle =
-          metaTitle[entityType].content;
+  constructor(private wordCounter: WordCounterService) {}
+
+  updateWordCounts() {
+    // // this code block will reset the word counts
+    for (const entityType of ['Entity', 'Variations', 'LSIKeywords']) {
+      for (const word of this.wordCounter.wordObject[entityType]) {
+        word.count.meta = 0;
       }
-    });
-    modal.componentInstance.metaDescription.subscribe(
-      (metaDescription: any) => {
-        for (const entityType of ['Entity', 'Variations', 'LSIKeywords']) {
-          this.wordCounter.wordCount[entityType].metaDescription =
-            metaDescription[entityType].content;
-        }
-        console.log('wordcount', this.wordCounter.wordCount);
-      }
+    }
+
+    const parser = new DOMParser();
+    const doc = parser.parseFromString(this.metaTitle, 'text/html');
+    const metaElementCount = this.wordCounter.countWordsInHeadersAndContent(
+      doc.body,
+      []
     );
+    this.wordCounter.wordCountCalculate(this.metaTitle, 'meta');
+
+    const parser2 = new DOMParser();
+    const doc2 = parser2.parseFromString(this.metaDescription, 'text/html');
+    const metaElementCount2 = this.wordCounter.countWordsInHeadersAndContent(
+      doc2.body,
+      []
+    );
+    this.wordCounter.wordCountCalculate(this.metaDescription, 'meta');
   }
 }
