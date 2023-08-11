@@ -1,10 +1,14 @@
-<div nz-row [nzGutter]="[2, 0]" nzAlign="middle">
-  <div nz-col nzSpan="18">
+<div nz-row [nzGutter]="[2, 8]" nzJustify="center" nzAlign="middle">
+  <div nz-col nzSpan="24">
     <input nz-input placeholder="Welcome to scrape" nzSize="small" />
   </div>
   <div nz-col nzSpan="6">
     <button nz-button nzSize="small" nzType="primary">
       <span nz-icon nzType="scissor" nzTheme="outline"></span>
     </button>
+  </div>
+
+  <div nz-col nzSpan="18">
+    <upload-report></upload-report>
   </div>
 </div>
