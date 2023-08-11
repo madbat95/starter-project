@@ -4,45 +4,44 @@
   nzSize="small"
   [nzData]="[1]"
   [nzFrontPagination]="false"
-  [nzScroll]="{ x: '1150px' }"
 >
   <thead>
-    <tr>
-      <th class="table-head" nzLeft rowspan="4" nzAlign="center" nzWidth="10%">
-        Suggestions
-      </th>
-    </tr>
+    <!-- <tr>
+      
+    </tr> -->
 
     <tr>
-      <th class="table-head" colspan="2" nzAlign="center">Meta Title</th>
-      <th class="table-head" colspan="2" nzAlign="center">Meta Description</th>
-      <th class="table-head" colspan="2" nzAlign="center">H1</th>
-      <th class="table-head" colspan="2" nzAlign="center">H2</th>
-      <th class="table-head" colspan="2" nzAlign="center">H3</th>
-      <th class="table-head" colspan="2" nzAlign="center">H4</th>
-      <th class="table-head" colspan="2" nzAlign="center">H5</th>
-      <th class="table-head" colspan="2" nzAlign="center">H6</th>
-      <th class="table-head" colspan="2" nzAlign="center">Content</th>
+      <th nzLeft rowspan="4" nzAlign="center">Suggestions</th>
+      <th colspan="2" nzAlign="center">Title</th>
+
+      <th colspan="2" nzAlign="center">Descr.</th>
+      <th colspan="2" nzAlign="center">H1</th>
+      <th colspan="2" nzAlign="center">H2</th>
+      <th colspan="2" nzAlign="center">H3</th>
+      <th colspan="2" nzAlign="center">H4</th>
+      <th colspan="2" nzAlign="center">H5</th>
+      <th colspan="2" nzAlign="center">H6</th>
+      <th colspan="2" nzAlign="center">Content</th>
     </tr>
     <tr>
-      <th class="table-head" nzAlign="center">C</th>
-      <th class="table-head" nzAlign="center">R</th>
-      <th class="table-head" nzAlign="center">C</th>
-      <th class="table-head" nzAlign="center">R</th>
-      <th class="table-head" nzAlign="center">C</th>
-      <th class="table-head" nzAlign="center">R</th>
-      <th class="table-head" nzAlign="center">C</th>
-      <th class="table-head" nzAlign="center">R</th>
-      <th class="table-head" nzAlign="center">C</th>
-      <th class="table-head" nzAlign="center">R</th>
-      <th class="table-head" nzAlign="center">C</th>
-      <th class="table-head" nzAlign="center">R</th>
-      <th class="table-head" nzAlign="center">C</th>
-      <th class="table-head" nzAlign="center">R</th>
-      <th class="table-head" nzAlign="center">C</th>
-      <th class="table-head" nzAlign="center">R</th>
-      <th class="table-head" nzAlign="center">C</th>
-      <th class="table-head" nzAlign="center">R</th>
+      <th nzAlign="center">C</th>
+      <th nzAlign="center">R</th>
+      <th nzAlign="center">C</th>
+      <th nzAlign="center">R</th>
+      <th nzAlign="center">C</th>
+      <th nzAlign="center">R</th>
+      <th nzAlign="center">C</th>
+      <th nzAlign="center">R</th>
+      <th nzAlign="center">C</th>
+      <th nzAlign="center">R</th>
+      <th nzAlign="center">C</th>
+      <th nzAlign="center">R</th>
+      <th nzAlign="center">C</th>
+      <th nzAlign="center">R</th>
+      <th nzAlign="center">C</th>
+      <th nzAlign="center">R</th>
+      <th nzAlign="center">C</th>
+      <th nzAlign="center">R</th>
     </tr>
   </thead>
   <tbody>
@@ -125,7 +124,7 @@
       </td>
     </tr>
     <tr>
-      <td nzLeft nzAlign="center" class="table-col">LSIKeywords</td>
+      <td nzLeft nzAlign="center" class="table-col">LSI KWs</td>
       <td nzAlign="center">
         <badge [data]="tableData['LSIKeywords']?.metaTitle ?? 0"></badge>
       </td>

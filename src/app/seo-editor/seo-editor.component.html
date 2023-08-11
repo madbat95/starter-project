@@ -1,26 +1,38 @@
-<div nz-row nzJustify="center" nzAlign="middle" [nzGutter]="[16, 16]">
-  <div nz-col [nzMd]="24" [nzLg]="5" [nzXl]="5">
-    <div nz-row [nzGutter]="[8, 8]" nzJustify="center" nzAlign="middle">
+<div nz-row nzAlign="middle" nzJustify="center" [nzGutter]="[0, 0]">
+  <div
+    nz-col
+    [nzSm]="24"
+    [nzMd]="4"
+    [nzLg]="4"
+    [nzXl]="4"
+    style="text-align: center"
+  >
+    <nz-progress
+      style="display: inline-block"
+      [nzPercent]="75"
+      nzType="circle"
+    ></nz-progress>
+  </div>
+
+  <div nz-col [nzSm]="24" [nzMd]="15" [nzLg]="14" [nzXl]="14">
+    <app-suggestion-table></app-suggestion-table>
+  </div>
+
+  <div nz-col [nzSm]="24" [nzMd]="5" [nzLg]="5" [nzXl]="5">
+    <div nz-row nzJustify="center" nzAlign="middle" [nzGutter]="[0, 6]">
       <div nz-col>
         <scrape-search></scrape-search>
       </div>
       <div nz-col>
         <upload-report></upload-report>
       </div>
-      <div nz-col [nzXs]="22" [nzSm]="22" [nzMd]="20">
-        <meta-button></meta-button>
-      </div>
     </div>
-  </div>
-
-  <div nz-col [nzMd]="24" [nzLg]="19" [nzXl]="19">
-    <app-suggestion-table></app-suggestion-table>
   </div>
 </div>
 
-<div nz-row nzJustify="center" nzAlign="middle" [nzGutter]="[16, 16]">
-  <div nz-col [nzMd]="24" [nzLg]="5" [nzXl]="5">
-    <div nz-row nzJustify="center" nzAlign="middle" [nzGutter]="[16, 8]">
+<div nz-row nzJustify="center" [nzGutter]="[8, 0]">
+  <div nz-col [nzMd]="24" [nzLg]="6" [nzXl]="6">
+    <div nz-row nzJustify="center" nzAlign="middle" [nzGutter]="[0, 8]">
       <div nz-col>
         <app-table-radio
           (selectedTableChange)="onTableSelection($event)"
@@ -32,7 +44,10 @@
     </div>
   </div>
 
-  <div nz-col [nzMd]="24" [nzLg]="19" [nzXl]="19">
+  <div nz-col [nzMd]="24" [nzLg]="13" [nzXl]="13">
     <app-summernote></app-summernote>
+  </div>
+  <div nz-col [nzMd]="24" [nzLg]="5" [nzXl]="5">
+    <meta-button></meta-button>
   </div>
 </div>

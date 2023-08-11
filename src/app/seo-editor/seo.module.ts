@@ -67,6 +67,7 @@ const antdModule = [
   NzInputModule,
   NzModalModule,
   NzFormModule,
+  NzProgressModule,
 ];
 
 @NgModule({
