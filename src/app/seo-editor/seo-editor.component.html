@@ -1,7 +1,7 @@
 <div class="">
   <div nz-row nzJustify="center" nzAlign="middle" [nzGutter]="[16, 16]">
     <div nz-col [nzMd]="24" [nzLg]="5" [nzXl]="5">
-      <div nz-row [nzGutter]="[0, 8]" nzJustify="center" nzAlign="middle">
+      <div nz-row [nzGutter]="[8, 8]" nzJustify="center" nzAlign="middle">
         <div nz-col>
           <scrape-search></scrape-search>
         </div>
@@ -11,11 +11,6 @@
         <div nz-col>
           <meta-button></meta-button>
         </div>
-        <!-- <div nz-col>
-          <div nz-row nzJustify="center" [nzGutter]="[8, 8]">
-            
-          </div>
-        </div> -->
       </div>
     </div>
 
@@ -26,17 +21,14 @@
 
   <div nz-row nzJustify="center" nzAlign="middle" [nzGutter]="[16, 16]">
     <div nz-col [nzMd]="24" [nzLg]="5" [nzXl]="5">
-      <div nz-row nzJustify="center" nzAlign="middle" [nzGutter]="[16, 16]">
+      <div nz-row nzJustify="center" nzAlign="middle" [nzGutter]="[16, 8]">
         <div nz-col>
           <app-table-radio
             (selectedTableChange)="onTableSelection($event)"
           ></app-table-radio>
         </div>
         <div nz-col>
-          <app-variation-table
-            [data]="getData()"
-            [selectedTable]="selectedTable"
-          ></app-variation-table>
+          <app-variation-table [data]="getData()"></app-variation-table>
         </div>
       </div>
     </div>

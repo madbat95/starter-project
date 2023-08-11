@@ -100,7 +100,6 @@ export class SummernoteComponent implements OnInit {
     const cleanedText = text.replace(/<\/?[^>]+(>|$)/g, ' ');
 
     const words = cleanedText.split(/\s+/);
-    console.log(words);
 
     this.wordCounter.wordCountCalculate(cleanedText, 'summer_note');
 

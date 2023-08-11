@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input } from '@angular/core';
 
 @Component({
   selector: 'app-variation-table',
@@ -14,7 +14,6 @@ export class VariationTableComponent {
     this.tableData = val;
     this.originalData = [...this.tableData];
   }
-  @Input() selectedTable: string = '';
 
   reset(): void {
     this.searchValue = '';

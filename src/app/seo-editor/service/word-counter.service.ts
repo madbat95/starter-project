@@ -106,9 +106,10 @@ export class WordCounterService {
         count: { summer_note: 0, meta: 0 },
       },
       {
-        word: 'security security',
+        word: 'access to a door',
         count: { summer_note: 0, meta: 0 },
       },
+
       {
         word: 'finance',
         count: { summer_note: 0, meta: 0 },
@@ -287,7 +288,7 @@ export class WordCounterService {
         }
       }
     }
-
+    console.log('wordCount', this.wordCount);
     return result;
   }
 
