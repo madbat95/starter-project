@@ -28,22 +28,22 @@
     <tr>
       <th nzAlign="center" id="titleCount">C</th>
       <th nzAlign="center" id="titleRequired">R</th>
-      <th nzAlign="center">C</th>
-      <th nzAlign="center">R</th>
-      <th nzAlign="center">C</th>
-      <th nzAlign="center">R</th>
-      <th nzAlign="center">C</th>
-      <th nzAlign="center">R</th>
-      <th nzAlign="center">C</th>
-      <th nzAlign="center">R</th>
-      <th nzAlign="center">C</th>
-      <th nzAlign="center">R</th>
-      <th nzAlign="center">C</th>
-      <th nzAlign="center">R</th>
-      <th nzAlign="center">C</th>
-      <th nzAlign="center">R</th>
-      <th nzAlign="center">C</th>
-      <th nzAlign="center">R</th>
+      <th nzAlign="center" id="DescrCount">C</th>
+      <th nzAlign="center" id="DescrRequired">R</th>
+      <th nzAlign="center" id="H1Count">C</th>
+      <th nzAlign="center" id="H1Required">R</th>
+      <th nzAlign="center" id="H2Count">C</th>
+      <th nzAlign="center" id="H2Required">R</th>
+      <th nzAlign="center" id="H3Count">C</th>
+      <th nzAlign="center" id="H3Required">R</th>
+      <th nzAlign="center" id="H4Count">C</th>
+      <th nzAlign="center" id="H4Required">R</th>
+      <th nzAlign="center" id="H5Count">C</th>
+      <th nzAlign="center" id="H5Required">R</th>
+      <th nzAlign="center" id="H6Count">C</th>
+      <th nzAlign="center" id="H6Required">R</th>
+      <th nzAlign="center" id="contentCount">C</th>
+      <th nzAlign="center" id="contentRequired">R</th>
     </tr>
   </thead>
   <tbody>
@@ -55,52 +55,52 @@
       <td nzAlign="center" id="entityTitleRequired">
         <badge [data]="tableData['Entity']?.metaTitleR ?? 0"></badge>
       </td>
-      <td nzAlign="center">
+      <td nzAlign="center" id="entityDescrCount">
         <badge [data]="tableData['Entity']?.metaDescription ?? 0"></badge>
       </td>
-      <td nzAlign="center">
+      <td nzAlign="center" id="entityDescrRequired">
         <badge [data]="tableData['Entity']?.metaDescriptionR ?? 0"></badge>
       </td>
-      <td nzAlign="center">
+      <td nzAlign="center" id="entityH1Count">
         <badge [data]="tableData['Entity']?.headers?.H1 ?? 0"></badge>
       </td>
-      <td nzAlign="center">
+      <td nzAlign="center" id="entityH1Required">
         <badge [data]="tableData['Entity'].headers.H1R"></badge>
       </td>
-      <td nzAlign="center">
+      <td nzAlign="center" id="entityH2Count">
         <badge [data]="tableData['Entity']?.headers?.H2 ?? 0"></badge>
       </td>
-      <td nzAlign="center">
+      <td nzAlign="center" id="entityH2Required">
         <badge [data]="tableData['Entity'].headers.H2R"></badge>
       </td>
-      <td nzAlign="center">
+      <td nzAlign="center" id="entityH3Count">
         <badge [data]="tableData['Entity']?.headers?.H3 ?? 0"></badge>
       </td>
-      <td nzAlign="center">
+      <td nzAlign="center" id="entityH3Required">
         <badge [data]="tableData['Entity']?.headers?.H3R"></badge>
       </td>
-      <td nzAlign="center">
+      <td nzAlign="center" id="entityH4Count">
         <badge [data]="tableData['Entity']?.headers?.H4 ?? 0"></badge>
       </td>
-      <td nzAlign="center">
+      <td nzAlign="center" id="entityH4Required">
         <badge [data]="tableData['Entity']?.headers?.H4R"></badge>
       </td>
-      <td nzAlign="center">
+      <td nzAlign="center" id="entityH5Count">
         <badge [data]="tableData['Entity']?.headers?.H5 ?? 0"></badge>
       </td>
-      <td nzAlign="center">
+      <td nzAlign="center" id="entityH5Required">
         <badge [data]="tableData['Entity']?.headers?.H5R"></badge>
       </td>
-      <td nzAlign="center">
+      <td nzAlign="center" id="entityH6Count">
         <badge [data]="tableData['Entity']?.headers?.H6 ?? 0"></badge>
       </td>
-      <td nzAlign="center">
+      <td nzAlign="center" id="entityH6Required">
         <badge [data]="tableData['Entity']?.headers?.H6R"></badge>
       </td>
-      <td nzAlign="center">
+      <td nzAlign="center" id="entityContentCount">
         <badge [data]="tableData['Entity']?.content ?? 0"></badge>
       </td>
-      <td nzAlign="center">
+      <td nzAlign="center" id="entityContentRequired">
         <badge [data]="tableData['Entity']?.contentR"></badge>
       </td>
     </tr>
@@ -112,52 +112,52 @@
       <td nzAlign="center" id="lsiTitleRequired">
         <badge [data]="tableData['LSIKeywords']?.metaTitleR"></badge>
       </td>
-      <td nzAlign="center">
+      <td nzAlign="center" id="lsiDescrCount">
         <badge [data]="tableData['LSIKeywords']?.metaDescription ?? 0"></badge>
       </td>
-      <td nzAlign="center">
+      <td nzAlign="center" id="lsiDescrRequired">
         <badge [data]="tableData['LSIKeywords']?.metaDescriptionR"></badge>
       </td>
-      <td nzAlign="center">
+      <td nzAlign="center" id="lsiH1Count">
         <badge [data]="tableData['LSIKeywords']?.headers?.H1 ?? 0"></badge>
       </td>
-      <td nzAlign="center">
+      <td nzAlign="center" id="lsiH1Required">
         <badge [data]="tableData['LSIKeywords']?.headers?.H1R"></badge>
       </td>
-      <td nzAlign="center">
+      <td nzAlign="center" id="lsiH2Count">
         <badge [data]="tableData['LSIKeywords']?.headers?.H2 ?? 0"></badge>
       </td>
-      <td nzAlign="center">
+      <td nzAlign="center" id="lsiH2Required">
         <badge [data]="tableData['LSIKeywords']?.headers?.H2R"></badge>
       </td>
-      <td nzAlign="center">
+      <td nzAlign="center" id="lsiH3Count">
         <badge [data]="tableData['LSIKeywords']?.headers?.H3 ?? 0"></badge>
       </td>
-      <td nzAlign="center">
+      <td nzAlign="center" id="lsiH3Required">
         <badge [data]="tableData['LSIKeywords']?.headers?.H3R"></badge>
       </td>
-      <td nzAlign="center">
+      <td nzAlign="center" id="lsiH4Count">
         <badge [data]="tableData['LSIKeywords']?.headers?.H4 ?? 0"></badge>
       </td>
-      <td nzAlign="center">
+      <td nzAlign="center" id="lsiH4Required">
         <badge [data]="tableData['LSIKeywords']?.headers?.H4R"></badge>
       </td>
-      <td nzAlign="center">
+      <td nzAlign="center" id="lsiH5Count">
         <badge [data]="tableData['LSIKeywords']?.headers?.H5 ?? 0"></badge>
       </td>
-      <td nzAlign="center">
+      <td nzAlign="center" id="lsiH5Required">
         <badge [data]="tableData['LSIKeywords']?.headers?.H5R"></badge>
       </td>
-      <td nzAlign="center">
+      <td nzAlign="center" id="lsiH6Count">
         <badge [data]="tableData['LSIKeywords']?.headers?.H6 ?? 0"></badge>
       </td>
-      <td nzAlign="center">
+      <td nzAlign="center" id="lsiH6Required">
         <badge [data]="tableData['LSIKeywords']?.headers?.H6R"></badge>
       </td>
-      <td nzAlign="center">
+      <td nzAlign="center" id="lsiContentCount">
         <badge [data]="tableData['LSIKeywords']?.content ?? 0"></badge>
       </td>
-      <td nzAlign="center">
+      <td nzAlign="center" id="lsiContentRequired">
         <badge [data]="tableData['LSIKeywords']?.contentR"></badge>
       </td>
     </tr>
@@ -169,52 +169,52 @@
       <td nzAlign="center" id="variationTitleRequired">
         <badge [data]="tableData['Variations']?.metaTitleR"></badge>
       </td>
-      <td nzAlign="center">
+      <td nzAlign="center" id="variationDescrCount">
         <badge [data]="tableData['Variations']?.metaDescription ?? 0"></badge>
       </td>
-      <td nzAlign="center">
+      <td nzAlign="center" id="variationDescrRequired">
         <badge [data]="tableData['Variations']?.metaDescriptionR"></badge>
       </td>
-      <td nzAlign="center">
+      <td nzAlign="center" id="variationH1Count">
         <badge [data]="tableData['Variations']?.headers?.H1 ?? 0"></badge>
       </td>
-      <td nzAlign="center">
+      <td nzAlign="center" id="variationH1Required">
         <badge [data]="tableData['Variations']?.headers?.H1R"></badge>
       </td>
-      <td nzAlign="center">
+      <td nzAlign="center" id="variationH2Count">
         <badge [data]="tableData['Variations']?.headers?.H2 ?? 0"></badge>
       </td>
-      <td nzAlign="center">
+      <td nzAlign="center" id="variationH2Count">
         <badge [data]="tableData['Variations']?.headers?.H2R"></badge>
       </td>
-      <td nzAlign="center">
+      <td nzAlign="center" id="variationH3Count">
         <badge [data]="tableData['Variations']?.headers?.H3 ?? 0"></badge>
       </td>
-      <td nzAlign="center">
+      <td nzAlign="center" id="variationH3Required">
         <badge [data]="tableData['Variations']?.headers?.H3R"></badge>
       </td>
-      <td nzAlign="center">
+      <td nzAlign="center" id="variationH4Count">
         <badge [data]="tableData['Variations']?.headers?.H4 ?? 0"></badge>
       </td>
-      <td nzAlign="center">
+      <td nzAlign="center" id="variationH4Required">
         <badge [data]="tableData['Variations']?.headers?.H4R"></badge>
       </td>
-      <td nzAlign="center">
+      <td nzAlign="center" id="variationH5Count">
         <badge [data]="tableData['Variations']?.headers?.H5 ?? 0"></badge>
       </td>
-      <td nzAlign="center">
+      <td nzAlign="center" id="variationH5Required">
         <badge [data]="tableData['Variations']?.headers?.H5R"></badge>
       </td>
-      <td nzAlign="center">
+      <td nzAlign="center" id="variationH6Count">
         <badge [data]="tableData['Variations']?.headers?.H6 ?? 0"></badge>
       </td>
-      <td nzAlign="center">
+      <td nzAlign="center" id="variationH6Required">
         <badge [data]="tableData['Variations']?.headers?.H6R"></badge>
       </td>
-      <td nzAlign="center">
+      <td nzAlign="center" id="variationContentCount">
         <badge [data]="tableData['Variations']?.content ?? 0"></badge>
       </td>
-      <td nzAlign="center">
+      <td nzAlign="center" id="variationContentRequired">
         <badge [data]="tableData['Variations']?.contentR"></badge>
       </td>
     </tr>

@@ -9,11 +9,16 @@ import { WordCounterService } from '../../service/word-counter.service';
 export class SuggestionTableComponent implements OnInit {
   tableData: any;
   blurState: boolean = false; // Keep track of blur state
-  cellIdsToBlur: string[] = [
+  titleIds: string[] = [
     'titleCount',
     'entityTitleCount',
     'lsiTitleCount',
     'variationTitleCount',
+
+    'titleRequired',
+    'entityTitleRequired',
+    'lsiTitleRequired',
+    'variationTitleRequired',
   ];
 
   constructor(
@@ -32,7 +37,7 @@ export class SuggestionTableComponent implements OnInit {
 
     this.blurState = !this.blurState;
 
-    this.cellIdsToBlur.forEach((id) => {
+    this.titleIds.forEach((id) => {
       const element = this.el.nativeElement.querySelector(`#${id}`);
       if (element) {
         if (this.blurState) {
