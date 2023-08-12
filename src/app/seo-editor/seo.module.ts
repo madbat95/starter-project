@@ -41,6 +41,7 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { TableRadioComponent } from './components/table-radio/table-radio.component';
 import { WordCounterService } from './service/word-counter.service';
 import { TableDataRowComponent } from './components/suggestion-table/components/table-data-row/table-data-row.component';
+import { HttpClientModule } from '@angular/common/http';
 
 const antdModule = [
   NzButtonModule,
@@ -80,6 +81,7 @@ const antdModule = [
     ReactiveFormsModule,
     NzBadgeModule,
     ...antdModule,
+    HttpClientModule,
   ],
   exports: [],
   declarations: [
