@@ -12,7 +12,9 @@
 
     <tr>
       <th rowspan="4" nzAlign="center">Suggestions</th>
-      <th colspan="2" nzAlign="center">Title</th>
+      <th nz-button (click)="titleBlur()" colspan="2" nzAlign="center">
+        Title
+      </th>
 
       <th colspan="2" nzAlign="center">Descr.</th>
       <th colspan="2" nzAlign="center">H1</th>
@@ -24,8 +26,8 @@
       <th colspan="2" nzAlign="center">Content</th>
     </tr>
     <tr>
-      <th nzAlign="center">C</th>
-      <th nzAlign="center">R</th>
+      <th nzAlign="center" id="titleCount">C</th>
+      <th nzAlign="center" id="titleRequired">R</th>
       <th nzAlign="center">C</th>
       <th nzAlign="center">R</th>
       <th nzAlign="center">C</th>
@@ -45,33 +47,12 @@
     </tr>
   </thead>
   <tbody>
-    <!-- <tr *ngFor="let data of groupingTable.data">
-      <td class="table-head" nzLeft nzAlign="center">{{ data.name }}</td>
-      <td nzAlign="center">C</td>
-      <td nzAlign="center">R</td>
-      <td nzAlign="center">C</td>
-      <td nzAlign="center">R</td>
-      <td nzAlign="center">C</td>
-      <td nzAlign="center">R</td>
-      <td nzAlign="center">C</td>
-      <td nzAlign="center">R</td>
-      <td nzAlign="center">C</td>
-      <td nzAlign="center">R</td>
-      <td nzAlign="center">C</td>
-      <td nzAlign="center">R</td>
-      <td nzAlign="center">C</td>
-      <td nzAlign="center">R</td>
-      <td nzAlign="center">C</td>
-      <td nzAlign="center">R</td>
-      <td nzAlign="center">C</td>
-      <td nzAlign="center">R</td>
-    </tr> -->
     <tr>
       <td nzLeft nzAlign="center" class="table-col">Entities</td>
-      <td nzAlign="center">
+      <td nzAlign="center" id="entityTitleCount">
         <badge [data]="tableData.Entity?.metaTitle ?? 0"></badge>
       </td>
-      <td nzAlign="center">
+      <td nzAlign="center" id="entityTitleRequired">
         <badge [data]="tableData['Entity']?.metaTitleR ?? 0"></badge>
       </td>
       <td nzAlign="center">
@@ -125,10 +106,10 @@
     </tr>
     <tr>
       <td nzLeft nzAlign="center" class="table-col">LSI KWs</td>
-      <td nzAlign="center">
+      <td nzAlign="center" id="lsiTitleCount">
         <badge [data]="tableData['LSIKeywords']?.metaTitle ?? 0"></badge>
       </td>
-      <td nzAlign="center">
+      <td nzAlign="center" id="lsiTitleRequired">
         <badge [data]="tableData['LSIKeywords']?.metaTitleR"></badge>
       </td>
       <td nzAlign="center">
@@ -182,10 +163,10 @@
     </tr>
     <tr>
       <td nzLeft nzAlign="center" class="table-col">Variations</td>
-      <td nzAlign="center">
+      <td nzAlign="center" id="variationTitleCount">
         <badge [data]="tableData['Variations']?.metaTitle ?? 0"></badge>
       </td>
-      <td nzAlign="center">
+      <td nzAlign="center" id="variationTitleRequired">
         <badge [data]="tableData['Variations']?.metaTitleR"></badge>
       </td>
       <td nzAlign="center">
