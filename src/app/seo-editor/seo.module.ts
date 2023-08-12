@@ -36,12 +36,12 @@ import { UploadReportComponent } from './components/upload-report/upload-report.
 import { MetaComponent } from './components/meta/meta.component';
 import { SummernoteComponent } from './components/summernote/summernote.component';
 import { NgxSummernoteModule } from 'ngx-summernote';
-import { MetaInfoComponent } from './components/meta/components/meta-info/meta-info.component';
 import { NzFormModule } from 'ng-zorro-antd/form';
 import { ReactiveFormsModule } from '@angular/forms';
 import { TableRadioComponent } from './components/table-radio/table-radio.component';
 import { WordCounterService } from './service/word-counter.service';
 import { TableDataRowComponent } from './components/suggestion-table/components/table-data-row/table-data-row.component';
+import { HttpClientModule } from '@angular/common/http';
 
 const antdModule = [
   NzButtonModule,
@@ -68,6 +68,7 @@ const antdModule = [
   NzInputModule,
   NzModalModule,
   NzFormModule,
+  NzProgressModule,
 ];
 
 @NgModule({
@@ -80,6 +81,7 @@ const antdModule = [
     ReactiveFormsModule,
     NzBadgeModule,
     ...antdModule,
+    HttpClientModule,
   ],
   exports: [],
   declarations: [
@@ -91,7 +93,7 @@ const antdModule = [
     UploadReportComponent,
     MetaComponent,
     SummernoteComponent,
-    MetaInfoComponent,
+
     TableRadioComponent,
     TableDataRowComponent,
   ],

@@ -21,7 +21,7 @@ $geekblue: #2f54eb !default;
 // Create grayscale
 $light-orange: #ff963f !default;
 $gray-dark: #2a2a2a !default;
-$gray: #53535f !default;
+$gray: #7d8479 !default;
 $gray-light: #72849a !default;
 $gray-lighter: #ededed !default;
 $gray-lightest: #f1f2f3 !default;
@@ -75,7 +75,7 @@ $tone-loop: (
 );
 
 // State Colors
-$brand-primary: $orange !default;
+$brand-primary: $gray !default;
 $brand-secondary: $purple !default;
 $brand-success: $cyan !default;
 $brand-info: $blue !default;

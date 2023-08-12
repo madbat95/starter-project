@@ -1,3 +1,27 @@
-<button nz-button nzSize="small" nzType="primary" (click)="addMeta()">
-  Meta
-</button>
+<div nz-row [nzGutter]="[0, 0]">
+  <nz-card nz-col nzSpan="24" class="p-0 custom-meta-card">
+    <div class="card-label">Meta Title</div>
+    <textarea
+      nz-input
+      nzSize="default"
+      style="width: 100%"
+      [(ngModel)]="metaTitle"
+      (input)="updateWordCounts()"
+      rows="1"
+      placeholder="Title"
+    ></textarea>
+  </nz-card>
+
+  <nz-card nz-col nzSpan="24" class="p-0 custom-meta-card">
+    <div class="card-label">Meta Description</div>
+    <textarea
+      nz-input
+      nzSize="default"
+      style="width: 100%"
+      [(ngModel)]="metaDescription"
+      (input)="updateWordCounts()"
+      rows="2"
+      placeholder="Description"
+    ></textarea>
+  </nz-card>
+</div>

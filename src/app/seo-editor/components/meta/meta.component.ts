@@ -1,48 +1,52 @@
-import { Component, Output, EventEmitter } from '@angular/core';
-import { NzModalRef, NzModalService } from 'ng-zorro-antd/modal';
-import { MetaInfoComponent } from './components/meta-info/meta-info.component';
+import { Component } from '@angular/core';
 import { WordCounterService } from '../../service/word-counter.service';
 
 @Component({
   selector: 'meta-button',
   templateUrl: './meta.component.html',
-  styleUrls: ['./meta.component.css'],
+  styleUrls: ['./meta.component.scss'],
 })
 export class MetaComponent {
-  constructor(
-    private modalService: NzModalService,
-    private wordCounter: WordCounterService
-  ) {}
-  // @Output() metaTitle = new EventEmitter<any>();
-  // @Output() metaDescription = new EventEmitter<any>();
+  metaTitle: string = '';
+  metaDescription: string = '';
 
-  addMeta(): void {
-    const modal = this.modalService.create({
-      nzTitle: 'Add Meta',
-      nzContent: MetaInfoComponent,
-      nzFooter: null,
-      nzCentered: true,
-      nzStyle: {
-        'overflow-y': 'auto',
-        // 'max-height': '500px',
-        // 'max-width': '1000px',
-      },
-    });
-    modal.componentInstance.metaTitle.subscribe((metaTitle: any) => {
-      console.log('this is my consoled metaTitle:', metaTitle);
-      for (const entityType of ['Entity', 'Variations', 'LSIKeywords']) {
-        this.wordCounter.wordCount[entityType].metaTitle =
-          metaTitle[entityType].content;
-      }
-    });
-    modal.componentInstance.metaDescription.subscribe(
-      (metaDescription: any) => {
-        for (const entityType of ['Entity', 'Variations', 'LSIKeywords']) {
-          this.wordCounter.wordCount[entityType].metaDescription =
-            metaDescription[entityType].content;
-        }
-        console.log('wordcount', this.wordCounter.wordCount);
-      }
+  constructor(private wordCounter: WordCounterService) {}
+
+  updateWordCounts() {
+    this.resetWordCounts();
+
+    const parser = new DOMParser();
+
+    this.updateCountsForElement(this.metaTitle, 'metaTitle', parser);
+    this.updateCountsForElement(
+      this.metaDescription,
+      'metaDescription',
+      parser
     );
+  }
+
+  resetWordCounts() {
+    for (const entityType of ['Entity', 'Variations', 'LSIKeywords']) {
+      this.wordCounter.wordObject[entityType].forEach((word) => {
+        word.count.meta = 0;
+      });
+    }
+  }
+
+  updateCountsForElement(
+    elementContent: string,
+    entityType: string,
+    parser: DOMParser
+  ) {
+    const docElement = parser.parseFromString(elementContent, 'text/html');
+    const elementContentWordCount =
+      this.wordCounter.countWordsInHeadersAndContent(docElement.body, []);
+
+    this.wordCounter.wordCountCalculate(elementContent, 'meta');
+
+    for (const type of ['Entity', 'Variations', 'LSIKeywords']) {
+      this.wordCounter.wordCount[type][entityType] =
+        elementContentWordCount[type].content;
+    }
   }
 }

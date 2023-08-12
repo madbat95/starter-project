@@ -1,5 +1,5 @@
 <div nz-row nzJustify="center" [nzGutter]="[0, 16]">
-  <div nz-col class="w-[88%]">
+  <div nz-col>
     <nz-table
       #table
       nzBordered
@@ -10,7 +10,7 @@
     >
       <thead>
         <tr>
-          <th class="table-head" nzAlign="center" nzCustomFilter>
+          <th class="table-head" nzAlign="center" nzCustomFilter nzWidth="61%">
             Name
             <nz-filter-trigger
               [(nzVisible)]="visible"
