@@ -95,11 +95,10 @@ export class SuggestionTableComponent implements OnInit {
 
   contentIds: string[] = [
     'contentCount',
-    'contentRequired',
     'entityContentCount',
     'lsiContentCount',
     'variationContentCount',
-    'ContentRequired',
+    'contentRequired',
     'entityContentRequired',
     'lsiContentRequired',
     'variationContentRequired',
