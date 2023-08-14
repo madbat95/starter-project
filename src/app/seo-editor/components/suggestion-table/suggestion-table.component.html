@@ -12,20 +12,39 @@
 
     <tr>
       <th rowspan="4" nzAlign="center">Suggestions</th>
-      <th nz-button (click)="titleBlur()" colspan="2" nzAlign="center">
+      <th nz-button (click)="toggleBlur(titleIds)" colspan="2" nzAlign="center">
         Title
       </th>
 
-      <th nz-button (click)="DescrBlur()" colspan="2" nzAlign="center">
+      <th nz-button (click)="toggleBlur(descrIds)" colspan="2" nzAlign="center">
         Descr.
       </th>
-      <th colspan="2" nzAlign="center">H1</th>
-      <th colspan="2" nzAlign="center">H2</th>
-      <th colspan="2" nzAlign="center">H3</th>
-      <th colspan="2" nzAlign="center">H4</th>
-      <th colspan="2" nzAlign="center">H5</th>
-      <th colspan="2" nzAlign="center">H6</th>
-      <th colspan="2" nzAlign="center">Content</th>
+      <th nz-button (click)="toggleBlur(H1Ids)" colspan="2" nzAlign="center">
+        H1
+      </th>
+      <th nz-button (click)="toggleBlur(H2Ids)" colspan="2" nzAlign="center">
+        H2
+      </th>
+      <th nz-button (click)="toggleBlur(H3Ids)" colspan="2" nzAlign="center">
+        H3
+      </th>
+      <th nz-button (click)="toggleBlur(H4Ids)" colspan="2" nzAlign="center">
+        H4
+      </th>
+      <th nz-button (click)="toggleBlur(H5Ids)" colspan="2" nzAlign="center">
+        H5
+      </th>
+      <th nz-button (click)="toggleBlur(H6Ids)" colspan="2" nzAlign="center">
+        H6
+      </th>
+      <th
+        nz-button
+        (click)="toggleBlur(contentIds)"
+        colspan="2"
+        nzAlign="center"
+      >
+        Content
+      </th>
     </tr>
     <tr>
       <th nzAlign="center" id="titleCount">C</th>

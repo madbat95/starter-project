@@ -31,6 +31,80 @@ export class SuggestionTableComponent implements OnInit {
     'variationDescrRequired',
   ];
 
+  H1Ids: string[] = [
+    'H1Count',
+    'entityH1Count',
+    'lsiH1Count',
+    'variationH1Count',
+    'H1Required',
+    'entityH1Required',
+    'lsiH1Required',
+    'variationH1Required',
+  ];
+
+  H2Ids: string[] = [
+    'H2Count',
+    'entityH2Count',
+    'lsiH2Count',
+    'variationH2Count',
+    'H2Required',
+    'entityH2Required',
+    'lsiH2Required',
+    'variationH2Required',
+  ];
+  H3Ids: string[] = [
+    'H3Count',
+    'entityH3Count',
+    'lsiH3Count',
+    'variationH3Count',
+    'H3Required',
+    'entityH3Required',
+    'lsiH3Required',
+    'variationH3Required',
+  ];
+  H4Ids: string[] = [
+    'H4Count',
+    'entityH4Count',
+    'lsiH4Count',
+    'variationH4Count',
+    'H4Required',
+    'entityH4Required',
+    'lsiH4Required',
+    'variationH4Required',
+  ];
+  H5Ids: string[] = [
+    'H5Count',
+    'entityH5Count',
+    'lsiH5Count',
+    'variationH5Count',
+    'H5Required',
+    'entityH5Required',
+    'lsiH5Required',
+    'variationH5Required',
+  ];
+  H6Ids: string[] = [
+    'H6Count',
+    'entityH6Count',
+    'lsiH6Count',
+    'variationH6Count',
+    'H6Required',
+    'entityH6Required',
+    'lsiH6Required',
+    'variationH6Required',
+  ];
+
+  contentIds: string[] = [
+    'contentCount',
+    'contentRequired',
+    'entityContentCount',
+    'lsiContentCount',
+    'variationContentCount',
+    'ContentRequired',
+    'entityContentRequired',
+    'lsiContentRequired',
+    'variationContentRequired',
+  ];
+
   constructor(
     private wordCounter: WordCounterService,
     private renderer: Renderer2,
@@ -42,33 +116,49 @@ export class SuggestionTableComponent implements OnInit {
     console.log(this.tableData);
   }
 
-  titleBlur(): void {
-    console.log('button pressed');
+  // titleBlur(): void {
+  //   console.log('button pressed');
 
+  //   this.blurState = !this.blurState;
+
+  //   const allElements = this.el.nativeElement.querySelectorAll('[id]');
+  //   allElements.forEach((element: HTMLElement) => {
+  //     const id = element.getAttribute('id');
+  //     if (id && !this.titleIds.includes(id)) {
+  //       if (this.blurState) {
+  //         this.renderer.setStyle(element, 'filter', 'blur(5px)');
+  //       } else {
+  //         this.renderer.removeStyle(element, 'filter');
+  //       }
+  //     }
+  //   });
+  // }
+
+  // DescrBlur(): void {
+  //   console.log('description button pressed');
+
+  //   this.blurState = !this.blurState;
+
+  //   const allElements = this.el.nativeElement.querySelectorAll('[id]');
+  //   allElements.forEach((element: HTMLElement) => {
+  //     const id = element.getAttribute('id');
+  //     if (id && !this.descrIds.includes(id)) {
+  //       if (this.blurState) {
+  //         this.renderer.setStyle(element, 'filter', 'blur(5px)');
+  //       } else {
+  //         this.renderer.removeStyle(element, 'filter');
+  //       }
+  //     }
+  //   });
+  // }
+
+  toggleBlur(ids: string[]): void {
     this.blurState = !this.blurState;
 
     const allElements = this.el.nativeElement.querySelectorAll('[id]');
     allElements.forEach((element: HTMLElement) => {
       const id = element.getAttribute('id');
-      if (id && !this.titleIds.includes(id)) {
-        if (this.blurState) {
-          this.renderer.setStyle(element, 'filter', 'blur(5px)');
-        } else {
-          this.renderer.removeStyle(element, 'filter');
-        }
-      }
-    });
-  }
-
-  DescrBlur(): void {
-    console.log('description button pressed');
-
-    this.blurState = !this.blurState;
-
-    const allElements = this.el.nativeElement.querySelectorAll('[id]');
-    allElements.forEach((element: HTMLElement) => {
-      const id = element.getAttribute('id');
-      if (id && !this.descrIds.includes(id)) {
+      if (id && !ids.includes(id)) {
         if (this.blurState) {
           this.renderer.setStyle(element, 'filter', 'blur(5px)');
         } else {
