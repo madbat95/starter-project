@@ -14,11 +14,21 @@ export class SuggestionTableComponent implements OnInit {
     'entityTitleCount',
     'lsiTitleCount',
     'variationTitleCount',
-
     'titleRequired',
     'entityTitleRequired',
     'lsiTitleRequired',
     'variationTitleRequired',
+  ];
+
+  descrIds: string[] = [
+    'DescrCount',
+    'entityDescrCount',
+    'lsiDescrCount',
+    'variationDescrCount',
+    'DescrRequired',
+    'entityDescrRequired',
+    'lsiDescrRequired',
+    'variationDescrRequired',
   ];
 
   constructor(
@@ -37,9 +47,28 @@ export class SuggestionTableComponent implements OnInit {
 
     this.blurState = !this.blurState;
 
-    this.titleIds.forEach((id) => {
-      const element = this.el.nativeElement.querySelector(`#${id}`);
-      if (element) {
+    const allElements = this.el.nativeElement.querySelectorAll('[id]');
+    allElements.forEach((element: HTMLElement) => {
+      const id = element.getAttribute('id');
+      if (id && !this.titleIds.includes(id)) {
+        if (this.blurState) {
+          this.renderer.setStyle(element, 'filter', 'blur(5px)');
+        } else {
+          this.renderer.removeStyle(element, 'filter');
+        }
+      }
+    });
+  }
+
+  DescrBlur(): void {
+    console.log('description button pressed');
+
+    this.blurState = !this.blurState;
+
+    const allElements = this.el.nativeElement.querySelectorAll('[id]');
+    allElements.forEach((element: HTMLElement) => {
+      const id = element.getAttribute('id');
+      if (id && !this.descrIds.includes(id)) {
         if (this.blurState) {
           this.renderer.setStyle(element, 'filter', 'blur(5px)');
         } else {
