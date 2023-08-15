@@ -39,3 +39,20 @@ input[type="number"] {
 input {
   border-radius: 4px !important;
 }
+
+th.focused,
+td.focused {
+  // background-color: lightblue;
+  filter: blur(2px);
+}
+
+// table:hover,
+tr:hover,
+thead:hover {
+  background-color: lighten($brand-primary, 30%) !important;
+  color: black !important;
+}
+
+.ant-table-tbody > tr.ant-table-row:hover > td {
+  background: none !important;
+}

@@ -9,6 +9,7 @@ import { PerfectScrollbarModule } from 'ngx-perfect-scrollbar';
 import { ThemeConstantService } from './services/theme-constant.service';
 import { SearchPipe } from './pipes/search.pipe';
 import { NzTableModule } from 'ng-zorro-antd/table';
+import { TableBlurDirective } from './directives/table-blur.directive';
 
 @NgModule({
   exports: [
@@ -20,6 +21,7 @@ import { NzTableModule } from 'ng-zorro-antd/table';
     PerfectScrollbarModule,
     SearchPipe,
     NzTableModule,
+    TableBlurDirective,
   ],
   imports: [
     RouterModule,
@@ -29,7 +31,7 @@ import { NzTableModule } from 'ng-zorro-antd/table';
     PerfectScrollbarModule,
     NzTableModule,
   ],
-  declarations: [SearchPipe],
+  declarations: [SearchPipe, TableBlurDirective],
   providers: [ThemeConstantService],
 })
 export class SharedModule {}

@@ -1,12 +1,44 @@
-<div nz-row nzAlign="middle" nzJustify="center" [nzGutter]="[8, 8]">
-  <div nz-col [nzSm]="24" [nzMd]="2" [nzLg]="2" [nzXl]="2">
+<div nz-row nzJustify="center" nzAlign="middle" [nzGutter]="[8, 8]">
+  <div
+    nz-col
+    [nzXs]="22"
+    [nzSm]="22"
+    [nzMd]="22"
+    [nzLg]="22"
+    [nzXl]="2"
+    style="text-align: center"
+  >
     <nz-progress [nzPercent]="75" [nzWidth]="80" nzType="circle"></nz-progress>
   </div>
-  <div nz-col [nzSm]="24" [nzMd]="17" [nzLg]="17" [nzXl]="17">
+  <div
+    nz-col
+    [nzXs]="22"
+    [nzSm]="22"
+    [nzMd]="22"
+    [nzLg]="22"
+    [nzXl]="17"
+    style="text-align: center"
+  >
     <app-suggestion-table></app-suggestion-table>
   </div>
-  <div nz-col [nzMd]="5" [nzLg]="5" [nzXl]="5">
-    <scrape-search></scrape-search>
+
+  <div
+    nz-col
+    nz-col
+    [nzXs]="22"
+    [nzSm]="22"
+    [nzMd]="22"
+    [nzLg]="22"
+    [nzXl]="5"
+    style="text-align: center"
+  >
+    <div nz-row nzJustify="center" nzAlign="middle" [nzGutter]="[8, 8]"></div>
+    <div nz-col>
+      <scrape-search></scrape-search>
+    </div>
+    <div nz-col>
+      <upload-report></upload-report>
+    </div>
   </div>
 
   <!-- <div nz-col [nzSm]="24" [nzMd]="10" [nzLg]="8" [nzXl]="8">

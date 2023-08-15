@@ -18,6 +18,11 @@
 {
   /* background: #fcfcfc; */
   color: white;
-  background-color: #ff6900;
+  background-color: #7d8479;
+  filter: blur(0px) !important;
   font-weight: 600;
+}
+
+.header-click {
+  cursor: pointer;
 }
