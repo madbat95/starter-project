@@ -40,6 +40,7 @@ input {
   border-radius: 4px !important;
 }
 
+th.focused,
 td.focused {
   // background-color: lightblue;
   filter: blur(2px);

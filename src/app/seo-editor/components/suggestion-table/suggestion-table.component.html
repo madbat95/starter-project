@@ -11,10 +11,24 @@
     </tr> -->
 
     <tr>
-      <th rowspan="4" nzAlign="center">Suggestions</th>
-      <th nz-button class="header-click" colspan="2" nzAlign="center">Title</th>
+      <th rowspan="4" nzAlign="center" class="table-col">Suggestions</th>
+      <th
+        appTableBlur
+        nz-button
+        class="header-click"
+        colspan="2"
+        nzAlign="center"
+      >
+        Title
+      </th>
 
-      <th nz-button class="header-click" colspan="2" nzAlign="center">
+      <th
+        appTableBlur
+        nz-button
+        class="header-click"
+        colspan="2"
+        nzAlign="center"
+      >
         Descr.
       </th>
       <th
@@ -26,12 +40,58 @@
       >
         H1
       </th>
-      <th nz-button class="header-click" colspan="2" nzAlign="center">H2</th>
-      <th nz-button class="header-click" colspan="2" nzAlign="center">H3</th>
-      <th nz-button class="header-click" colspan="2" nzAlign="center">H4</th>
-      <th nz-button class="header-click" colspan="2" nzAlign="center">H5</th>
-      <th nz-button class="header-click" colspan="2" nzAlign="center">H6</th>
-      <th nz-button class="header-click" colspan="2" nzAlign="center">
+      <th
+        appTableBlur
+        nz-button
+        class="header-click"
+        colspan="2"
+        nzAlign="center"
+      >
+        H2
+      </th>
+      <th
+        appTableBlur
+        nz-button
+        class="header-click"
+        colspan="2"
+        nzAlign="center"
+      >
+        H3
+      </th>
+      <th
+        appTableBlur
+        nz-button
+        class="header-click"
+        colspan="2"
+        nzAlign="center"
+      >
+        H4
+      </th>
+      <th
+        appTableBlur
+        nz-button
+        class="header-click"
+        colspan="2"
+        nzAlign="center"
+      >
+        H5
+      </th>
+      <th
+        appTableBlur
+        nz-button
+        class="header-click"
+        colspan="2"
+        nzAlign="center"
+      >
+        H6
+      </th>
+      <th
+        appTableBlur
+        nz-button
+        class="header-click"
+        colspan="2"
+        nzAlign="center"
+      >
         Content
       </th>
     </tr>
@@ -59,37 +119,37 @@
   <tbody>
     <tr>
       <td nzLeft nzAlign="center" class="table-col">Entities</td>
-      <td appTableBlur nzAlign="center" id="entityTitleCount">
+      <td nzAlign="center" id="entityTitleCount">
         <badge [data]="tableData.Entity?.metaTitle ?? 0"></badge>
       </td>
-      <td appTableBlur nzAlign="center" id="entityTitleRequired">
+      <td nzAlign="center" id="entityTitleRequired">
         <badge [data]="tableData['Entity']?.metaTitleR ?? 0"></badge>
       </td>
-      <td appTableBlur nzAlign="center" id="entityDescrCount">
+      <td nzAlign="center" id="entityDescrCount">
         <badge [data]="tableData['Entity']?.metaDescription ?? 0"></badge>
       </td>
-      <td appTableBlur nzAlign="center" id="entityDescrRequired">
+      <td nzAlign="center" id="entityDescrRequired">
         <badge [data]="tableData['Entity']?.metaDescriptionR ?? 0"></badge>
       </td>
-      <td appTableBlur nzAlign="center" id="entityH1Count">
+      <td nzAlign="center" id="entityH1Count">
         <badge [data]="tableData['Entity']?.headers?.H1 ?? 0"></badge>
       </td>
-      <td appTableBlur nzAlign="center" id="entityH1Required">
+      <td nzAlign="center" id="entityH1Required">
         <badge [data]="tableData['Entity'].headers.H1R"></badge>
       </td>
-      <td appTableBlur nzAlign="center" id="entityH2Count">
+      <td nzAlign="center" id="entityH2Count">
         <badge [data]="tableData['Entity']?.headers?.H2 ?? 0"></badge>
       </td>
-      <td appTableBlur nzAlign="center" id="entityH2Required">
+      <td nzAlign="center" id="entityH2Required">
         <badge [data]="tableData['Entity'].headers.H2R"></badge>
       </td>
-      <td appTableBlur nzAlign="center" id="entityH3Count">
+      <td nzAlign="center" id="entityH3Count">
         <badge [data]="tableData['Entity']?.headers?.H3 ?? 0"></badge>
       </td>
-      <td appTableBlur nzAlign="center" id="entityH3Required">
+      <td nzAlign="center" id="entityH3Required">
         <badge [data]="tableData['Entity']?.headers?.H3R"></badge>
       </td>
-      <td appTableBlur nzAlign="center" id="entityH4Count">
+      <td nzAlign="center" id="entityH4Count">
         <badge [data]="tableData['Entity']?.headers?.H4 ?? 0"></badge>
       </td>
       <td nzAlign="center" id="entityH4Required">
