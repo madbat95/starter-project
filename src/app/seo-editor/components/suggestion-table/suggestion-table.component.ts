@@ -8,7 +8,7 @@ import { WordCounterService } from '../../service/word-counter.service';
 })
 export class SuggestionTableComponent implements OnInit {
   tableData: any;
-  blurState: boolean = false; // Keep track of blur state
+  blurState: boolean = false;
   titleIds: string[] = [
     'titleCount',
     'entityTitleCount',
@@ -151,19 +151,19 @@ export class SuggestionTableComponent implements OnInit {
   //   });
   // }
 
-  toggleBlur(ids: string[]): void {
-    this.blurState = !this.blurState;
+  // toggleBlur(ids: string[]): void {
+  //   this.blurState = !this.blurState;
 
-    const allElements = this.el.nativeElement.querySelectorAll('[id]');
-    allElements.forEach((element: HTMLElement) => {
-      const id = element.getAttribute('id');
-      if (id && !ids.includes(id)) {
-        if (this.blurState) {
-          this.renderer.setStyle(element, 'filter', 'blur(5px)');
-        } else {
-          this.renderer.removeStyle(element, 'filter');
-        }
-      }
-    });
-  }
+  //   const allElements = this.el.nativeElement.querySelectorAll('[id]');
+  //   allElements.forEach((element: HTMLElement) => {
+  //     const id = element.getAttribute('id');
+  //     if (id && !ids.includes(id)) {
+  //       if (this.blurState) {
+  //         this.renderer.setStyle(element, 'filter', 'blur(5px)');
+  //       } else {
+  //         this.renderer.removeStyle(element, 'filter');
+  //       }
+  //     }
+  //   });
+  // }
 }

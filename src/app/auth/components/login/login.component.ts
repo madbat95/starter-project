@@ -32,6 +32,7 @@ export class LoginComponent implements OnInit {
   }
 
   submitForm(): void {
+    console.log('this is my login');
     const user = {
       profile: null,
       detail: null,

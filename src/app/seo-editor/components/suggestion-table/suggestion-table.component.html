@@ -12,86 +12,26 @@
 
     <tr>
       <th rowspan="4" nzAlign="center">Suggestions</th>
-      <th
-        nz-button
-        class="header-click"
-        (click)="toggleBlur(titleIds)"
-        colspan="2"
-        nzAlign="center"
-      >
-        Title
-      </th>
+      <th nz-button class="header-click" colspan="2" nzAlign="center">Title</th>
 
-      <th
-        nz-button
-        class="header-click"
-        (click)="toggleBlur(descrIds)"
-        colspan="2"
-        nzAlign="center"
-      >
+      <th nz-button class="header-click" colspan="2" nzAlign="center">
         Descr.
       </th>
       <th
+        appTableBlur
         nz-button
         class="header-click"
-        (click)="toggleBlur(H1Ids)"
         colspan="2"
         nzAlign="center"
       >
         H1
       </th>
-      <th
-        nz-button
-        class="header-click"
-        (click)="toggleBlur(H2Ids)"
-        colspan="2"
-        nzAlign="center"
-      >
-        H2
-      </th>
-      <th
-        nz-button
-        class="header-click"
-        (click)="toggleBlur(H3Ids)"
-        colspan="2"
-        nzAlign="center"
-      >
-        H3
-      </th>
-      <th
-        nz-button
-        class="header-click"
-        (click)="toggleBlur(H4Ids)"
-        colspan="2"
-        nzAlign="center"
-      >
-        H4
-      </th>
-      <th
-        nz-button
-        class="header-click"
-        (click)="toggleBlur(H5Ids)"
-        colspan="2"
-        nzAlign="center"
-      >
-        H5
-      </th>
-      <th
-        nz-button
-        class="header-click"
-        (click)="toggleBlur(H6Ids)"
-        colspan="2"
-        nzAlign="center"
-      >
-        H6
-      </th>
-      <th
-        nz-button
-        class="header-click"
-        (click)="toggleBlur(contentIds)"
-        colspan="2"
-        nzAlign="center"
-      >
+      <th nz-button class="header-click" colspan="2" nzAlign="center">H2</th>
+      <th nz-button class="header-click" colspan="2" nzAlign="center">H3</th>
+      <th nz-button class="header-click" colspan="2" nzAlign="center">H4</th>
+      <th nz-button class="header-click" colspan="2" nzAlign="center">H5</th>
+      <th nz-button class="header-click" colspan="2" nzAlign="center">H6</th>
+      <th nz-button class="header-click" colspan="2" nzAlign="center">
         Content
       </th>
     </tr>
@@ -119,37 +59,37 @@
   <tbody>
     <tr>
       <td nzLeft nzAlign="center" class="table-col">Entities</td>
-      <td nzAlign="center" id="entityTitleCount">
+      <td appTableBlur nzAlign="center" id="entityTitleCount">
         <badge [data]="tableData.Entity?.metaTitle ?? 0"></badge>
       </td>
-      <td nzAlign="center" id="entityTitleRequired">
+      <td appTableBlur nzAlign="center" id="entityTitleRequired">
         <badge [data]="tableData['Entity']?.metaTitleR ?? 0"></badge>
       </td>
-      <td nzAlign="center" id="entityDescrCount">
+      <td appTableBlur nzAlign="center" id="entityDescrCount">
         <badge [data]="tableData['Entity']?.metaDescription ?? 0"></badge>
       </td>
-      <td nzAlign="center" id="entityDescrRequired">
+      <td appTableBlur nzAlign="center" id="entityDescrRequired">
         <badge [data]="tableData['Entity']?.metaDescriptionR ?? 0"></badge>
       </td>
-      <td nzAlign="center" id="entityH1Count">
+      <td appTableBlur nzAlign="center" id="entityH1Count">
         <badge [data]="tableData['Entity']?.headers?.H1 ?? 0"></badge>
       </td>
-      <td nzAlign="center" id="entityH1Required">
+      <td appTableBlur nzAlign="center" id="entityH1Required">
         <badge [data]="tableData['Entity'].headers.H1R"></badge>
       </td>
-      <td nzAlign="center" id="entityH2Count">
+      <td appTableBlur nzAlign="center" id="entityH2Count">
         <badge [data]="tableData['Entity']?.headers?.H2 ?? 0"></badge>
       </td>
-      <td nzAlign="center" id="entityH2Required">
+      <td appTableBlur nzAlign="center" id="entityH2Required">
         <badge [data]="tableData['Entity'].headers.H2R"></badge>
       </td>
-      <td nzAlign="center" id="entityH3Count">
+      <td appTableBlur nzAlign="center" id="entityH3Count">
         <badge [data]="tableData['Entity']?.headers?.H3 ?? 0"></badge>
       </td>
-      <td nzAlign="center" id="entityH3Required">
+      <td appTableBlur nzAlign="center" id="entityH3Required">
         <badge [data]="tableData['Entity']?.headers?.H3R"></badge>
       </td>
-      <td nzAlign="center" id="entityH4Count">
+      <td appTableBlur nzAlign="center" id="entityH4Count">
         <badge [data]="tableData['Entity']?.headers?.H4 ?? 0"></badge>
       </td>
       <td nzAlign="center" id="entityH4Required">
@@ -290,26 +230,36 @@
     </tr>
     <tr>
       <td nzLeft nzAlign="center" class="table-col">Words/Tags</td>
-      <td nzAlign="center">
+      <td nzAlign="center" id="tagsTitleCount">
         <badge [data]="0"></badge>
       </td>
-      <td nzAlign="center"><badge [data]="0"></badge></td>
-      <td nzAlign="center"><badge [data]="0"></badge></td>
-      <td nzAlign="center"><badge [data]="0"></badge></td>
-      <td nzAlign="center"><badge [data]="0"></badge></td>
-      <td nzAlign="center"><badge [data]="0"></badge></td>
-      <td nzAlign="center"><badge [data]="0"></badge></td>
-      <td nzAlign="center"><badge [data]="0"></badge></td>
-      <td nzAlign="center"><badge [data]="0"></badge></td>
-      <td nzAlign="center"><badge [data]="0"></badge></td>
-      <td nzAlign="center"><badge [data]="0"></badge></td>
-      <td nzAlign="center"><badge [data]="0"></badge></td>
-      <td nzAlign="center"><badge [data]="0"></badge></td>
-      <td nzAlign="center"><badge [data]="0"></badge></td>
-      <td nzAlign="center"><badge [data]="0"></badge></td>
-      <td nzAlign="center"><badge [data]="0"></badge></td>
-      <td nzAlign="center"><badge [data]="0"></badge></td>
-      <td nzAlign="center"><badge [data]="0"></badge></td>
+      <td nzAlign="center" id="tagsTitleRequired">
+        <badge [data]="0"></badge>
+      </td>
+      <td nzAlign="center" id="tagsDescrCount">
+        <badge [data]="0"></badge>
+      </td>
+      <td nzAlign="center" id="tagsDescrRequired">
+        <badge [data]="0"></badge>
+      </td>
+      <td nzAlign="center" id="tagsH1Count">
+        <badge [data]="0"></badge>
+      </td>
+      <td nzAlign="center" id="tagsH1Required"><badge [data]="0"></badge></td>
+      <td nzAlign="center" id="tagsH2Count"><badge [data]="0"></badge></td>
+      <td nzAlign="center" id="tagsH2Required"><badge [data]="0"></badge></td>
+      <td nzAlign="center" id="tagsH3Count"><badge [data]="0"></badge></td>
+      <td nzAlign="center" id="tagsH3Required"><badge [data]="0"></badge></td>
+      <td nzAlign="center" id="tagsH4Count"><badge [data]="0"></badge></td>
+      <td nzAlign="center" id="tagsH4Required"><badge [data]="0"></badge></td>
+      <td nzAlign="center" id="tagsH5Count"><badge [data]="0"></badge></td>
+      <td nzAlign="center" id="tagsH5Required"><badge [data]="0"></badge></td>
+      <td nzAlign="center" id="tagsH6Count"><badge [data]="0"></badge></td>
+      <td nzAlign="center" id="tagsH6Required"><badge [data]="0"></badge></td>
+      <td nzAlign="center" id="tagsContentCount"><badge [data]="0"></badge></td>
+      <td nzAlign="center" id="tagsContentRequired">
+        <badge [data]="0"></badge>
+      </td>
     </tr>
   </tbody>
 </nz-table>
