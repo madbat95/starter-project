@@ -1,4 +1,6 @@
 import { Component } from '@angular/core';
+import { NzMessageService } from 'ng-zorro-antd/message';
+import { ReportService } from 'src/app/shared/services/report.service';
 
 @Component({
   selector: 'app-reports-table',
@@ -35,4 +37,36 @@ export class ReportsTableComponent {
       user: 'Saad Wakeel',
     },
   ];
+
+  constructor(
+    private reportService: ReportService,
+    private NzMessageService: NzMessageService
+  ) {}
+
+  reports: any[] = [];
+  loading = false;
+
+  ngOnInit(): void {
+    this.loadReports();
+  }
+
+  loadReports(): void {
+    this.loading = true;
+    this.reportService.getReports().subscribe((reports: any) => {
+      this.reports = reports;
+      this.loading = false;
+    });
+  }
+
+  deleteLead(report: any): void {
+    this.reportService.deleteReport(report.id).subscribe({
+      next: () => {
+        this.NzMessageService.success('Lead Deleted');
+        this.loadReports();
+      },
+      error: () => {
+        this.NzMessageService.error('Lead could not be deleted');
+      },
+    });
+  }
 }
