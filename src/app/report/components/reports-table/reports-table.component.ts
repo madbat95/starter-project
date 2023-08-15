@@ -58,14 +58,14 @@ export class ReportsTableComponent {
     });
   }
 
-  deleteLead(report: any): void {
+  deleteReport(report: any): void {
     this.reportService.deleteReport(report.id).subscribe({
       next: () => {
-        this.NzMessageService.success('Lead Deleted');
+        this.NzMessageService.success('Report Deleted');
         this.loadReports();
       },
       error: () => {
-        this.NzMessageService.error('Lead could not be deleted');
+        this.NzMessageService.error('Report could not be deleted');
       },
     });
   }

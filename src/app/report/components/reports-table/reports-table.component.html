@@ -9,7 +9,7 @@
     nzSize="small"
     [nzFrontPagination]="false"
     [nzScroll]="{ x: '1200px' }"
-    [nzData]="reportsData"
+    [nzData]="reports"
   >
     <thead>
       <tr>
@@ -24,41 +24,24 @@
       </tr>
     </thead>
     <tbody>
-      <tr *ngFor="let data of reportsData">
-        <td nzAlign="center">{{ data.reportKeyword }}</td>
+      <tr *ngFor="let data of reports">
+        <td nzAlign="center">{{ data.keyword }}</td>
         <td nzAlign="center">{{ data.country }}</td>
-        <td nzAlign="center">{{ data.language }}</td>
-        <td nzAlign="center">{{ data.created }}</td>
-        <td nzAlign="center">{{ data.wordCount }}</td>
+        <td nzAlign="center">{{ data.language ?? "English" }}</td>
+        <td nzAlign="center">{{ data.created_at | date }}</td>
+        <td nzAlign="center">{{ data.wordCount ?? 0 }}</td>
         <td nzAlign="center">
-          <nz-tag class="custom-tag">{{ data.contentGrade }}</nz-tag>
+          <nz-tag class="custom-tag">1/10</nz-tag>
         </td>
-        <td nzAlign="center">{{ data.user }}</td>
+        <td nzAlign="center">{{ data.user.username }}</td>
         <td nzAlign="center">
           <span
             nz-icon
+            nz-button
             nzType="delete"
             nzTheme="outline"
             style="color: red"
-          ></span>
-        </td>
-      </tr>
-      <tr *ngFor="let data of reportsData">
-        <td nzAlign="center">{{ data.reportKeyword }}</td>
-        <td nzAlign="center">{{ data.country }}</td>
-        <td nzAlign="center">{{ data.language }}</td>
-        <td nzAlign="center">{{ data.created }}</td>
-        <td nzAlign="center">{{ data.wordCount }}</td>
-        <td nzAlign="center">
-          <nz-tag class="custom-tag">{{ data.contentGrade }}</nz-tag>
-        </td>
-        <td nzAlign="center">{{ data.user }}</td>
-        <td nzAlign="center">
-          <span
-            nz-icon
-            nzType="delete"
-            nzTheme="outline"
-            style="color: red"
+            (click)="deleteReport(data)"
           ></span>
         </td>
       </tr>
