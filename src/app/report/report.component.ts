@@ -5,4 +5,9 @@ import { Component } from '@angular/core';
   templateUrl: './report.component.html',
   styleUrls: ['./report.component.scss'],
 })
-export class ReportComponent {}
+export class ReportComponent {
+  newReport: any;
+  onNewReport(newReport: any): void {
+    this.newReport = newReport;
+  }
+}

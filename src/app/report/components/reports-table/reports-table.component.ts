@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { NzMessageService } from 'ng-zorro-antd/message';
 import { ReportService } from 'src/app/shared/services/report.service';
 
@@ -38,10 +38,20 @@ export class ReportsTableComponent {
     },
   ];
 
+  @Input() set newReport(val: any) {
+    if (val) {
+      this.reports.push(val);
+    }
+  }
+
   constructor(
     private reportService: ReportService,
     private NzMessageService: NzMessageService
-  ) {}
+  ) {
+    // if (this.newReport) {
+    //   this.reports = [...this.reports, this.newReport];
+    // }
+  }
 
   reports: any[] = [];
   loading = false;
@@ -49,7 +59,6 @@ export class ReportsTableComponent {
   ngOnInit(): void {
     this.loadReports();
   }
-
   loadReports(): void {
     this.loading = true;
     this.reportService.getReports().subscribe((reports: any) => {

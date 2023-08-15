@@ -1,3 +1,3 @@
-<app-create-report></app-create-report>
+<app-create-report (onNewReport)="onNewReport($event)"></app-create-report>
 
-<app-reports-table></app-reports-table>
+<app-reports-table [newReport]="newReport"></app-reports-table>
