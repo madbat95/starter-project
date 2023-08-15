@@ -42,6 +42,7 @@ import { TableRadioComponent } from './components/table-radio/table-radio.compon
 import { WordCounterService } from './service/word-counter.service';
 import { TableDataRowComponent } from './components/suggestion-table/components/table-data-row/table-data-row.component';
 import { HttpClientModule } from '@angular/common/http';
+import { UploadModalComponent } from './components/upload-report/component/upload-modal/upload-modal.component';
 
 const antdModule = [
   NzButtonModule,
@@ -96,6 +97,7 @@ const antdModule = [
 
     TableRadioComponent,
     TableDataRowComponent,
+    UploadModalComponent,
   ],
   providers: [ThemeConstantService, WordCounterService],
 })
