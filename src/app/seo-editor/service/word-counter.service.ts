@@ -75,6 +75,21 @@ export class WordCounterService {
     },
   };
 
+  updateWordCount(section: string, data: any) {
+    const wordCount = this.wordCount[section];
+    if (wordCount) {
+      wordCount.metaTitleR = data.title;
+      wordCount.metaDescriptionR = data.description;
+      wordCount.headers.H1R = data.h1;
+      wordCount.headers.H2R = data.h2;
+      wordCount.headers.H3R = data.h3;
+      wordCount.headers.H4R = data.h4;
+      wordCount.headers.H5R = data.h5;
+      wordCount.headers.H6R = data.h6;
+      wordCount.contentR = data.sentences;
+    }
+  }
+
   wordObject = {
     Entity: [
       {
