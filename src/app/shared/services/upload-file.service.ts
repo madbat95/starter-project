@@ -12,6 +12,6 @@ export class UploadFileService {
   }
 
   getFile(fileName: any) {
-    return this.http.get(`reporting/configurations/?filename=?${fileName}`);
+    return this.http.get(`reporting/configurations/?filename=${fileName}`);
   }
 }
