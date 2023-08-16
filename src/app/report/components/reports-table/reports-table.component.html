@@ -24,7 +24,9 @@
       </thead>
       <tbody>
         <tr *ngFor="let data of reports">
-          <td nzAlign="center">{{ data.keyword }}</td>
+          <td nzAlign="center">
+            <a (click)="navigate(data.id)"> {{ data.keyword }}</a>
+          </td>
           <td nzAlign="center">{{ data.country }}</td>
           <td nzAlign="center">{{ data.language ?? "English" }}</td>
           <td nzAlign="center">{{ data.created_at | date }}</td>

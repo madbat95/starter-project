@@ -9,14 +9,7 @@ export const ROUTES: SideNavInterface[] = [
     icon: 'dashboard',
     submenu: [],
   },
-  {
-    path: '/admin/seo',
-    title: 'SEO',
-    iconType: 'nzIcon',
-    iconTheme: 'outline',
-    icon: 'rocket',
-    submenu: [],
-  },
+
   {
     path: '/admin/report',
     title: 'Report',

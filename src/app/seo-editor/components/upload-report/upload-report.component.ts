@@ -16,7 +16,7 @@ export class UploadReportComponent {
 
   addCSV(): void {
     const modal = this.modalService.create({
-      nzTitle: ' <ng-template><h2>Import Leads</h2></ng-template>',
+      nzTitle: ' <ng-template><h2>Upload File</h2></ng-template>',
       nzContent: UploadModalComponent,
       nzClosable: true,
       nzFooter: null,

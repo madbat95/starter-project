@@ -1,6 +1,7 @@
 import { Component, Input } from '@angular/core';
 import { NzMessageService } from 'ng-zorro-antd/message';
 import { ReportService } from 'src/app/shared/services/report.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-reports-table',
@@ -46,7 +47,8 @@ export class ReportsTableComponent {
 
   constructor(
     private reportService: ReportService,
-    private NzMessageService: NzMessageService
+    private NzMessageService: NzMessageService,
+    private router: Router
   ) {
     // if (this.newReport) {
     //   this.reports = [...this.reports, this.newReport];
@@ -59,6 +61,11 @@ export class ReportsTableComponent {
   ngOnInit(): void {
     this.loadReports();
   }
+
+  navigate(id: any): void {
+    this.router.navigate([`/admin/report/${id}`]);
+  }
+
   loadReports(): void {
     this.loading = true;
     this.reportService.getReports().subscribe((reports: any) => {

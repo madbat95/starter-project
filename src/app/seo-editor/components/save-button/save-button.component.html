@@ -1,4 +1,10 @@
-<!-- <button nz-button nzType="primary" nzSize="small" (click)="onSave()">
+<button
+  nz-button
+  nzType="primary"
+  nzSize="small"
+  [disabled]="loading"
+  (click)="onSave()"
+>
   Save
   <span nz-icon nzType="save" nzTheme="outline"> </span>
-</button> -->
+</button>
