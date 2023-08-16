@@ -13,6 +13,7 @@ export class SeoEditorComponent implements OnInit {
   // metaDescription: any = ''; //description for summernote
   tableData: any[] = [];
   selectedTable: string = 'Entity';
+  editorContent: any;
   constructor(private wordCounter: WordCounterService) {}
 
   // onMetaTitle(metaTitle: any) {
@@ -33,6 +34,10 @@ export class SeoEditorComponent implements OnInit {
   onWordCount(onWordCount): void {
     console.log('word count', onWordCount);
     this.wordCount = onWordCount;
+  }
+  onEditorContent(onEditorContent): void {
+    console.log('editor content', onEditorContent);
+    this.editorContent = onEditorContent;
   }
 
   getData() {

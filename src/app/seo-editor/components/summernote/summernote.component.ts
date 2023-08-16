@@ -9,7 +9,7 @@ import { WordCounterService } from '../../service/word-counter.service';
 export class SummernoteComponent implements OnInit {
   constructor(private wordCounter: WordCounterService) {}
 
-  editorContent = '<html><p>wasif</p></html>';
+  editorContent = '<h1 class="">editor content</h1>';
   uniqueWords: Set<string> = new Set();
 
   editorConfig = {
@@ -50,12 +50,15 @@ export class SummernoteComponent implements OnInit {
 
   @Output() onWordObject = new EventEmitter<any>();
   @Output() onWordCount = new EventEmitter<any>();
+  @Output() onEditorContent = new EventEmitter<any>();
 
   ngOnInit(): void {
     // this.onWordObject.emit(this.wordCounter.wordObject);
   }
 
   onEditorKeyUp(text: any) {
+    this.onEditorContent.emit(this.editorContent);
+
     const parser = new DOMParser();
     const doc = parser.parseFromString(text, 'text/html');
     console.log('doc', doc.body);

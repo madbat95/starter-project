@@ -46,6 +46,7 @@ import { UploadModalComponent } from './components/upload-report/component/uploa
 import { NzUploadModule } from 'ng-zorro-antd/upload';
 import { FileSelectorComponent } from './components/file-selector/file-selector.component';
 import { NzSelectModule } from 'ng-zorro-antd/select';
+import { SaveButtonComponent } from './components/save-button/save-button.component';
 
 const antdModule = [
   NzButtonModule,
@@ -104,6 +105,7 @@ const antdModule = [
     TableDataRowComponent,
     UploadModalComponent,
     FileSelectorComponent,
+    SaveButtonComponent,
   ],
   providers: [ThemeConstantService, WordCounterService],
 })
