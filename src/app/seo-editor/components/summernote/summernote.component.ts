@@ -9,7 +9,7 @@ import { WordCounterService } from '../../service/word-counter.service';
 export class SummernoteComponent implements OnInit {
   constructor(private wordCounter: WordCounterService) {}
 
-  editorContent = '';
+  editorContent = '<html><p>wasif</p></html>';
   uniqueWords: Set<string> = new Set();
 
   editorConfig = {
@@ -19,7 +19,6 @@ export class SummernoteComponent implements OnInit {
     uploadImagePath: '/api/upload',
     toolbar: [
       ['misc', ['codeview', 'undo', 'redo']],
-      ['style', ['bold', 'italic', 'underline', 'clear']],
       [
         'font',
         [
@@ -96,13 +95,10 @@ export class SummernoteComponent implements OnInit {
 
     this.uniqueWords.clear(); // Clear the uniqueWords Set
 
-    // Remove HTML entities representing spaces (&nbsp;), <p> tags, and <br> tags from the text
     const cleanedText = text.replace(/<\/?[^>]+(>|$)/g, ' ');
 
     const words = cleanedText.split(/\s+/);
 
     this.wordCounter.wordCountCalculate(cleanedText, 'summer_note');
-
-    // this.onWordObject.emit(this.wordCounter.wordObject);
   }
 }
