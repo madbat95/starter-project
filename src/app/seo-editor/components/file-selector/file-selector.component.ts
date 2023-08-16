@@ -31,10 +31,21 @@ export class FileSelectorComponent implements OnInit {
 
   onFileSelectionChange() {
     if (this.selectedFile) {
-      this.wordCounterService.updateWordCount(
-        'Entity',
-        this.selectedFile.entity_data
-      );
+      // Call getWordsFromFiles using switchMap
+      this.uploadFileService
+        .getWordsFromFiles('Entity', this.selectedFile.filename)
+        .subscribe((response: any[]) => {
+          // Update wordObject for 'Entity' entity type
+          const entityArray = this.wordCounterService.wordObject['Entity'];
+          entityArray.length = 0; // Clear the array
+
+          for (const wordInfo of response) {
+            entityArray.push({
+              word: wordInfo.label,
+              count: { summer_note: 0, meta: 0 },
+            });
+          }
+        });
       this.wordCounterService.updateWordCount(
         'Variations',
         this.selectedFile.variation_data

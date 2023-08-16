@@ -92,74 +92,8 @@ export class WordCounterService {
 
   wordObject = {
     Entity: [],
-    Variations: [
-      {
-        word: 'privacy',
-        count: { summer_note: 0, meta: 0 },
-      },
-      {
-        word: 'alexandria',
-        count: { summer_note: 0, meta: 0 },
-      },
-      {
-        word: 'videographers',
-        count: { summer_note: 0, meta: 0 },
-      },
-      {
-        word: 'north',
-        count: { summer_note: 0, meta: 0 },
-      },
-      {
-        word: 'breach',
-        count: { summer_note: 0, meta: 0 },
-      },
-      {
-        word: 'statistics',
-        count: { summer_note: 0, meta: 0 },
-      },
-      {
-        word: 'logistics',
-        count: { summer_note: 0, meta: 0 },
-      },
-      {
-        word: 'finance',
-        count: { summer_note: 0, meta: 0 },
-      },
-    ],
-    LSIKeywords: [
-      {
-        word: 'privacy',
-        count: { summer_note: 0, meta: 0 },
-      },
-      {
-        word: 'paper',
-        count: { summer_note: 0, meta: 0 },
-      },
-      {
-        word: 'testimony',
-        count: { summer_note: 0, meta: 0 },
-      },
-      {
-        word: 'chicago',
-        count: { summer_note: 0, meta: 0 },
-      },
-      {
-        word: 'united',
-        count: { summer_note: 0, meta: 0 },
-      },
-      {
-        word: 'manchester',
-        count: { summer_note: 0, meta: 0 },
-      },
-      {
-        word: 'city',
-        count: { summer_note: 0, meta: 0 },
-      },
-      {
-        word: 'trial',
-        count: { summer_note: 0, meta: 0 },
-      },
-    ],
+    Variations: [],
+    LSIKeywords: [],
   };
   isPhraseInWordObject(phrase, entityType) {
     const entityArray = this.wordObject[entityType];
