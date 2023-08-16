@@ -18,4 +18,8 @@ export class HtmlContentService {
   createContent(requestBody: any) {
     return this.http.post(`reporting/content/`, requestBody);
   }
+
+  updateContent(id: any, requestBody: any) {
+    return this.http.patch(`reporting/content/${id}/`, requestBody);
+  }
 }
