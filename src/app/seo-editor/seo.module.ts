@@ -44,6 +44,8 @@ import { TableDataRowComponent } from './components/suggestion-table/components/
 import { HttpClientModule } from '@angular/common/http';
 import { UploadModalComponent } from './components/upload-report/component/upload-modal/upload-modal.component';
 import { NzUploadModule } from 'ng-zorro-antd/upload';
+import { FileSelectorComponent } from './components/file-selector/file-selector.component';
+import { NzSelectModule } from 'ng-zorro-antd/select';
 
 const antdModule = [
   NzButtonModule,
@@ -72,6 +74,7 @@ const antdModule = [
   NzFormModule,
   NzProgressModule,
   NzUploadModule,
+  NzSelectModule,
 ];
 
 @NgModule({
@@ -100,6 +103,7 @@ const antdModule = [
     TableRadioComponent,
     TableDataRowComponent,
     UploadModalComponent,
+    FileSelectorComponent,
   ],
   providers: [ThemeConstantService, WordCounterService],
 })
