@@ -21,7 +21,7 @@ export class UploadModalComponent {
   fileList: NzUploadFile[] = [];
   loading: boolean = false;
   uploadForm!: FormGroup;
-
+  wordArray: any[] = [];
   fileName: any = '';
   fileData: any[] = [];
 

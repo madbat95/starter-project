@@ -18,4 +18,10 @@ export class UploadFileService {
   getAllFiles() {
     return this.http.get(`reporting/configurations/`);
   }
+
+  getWordsFromFiles(item_type: any, filename: any) {
+    return this.http.get(
+      `reporting/count-details/?item_type=${item_type}&filename=${filename}`
+    );
+  }
 }
