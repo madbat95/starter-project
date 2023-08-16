@@ -99,44 +99,18 @@ export class UploadModalComponent {
             this.fileData.push(latestObject); // Add the latest object to the fileData array
             console.log(this.fileData);
 
-            (this.wordCounterService.wordCount['Entity'].metaTitleR =
-              latestObject['entity_data'].title),
-              (this.wordCounterService.wordCount['Entity'].metaDescriptionR =
-                latestObject['entity_data'].description),
-              (this.wordCounterService.wordCount['Entity'].headers.H1R =
-                latestObject['entity_data'].h1),
-              (this.wordCounterService.wordCount['Entity'].headers.H2R =
-                latestObject['entity_data'].h2),
-              (this.wordCounterService.wordCount['Entity'].headers.H3R =
-                latestObject['entity_data'].h3),
-              (this.wordCounterService.wordCount['Entity'].headers.H4R =
-                latestObject['entity_data'].h4),
-              (this.wordCounterService.wordCount['Entity'].headers.H5R =
-                latestObject['entity_data'].h5),
-              (this.wordCounterService.wordCount['Entity'].headers.H6R =
-                latestObject['entity_data'].h6),
-              (this.wordCounterService.wordCount['Entity'].contentR =
-                latestObject['entity_data'].sentences);
-
-            (this.wordCounterService.wordCount['Variations'].metaTitleR =
-              latestObject['variation_data'].title),
-              (this.wordCounterService.wordCount[
-                'Variations'
-              ].metaDescriptionR = latestObject['variation_data'].description),
-              (this.wordCounterService.wordCount['Variations'].headers.H1R =
-                latestObject['variation_data'].h1),
-              (this.wordCounterService.wordCount['Variations'].headers.H2R =
-                latestObject['variation_data'].h2),
-              (this.wordCounterService.wordCount['Variations'].headers.H3R =
-                latestObject['variation_data'].h3),
-              (this.wordCounterService.wordCount['Variations'].headers.H4R =
-                latestObject['variation_data'].h4),
-              (this.wordCounterService.wordCount['Variations'].headers.H5R =
-                latestObject['variation_data'].h5),
-              (this.wordCounterService.wordCount['Variations'].headers.H6R =
-                latestObject['variation_data'].h6),
-              (this.wordCounterService.wordCount['Variations'].contentR =
-                latestObject['variation_data'].sentences);
+            this.wordCounterService.updateWordCount(
+              'Entity',
+              latestObject['entity_data']
+            );
+            this.wordCounterService.updateWordCount(
+              'Variations',
+              latestObject['variation_data']
+            );
+            this.wordCounterService.updateWordCount(
+              'LSIKeywords',
+              latestObject['lsi_keyword_data']
+            );
           }
 
           this.loading = false;
