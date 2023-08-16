@@ -91,45 +91,7 @@ export class WordCounterService {
   }
 
   wordObject = {
-    Entity: [
-      {
-        word: 'security',
-        count: { summer_note: 0, meta: 0 },
-      },
-      {
-        word: 'security service',
-        count: { summer_note: 0, meta: 0 },
-      },
-      {
-        word: 'privacy',
-        count: { summer_note: 0, meta: 0 },
-      },
-      {
-        word: 'data',
-        count: { summer_note: 0, meta: 0 },
-      },
-      {
-        word: 'virginia',
-        count: { summer_note: 0, meta: 0 },
-      },
-      {
-        word: 'veritext',
-        count: { summer_note: 0, meta: 0 },
-      },
-      {
-        word: 'access',
-        count: { summer_note: 0, meta: 0 },
-      },
-      {
-        word: 'access to a door',
-        count: { summer_note: 0, meta: 0 },
-      },
-
-      {
-        word: 'finance',
-        count: { summer_note: 0, meta: 0 },
-      },
-    ],
+    Entity: [],
     Variations: [
       {
         word: 'privacy',

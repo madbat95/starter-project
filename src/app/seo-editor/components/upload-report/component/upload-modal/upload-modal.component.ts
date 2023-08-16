@@ -11,6 +11,7 @@ import { NotificationService } from 'src/app/shared/services/notification.servic
 import { UploadFileService } from 'src/app/shared/services/upload-file.service';
 import { switchMap, catchError } from 'rxjs/operators';
 import { WordCounterService } from 'src/app/seo-editor/service/word-counter.service';
+import { forkJoin } from 'rxjs';
 
 @Component({
   selector: 'app-upload-modal',
@@ -45,6 +46,109 @@ export class UploadModalComponent {
     return false;
   };
 
+  // submitForm(): void {
+  //   if (this.fileList.length === 0) {
+  //     return;
+  //   }
+  //   this.loading = true;
+  //   const formData = new FormData();
+  //   if (this.fileList.length > 0) {
+  //     formData.append('configuration_file', this.fileList[0] as any);
+  //   }
+
+  //   this.uploadFileService
+  //     .postFile(formData)
+  //     .pipe(
+  //       switchMap((postResponse: any) => {
+  //         this.notificationService.success('File uploaded.');
+  //         return this.uploadFileService.getFile(this.fileName);
+  //       }),
+  //       switchMap((fileResponse: any) => {
+  //         const latestObject = fileResponse[fileResponse.length - 1];
+  //         return this.uploadFileService.getWordsFromFiles(
+  //           'Entity',
+  //           latestObject.filename
+  //         );
+  //       }),
+  //       catchError((error: any) => {
+  //         this.notificationService.error('Failed to upload file.');
+  //         return error;
+  //       })
+  //     )
+  //     .subscribe(
+  //       (wordResponse: any) => {
+  //         console.log('Words from file:', wordResponse);
+
+  //         // Append the wordResponse data to the fileData array
+  //         this.fileData.push(wordResponse);
+
+  //         this.loading = false;
+  //         this.modal.close();
+  //       },
+  //       (error: any) => {
+  //         console.error('Failed to get file:', error);
+  //         this.loading = false;
+  //       }
+  //     );
+  // }
+
+  // submitForm(): void {
+  //   if (this.fileList.length === 0) {
+  //     return;
+  //   }
+  //   this.loading = true;
+  //   const formData = new FormData();
+  //   if (this.fileList.length > 0) {
+  //     formData.append('configuration_file', this.fileList[0] as any);
+  //   }
+
+  //   this.uploadFileService
+  //     .postFile(formData)
+  //     .pipe(
+  //       switchMap((postResponse: any) => {
+  //         this.notificationService.success('File uploaded.');
+  //         return this.uploadFileService.getFile(this.fileName);
+  //       }),
+  //       switchMap((fileResponse: any) => {
+  //         const latestObject = fileResponse[fileResponse.length - 1];
+  //         return this.uploadFileService.getWordsFromFiles(
+  //           'Entity',
+  //           latestObject.filename
+  //         );
+  //       }),
+  //       catchError((error: any) => {
+  //         this.notificationService.error('Failed to upload file.');
+  //         return error;
+  //       })
+  //     )
+  //     .subscribe(
+  //       (wordResponse: any) => {
+  //         console.log('Words from file:', wordResponse);
+
+  //         // Update the wordObject with labels from the wordResponse
+  //         const entityType = 'Entity'; // Adjust if needed
+  //         const entityArray = this.wordCounterService.wordObject[entityType];
+  //         for (const wordInfo of wordResponse) {
+  //           const word = wordInfo.label;
+
+  //           // Add the word to the wordObject if it doesn't exist
+  //           if (!entityArray.some((entity) => entity.word === word)) {
+  //             entityArray.push({
+  //               word: word,
+  //               count: { summer_note: 0, meta: 0 },
+  //             });
+  //           }
+  //         }
+
+  //         this.loading = false;
+  //         this.modal.close();
+  //       },
+  //       (error: any) => {
+  //         console.error('Failed to get file:', error);
+  //         this.loading = false;
+  //       }
+  //     );
+  // }
   submitForm(): void {
     if (this.fileList.length === 0) {
       return;
@@ -62,32 +166,47 @@ export class UploadModalComponent {
           this.notificationService.success('File uploaded.');
           return this.uploadFileService.getFile(this.fileName);
         }),
+        switchMap((fileResponse: any) => {
+          const latestObject = fileResponse[fileResponse.length - 1];
+          const entityTypes = ['Entity', 'Variation'];
+
+          // Fetch words for each entity type using forkJoin
+          const fetchWordObservables = entityTypes.map((entityType) => {
+            return this.uploadFileService.getWordsFromFiles(
+              entityType,
+              latestObject.filename
+            );
+          });
+
+          return forkJoin(fetchWordObservables); // Using forkJoin to combine multiple observables
+        }),
         catchError((error: any) => {
           this.notificationService.error('Failed to upload file.');
           return error;
         })
       )
       .subscribe(
-        (response: any) => {
-          console.log('File content:', response);
+        (wordsResponses: any[]) => {
+          console.log('Words from file for each entity type:', wordsResponses);
 
-          if (Array.isArray(response) && response.length > 0) {
-            const latestObject = response[response.length - 1];
-            this.fileData.push(latestObject);
-            console.log(this.fileData);
+          // Update the wordObject for each entity type
+          for (let i = 0; i < wordsResponses.length; i++) {
+            const entityTypes = ['Entity', 'Variations'];
+            const entityType = entityTypes[i];
+            const wordsResponse = wordsResponses[i];
 
-            this.wordCounterService.updateWordCount(
-              'Entity',
-              latestObject['entity_data']
-            );
-            this.wordCounterService.updateWordCount(
-              'Variations',
-              latestObject['variation_data']
-            );
-            this.wordCounterService.updateWordCount(
-              'LSIKeywords',
-              latestObject['lsi_keyword_data']
-            );
+            const entityArray = this.wordCounterService.wordObject[entityType];
+            for (const wordInfo of wordsResponse) {
+              const word = wordInfo.label;
+
+              // Add the word to the wordObject if it doesn't exist
+              if (!entityArray.some((entity) => entity.word === word)) {
+                entityArray.push({
+                  word: word,
+                  count: { summer_note: 0, meta: 0 },
+                });
+              }
+            }
           }
 
           this.loading = false;
