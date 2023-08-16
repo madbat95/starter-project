@@ -10,4 +10,8 @@ export class UploadFileService {
   postFile(requestBody: any) {
     return this.http.post(`reporting/configurations/`, requestBody);
   }
+
+  getFile(fileName: any) {
+    return this.http.get(`reporting/configurations/?filename=?${fileName}`);
+  }
 }
