@@ -1,54 +1,59 @@
 <nz-card [nzTitle]="CardHeading" [nzExtra]="extraTemplate" class="custom-card">
-  <nz-skeleton
+  <ng-template #skeleton>
+    <nz-skeleton [nzActive]="false" [nzParagraph]="{ rows: 5 }"></nz-skeleton>
+  </ng-template>
+  <!-- <nz-skeleton
     [nzLoading]="loading"
-    [nzActive]="true"
+    [nzActive]="false"
     [nzParagraph]="{ rows: 5 }"
+  > -->
+  <nz-table
+    #basicTable
+    nzSize="small"
+    [nzScroll]="{ x: '1200px' }"
+    [nzData]="reports"
+    [nzLoading]="loading"
+    [nzLoadingIndicator]="skeleton"
   >
-    <nz-table
-      #basicTable
-      nzSize="small"
-      [nzScroll]="{ x: '1200px' }"
-      [nzData]="reports"
-    >
-      <thead>
-        <tr>
-          <th nzAlign="center">REPORT KEYWORD</th>
-          <th nzAlign="center">COUNTRY</th>
-          <th nzAlign="center">LANGUAGE</th>
-          <th nzAlign="center">CREATED</th>
-          <th nzAlign="center">WORD COUNT</th>
-          <th nzAlign="center">CONTENT GRADE</th>
-          <th nzAlign="center">USER</th>
-          <th nzAlign="center"></th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr *ngFor="let data of reports">
-          <td nzAlign="center">
-            <a (click)="navigate(data.id)"> {{ data.keyword }}</a>
-          </td>
-          <td nzAlign="center">{{ data.country }}</td>
-          <td nzAlign="center">{{ data.language ?? "English" }}</td>
-          <td nzAlign="center">{{ data.created_at | date }}</td>
-          <td nzAlign="center">{{ data.wordCount ?? 0 }}</td>
-          <td nzAlign="center">
-            <nz-tag class="custom-tag">1/10</nz-tag>
-          </td>
-          <td nzAlign="center">{{ data.user.username }}</td>
-          <td nzAlign="center">
-            <span
-              nz-icon
-              nz-button
-              nzType="delete"
-              nzTheme="outline"
-              style="cursor: pointer; color: red"
-              (click)="deleteReport(data)"
-            ></span>
-          </td>
-        </tr>
-      </tbody>
-    </nz-table>
-  </nz-skeleton>
+    <thead>
+      <tr>
+        <th nzAlign="center">REPORT KEYWORD</th>
+        <th nzAlign="center">COUNTRY</th>
+        <th nzAlign="center">LANGUAGE</th>
+        <th nzAlign="center">CREATED</th>
+        <th nzAlign="center">WORD COUNT</th>
+        <th nzAlign="center">CONTENT GRADE</th>
+        <th nzAlign="center">USER</th>
+        <th nzAlign="center"></th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let data of reports">
+        <td nzAlign="center">
+          <a (click)="navigate(data.id)"> {{ data.keyword }}</a>
+        </td>
+        <td nzAlign="center">{{ data.country }}</td>
+        <td nzAlign="center">{{ data.language ?? "English" }}</td>
+        <td nzAlign="center">{{ data.created_at | date }}</td>
+        <td nzAlign="center">{{ data.wordCount ?? 0 }}</td>
+        <td nzAlign="center">
+          <nz-tag class="custom-tag">1/10</nz-tag>
+        </td>
+        <td nzAlign="center">{{ data.user.username }}</td>
+        <td nzAlign="center">
+          <span
+            nz-icon
+            nz-button
+            nzType="delete"
+            nzTheme="outline"
+            style="cursor: pointer; color: red"
+            (click)="deleteReport(data)"
+          ></span>
+        </td>
+      </tr>
+    </tbody>
+  </nz-table>
+  <!-- </nz-skeleton> -->
 </nz-card>
 <ng-template #extraTemplate>
   <nz-input-group [nzPrefix]="prefixTemplateUser">
