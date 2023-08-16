@@ -16,7 +16,6 @@ export class SaveButtonComponent {
   @Input() editorContent: any;
 
   onSave(): any {
-    console.log('edirtor content', this.editorContent);
     this.loading = true;
     this.contentService.createContent(this.editorContent).subscribe({
       next: () => {

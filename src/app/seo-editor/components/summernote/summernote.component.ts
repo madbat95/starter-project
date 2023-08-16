@@ -1,6 +1,8 @@
 import { Component, EventEmitter, OnInit, Output, Input } from '@angular/core';
 import { WordCounterService } from '../../service/word-counter.service';
 import { ActivatedRoute, ParamMap } from '@angular/router';
+import { switchMap, catchError } from 'rxjs/operators';
+import { HtmlContentService } from 'src/app/shared/services/html-content.service';
 
 @Component({
   selector: 'app-summernote',
@@ -8,10 +10,10 @@ import { ActivatedRoute, ParamMap } from '@angular/router';
   styleUrls: ['./summernote.component.scss'],
 })
 export class SummernoteComponent implements OnInit {
-  declare $: any;
   constructor(
     private wordCounter: WordCounterService,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    private contentSerevice: HtmlContentService
   ) {}
   id: any;
   editorContent = '';
@@ -59,9 +61,17 @@ export class SummernoteComponent implements OnInit {
   @Output() onEditorContent = new EventEmitter<any>();
 
   ngOnInit(): void {
-    this.route.paramMap.subscribe((params: ParamMap) => {
-      this.id = +params.get('id');
-    });
+    this.route.paramMap
+      .pipe(
+        switchMap((params: ParamMap) => {
+          this.id = +params.get('id');
+          return this.contentSerevice.getContentById(this.id);
+        })
+      )
+      .subscribe((response: any) => {
+        console.log('response', response[0].content);
+        this.editorContent = response[0].content;
+      });
   }
 
   onEditorKeyUp(text: any) {
