@@ -10,7 +10,6 @@ import { NzUploadFile } from 'ng-zorro-antd/upload';
 import { NotificationService } from 'src/app/shared/services/notification.service';
 import { UploadFileService } from 'src/app/shared/services/upload-file.service';
 import { switchMap, catchError } from 'rxjs/operators';
-import { of } from 'rxjs';
 import { WordCounterService } from 'src/app/seo-editor/service/word-counter.service';
 
 @Component({
@@ -46,27 +45,6 @@ export class UploadModalComponent {
     return false;
   };
 
-  // submitForm(): void {
-  //   if (this.fileList.length === 0) {
-  //     return;
-  //   }
-  //   this.loading = true;
-  //   const formData = new FormData();
-  //   if (this.fileList.length > 0) {
-  //     formData.append('configuration_file', this.fileList[0] as any);
-  //   }
-  //   this.uploadFileService.postFile(formData).subscribe(
-  //     (response: any) => {
-  //       this.notificationService.success('file uploaded.');
-  //       this.loading = false;
-  //       this.modal.close();
-  //     },
-  //     (error: any) => {
-  //       this.notificationService.error('Failed to upload file.');
-  //       this.loading = false;
-  //     }
-  //   );
-  // }
   submitForm(): void {
     if (this.fileList.length === 0) {
       return;
@@ -93,10 +71,9 @@ export class UploadModalComponent {
         (response: any) => {
           console.log('File content:', response);
 
-          // Assuming that the response is an array of objects
           if (Array.isArray(response) && response.length > 0) {
             const latestObject = response[response.length - 1];
-            this.fileData.push(latestObject); // Add the latest object to the fileData array
+            this.fileData.push(latestObject);
             console.log(this.fileData);
 
             this.wordCounterService.updateWordCount(
