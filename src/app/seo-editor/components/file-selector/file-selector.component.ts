@@ -56,9 +56,27 @@ export class FileSelectorComponent implements OnInit {
         this.selectedFile.variation_data
       );
       this.uploadFileService
-        .getWordsFromFiles('Variation', this.selectedFile.filename)
+        .getWordsFromFiles('Variations', this.selectedFile.filename)
         .subscribe((response: any[]) => {
           const entityArray = this.wordCounterService.wordObject['Variations'];
+          entityArray.length = 0;
+
+          for (const wordInfo of response) {
+            entityArray.push({
+              word: wordInfo.label,
+              count: { summer_note: 0, meta: 0 },
+            });
+          }
+        });
+
+      this.wordCounterService.updateWordCount(
+        'LSIKeywords',
+        this.selectedFile.lsi_keyword_data
+      );
+      this.uploadFileService
+        .getWordsFromFiles('LSIKeywords', this.selectedFile.filename)
+        .subscribe((response: any[]) => {
+          const entityArray = this.wordCounterService.wordObject['LSIKeywords'];
           entityArray.length = 0;
 
           for (const wordInfo of response) {

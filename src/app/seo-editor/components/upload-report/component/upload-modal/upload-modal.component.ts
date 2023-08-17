@@ -168,7 +168,7 @@ export class UploadModalComponent {
         }),
         switchMap((fileResponse: any) => {
           const latestObject = fileResponse[fileResponse.length - 1];
-          const entityTypes = ['Entity', 'Variation'];
+          const entityTypes = ['Entity', 'Variations', 'LSIKeywords'];
 
           // Fetch words for each entity type using forkJoin
           const fetchWordObservables = entityTypes.map((entityType) => {
@@ -191,7 +191,7 @@ export class UploadModalComponent {
 
           // Update the wordObject for each entity type
           for (let i = 0; i < wordsResponses.length; i++) {
-            const entityTypes = ['Entity', 'Variations'];
+            const entityTypes = ['Entity', 'Variations', 'LSIKeywords'];
             const entityType = entityTypes[i];
             const wordsResponse = wordsResponses[i];
 
