@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { UploadFileService } from 'src/app/shared/services/upload-file.service';
 import { WordCounterService } from '../../service/word-counter.service';
 import { NzMessageService } from 'ng-zorro-antd/message';
+import { TableLoaderService } from 'src/app/shared/services/table-loader.service';
 
 @Component({
   selector: 'app-file-selector',
@@ -15,18 +16,18 @@ export class FileSelectorComponent implements OnInit {
   constructor(
     private uploadFileService: UploadFileService,
     private wordCounterService: WordCounterService,
-    private nzMessageServicec: NzMessageService
+    private nzMessageServicec: NzMessageService,
+    private tableLoader: TableLoaderService
   ) {}
 
   ngOnInit(): void {
     //  this.uploadFileService.file;
+
     this.uploadFileService.getAllFiles().subscribe({
       next: (files: any) => {
-        console.log(files);
         this.uploadFileService.addFiles(files);
         // this.files = this.uploadFileService.files;
         this.uploadFileService.getFiles().subscribe((files) => {
-          console.log('Files', files);
           this.files = files;
           // Perform other updates here
         });
@@ -39,6 +40,7 @@ export class FileSelectorComponent implements OnInit {
 
   onFileSelectionChange() {
     if (this.selectedFile) {
+      this.tableLoader.variationTableLoader = true;
       this.wordCounterService.updateWordCount(
         'Entity',
         this.selectedFile.entity_data
@@ -57,6 +59,7 @@ export class FileSelectorComponent implements OnInit {
               count: { summer_note: 0, meta: 0 },
             });
           }
+          this.tableLoader.variationTableLoader = false;
         });
 
       this.wordCounterService.updateWordCount(
@@ -75,6 +78,7 @@ export class FileSelectorComponent implements OnInit {
               count: { summer_note: 0, meta: 0 },
             });
           }
+          this.tableLoader.variationTableLoader = false;
         });
 
       this.wordCounterService.updateWordCount(
@@ -93,6 +97,7 @@ export class FileSelectorComponent implements OnInit {
               count: { summer_note: 0, meta: 0 },
             });
           }
+          this.tableLoader.variationTableLoader = false;
         });
     }
   }

@@ -12,15 +12,16 @@ export class SeoEditorComponent implements OnInit {
   tableData: any[] = [];
   selectedTable: string = 'Entity';
   editorContent: any;
-  constructor(private wordCounter: WordCounterService) {}
+  constructor(public wordCounter: WordCounterService) {}
 
   onTableSelection(selectedTable: any): void {
+    console.log('tableselected', selectedTable);
     this.selectedTable = selectedTable;
   }
 
-  onWordObject(onWordObject): void {
-    this.wordObject = onWordObject;
-  }
+  // onWordObject(onWordObject): void {
+  //   this.wordObject = onWordObject;
+  // }
   onWordCount(onWordCount): void {
     console.log('word count', onWordCount);
     this.wordCount = onWordCount;
@@ -31,9 +32,10 @@ export class SeoEditorComponent implements OnInit {
   }
 
   getData() {
-    return this.wordObject
-      ? this.wordObject[this.selectedTable]
-      : this.wordCounter.wordObject[this.selectedTable];
+    // return this.wordObject
+    //   ? this.wordObject[this.selectedTable]
+    //   :
+    return this.wordCounter.wordObject[this.selectedTable];
   }
 
   getWordCount() {

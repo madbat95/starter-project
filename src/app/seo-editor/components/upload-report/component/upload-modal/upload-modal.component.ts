@@ -12,6 +12,7 @@ import { UploadFileService } from 'src/app/shared/services/upload-file.service';
 import { switchMap, catchError } from 'rxjs/operators';
 import { WordCounterService } from 'src/app/seo-editor/service/word-counter.service';
 import { forkJoin } from 'rxjs';
+import { TableLoaderService } from 'src/app/shared/services/table-loader.service';
 
 @Component({
   selector: 'app-upload-modal',
@@ -21,18 +22,19 @@ import { forkJoin } from 'rxjs';
 export class UploadModalComponent {
   @Output() onFile = new EventEmitter<any>();
   fileList: NzUploadFile[] = [];
-  loading: boolean = false;
   uploadForm!: FormGroup;
   wordArray: any[] = [];
   fileName: any = '';
   fileData: any[] = [];
+  isLoading: boolean = false;
 
   constructor(
     private fb: FormBuilder,
     private modal: NzModalRef,
     private notificationService: NotificationService,
     private uploadFileService: UploadFileService,
-    private wordCounterService: WordCounterService
+    private wordCounterService: WordCounterService,
+    public tableLoader: TableLoaderService
   ) {}
 
   ngOnInit(): void {
@@ -154,7 +156,8 @@ export class UploadModalComponent {
     if (this.fileList.length === 0) {
       return;
     }
-    this.loading = true;
+    this.tableLoader.variationTableLoader = true;
+    this.isLoading = true;
     const formData = new FormData();
     if (this.fileList.length > 0) {
       formData.append('configuration_file', this.fileList[0] as any);
@@ -211,12 +214,14 @@ export class UploadModalComponent {
             }
           }
 
-          this.loading = false;
+          this.tableLoader.variationTableLoader = false;
+          this.isLoading = false;
           this.modal.close();
         },
         (error: any) => {
           console.error('Failed to get file:', error);
-          this.loading = false;
+          this.tableLoader.variationTableLoader = false;
+          this.isLoading = false;
         }
       );
   }

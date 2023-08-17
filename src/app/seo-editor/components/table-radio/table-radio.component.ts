@@ -7,14 +7,14 @@ import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 })
 export class TableRadioComponent implements OnInit {
   selectedTable: string = 'Entity';
-  @Output() data = new EventEmitter<any[]>();
   @Output() selectedTableChange = new EventEmitter<string>();
-
+  constructor() {}
   ngOnInit(): void {
     this.onTableSelectionChange();
   }
 
   onTableSelectionChange(): void {
+    console.log('radiovalueemit', this.selectedTable);
     if (this.selectedTable === 'LSIKeywords') {
       this.selectedTableChange.emit(this.selectedTable);
     } else if (this.selectedTable === 'Entity') {

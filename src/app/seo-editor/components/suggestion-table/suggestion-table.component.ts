@@ -112,7 +112,6 @@ export class SuggestionTableComponent implements OnInit {
 
   ngOnInit(): void {
     this.tableData = this.wordCounter.wordCount;
-    console.log(this.tableData);
   }
 
   // titleBlur(): void {

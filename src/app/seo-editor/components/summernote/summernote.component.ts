@@ -69,7 +69,7 @@ export class SummernoteComponent implements OnInit {
         })
       )
       .subscribe((response: any) => {
-        this.editorContent = response[0].content;
+        if (response.length) this.editorContent = response[0].content;
       });
   }
 

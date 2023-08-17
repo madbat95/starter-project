@@ -33,11 +33,11 @@
       nzBlock
       nz-button
       nzType="primary"
-      [nzLoading]="loading"
+      [nzLoading]="isLoading"
       [disabled]="fileList.length < 1"
       (click)="submitForm()"
     >
-      {{ loading ? "Submitting" : "Submit" }}
+      {{ isLoading ? "Submitting" : "Submit" }}
     </button>
   </div>
 </form>
