@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import { WordObject } from 'src/app/shared/interfaces/word-object';
 
 @Injectable({
   providedIn: 'root',
