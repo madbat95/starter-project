@@ -96,6 +96,7 @@ export class WordCounterService {
     Variations: [],
     LSIKeywords: [],
   };
+
   isPhraseInWordObject(phrase, entityType) {
     const entityArray = this.wordObject[entityType];
     for (const entity of entityArray) {

@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Output, EventEmitter } from '@angular/core';
 import {
   FormBuilder,
   FormGroup,
@@ -19,6 +19,7 @@ import { forkJoin } from 'rxjs';
   styleUrls: ['./upload-modal.component.scss'],
 })
 export class UploadModalComponent {
+  @Output() onFile = new EventEmitter<any>();
   fileList: NzUploadFile[] = [];
   loading: boolean = false;
   uploadForm!: FormGroup;
@@ -164,6 +165,7 @@ export class UploadModalComponent {
       .pipe(
         switchMap((postResponse: any) => {
           this.notificationService.success('File uploaded.');
+          this.uploadFileService.addFiles(postResponse);
           return this.uploadFileService.getFile(this.fileName);
         }),
         switchMap((fileResponse: any) => {
