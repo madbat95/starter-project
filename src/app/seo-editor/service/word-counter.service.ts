@@ -120,6 +120,16 @@ export class WordCounterService {
     LSIKeywords: [],
   };
 
+  calculateTotalMetaWordCount(property: string): number {
+    let totalMetaWordCount = 0;
+
+    for (const entityType of ['Entity', 'Variations', 'LSIKeywords']) {
+      totalMetaWordCount += this.wordCount[entityType][property];
+    }
+
+    return totalMetaWordCount;
+  }
+
   isPhraseInWordObject(phrase, entityType) {
     const entityArray = this.wordObject[entityType];
     for (const entity of entityArray) {
