@@ -49,7 +49,7 @@
   </div> -->
 </div>
 
-<div nz-row nzJustify="space-around" [nzGutter]="[8, 0]">
+<div nz-row nzJustify="space-around" [nzGutter]="[8, 8]">
   <div nz-col [nzMd]="24" [nzLg]="6" [nzXl]="6">
     <div nz-row nzJustify="center" nzAlign="middle" [nzGutter]="[0, 8]">
       <div nz-col>
@@ -64,9 +64,18 @@
   </div>
 
   <div nz-col [nzMd]="24" [nzLg]="13" [nzXl]="13">
-    <app-summernote></app-summernote>
+    <app-summernote
+      (onEditorContent)="onEditorContent($event)"
+    ></app-summernote>
   </div>
   <div nz-col [nzMd]="24" [nzLg]="5" [nzXl]="5">
-    <meta-button></meta-button>
+    <div nz-row nzJustify="center" nzAlign="middle" [nzGutter]="[8, 8]">
+      <div nz-col>
+        <app-save-button [editorContent]="editorContent"></app-save-button>
+      </div>
+      <div>
+        <meta-button></meta-button>
+      </div>
+    </div>
   </div>
 </div>

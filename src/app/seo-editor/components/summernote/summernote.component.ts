@@ -1,5 +1,8 @@
 import { Component, EventEmitter, OnInit, Output, Input } from '@angular/core';
 import { WordCounterService } from '../../service/word-counter.service';
+import { ActivatedRoute, ParamMap } from '@angular/router';
+import { switchMap, catchError } from 'rxjs/operators';
+import { HtmlContentService } from 'src/app/shared/services/html-content.service';
 
 @Component({
   selector: 'app-summernote',
@@ -7,9 +10,13 @@ import { WordCounterService } from '../../service/word-counter.service';
   styleUrls: ['./summernote.component.scss'],
 })
 export class SummernoteComponent implements OnInit {
-  constructor(private wordCounter: WordCounterService) {}
-
-  editorContent = '<html><p>wasif</p></html>';
+  constructor(
+    private wordCounter: WordCounterService,
+    private route: ActivatedRoute,
+    private contentSerevice: HtmlContentService
+  ) {}
+  id: any;
+  editorContent = '';
   uniqueWords: Set<string> = new Set();
 
   editorConfig = {
@@ -48,14 +55,28 @@ export class SummernoteComponent implements OnInit {
     ],
   };
 
+  @Input() isDisabled: boolean = false;
   @Output() onWordObject = new EventEmitter<any>();
   @Output() onWordCount = new EventEmitter<any>();
+  @Output() onEditorContent = new EventEmitter<any>();
 
   ngOnInit(): void {
-    // this.onWordObject.emit(this.wordCounter.wordObject);
+    this.route.paramMap
+      .pipe(
+        switchMap((params: ParamMap) => {
+          this.id = +params.get('id');
+          return this.contentSerevice.getContentById(this.id);
+        })
+      )
+      .subscribe((response: any) => {
+        if (response.length) this.editorContent = response[0].content;
+      });
   }
 
   onEditorKeyUp(text: any) {
+    this.onEditorContent.emit({ report: this.id, content: this.editorContent });
+    console.log({ report: this.id, content: this.editorContent });
+
     const parser = new DOMParser();
     const doc = parser.parseFromString(text, 'text/html');
     console.log('doc', doc.body);
@@ -92,13 +113,8 @@ export class SummernoteComponent implements OnInit {
         word.count.summer_note = 0;
       }
     }
-
     this.uniqueWords.clear(); // Clear the uniqueWords Set
-
-    const cleanedText = text.replace(/<\/?[^>]+(>|$)/g, ' ');
-
-    const words = cleanedText.split(/\s+/);
-
+    const cleanedText = text.replace(/<\/?[^>]+(>|$)/g, ' ').replace(/&nbsp;+/g, '')
     this.wordCounter.wordCountCalculate(cleanedText, 'summer_note');
   }
 }

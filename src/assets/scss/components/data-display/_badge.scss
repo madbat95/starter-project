@@ -8,7 +8,8 @@
 
 .ant-badge-count {
   height: $badge-count-height;
-  background: lighten($badge-count-bg, 20%);
+  // background: lighten($badge-count-bg, 20%);
+  background: unset;
   color: $white;
   line-height: $badge-count-height;
   padding: 0 5px;
@@ -16,7 +17,8 @@
   font-weight: $font-weight-normal;
 
   p {
-    color: $white;
+    // color: $white;
+    color: black;
     line-height: $badge-count-height;
   }
 }

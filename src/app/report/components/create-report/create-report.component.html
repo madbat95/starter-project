@@ -102,9 +102,9 @@
           class="bold-label"
           nzType="primary"
           (click)="onSubmit()"
+          [nzLoading]="isLoading"
           [disabled]="isLoading || !reportsForm.valid"
         >
-          <span nz-icon nzType="plus"></span>
           {{ isLoading ? "Generating" : "Generate Report" }}
         </button>
       </div>

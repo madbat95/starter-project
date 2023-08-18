@@ -1,4 +1,6 @@
 import { Injectable } from '@angular/core';
+import { Subject } from 'rxjs';
+import { WordObject } from 'src/app/shared/interfaces/word-object';
 
 @Injectable({
   providedIn: 'root',
@@ -9,22 +11,22 @@ export class WordCounterService {
   wordCount: any = {
     Entity: {
       metaTitle: 0,
-      metaTitleR: 10,
+      metaTitleR: 0,
       metaDescription: 0,
-      metaDescriptionR: 10,
+      metaDescriptionR: 0,
       content: 0,
       contentR: 0,
       headers: {
         H1: 0,
-        H1R: 10,
+        H1R: 0,
         H2: 0,
-        H2R: 5,
+        H2R: 0,
         H3: 0,
-        H3R: 10,
+        H3R: 0,
         H4: 0,
-        H4R: 5,
+        H4R: 0,
         H5: 0,
-        H5R: 5,
+        H5R: 0,
         H6: 0,
         H6R: 0,
       },
@@ -38,15 +40,15 @@ export class WordCounterService {
       contentR: 0,
       headers: {
         H1: 0,
-        H1R: 10,
+        H1R: 0,
         H2: 0,
-        H2R: 5,
+        H2R: 0,
         H3: 0,
-        H3R: 10,
+        H3R: 0,
         H4: 0,
-        H4R: 5,
+        H4R: 0,
         H5: 0,
-        H5R: 5,
+        H5R: 0,
         H6: 0,
         H6R: 0,
       },
@@ -60,15 +62,15 @@ export class WordCounterService {
       contentR: 0,
       headers: {
         H1: 0,
-        H1R: 10,
+        H1R: 0,
         H2: 0,
-        H2R: 5,
+        H2R: 0,
         H3: 0,
-        H3R: 10,
+        H3R: 0,
         H4: 0,
-        H4R: 5,
+        H4R: 0,
         H5: 0,
-        H5R: 5,
+        H5R: 0,
         H6: 0,
         H6R: 0,
       },
@@ -90,115 +92,12 @@ export class WordCounterService {
     }
   }
 
-  wordObject = {
-    Entity: [
-      {
-        word: 'security',
-        count: { summer_note: 0, meta: 0 },
-      },
-      {
-        word: 'security service',
-        count: { summer_note: 0, meta: 0 },
-      },
-      {
-        word: 'privacy',
-        count: { summer_note: 0, meta: 0 },
-      },
-      {
-        word: 'data',
-        count: { summer_note: 0, meta: 0 },
-      },
-      {
-        word: 'virginia',
-        count: { summer_note: 0, meta: 0 },
-      },
-      {
-        word: 'veritext',
-        count: { summer_note: 0, meta: 0 },
-      },
-      {
-        word: 'access',
-        count: { summer_note: 0, meta: 0 },
-      },
-      {
-        word: 'access to a door',
-        count: { summer_note: 0, meta: 0 },
-      },
-
-      {
-        word: 'finance',
-        count: { summer_note: 0, meta: 0 },
-      },
-    ],
-    Variations: [
-      {
-        word: 'privacy',
-        count: { summer_note: 0, meta: 0 },
-      },
-      {
-        word: 'alexandria',
-        count: { summer_note: 0, meta: 0 },
-      },
-      {
-        word: 'videographers',
-        count: { summer_note: 0, meta: 0 },
-      },
-      {
-        word: 'north',
-        count: { summer_note: 0, meta: 0 },
-      },
-      {
-        word: 'breach',
-        count: { summer_note: 0, meta: 0 },
-      },
-      {
-        word: 'statistics',
-        count: { summer_note: 0, meta: 0 },
-      },
-      {
-        word: 'logistics',
-        count: { summer_note: 0, meta: 0 },
-      },
-      {
-        word: 'finance',
-        count: { summer_note: 0, meta: 0 },
-      },
-    ],
-    LSIKeywords: [
-      {
-        word: 'privacy',
-        count: { summer_note: 0, meta: 0 },
-      },
-      {
-        word: 'paper',
-        count: { summer_note: 0, meta: 0 },
-      },
-      {
-        word: 'testimony',
-        count: { summer_note: 0, meta: 0 },
-      },
-      {
-        word: 'chicago',
-        count: { summer_note: 0, meta: 0 },
-      },
-      {
-        word: 'united',
-        count: { summer_note: 0, meta: 0 },
-      },
-      {
-        word: 'manchester',
-        count: { summer_note: 0, meta: 0 },
-      },
-      {
-        word: 'city',
-        count: { summer_note: 0, meta: 0 },
-      },
-      {
-        word: 'trial',
-        count: { summer_note: 0, meta: 0 },
-      },
-    ],
+  wordObject: { [key: string]: { word: string; count: any }[] } = {
+    Entity: [],
+    Variations: [],
+    LSIKeywords: [],
   };
+
   isPhraseInWordObject(phrase, entityType) {
     const entityArray = this.wordObject[entityType];
     for (const entity of entityArray) {

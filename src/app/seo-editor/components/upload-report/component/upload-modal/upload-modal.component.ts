@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Output, EventEmitter } from '@angular/core';
 import {
   FormBuilder,
   FormGroup,
@@ -11,6 +11,8 @@ import { NotificationService } from 'src/app/shared/services/notification.servic
 import { UploadFileService } from 'src/app/shared/services/upload-file.service';
 import { switchMap, catchError } from 'rxjs/operators';
 import { WordCounterService } from 'src/app/seo-editor/service/word-counter.service';
+import { forkJoin } from 'rxjs';
+import { TableLoaderService } from 'src/app/shared/services/table-loader.service';
 
 @Component({
   selector: 'app-upload-modal',
@@ -18,19 +20,21 @@ import { WordCounterService } from 'src/app/seo-editor/service/word-counter.serv
   styleUrls: ['./upload-modal.component.scss'],
 })
 export class UploadModalComponent {
+  @Output() onFile = new EventEmitter<any>();
   fileList: NzUploadFile[] = [];
-  loading: boolean = false;
   uploadForm!: FormGroup;
-
+  wordArray: any[] = [];
   fileName: any = '';
   fileData: any[] = [];
+  isLoading: boolean = false;
 
   constructor(
     private fb: FormBuilder,
     private modal: NzModalRef,
     private notificationService: NotificationService,
     private uploadFileService: UploadFileService,
-    private wordCounterService: WordCounterService
+    private wordCounterService: WordCounterService,
+    public tableLoader: TableLoaderService
   ) {}
 
   ngOnInit(): void {
@@ -45,11 +49,115 @@ export class UploadModalComponent {
     return false;
   };
 
+  // submitForm(): void {
+  //   if (this.fileList.length === 0) {
+  //     return;
+  //   }
+  //   this.loading = true;
+  //   const formData = new FormData();
+  //   if (this.fileList.length > 0) {
+  //     formData.append('configuration_file', this.fileList[0] as any);
+  //   }
+
+  //   this.uploadFileService
+  //     .postFile(formData)
+  //     .pipe(
+  //       switchMap((postResponse: any) => {
+  //         this.notificationService.success('File uploaded.');
+  //         return this.uploadFileService.getFile(this.fileName);
+  //       }),
+  //       switchMap((fileResponse: any) => {
+  //         const latestObject = fileResponse[fileResponse.length - 1];
+  //         return this.uploadFileService.getWordsFromFiles(
+  //           'Entity',
+  //           latestObject.filename
+  //         );
+  //       }),
+  //       catchError((error: any) => {
+  //         this.notificationService.error('Failed to upload file.');
+  //         return error;
+  //       })
+  //     )
+  //     .subscribe(
+  //       (wordResponse: any) => {
+  //         console.log('Words from file:', wordResponse);
+
+  //         // Append the wordResponse data to the fileData array
+  //         this.fileData.push(wordResponse);
+
+  //         this.loading = false;
+  //         this.modal.close();
+  //       },
+  //       (error: any) => {
+  //         console.error('Failed to get file:', error);
+  //         this.loading = false;
+  //       }
+  //     );
+  // }
+
+  // submitForm(): void {
+  //   if (this.fileList.length === 0) {
+  //     return;
+  //   }
+  //   this.loading = true;
+  //   const formData = new FormData();
+  //   if (this.fileList.length > 0) {
+  //     formData.append('configuration_file', this.fileList[0] as any);
+  //   }
+
+  //   this.uploadFileService
+  //     .postFile(formData)
+  //     .pipe(
+  //       switchMap((postResponse: any) => {
+  //         this.notificationService.success('File uploaded.');
+  //         return this.uploadFileService.getFile(this.fileName);
+  //       }),
+  //       switchMap((fileResponse: any) => {
+  //         const latestObject = fileResponse[fileResponse.length - 1];
+  //         return this.uploadFileService.getWordsFromFiles(
+  //           'Entity',
+  //           latestObject.filename
+  //         );
+  //       }),
+  //       catchError((error: any) => {
+  //         this.notificationService.error('Failed to upload file.');
+  //         return error;
+  //       })
+  //     )
+  //     .subscribe(
+  //       (wordResponse: any) => {
+  //         console.log('Words from file:', wordResponse);
+
+  //         // Update the wordObject with labels from the wordResponse
+  //         const entityType = 'Entity'; // Adjust if needed
+  //         const entityArray = this.wordCounterService.wordObject[entityType];
+  //         for (const wordInfo of wordResponse) {
+  //           const word = wordInfo.label;
+
+  //           // Add the word to the wordObject if it doesn't exist
+  //           if (!entityArray.some((entity) => entity.word === word)) {
+  //             entityArray.push({
+  //               word: word,
+  //               count: { summer_note: 0, meta: 0 },
+  //             });
+  //           }
+  //         }
+
+  //         this.loading = false;
+  //         this.modal.close();
+  //       },
+  //       (error: any) => {
+  //         console.error('Failed to get file:', error);
+  //         this.loading = false;
+  //       }
+  //     );
+  // }
   submitForm(): void {
     if (this.fileList.length === 0) {
       return;
     }
-    this.loading = true;
+    this.tableLoader.variationTableLoader = true;
+    this.isLoading = true;
     const formData = new FormData();
     if (this.fileList.length > 0) {
       formData.append('configuration_file', this.fileList[0] as any);
@@ -60,7 +168,22 @@ export class UploadModalComponent {
       .pipe(
         switchMap((postResponse: any) => {
           this.notificationService.success('File uploaded.');
+          this.uploadFileService.addFiles(postResponse);
           return this.uploadFileService.getFile(this.fileName);
+        }),
+        switchMap((fileResponse: any) => {
+          const latestObject = fileResponse[fileResponse.length - 1];
+          const entityTypes = ['Entity', 'Variations', 'LSIKeywords'];
+
+          // Here i am fetching words for each entity type using forkJoin
+          const fetchWordObservables = entityTypes.map((entityType) => {
+            return this.uploadFileService.getWordsFromFiles(
+              entityType,
+              latestObject.filename
+            );
+          });
+
+          return forkJoin(fetchWordObservables);
         }),
         catchError((error: any) => {
           this.notificationService.error('Failed to upload file.');
@@ -68,34 +191,37 @@ export class UploadModalComponent {
         })
       )
       .subscribe(
-        (response: any) => {
-          console.log('File content:', response);
+        (wordsResponses: any[]) => {
+          console.log('Words from file for each entity type:', wordsResponses);
 
-          if (Array.isArray(response) && response.length > 0) {
-            const latestObject = response[response.length - 1];
-            this.fileData.push(latestObject);
-            console.log(this.fileData);
+          // Update the wordObject for each entity type
+          for (let i = 0; i < wordsResponses.length; i++) {
+            const entityTypes = ['Entity', 'Variations', 'LSIKeywords'];
+            const entityType = entityTypes[i];
+            const wordsResponse = wordsResponses[i];
 
-            this.wordCounterService.updateWordCount(
-              'Entity',
-              latestObject['entity_data']
-            );
-            this.wordCounterService.updateWordCount(
-              'Variations',
-              latestObject['variation_data']
-            );
-            this.wordCounterService.updateWordCount(
-              'LSIKeywords',
-              latestObject['lsi_keyword_data']
-            );
+            const entityArray = this.wordCounterService.wordObject[entityType];
+            for (const wordInfo of wordsResponse) {
+              const word = wordInfo.label;
+
+              // Add the word to the wordObject if it doesn't exist
+              if (!entityArray.some((entity) => entity.word === word)) {
+                entityArray.push({
+                  word: word,
+                  count: { summer_note: 0, meta: 0 },
+                });
+              }
+            }
           }
 
-          this.loading = false;
+          this.tableLoader.variationTableLoader = false;
+          this.isLoading = false;
           this.modal.close();
         },
         (error: any) => {
           console.error('Failed to get file:', error);
-          this.loading = false;
+          this.tableLoader.variationTableLoader = false;
+          this.isLoading = false;
         }
       );
   }

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Output } from '@angular/core';
 import { NzMessageService } from 'ng-zorro-antd/message';
 import { NzModalService } from 'ng-zorro-antd/modal';
 import { UploadModalComponent } from './component/upload-modal/upload-modal.component';
@@ -16,7 +16,7 @@ export class UploadReportComponent {
 
   addCSV(): void {
     const modal = this.modalService.create({
-      nzTitle: ' <ng-template><h2>Import Leads</h2></ng-template>',
+      nzTitle: ' <ng-template><h2>Upload File</h2></ng-template>',
       nzContent: UploadModalComponent,
       nzClosable: true,
       nzFooter: null,

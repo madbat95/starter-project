@@ -1,4 +1,5 @@
 import { Component, Input } from '@angular/core';
+import { TableLoaderService } from 'src/app/shared/services/table-loader.service';
 
 @Component({
   selector: 'app-variation-table',
@@ -6,11 +7,14 @@ import { Component, Input } from '@angular/core';
   styleUrls: ['./variation-table.component.scss'],
 })
 export class VariationTableComponent {
+  constructor(public tableLoader: TableLoaderService) {}
+
   searchValue = '';
   visible = false;
   tableData: { word: string; count: number }[] = [];
   originalData: any;
   @Input() set data(val: { word: string; count: number }[]) {
+    console.log('val', val);
     this.tableData = val;
     this.originalData = [...this.tableData];
   }
