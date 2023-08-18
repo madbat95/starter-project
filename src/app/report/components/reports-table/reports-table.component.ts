@@ -8,6 +8,7 @@ import { ReportService } from 'src/app/shared/services/report.service';
   styleUrls: ['./reports-table.component.scss'],
 })
 export class ReportsTableComponent {
+  searchKeyword = '';
   reports: any[] = [];
   loading = false;
 
@@ -19,11 +20,8 @@ export class ReportsTableComponent {
 
   constructor(
     private reportService: ReportService,
-    private NzMessageService: NzMessageService,
-  ) {
-  }
-
- 
+    private NzMessageService: NzMessageService
+  ) {}
 
   ngOnInit(): void {
     this.loadReports();
