@@ -40,6 +40,7 @@ export class FileSelectorComponent implements OnInit {
 
   onFileSelectionChange() {
     if (this.selectedFile) {
+      console.log('selected file', this.selectedFile.filename);
       this.tableLoader.variationTableLoader = true;
       this.wordCounterService.updateWordCount(
         'Entity',
@@ -50,6 +51,7 @@ export class FileSelectorComponent implements OnInit {
       this.uploadFileService
         .getWordsFromFiles('Entity', this.selectedFile.filename)
         .subscribe((response: any[]) => {
+          console.log('response.length', response.length);
           const entityArray = this.wordCounterService.wordObject['Entity'];
           entityArray.length = 0;
 
@@ -62,43 +64,43 @@ export class FileSelectorComponent implements OnInit {
           this.tableLoader.variationTableLoader = false;
         });
 
-      this.wordCounterService.updateWordCount(
-        'Variations',
-        this.selectedFile.variation_data
-      );
-      this.uploadFileService
-        .getWordsFromFiles('Variations', this.selectedFile.filename)
-        .subscribe((response: any[]) => {
-          const entityArray = this.wordCounterService.wordObject['Variations'];
-          entityArray.length = 0;
+      // this.wordCounterService.updateWordCount(
+      //   'Variations',
+      //   this.selectedFile.variation_data
+      // );
+      // this.uploadFileService
+      //   .getWordsFromFiles('Variations', this.selectedFile.filename)
+      //   .subscribe((response: any[]) => {
+      //     const entityArray = this.wordCounterService.wordObject['Variations'];
+      //     entityArray.length = 0;
 
-          for (const wordInfo of response) {
-            entityArray.push({
-              word: wordInfo.label,
-              count: { summer_note: 0, meta: 0 },
-            });
-          }
-          this.tableLoader.variationTableLoader = false;
-        });
+      //     for (const wordInfo of response) {
+      //       entityArray.push({
+      //         word: wordInfo.label,
+      //         count: { summer_note: 0, meta: 0 },
+      //       });
+      //     }
+      //     this.tableLoader.variationTableLoader = false;
+      //   });
 
-      this.wordCounterService.updateWordCount(
-        'LSIKeywords',
-        this.selectedFile.lsi_keyword_data
-      );
-      this.uploadFileService
-        .getWordsFromFiles('LSIKeywords', this.selectedFile.filename)
-        .subscribe((response: any[]) => {
-          const entityArray = this.wordCounterService.wordObject['LSIKeywords'];
-          entityArray.length = 0;
+      // this.wordCounterService.updateWordCount(
+      //   'LSIKeywords',
+      //   this.selectedFile.lsi_keyword_data
+      // );
+      // this.uploadFileService
+      //   .getWordsFromFiles('LSIKeywords', this.selectedFile.filename)
+      //   .subscribe((response: any[]) => {
+      //     const entityArray = this.wordCounterService.wordObject['LSIKeywords'];
+      //     entityArray.length = 0;
 
-          for (const wordInfo of response) {
-            entityArray.push({
-              word: wordInfo.label,
-              count: { summer_note: 0, meta: 0 },
-            });
-          }
-          this.tableLoader.variationTableLoader = false;
-        });
+      //     for (const wordInfo of response) {
+      //       entityArray.push({
+      //         word: wordInfo.label,
+      //         count: { summer_note: 0, meta: 0 },
+      //       });
+      //     }
+      //     this.tableLoader.variationTableLoader = false;
+      //   });
     }
   }
 }

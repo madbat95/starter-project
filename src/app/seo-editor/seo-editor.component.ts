@@ -32,10 +32,9 @@ export class SeoEditorComponent implements OnInit {
   }
 
   getData() {
-    // return this.wordObject
-    //   ? this.wordObject[this.selectedTable]
-    //   :
-    return this.wordCounter.wordObject[this.selectedTable];
+    return this.wordObject
+      ? this.wordObject[this.selectedTable]
+      : this.wordCounter.wordObject[this.selectedTable];
   }
 
   getWordCount() {

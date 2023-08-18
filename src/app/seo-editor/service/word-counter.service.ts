@@ -92,7 +92,7 @@ export class WordCounterService {
     }
   }
 
-  wordObject = {
+  wordObject: { [key: string]: { word: string; count: any }[] } = {
     Entity: [],
     Variations: [],
     LSIKeywords: [],

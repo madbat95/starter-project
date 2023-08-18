@@ -7,7 +7,8 @@
       [nzFrontPagination]="false"
       [nzData]="tableData"
       nzTableLayout="fixed"
-      [nzLoading]="isLoading"
+      [nzLoading]="tableLoader.variationTableLoader"
+      [nzScroll]="{ y: '240px' }"
     >
       <thead>
         <tr>
@@ -26,7 +27,11 @@
       </thead>
       <tbody>
         <tr *ngFor="let data of tableData">
-          <td nzAlign="center" class="cell-hover-show">
+          <td
+            *ngIf="data && data.word"
+            nzAlign="center"
+            class="cell-hover-show"
+          >
             <span
               nz-icon
               nzType="close-circle"
@@ -36,7 +41,7 @@
             ></span>
             <span class="ml-2">{{ data.word }}</span>
           </td>
-          <td nzAlign="center">
+          <td *ngIf="data && data.count" nzAlign="center">
             <badge [data]="data.count.summer_note + data.count.meta"></badge>
           </td>
         </tr>

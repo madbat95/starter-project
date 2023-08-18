@@ -175,7 +175,7 @@ export class UploadModalComponent {
           const latestObject = fileResponse[fileResponse.length - 1];
           const entityTypes = ['Entity', 'Variations', 'LSIKeywords'];
 
-          // Fetch words for each entity type using forkJoin
+          // Here i am fetching words for each entity type using forkJoin
           const fetchWordObservables = entityTypes.map((entityType) => {
             return this.uploadFileService.getWordsFromFiles(
               entityType,
@@ -183,7 +183,7 @@ export class UploadModalComponent {
             );
           });
 
-          return forkJoin(fetchWordObservables); // Using forkJoin to combine multiple observables
+          return forkJoin(fetchWordObservables);
         }),
         catchError((error: any) => {
           this.notificationService.error('Failed to upload file.');

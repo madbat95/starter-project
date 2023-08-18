@@ -7,19 +7,16 @@ import { TableLoaderService } from 'src/app/shared/services/table-loader.service
   styleUrls: ['./variation-table.component.scss'],
 })
 export class VariationTableComponent {
-  constructor(private tableLoader: TableLoaderService) {}
+  constructor(public tableLoader: TableLoaderService) {}
 
-  isLoading = this.tableLoader.variationTableLoader;
   searchValue = '';
   visible = false;
   tableData: { word: string; count: number }[] = [];
   originalData: any;
   @Input() set data(val: { word: string; count: number }[]) {
-    if (val && val.length) {
-      console.log('val', val);
-      this.tableData = val;
-      this.originalData = [...this.tableData];
-    }
+    console.log('val', val);
+    this.tableData = val;
+    this.originalData = [...this.tableData];
   }
 
   reset(): void {
