@@ -17,12 +17,13 @@ export class MetaComponent {
 
     const parser = new DOMParser();
 
-    this.updateCountsForElement(this.metaTitle, 'metaTitle', parser);
-    this.updateCountsForElement(
-      this.metaDescription,
-      'metaDescription',
-      parser
-    );
+    let meta = ['metaTitle', 'metaDescription'];
+
+    for (const property of meta) {
+      this.updateCountsForElement(this[property], property, parser);
+      this.wordCounter.wordCount['WordTags'][property] =
+        this.wordCounter.calculateTotalMetaWordCount(property);
+    }
   }
 
   resetWordCounts() {
