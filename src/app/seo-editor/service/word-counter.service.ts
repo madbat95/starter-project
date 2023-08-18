@@ -272,13 +272,17 @@ export class WordCounterService {
 
           // Create a regular expression for the specific header tag
           const headerRegex = new RegExp(
-            `<${headerTag.toLowerCase()}[^>]*>`,
+            `<${headerTag.toLowerCase()}[^>]*>(.*?)<\/${headerTag.toLowerCase()}>`,
             'gi'
           );
           const headerMatches = editorContent.match(headerRegex) || [];
 
           // Count the number of matches (i.e., number of <h1> tags)
-          tagWordCount += headerMatches.length;
+          for (const headerMatch of headerMatches) {
+            if (headerMatch.match(regex)) {
+              tagWordCount++;
+            }
+          }
         }
       }
 
