@@ -22,16 +22,13 @@ export class FileSelectorComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    //  this.uploadFileService.file;
     this.uploadFileService.getFiles().subscribe((files) => {
       this.files = files;
-      // Perform other updates here
     });
 
     this.uploadFileService.getAllFiles().subscribe({
       next: (files: any) => {
         this.uploadFileService.addFiles(files);
-        // this.files = this.uploadFileService.files;
       },
       error: () => {
         this.nzMessageServicec.error('No Files Found');

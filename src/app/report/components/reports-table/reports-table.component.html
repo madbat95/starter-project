@@ -27,9 +27,9 @@
       </tr>
     </thead>
     <tbody>
-      <tr *ngFor="let data of reports">
+      <tr *ngFor="let data of reports | report : searchKeyword">
         <td nzAlign="center">
-          <a [routerLink]="'/admin/report/'+data.id"> {{ data.keyword }}</a>
+          <a [routerLink]="'/admin/report/' + data.id"> {{ data.keyword }}</a>
         </td>
         <td nzAlign="center">{{ data.country }}</td>
         <td nzAlign="center">{{ data.language ?? "English" }}</td>
@@ -52,11 +52,15 @@
       </tr>
     </tbody>
   </nz-table>
-  <!-- </nz-skeleton> -->
 </nz-card>
 <ng-template #extraTemplate>
   <nz-input-group [nzPrefix]="prefixTemplateUser">
-    <input type="text" nz-input placeholder="Search Reports" />
+    <input
+      type="text"
+      nz-input
+      placeholder="Search Reports"
+      [(ngModel)]="searchKeyword"
+    />
   </nz-input-group>
   <ng-template #prefixTemplateUser
     ><span nz-icon nzType="search"></span
