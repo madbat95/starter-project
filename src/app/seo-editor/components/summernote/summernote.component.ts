@@ -116,9 +116,9 @@ export class SummernoteComponent implements OnInit {
 
     this.uniqueWords.clear(); // Clear the uniqueWords Set
 
-    const cleanedText = text.replace(/<\/?[^>]+(>|$)/g, ' ');
+    const cleanedText = text.replace(/<\/?[^>]+(>|$)/g, ' ').replace(/&nbsp;+/g, '')
 
-    const words = cleanedText.split(/\s+/);
+    // const words = cleanedText.split(/\s+/);
 
     this.wordCounter.wordCountCalculate(cleanedText, 'summer_note');
   }

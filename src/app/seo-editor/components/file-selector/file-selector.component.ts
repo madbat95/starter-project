@@ -22,20 +22,22 @@ export class FileSelectorComponent implements OnInit {
 
   ngOnInit(): void {
     //  this.uploadFileService.file;
+    this.uploadFileService.getFiles().subscribe((files) => {
+      this.files = files;
+      // Perform other updates here
+    });
 
     this.uploadFileService.getAllFiles().subscribe({
       next: (files: any) => {
         this.uploadFileService.addFiles(files);
         // this.files = this.uploadFileService.files;
-        this.uploadFileService.getFiles().subscribe((files) => {
-          this.files = files;
-          // Perform other updates here
-        });
       },
       error: () => {
         this.nzMessageServicec.error('No Files Found');
       },
     });
+
+    
   }
 
   onFileSelectionChange() {
@@ -52,8 +54,8 @@ export class FileSelectorComponent implements OnInit {
         .getWordsFromFiles('Entity', this.selectedFile.filename)
         .subscribe((response: any[]) => {
           console.log('response.length', response.length);
-          const entityArray = this.wordCounterService.wordObject['Entity'];
-          entityArray.length = 0;
+          // let entityArray = this.wordCounterService.wordObject['Entity'];
+          const entityArray = []
 
           for (const wordInfo of response) {
             entityArray.push({
@@ -62,6 +64,7 @@ export class FileSelectorComponent implements OnInit {
             });
           }
           this.tableLoader.variationTableLoader = false;
+          this.wordCounterService.wordObject['Entity'] = entityArray
         });
 
       // this.wordCounterService.updateWordCount(

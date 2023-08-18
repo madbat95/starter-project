@@ -22,6 +22,7 @@ export class UploadFileService {
     }
     this.filesSubject.next([...this.files]);
   }
+  
   getFiles(): Observable<any[]> {
     return this.filesSubject.asObservable();
   }

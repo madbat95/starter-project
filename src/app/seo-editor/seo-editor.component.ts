@@ -19,13 +19,6 @@ export class SeoEditorComponent implements OnInit {
     this.selectedTable = selectedTable;
   }
 
-  // onWordObject(onWordObject): void {
-  //   this.wordObject = onWordObject;
-  // }
-  onWordCount(onWordCount): void {
-    console.log('word count', onWordCount);
-    this.wordCount = onWordCount;
-  }
   onEditorContent(onEditorContent): void {
     console.log('editor content', onEditorContent);
     this.editorContent = onEditorContent;

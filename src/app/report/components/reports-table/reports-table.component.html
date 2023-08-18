@@ -10,7 +10,6 @@
   <nz-table
     #basicTable
     nzSize="small"
-    [nzScroll]="{ x: '1200px' }"
     [nzData]="reports"
     [nzLoading]="loading"
     [nzLoadingIndicator]="skeleton"
@@ -30,7 +29,7 @@
     <tbody>
       <tr *ngFor="let data of reports">
         <td nzAlign="center">
-          <a (click)="navigate(data.id)"> {{ data.keyword }}</a>
+          <a [routerLink]="'/admin/report/'+data.id"> {{ data.keyword }}</a>
         </td>
         <td nzAlign="center">{{ data.country }}</td>
         <td nzAlign="center">{{ data.language ?? "English" }}</td>
