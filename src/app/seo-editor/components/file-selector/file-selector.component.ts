@@ -47,7 +47,7 @@ export class FileSelectorComponent implements OnInit {
       for (const entityKey of this.entityKeys) {
         this.wordCounterService.updateWordCount(
           entityKey,
-          this.selectedFile[entityKey.toLowerCase() + '_data']
+          this.selectedFile[entityKey]
         );
 
         this.uploadFileService
