@@ -260,4 +260,29 @@ export class WordCounterService {
       }
     }
   }
+
+  calculateHeaderTagWordCount(headerTag: string, editorContent: string): void {
+    for (const entityType of ['Entity', 'Variations', 'LSIKeywords']) {
+      let tagWordCount = 0;
+
+      for (const wordObject of this.wordObject[entityType]) {
+        if (wordObject.count.summer_note > 0) {
+          const word = wordObject.word;
+          const regex = new RegExp(`\\b${word}\\b`, 'gi');
+
+          // Create a regular expression for the specific header tag
+          const headerRegex = new RegExp(
+            `<${headerTag.toLowerCase()}[^>]*>`,
+            'gi'
+          );
+          const headerMatches = editorContent.match(headerRegex) || [];
+
+          // Count the number of matches (i.e., number of <h1> tags)
+          tagWordCount += headerMatches.length;
+        }
+      }
+
+      this.wordCount['WordTags'].headers[headerTag] = tagWordCount;
+    }
+  }
 }

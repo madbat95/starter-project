@@ -112,10 +112,16 @@ export class SummernoteComponent implements OnInit {
         word.count.summer_note = 0;
       }
     }
-
     const cleanedText = text
       .replace(/<\/?[^>]+(>|$)/g, ' ')
       .replace(/&nbsp;+/g, '');
     this.wordCounter.wordCountCalculate(cleanedText, 'summer_note');
+
+    for (const headerTag of ['H1', 'H2', 'H3', 'H4', 'H5', 'H6']) {
+      this.wordCounter.calculateHeaderTagWordCount(
+        headerTag,
+        this.editorContent
+      );
+    }
   }
 }
