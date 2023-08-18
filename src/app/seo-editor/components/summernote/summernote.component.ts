@@ -17,7 +17,6 @@ export class SummernoteComponent implements OnInit {
   ) {}
   id: any;
   editorContent = '';
-  uniqueWords: Set<string> = new Set();
 
   editorConfig = {
     placeholder: 'Add text here...',
@@ -113,8 +112,10 @@ export class SummernoteComponent implements OnInit {
         word.count.summer_note = 0;
       }
     }
-    this.uniqueWords.clear(); // Clear the uniqueWords Set
-    const cleanedText = text.replace(/<\/?[^>]+(>|$)/g, ' ').replace(/&nbsp;+/g, '')
+
+    const cleanedText = text
+      .replace(/<\/?[^>]+(>|$)/g, ' ')
+      .replace(/&nbsp;+/g, '');
     this.wordCounter.wordCountCalculate(cleanedText, 'summer_note');
   }
 }
