@@ -22,12 +22,12 @@ const appRoutes: Routes = [
   //   canActivate: [AuthGuard],
   // },
 
-  {
-    path: 'seo',
-    loadChildren: () =>
-      import('./seo-editor/seo.module').then((m) => m.SeoModule),
-    // canActivate: [AuthGuard],
-  },
+  // {
+  //   path: 'seo',
+  //   loadChildren: () =>
+  //     import('./seo-editor/seo.module').then((m) => m.SeoModule),
+  //   // canActivate: [AuthGuard],
+  // },
   {
     path: 'edit-profile',
     component: EditProfileComponent,
