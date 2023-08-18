@@ -6,10 +6,6 @@
   [nzFrontPagination]="false"
 >
   <thead>
-    <!-- <tr>
-      
-    </tr> -->
-
     <tr>
       <th rowspan="4" nzAlign="center" class="table-col">Suggestions</th>
       <th
@@ -291,34 +287,58 @@
     <tr>
       <td nzLeft nzAlign="center" class="table-col">Words/Tags</td>
       <td nzAlign="center" id="tagsTitleCount">
-        <badge [data]="0"></badge>
+        <badge [data]="tableData['WordTags']?.metaTitle"></badge>
       </td>
       <td nzAlign="center" id="tagsTitleRequired">
-        <badge [data]="0"></badge>
+        <badge [data]="tableData['WordTags']?.metaTitleR"></badge>
       </td>
       <td nzAlign="center" id="tagsDescrCount">
-        <badge [data]="0"></badge>
+        <badge [data]="tableData['WordTags']?.metaDescription"></badge>
       </td>
       <td nzAlign="center" id="tagsDescrRequired">
-        <badge [data]="0"></badge>
+        <badge [data]="tableData['WordTags']?.metaDescriptionR"></badge>
       </td>
       <td nzAlign="center" id="tagsH1Count">
-        <badge [data]="0"></badge>
+        <badge [data]="tableData['WordTags']?.headers.H1"></badge>
       </td>
-      <td nzAlign="center" id="tagsH1Required"><badge [data]="0"></badge></td>
-      <td nzAlign="center" id="tagsH2Count"><badge [data]="0"></badge></td>
-      <td nzAlign="center" id="tagsH2Required"><badge [data]="0"></badge></td>
-      <td nzAlign="center" id="tagsH3Count"><badge [data]="0"></badge></td>
-      <td nzAlign="center" id="tagsH3Required"><badge [data]="0"></badge></td>
-      <td nzAlign="center" id="tagsH4Count"><badge [data]="0"></badge></td>
-      <td nzAlign="center" id="tagsH4Required"><badge [data]="0"></badge></td>
-      <td nzAlign="center" id="tagsH5Count"><badge [data]="0"></badge></td>
-      <td nzAlign="center" id="tagsH5Required"><badge [data]="0"></badge></td>
-      <td nzAlign="center" id="tagsH6Count"><badge [data]="0"></badge></td>
-      <td nzAlign="center" id="tagsH6Required"><badge [data]="0"></badge></td>
-      <td nzAlign="center" id="tagsContentCount"><badge [data]="0"></badge></td>
+      <td nzAlign="center" id="tagsH1Required">
+        <badge [data]="tableData['WordTags']?.headers.H1R"></badge>
+      </td>
+      <td nzAlign="center" id="tagsH2Count">
+        <badge [data]="tableData['WordTags']?.headers.H2"></badge>
+      </td>
+      <td nzAlign="center" id="tagsH2Required">
+        <badge [data]="tableData['WordTags']?.headers.H2R"></badge>
+      </td>
+      <td nzAlign="center" id="tagsH3Count">
+        <badge [data]="tableData['WordTags']?.headers.H3"></badge>
+      </td>
+      <td nzAlign="center" id="tagsH3Required">
+        <badge [data]="tableData['WordTags']?.headers.H3R"></badge>
+      </td>
+      <td nzAlign="center" id="tagsH4Count">
+        <badge [data]="tableData['WordTags']?.headers.H4"></badge>
+      </td>
+      <td nzAlign="center" id="tagsH4Required">
+        <badge [data]="tableData['WordTags']?.headers.H4R"></badge>
+      </td>
+      <td nzAlign="center" id="tagsH5Count">
+        <badge [data]="tableData['WordTags']?.headers.H5"></badge>
+      </td>
+      <td nzAlign="center" id="tagsH5Required">
+        <badge [data]="tableData['WordTags']?.headers.H5R"></badge>
+      </td>
+      <td nzAlign="center" id="tagsH6Count">
+        <badge [data]="tableData['WordTags']?.headers.H6"></badge>
+      </td>
+      <td nzAlign="center" id="tagsH6Required">
+        <badge [data]="tableData['WordTags']?.headers.H6R"></badge>
+      </td>
+      <td nzAlign="center" id="tagsContentCount">
+        <badge [data]="tableData['WordTags']?.content"></badge>
+      </td>
       <td nzAlign="center" id="tagsContentRequired">
-        <badge [data]="0"></badge>
+        <badge [data]="tableData['WordTags']?.contentR"></badge>
       </td>
     </tr>
   </tbody>

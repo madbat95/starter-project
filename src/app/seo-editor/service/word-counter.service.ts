@@ -75,6 +75,28 @@ export class WordCounterService {
         H6R: 0,
       },
     },
+    WordTags: {
+      metaTitle: 0,
+      metaTitleR: 0,
+      metaDescription: 0,
+      metaDescriptionR: 0,
+      content: 0,
+      contentR: 0,
+      headers: {
+        H1: 0,
+        H1R: 0,
+        H2: 0,
+        H2R: 0,
+        H3: 0,
+        H3R: 0,
+        H4: 0,
+        H4R: 0,
+        H5: 0,
+        H5R: 0,
+        H6: 0,
+        H6R: 0,
+      },
+    },
   };
 
   updateWordCount(section: string, data: any) {
