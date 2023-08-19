@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { HttpClient } from '@angular/common/http'; // Import HttpClient for making HTTP requests
+import { ScrapeService } from 'src/app/shared/services/scrape.service';
 
 @Component({
   selector: 'scrape-search',
@@ -8,46 +8,40 @@ import { HttpClient } from '@angular/common/http'; // Import HttpClient for maki
 })
 export class SearchComponent {
   scrapedContent: string = '';
-
-  constructor(private http: HttpClient) {}
+  url: any = 'https://www.google.com/';
+  constructor(private scrapeService: ScrapeService) {}
 
   scrapeWebsite() {
-    // input value = websiteUrl
-    const urlInput = document.querySelector('#websiteUrl') as HTMLInputElement;
-    const url = urlInput.value;
+    // Input value = websiteUrl
+    // const urlInput = document.querySelector('#websiteUrl') as HTMLInputElement;
 
     // Check if URL is provided
-    if (!url) {
-      alert('Please enter a website URL.');
-      return;
-    }
+    // if (!this.url) {
 
-    // Use the CORS Anywhere proxy URL
-    const corsProxyURL = 'https://corsproxy.io/?';
+    //   return;
+    // }
 
-    // Perform an HTTP GET request using HttpClient to fetch the website content through the proxy
-    this.http
-      .get(corsProxyURL + encodeURIComponent(url), { responseType: 'text' })
-      .subscribe(
-        (data) => {
-          // Use DOMParser to parse the fetched HTML
-          const parser = new DOMParser();
-          const htmlDoc = parser.parseFromString(data, 'text/html');
+    // Call the getHTML method from the ScrapeService
+    this.scrapeService.getHTML(this.url).subscribe({
+      next: (data: any) => {
+        // Use DOMParser to parse the fetched HTML
+        const parser = new DOMParser();
+        const htmlDoc = parser.parseFromString(data, 'text/html');
+        console.log(htmlDoc.body);
+        // Extract and manipulate the content as needed
+        // const mainContent = htmlDoc.querySelector('main'); // Adjust the selector as per your website structure
 
-          // Extract and manipulate the content as needed
-          const mainContent = htmlDoc.querySelector('main'); // Adjust the selector as per your website structure
+        // // Clean up the mainContent as described in the previous response
 
-          // Clean up the mainContent as described in the previous response
+        // // Set the cleaned content to the scrapedContent variable
+        // this.scrapedContent = mainContent.innerHTML;
 
-          // Set the cleaned content to the scrapedContent variable
-          this.scrapedContent = mainContent.innerHTML;
-
-          // Log the scraped content to the console
-          console.log('Scraped Content:', this.scrapedContent);
-        },
-        (error) => {
-          alert('Failed to fetch the website. Please check the URL.');
-        }
-      );
+        // // Log the scraped content to the console
+        // console.log('Scraped Content:', this.scrapedContent);
+      },
+      error: (error) => {
+        console.log('error:', error);
+      },
+    });
   }
 }
