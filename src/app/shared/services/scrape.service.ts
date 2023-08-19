@@ -9,7 +9,7 @@ export class ScrapeService {
   constructor(private http: HttpClient) {}
   
   getHTML(url: any) {
-    const headers = new HttpHeaders({ 'Content-Type': 'text/html' });
+    const headers = new HttpHeaders({ 'Accept': 'text/html' });
     return this.http.get(`reporting/scrap/?site_url=${url}`, { headers, responseType: 'text' });
   }
 }
