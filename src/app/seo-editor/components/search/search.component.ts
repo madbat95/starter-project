@@ -1,6 +1,8 @@
 import { Component } from '@angular/core';
 import { ScrapeService } from 'src/app/shared/services/scrape.service';
 import { SummernoteComponent } from '../summernote/summernote.component';
+import { EditorContentService } from 'src/app/shared/services/editor-content.service';
+import { MetaDataService } from 'src/app/shared/services/meta-data.service';
 
 @Component({
   selector: 'scrape-search',
@@ -9,43 +11,87 @@ import { SummernoteComponent } from '../summernote/summernote.component';
 })
 export class SearchComponent {
   scrapedContent: string = '';
-  url: any = 'https://www.google.com/';
-  constructor(private scrapeService: ScrapeService) {}
+  url: any = 'https://blog.hubspot.com/website/privacy-policy-wordpress';
+  constructor(
+    private scrapeService: ScrapeService,
+    private editorContentService: EditorContentService,
+    private metaDataService: MetaDataService,
+    private summernote: SummernoteComponent
+  ) {}
 
   scrapeWebsite() {
-    // Input value = websiteUrl
-    // const urlInput = document.querySelector('#websiteUrl') as HTMLInputElement;
-
-    // Check if URL is provided
-    // if (!this.url) {
-
-    //   return;
-    // }
-
-    // Call the getHTML method from the ScrapeService
     this.scrapeService.getHTML(this.url).subscribe({
       next: (data: any) => {
-        // Use DOMParser to parse the fetched HTML
         console.log('data', data);
         const parser = new DOMParser();
-        const htmlDoc = parser.parseFromString(data, 'text/html');
-        console.log('htmlDoc.body', htmlDoc.body);
-        // this.htmlResponseService.setHtmlResponse(data); // Send the HTML response to the service
+        const doc = parser.parseFromString(data, 'text/html');
 
-        // // Extract and manipulate the content as needed
-        const mainContent = htmlDoc.querySelector('main'); // Adjust the selector as per your website structure
+        const metaTitle = new DOMParser()
+          .parseFromString(data, 'text/html')
+          .querySelector('title').textContent;
+        this.metaDataService.setMetaTitle(metaTitle);
 
-        // // Clean up the mainContent as described in the previous response
+        const metaDescription = new DOMParser()
+          .parseFromString(data, 'text/html')
+          .querySelector("meta[name='description']")
+          .getAttribute('content');
+        this.metaDataService.setMetaDescription(metaDescription);
 
-        // // Set the cleaned content to the scrapedContent variable
-        this.scrapedContent = mainContent.innerHTML;
+        const mainContent = new DOMParser()
+          .parseFromString(data, 'text/html')
+          .querySelector('main');
 
-        // // Log the scraped content to the console
-        console.log('Scraped Content:', this.scrapedContent);
+        // console.log(mainContent);
+        this.dataCleaning(mainContent);
+
+        this.editorContentService.updateScrapedData(mainContent.innerHTML);
+        // this.summernote.onEditorKeyUp(mainContent);
       },
       error: (error) => {
         console.log('error:', error);
       },
     });
   }
+
+  dataCleaning(mainContent: any) {
+    // Remove images
+    mainContent.querySelectorAll('img').forEach((image) => image.remove());
+
+    // Remove forms
+    mainContent.querySelectorAll('form').forEach((form) => form.remove());
+
+    // Remove header (assuming it's inside a common container with a specific ID or class)
+    const headerContainer = mainContent.querySelector('#header-container');
+    if (headerContainer) {
+      headerContainer.remove();
+    }
+
+    // Remove footer (assuming it's inside a common container with a specific ID or class)
+    const footerContainer = mainContent.querySelector('#footer-container');
+    if (footerContainer) {
+      footerContainer.remove();
+    }
+
+    // Remove iframes
+    mainContent.querySelectorAll('iframe').forEach((iframe) => iframe.remove());
+
+    // Remove <nav> element
+    mainContent.querySelectorAll('nav').forEach((nav) => nav.remove());
+
+    // Remove <aside> element and its content
+    mainContent.querySelectorAll('aside').forEach((aside) => aside.remove());
+
+    // Remove empty tags with no content and skipping lines
+    mainContent.querySelectorAll('*').forEach((element) => {
+      if (!element.textContent.trim() && !element.innerHTML.trim()) {
+        element.remove();
+      } else {
+        this.removeAllClasses(element); // Call the function to remove classes
+      }
+    });
+  }
+
+  removeAllClasses = (element) => {
+    element.removeAttribute('class');
+  };
 }
