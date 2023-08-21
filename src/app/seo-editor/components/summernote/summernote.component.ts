@@ -20,29 +20,23 @@ export class SummernoteComponent implements OnInit {
   uniqueWords: Set<string> = new Set();
 
   editorConfig = {
+    theme: 'bs4-dark',
     placeholder: 'Add text here...',
     tabsize: 2,
     height: 183,
     uploadImagePath: '/api/upload',
     toolbar: [
-      ['misc', ['codeview', 'undo', 'redo']],
+      ['misc', ['undo', 'redo']],
       [
         'font',
         [
           'bold',
-          'italic',
-          'underline',
-          'strikethrough',
-          'superscript',
-          'subscript',
-          'clear',
+          'italic'
         ],
       ],
-      ['fontsize', ['fontname', 'fontsize', 'color']],
+      ['fontsize', ['fontname', 'color']],
       ['para', ['style', 'ul', 'ol', 'paragraph', 'height']],
-      ['insert', ['table', 'picture', 'link', 'hr']],
-      ['offer', ['offer']],
-      ['dispute', ['dispute']],
+      ['insert', [ 'link', 'hr']],
     ],
     fontNames: [
       'Helvetica',

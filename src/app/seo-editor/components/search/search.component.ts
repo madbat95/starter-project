@@ -27,12 +27,13 @@ export class SearchComponent {
 
     // Perform an HTTP GET request using HttpClient to fetch the website content through the proxy
     this.http
-      .get(corsProxyURL + encodeURIComponent(url), { responseType: 'text' })
+      // .get(corsProxyURL + encodeURIComponent(url), { responseType: 'text' })
+      .get(`reporting/scrap/${url}/`, { responseType: 'text' })
       .subscribe(
         (data) => {
           // Use DOMParser to parse the fetched HTML
           const parser = new DOMParser();
-          const htmlDoc = parser.parseFromString(data, 'text/html');
+          const htmlDoc = parser.parseFromString(data['html'], 'text/html');
 
           // Extract and manipulate the content as needed
           const mainContent = htmlDoc.querySelector('main'); // Adjust the selector as per your website structure

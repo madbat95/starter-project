@@ -1,11 +1,11 @@
-<div nz-row nzJustify="center" nzAlign="middle" [nzGutter]="[8, 8]">
-  <div nz-col>
+<div nz-row  >
+  <!-- <div nz-col> -->
     <nz-select
       style="width: 100%"
       [(ngModel)]="selectedFile"
       nzSize="small"
       required
-      nzPlaceHolder="Select Form"
+      nzPlaceHolder="Select File"
       (ngModelChange)="onFileSelectionChange()"
     >
       <nz-option
@@ -14,5 +14,5 @@
         [nzLabel]="file.filename"
       ></nz-option>
     </nz-select>
-  </div>
+  <!-- </div> -->
 </div>

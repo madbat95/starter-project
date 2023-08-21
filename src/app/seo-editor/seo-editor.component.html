@@ -1,26 +1,21 @@
-<div nz-row nzJustify="center" nzAlign="middle" [nzGutter]="[8, 8]">
-  <div
+<div nz-row nzJustify="space-between" nzAlign="middle" [nzGutter]="[8, 8]">
+    <nz-progress 
     nz-col
     [nzXs]="22"
     [nzSm]="22"
     [nzMd]="22"
     [nzLg]="22"
-    [nzXl]="2"
+    [nzXl]="4"
     style="text-align: center"
-  >
-    <nz-progress [nzPercent]="75" [nzWidth]="80" nzType="circle"></nz-progress>
-  </div>
-  <div
+    [nzPercent]="75" [nzWidth]="100" nzType="circle"></nz-progress>
+    <app-suggestion-table
     nz-col
     [nzXs]="22"
     [nzSm]="22"
     [nzMd]="22"
     [nzLg]="22"
-    [nzXl]="17"
-    style="text-align: center"
-  >
-    <app-suggestion-table></app-suggestion-table>
-  </div>
+    [nzXl]="15"
+    ></app-suggestion-table>
 
   <div
     nz-col
@@ -48,7 +43,7 @@
     <scrape-search></scrape-search>
   </div> -->
 </div>
-
+<br/><br/>
 <div nz-row nzJustify="space-around" [nzGutter]="[8, 8]">
   <div nz-col [nzMd]="24" [nzLg]="6" [nzXl]="6">
     <div nz-row nzJustify="center" nzAlign="middle" [nzGutter]="[0, 8]">

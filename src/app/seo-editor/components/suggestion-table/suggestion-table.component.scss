@@ -1,3 +1,17 @@
+
+.suggestions-table, .ant-table-tbody>tr>td{  
+  padding: 2px!important;
+}
+
+.suggestions-table th {
+  padding: 2px!important;
+}
+
+.suggestions-table .ant-badge-count{
+  background-color: green !important;
+}
+
+
 .table-col
 // , .ant-table-thead
 //   > tr.ant-table-row-hover:not(.ant-table-expanded-row):not(
