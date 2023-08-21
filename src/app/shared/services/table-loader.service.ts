@@ -7,4 +7,6 @@ export class TableLoaderService {
   constructor() {}
   variationTableLoader = false;
   suggestionTableLoader = false;
+
+  summernoteLoader = false;
 }
