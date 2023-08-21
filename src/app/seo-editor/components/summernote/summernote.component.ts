@@ -3,6 +3,7 @@ import { WordCounterService } from '../../service/word-counter.service';
 import { ActivatedRoute, ParamMap } from '@angular/router';
 import { switchMap, catchError } from 'rxjs/operators';
 import { HtmlContentService } from 'src/app/shared/services/html-content.service';
+import { EditorContentService } from 'src/app/shared/services/editor-content.service';
 
 @Component({
   selector: 'app-summernote',
@@ -13,10 +14,11 @@ export class SummernoteComponent implements OnInit {
   constructor(
     private wordCounter: WordCounterService,
     private route: ActivatedRoute,
-    private contentSerevice: HtmlContentService
+    private contentSerevice: HtmlContentService,
+    private editorContentService: EditorContentService
   ) {}
   id: any;
-  editorContent = '<h1>privacy</h1>';
+  editorContent = '';
 
   editorConfig = {
     placeholder: 'Add text here...',
@@ -55,11 +57,15 @@ export class SummernoteComponent implements OnInit {
   };
 
   @Input() isDisabled: boolean = false;
-  @Output() onWordObject = new EventEmitter<any>();
-  @Output() onWordCount = new EventEmitter<any>();
   @Output() onEditorContent = new EventEmitter<any>();
 
   ngOnInit(): void {
+    this.editorContentService
+      .getScrapedDataObservable()
+      .subscribe((data: string) => {
+        this.editorContent = data;
+      });
+
     this.route.paramMap
       .pipe(
         switchMap((params: ParamMap) => {
@@ -75,11 +81,9 @@ export class SummernoteComponent implements OnInit {
 
   onEditorKeyUp(text: any) {
     this.onEditorContent.emit({ report: this.id, content: this.editorContent });
-    // console.log({ report: this.id, content: this.editorContent });
 
     const parser = new DOMParser();
     const doc = parser.parseFromString(text, 'text/html');
-    // console.log('doc', doc.body);
 
     const wordCount = this.wordCounter.countWordsInHeadersAndContent(doc.body, [
       'H1',
