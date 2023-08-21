@@ -10,7 +10,7 @@
   height: $badge-count-height;
   // background: lighten($badge-count-bg, 20%);
   background: unset;
-  color: $white;
+  color: $black;
   line-height: $badge-count-height;
   padding: 0 5px;
   font-size: $badge-count-font-size;
@@ -18,7 +18,7 @@
 
   p {
     // color: $white;
-    color: black;
+    color: $black;
     line-height: $badge-count-height;
   }
 }
