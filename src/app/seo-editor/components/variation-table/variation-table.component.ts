@@ -7,7 +7,7 @@ import { TableLoaderService } from 'src/app/shared/services/table-loader.service
   templateUrl: './variation-table.component.html',
   styleUrls: ['./variation-table.component.scss'],
 })
-export class VariationTableComponent implements AfterViewInit {
+export class VariationTableComponent {
   @ViewChild('virtualTable', { static: false }) nzTableComponent?: NzTableComponent<{ word: string; count: { meta: number, summer_note: number }, index: number }[]>;
   constructor(public tableLoader: TableLoaderService) {}
 
@@ -17,7 +17,6 @@ export class VariationTableComponent implements AfterViewInit {
   ];
   originalData: any;
   @Input() set data(val: { word: string; count: { meta: number, summer_note: number } }[]) {
-    console.log('val', val);
     this.tableData = [];
     this.tableLoader.variationTableLoader = true
     for (let i = 0; i < val.length; i++) {
@@ -27,7 +26,6 @@ export class VariationTableComponent implements AfterViewInit {
       });
     }
     this.tableLoader.variationTableLoader = false
-    console.log('table data',this.tableData)
     this.originalData = [...this.tableData];
   }
   reset(): void {
@@ -46,19 +44,7 @@ export class VariationTableComponent implements AfterViewInit {
     this.tableData = this.tableData.filter((deleted) => deleted.word !== word);
   }
 
-  scrollToIndex(index: number): void {
-    this.nzTableComponent?.cdkVirtualScrollViewport?.scrollToIndex(index);
-  }
-
   trackByIndex(_: number, data: any): number {
     return data.index
-  }
-
-  ngAfterViewInit(): void {
-    this.nzTableComponent?.cdkVirtualScrollViewport?.scrolledIndexChange
-      // .pipe(takeUntil(this.destroy$))
-      .subscribe((data: number) => {
-        console.log('scroll index to', data);
-      });
   }
 }
