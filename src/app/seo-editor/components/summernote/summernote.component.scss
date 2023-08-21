@@ -1,4 +1,11 @@
+@import '../../../../assets/scss/variables';
+
 ::ng-deep .note-editable {
     color: black!important;
     background: white !important;
+    
+}
+
+::ng-deep .note-editor {
+    filter: drop-shadow(0 0 10px lighten($brand-primary, 30%));
 }

@@ -1,3 +1,9 @@
+@import '../../../../assets/scss/variables';
+
+.variation-table {
+  filter: drop-shadow(0 0 10px lighten($brand-primary, 30%));
+}
+
 .search-box {
   padding: 8px;
 }

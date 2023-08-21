@@ -1,4 +1,8 @@
+@import '../../../../assets/scss/variables';
 
+.suggestions-table {
+  filter: drop-shadow(0 0 10px lighten($brand-primary, 30%));
+}
 .suggestions-table, .ant-table-tbody>tr>td{  
   padding: 2px!important;
 }

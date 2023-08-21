@@ -1,6 +1,7 @@
 <div nz-row nzJustify="center" [nzGutter]="[0, 16]">
   <div nz-col>
     <nz-table
+    class="variation-table"
       *ngIf="!this.tableLoader.variationTableLoader"
       #virtualTable
       nzBordered
