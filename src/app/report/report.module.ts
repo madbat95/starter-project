@@ -35,6 +35,7 @@ import { ReportRoutingModule } from './report-routing.module';
 import { CreateReportComponent } from './components/create-report/create-report.component';
 import { NzSelectModule } from 'ng-zorro-antd/select';
 import { ReportsTableComponent } from './components/reports-table/reports-table.component';
+import { ReportPipe } from '../shared/pipes/report.pipe';
 
 const antdModule = [
   NzButtonModule,
@@ -74,8 +75,13 @@ const antdModule = [
     ReactiveFormsModule,
     ...antdModule,
   ],
-  exports: [],
-  declarations: [ReportComponent, CreateReportComponent, ReportsTableComponent],
+  exports: [ReportPipe],
+  declarations: [
+    ReportComponent,
+    CreateReportComponent,
+    ReportsTableComponent,
+    ReportPipe,
+  ],
   providers: [ThemeConstantService],
 })
 export class ReportModule {}

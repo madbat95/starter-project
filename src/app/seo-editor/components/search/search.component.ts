@@ -1,5 +1,8 @@
 import { Component } from '@angular/core';
-import { HttpClient } from '@angular/common/http'; // Import HttpClient for making HTTP requests
+import { ScrapeService } from 'src/app/shared/services/scrape.service';
+import { SummernoteComponent } from '../summernote/summernote.component';
+import { EditorContentService } from 'src/app/shared/services/editor-content.service';
+import { MetaDataService } from 'src/app/shared/services/meta-data.service';
 
 @Component({
   selector: 'scrape-search',
@@ -8,47 +11,87 @@ import { HttpClient } from '@angular/common/http'; // Import HttpClient for maki
 })
 export class SearchComponent {
   scrapedContent: string = '';
-
-  constructor(private http: HttpClient) {}
+  url: any = 'https://blog.hubspot.com/website/privacy-policy-wordpress';
+  constructor(
+    private scrapeService: ScrapeService,
+    private editorContentService: EditorContentService,
+    private metaDataService: MetaDataService,
+    private summernote: SummernoteComponent
+  ) {}
 
   scrapeWebsite() {
-    // input value = websiteUrl
-    const urlInput = document.querySelector('#websiteUrl') as HTMLInputElement;
-    const url = urlInput.value;
+    this.scrapeService.getHTML(this.url).subscribe({
+      next: (data: any) => {
+        console.log('data', data);
+        const parser = new DOMParser();
+        const doc = parser.parseFromString(data, 'text/html');
 
-    // Check if URL is provided
-    if (!url) {
-      alert('Please enter a website URL.');
-      return;
+        const metaTitle = new DOMParser()
+          .parseFromString(data, 'text/html')
+          .querySelector('title').textContent;
+        this.metaDataService.setMetaTitle(metaTitle);
+
+        const metaDescription = new DOMParser()
+          .parseFromString(data, 'text/html')
+          .querySelector("meta[name='description']")
+          .getAttribute('content');
+        this.metaDataService.setMetaDescription(metaDescription);
+
+        const mainContent = new DOMParser()
+          .parseFromString(data, 'text/html')
+          .querySelector('main');
+
+        // console.log(mainContent);
+        this.dataCleaning(mainContent);
+
+        this.editorContentService.updateScrapedData(mainContent.innerHTML);
+        // this.summernote.onEditorKeyUp(mainContent);
+      },
+      error: (error) => {
+        console.log('error:', error);
+      },
+    });
+  }
+
+  dataCleaning(mainContent: any) {
+    // Remove images
+    mainContent.querySelectorAll('img').forEach((image) => image.remove());
+
+    // Remove forms
+    mainContent.querySelectorAll('form').forEach((form) => form.remove());
+
+    // Remove header (assuming it's inside a common container with a specific ID or class)
+    const headerContainer = mainContent.querySelector('#header-container');
+    if (headerContainer) {
+      headerContainer.remove();
     }
 
-    // Use the CORS Anywhere proxy URL
-    const corsProxyURL = 'https://corsproxy.io/?';
+    // Remove footer (assuming it's inside a common container with a specific ID or class)
+    const footerContainer = mainContent.querySelector('#footer-container');
+    if (footerContainer) {
+      footerContainer.remove();
+    }
 
-    // Perform an HTTP GET request using HttpClient to fetch the website content through the proxy
-    this.http
-      // .get(corsProxyURL + encodeURIComponent(url), { responseType: 'text' })
-      .get(`reporting/scrap/${url}/`, { responseType: 'text' })
-      .subscribe(
-        (data) => {
-          // Use DOMParser to parse the fetched HTML
-          const parser = new DOMParser();
-          const htmlDoc = parser.parseFromString(data['html'], 'text/html');
+    // Remove iframes
+    mainContent.querySelectorAll('iframe').forEach((iframe) => iframe.remove());
 
-          // Extract and manipulate the content as needed
-          const mainContent = htmlDoc.querySelector('main'); // Adjust the selector as per your website structure
+    // Remove <nav> element
+    mainContent.querySelectorAll('nav').forEach((nav) => nav.remove());
 
-          // Clean up the mainContent as described in the previous response
+    // Remove <aside> element and its content
+    mainContent.querySelectorAll('aside').forEach((aside) => aside.remove());
 
-          // Set the cleaned content to the scrapedContent variable
-          this.scrapedContent = mainContent.innerHTML;
-
-          // Log the scraped content to the console
-          console.log('Scraped Content:', this.scrapedContent);
-        },
-        (error) => {
-          alert('Failed to fetch the website. Please check the URL.');
-        }
-      );
+    // Remove empty tags with no content and skipping lines
+    mainContent.querySelectorAll('*').forEach((element) => {
+      if (!element.textContent.trim() && !element.innerHTML.trim()) {
+        element.remove();
+      } else {
+        this.removeAllClasses(element); // Call the function to remove classes
+      }
+    });
   }
+
+  removeAllClasses = (element) => {
+    element.removeAttribute('class');
+  };
 }

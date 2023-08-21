@@ -23,4 +23,3 @@ export const CommonLayout_ROUTES: Routes = [
       import('../../setting/setting.module').then((m) => m.SettingModule),
   },
 ];
-``;

@@ -1,28 +1,45 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { WordCounterService } from '../../service/word-counter.service';
+import { MetaDataService } from 'src/app/shared/services/meta-data.service';
 
 @Component({
   selector: 'meta-button',
   templateUrl: './meta.component.html',
   styleUrls: ['./meta.component.scss'],
 })
-export class MetaComponent {
+export class MetaComponent implements OnInit {
   metaTitle: string = '';
   metaDescription: string = '';
 
-  constructor(private wordCounter: WordCounterService) {}
+  constructor(
+    private wordCounter: WordCounterService,
+    private metaDataService: MetaDataService
+  ) {
+    this.metaDataService.getMetaTitle$().subscribe((title) => {
+      this.metaTitle = title;
+      this.updateWordCounts();
+    });
+
+    this.metaDataService.getMetaDescription$().subscribe((description) => {
+      this.metaDescription = description;
+      this.updateWordCounts();
+    });
+  }
+
+  ngOnInit(): void {}
 
   updateWordCounts() {
     this.resetWordCounts();
 
     const parser = new DOMParser();
 
-    this.updateCountsForElement(this.metaTitle, 'metaTitle', parser);
-    this.updateCountsForElement(
-      this.metaDescription,
-      'metaDescription',
-      parser
-    );
+    let meta = ['metaTitle', 'metaDescription'];
+
+    for (const property of meta) {
+      this.updateCountsForElement(this[property], property, parser);
+      this.wordCounter.wordCount['WordTags'][property] =
+        this.wordCounter.calculateTotalMetaWordCount(property);
+    }
   }
 
   resetWordCounts() {

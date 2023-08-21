@@ -105,6 +105,9 @@
           [nzLoading]="isLoading"
           [disabled]="isLoading || !reportsForm.valid"
         >
+          <ng-container *ngIf="!isLoading">
+            <span nz-icon nzType="plus" nzTheme="outline"></span>
+          </ng-container>
           {{ isLoading ? "Generating" : "Generate Report" }}
         </button>
       </div>

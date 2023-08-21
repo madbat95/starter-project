@@ -18,7 +18,6 @@ export class VariationTableComponent {
     this.tableData = val;
     this.originalData = [...this.tableData];
   }
-
   reset(): void {
     this.searchValue = '';
     this.search();

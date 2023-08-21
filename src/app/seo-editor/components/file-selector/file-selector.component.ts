@@ -3,6 +3,7 @@ import { UploadFileService } from 'src/app/shared/services/upload-file.service';
 import { WordCounterService } from '../../service/word-counter.service';
 import { NzMessageService } from 'ng-zorro-antd/message';
 import { TableLoaderService } from 'src/app/shared/services/table-loader.service';
+import { SummernoteComponent } from '../summernote/summernote.component';
 
 @Component({
   selector: 'app-file-selector',
@@ -18,20 +19,18 @@ export class FileSelectorComponent implements OnInit {
     private uploadFileService: UploadFileService,
     private wordCounterService: WordCounterService,
     private nzMessageServicec: NzMessageService,
-    private tableLoader: TableLoaderService
+    private tableLoader: TableLoaderService,
+    private summernote: SummernoteComponent
   ) {}
 
   ngOnInit(): void {
-    //  this.uploadFileService.file;
     this.uploadFileService.getFiles().subscribe((files) => {
       this.files = files;
-      // Perform other updates here
     });
 
     this.uploadFileService.getAllFiles().subscribe({
       next: (files: any) => {
         this.uploadFileService.addFiles(files);
-        // this.files = this.uploadFileService.files;
       },
       error: () => {
         this.nzMessageServicec.error('No Files Found');
@@ -62,6 +61,9 @@ export class FileSelectorComponent implements OnInit {
                 count: { summer_note: 0, meta: 0 },
               });
             }
+
+            //updating count
+            this.summernote.onEditorKeyUp(this.summernote.editorContent);
 
             this.tableLoader.variationTableLoader = false;
           });

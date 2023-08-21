@@ -3,6 +3,7 @@ import { WordCounterService } from '../../service/word-counter.service';
 import { ActivatedRoute, ParamMap } from '@angular/router';
 import { switchMap, catchError } from 'rxjs/operators';
 import { HtmlContentService } from 'src/app/shared/services/html-content.service';
+import { EditorContentService } from 'src/app/shared/services/editor-content.service';
 
 @Component({
   selector: 'app-summernote',
@@ -13,11 +14,11 @@ export class SummernoteComponent implements OnInit {
   constructor(
     private wordCounter: WordCounterService,
     private route: ActivatedRoute,
-    private contentSerevice: HtmlContentService
+    private contentSerevice: HtmlContentService,
+    private editorContentService: EditorContentService
   ) {}
   id: any;
   editorContent = '';
-  uniqueWords: Set<string> = new Set();
 
   editorConfig = {
     theme: 'bs4-dark',
@@ -50,11 +51,15 @@ export class SummernoteComponent implements OnInit {
   };
 
   @Input() isDisabled: boolean = false;
-  @Output() onWordObject = new EventEmitter<any>();
-  @Output() onWordCount = new EventEmitter<any>();
   @Output() onEditorContent = new EventEmitter<any>();
 
   ngOnInit(): void {
+    this.editorContentService
+      .getScrapedDataObservable()
+      .subscribe((data: string) => {
+        this.editorContent = data;
+      });
+
     this.route.paramMap
       .pipe(
         switchMap((params: ParamMap) => {
@@ -64,16 +69,15 @@ export class SummernoteComponent implements OnInit {
       )
       .subscribe((response: any) => {
         if (response.length) this.editorContent = response[0].content;
+        this.onEditorKeyUp(this.editorContent);
       });
   }
 
   onEditorKeyUp(text: any) {
     this.onEditorContent.emit({ report: this.id, content: this.editorContent });
-    console.log({ report: this.id, content: this.editorContent });
 
     const parser = new DOMParser();
     const doc = parser.parseFromString(text, 'text/html');
-    console.log('doc', doc.body);
 
     const wordCount = this.wordCounter.countWordsInHeadersAndContent(doc.body, [
       'H1',
@@ -107,8 +111,16 @@ export class SummernoteComponent implements OnInit {
         word.count.summer_note = 0;
       }
     }
-    this.uniqueWords.clear(); // Clear the uniqueWords Set
-    const cleanedText = text.replace(/<\/?[^>]+(>|$)/g, ' ').replace(/&nbsp;+/g, '')
+    const cleanedText = text
+      .replace(/<\/?[^>]+(>|$)/g, ' ')
+      .replace(/&nbsp;+/g, '');
     this.wordCounter.wordCountCalculate(cleanedText, 'summer_note');
+
+    for (const headerTag of ['H1', 'H2', 'H3', 'H4', 'H5', 'H6']) {
+      this.wordCounter.calculateHeaderTagWordCount(
+        headerTag,
+        this.editorContent
+      );
+    }
   }
 }
