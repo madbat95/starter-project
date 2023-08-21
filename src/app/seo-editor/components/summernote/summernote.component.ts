@@ -27,7 +27,7 @@ export class SummernoteComponent implements OnInit {
     theme: 'bs4-dark',
     placeholder: 'Add text here...',
     tabsize: 2,
-    height: 183,
+    height: 230,
     uploadImagePath: '/api/upload',
     toolbar: [
       ['misc', ['undo', 'redo']],
