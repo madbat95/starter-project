@@ -15,19 +15,17 @@ export class SeoEditorComponent implements OnInit {
   constructor(public wordCounter: WordCounterService) {}
 
   onTableSelection(selectedTable: any): void {
-    console.log('tableselected', selectedTable);
+    // console.log('tableselected', selectedTable);
     this.selectedTable = selectedTable;
   }
 
   onEditorContent(onEditorContent): void {
-    console.log('editor content', onEditorContent);
+    // console.log('editor content', onEditorContent);
     this.editorContent = onEditorContent;
   }
 
   getData() {
-    return this.wordObject
-      ? this.wordObject[this.selectedTable]
-      : this.wordCounter.wordObject[this.selectedTable];
+    return this.wordCounter.wordObject[this.selectedTable];
   }
 
   getWordCount() {

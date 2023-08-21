@@ -234,7 +234,6 @@ export class WordCounterService {
         }
       }
     }
-    console.log('wordCount', this.wordCount);
     return result;
   }
 

@@ -16,7 +16,7 @@ export class SummernoteComponent implements OnInit {
     private contentSerevice: HtmlContentService
   ) {}
   id: any;
-  editorContent = '';
+  editorContent = '<h1>privacy</h1>';
 
   editorConfig = {
     placeholder: 'Add text here...',
@@ -69,16 +69,17 @@ export class SummernoteComponent implements OnInit {
       )
       .subscribe((response: any) => {
         if (response.length) this.editorContent = response[0].content;
+        this.onEditorKeyUp(this.editorContent);
       });
   }
 
   onEditorKeyUp(text: any) {
     this.onEditorContent.emit({ report: this.id, content: this.editorContent });
-    console.log({ report: this.id, content: this.editorContent });
+    // console.log({ report: this.id, content: this.editorContent });
 
     const parser = new DOMParser();
     const doc = parser.parseFromString(text, 'text/html');
-    console.log('doc', doc.body);
+    // console.log('doc', doc.body);
 
     const wordCount = this.wordCounter.countWordsInHeadersAndContent(doc.body, [
       'H1',

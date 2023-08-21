@@ -13,6 +13,7 @@ import { switchMap, catchError } from 'rxjs/operators';
 import { WordCounterService } from 'src/app/seo-editor/service/word-counter.service';
 import { forkJoin } from 'rxjs';
 import { TableLoaderService } from 'src/app/shared/services/table-loader.service';
+import { SummernoteComponent } from '../../../summernote/summernote.component';
 
 @Component({
   selector: 'app-upload-modal',
@@ -34,7 +35,8 @@ export class UploadModalComponent {
     private notificationService: NotificationService,
     private uploadFileService: UploadFileService,
     private wordCounterService: WordCounterService,
-    public tableLoader: TableLoaderService
+    public tableLoader: TableLoaderService,
+    private summernote: SummernoteComponent
   ) {}
 
   ngOnInit(): void {
@@ -214,6 +216,7 @@ export class UploadModalComponent {
             }
           }
 
+          this.summernote.onEditorKeyUp(this.summernote.editorContent);
           this.tableLoader.variationTableLoader = false;
           this.isLoading = false;
           this.modal.close();

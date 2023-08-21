@@ -25,6 +25,7 @@ import { jwtInterceptorProvider } from './shared/interceptor/jwt.interceptor';
 import { JwtHelperService, JwtModule } from '@auth0/angular-jwt';
 import { environment } from 'src/environments/environment';
 import { NzMessageModule } from 'ng-zorro-antd/message';
+import { SummernoteComponent } from './seo-editor/components/summernote/summernote.component';
 
 registerLocaleData(en);
 
@@ -49,6 +50,7 @@ registerLocaleData(en);
     NzMessageModule,
   ],
   providers: [
+    SummernoteComponent,
     {
       provide: NZ_I18N,
       useValue: en_US,

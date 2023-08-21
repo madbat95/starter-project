@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { ScrapeService } from 'src/app/shared/services/scrape.service';
+import { SummernoteComponent } from '../summernote/summernote.component';
 
 @Component({
   selector: 'scrape-search',
@@ -25,19 +26,22 @@ export class SearchComponent {
     this.scrapeService.getHTML(this.url).subscribe({
       next: (data: any) => {
         // Use DOMParser to parse the fetched HTML
+        console.log('data', data);
         const parser = new DOMParser();
         const htmlDoc = parser.parseFromString(data, 'text/html');
-        console.log(htmlDoc.body);
-        // Extract and manipulate the content as needed
-        // const mainContent = htmlDoc.querySelector('main'); // Adjust the selector as per your website structure
+        console.log('htmlDoc.body', htmlDoc.body);
+        // this.htmlResponseService.setHtmlResponse(data); // Send the HTML response to the service
+
+        // // Extract and manipulate the content as needed
+        const mainContent = htmlDoc.querySelector('main'); // Adjust the selector as per your website structure
 
         // // Clean up the mainContent as described in the previous response
 
         // // Set the cleaned content to the scrapedContent variable
-        // this.scrapedContent = mainContent.innerHTML;
+        this.scrapedContent = mainContent.innerHTML;
 
         // // Log the scraped content to the console
-        // console.log('Scraped Content:', this.scrapedContent);
+        console.log('Scraped Content:', this.scrapedContent);
       },
       error: (error) => {
         console.log('error:', error);
