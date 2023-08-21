@@ -1,4 +1,9 @@
+<div *ngIf="tableLoaderService.summernoteLoader">
+  <nz-spin nzSimple [nzSize]="'large'"></nz-spin>
+</div>
+
 <div
+  *ngIf="!tableLoaderService.summernoteLoader"
   [ngxSummernote]="editorConfig"
   [(ngModel)]="editorContent"
   (ngModelChange)="onEditorKeyUp($event)"

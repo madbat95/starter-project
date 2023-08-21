@@ -1,8 +1,8 @@
 import { Component } from '@angular/core';
 import { ScrapeService } from 'src/app/shared/services/scrape.service';
-import { SummernoteComponent } from '../summernote/summernote.component';
 import { EditorContentService } from 'src/app/shared/services/editor-content.service';
 import { MetaDataService } from 'src/app/shared/services/meta-data.service';
+import { TableLoaderService } from 'src/app/shared/services/table-loader.service';
 
 @Component({
   selector: 'scrape-search',
@@ -16,10 +16,11 @@ export class SearchComponent {
     private scrapeService: ScrapeService,
     private editorContentService: EditorContentService,
     private metaDataService: MetaDataService,
-    private summernote: SummernoteComponent
+    private tableLoaderService: TableLoaderService
   ) {}
 
   scrapeWebsite() {
+    this.tableLoaderService.summernoteLoader = true;
     this.scrapeService.getHTML(this.url).subscribe({
       next: (data: any) => {
         console.log('data', data);
@@ -46,9 +47,11 @@ export class SearchComponent {
 
         this.editorContentService.updateScrapedData(mainContent.innerHTML);
         // this.summernote.onEditorKeyUp(mainContent);
+        this.tableLoaderService.summernoteLoader = false;
       },
       error: (error) => {
         console.log('error:', error);
+        this.tableLoaderService.summernoteLoader = false;
       },
     });
   }
