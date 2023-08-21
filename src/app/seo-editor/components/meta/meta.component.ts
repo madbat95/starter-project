@@ -15,13 +15,15 @@ export class MetaComponent implements OnInit {
     private wordCounter: WordCounterService,
     private metaDataService: MetaDataService
   ) {
-    this.metaDataService
-      .getMetaTitle$()
-      .subscribe((title) => (this.metaTitle = title));
+    this.metaDataService.getMetaTitle$().subscribe((title) => {
+      this.metaTitle = title;
+      this.updateWordCounts();
+    });
 
-    this.metaDataService
-      .getMetaDescription$()
-      .subscribe((description) => (this.metaDescription = description));
+    this.metaDataService.getMetaDescription$().subscribe((description) => {
+      this.metaDescription = description;
+      this.updateWordCounts();
+    });
   }
 
   ngOnInit(): void {}
