@@ -1,16 +1,30 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { WordCounterService } from '../../service/word-counter.service';
+import { MetaDataService } from 'src/app/shared/services/meta-data.service';
 
 @Component({
   selector: 'meta-button',
   templateUrl: './meta.component.html',
   styleUrls: ['./meta.component.scss'],
 })
-export class MetaComponent {
+export class MetaComponent implements OnInit {
   metaTitle: string = '';
   metaDescription: string = '';
 
-  constructor(private wordCounter: WordCounterService) {}
+  constructor(
+    private wordCounter: WordCounterService,
+    private metaDataService: MetaDataService
+  ) {
+    this.metaDataService
+      .getMetaTitle$()
+      .subscribe((title) => (this.metaTitle = title));
+
+    this.metaDataService
+      .getMetaDescription$()
+      .subscribe((description) => (this.metaDescription = description));
+  }
+
+  ngOnInit(): void {}
 
   updateWordCounts() {
     this.resetWordCounts();
