@@ -1,12 +1,15 @@
 <div nz-row nzJustify="center" [nzGutter]="[0, 16]">
   <div nz-col>
     <nz-table
-      #table
+      *ngIf="!this.tableLoader.variationTableLoader"
+      #virtualTable
       nzBordered
       nzSize="small"
       [nzFrontPagination]="false"
       [nzData]="tableData"
       [nzLoading]="tableLoader.variationTableLoader"
+      [nzVirtualItemSize]="10"
+      [nzVirtualForTrackBy]="trackByIndex"
       nzTableLayout="fixed"
       [nzScroll]="{y:'240px'}"
     >
@@ -26,9 +29,10 @@
         </tr>
       </thead>
       <tbody>
-        <tr *ngFor="let data of table.data">
+        <ng-template nz-virtual-scroll let-data let-index="index">
+        <tr>
           <td
-            *ngIf="data && data.word"
+            
             nzAlign="center"
             class="cell-hover-show"
           >
@@ -45,6 +49,7 @@
             <badge [data]="data.count.summer_note + data.count.meta"></badge>
           </td>
         </tr>
+      </ng-template>
       </tbody>
     </nz-table>
     <nz-dropdown-menu #menu="nzDropdownMenu">
