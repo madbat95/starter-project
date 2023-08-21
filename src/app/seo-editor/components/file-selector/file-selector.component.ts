@@ -52,19 +52,16 @@ export class FileSelectorComponent implements OnInit {
         this.uploadFileService
           .getWordsFromFiles(entityKey, this.selectedFile.filename)
           .subscribe((response: any[]) => {
-            const entityArray = this.wordCounterService.wordObject[entityKey];
-            entityArray.length = 0;
-
+            let entityArray = [];
             for (const wordInfo of response) {
               entityArray.push({
                 word: wordInfo.label,
                 count: { summer_note: 0, meta: 0 },
               });
             }
-
+            this.wordCounterService.wordObject[entityKey] = entityArray
             //updating count
             this.summernote.onEditorKeyUp(this.summernote.editorContent);
-
             this.tableLoader.variationTableLoader = false;
           });
       }

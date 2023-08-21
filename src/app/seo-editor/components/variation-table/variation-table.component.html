@@ -6,27 +6,27 @@
       nzSize="small"
       [nzFrontPagination]="false"
       [nzData]="tableData"
-      nzTableLayout="fixed"
       [nzLoading]="tableLoader.variationTableLoader"
-      [nzScroll]="{ y: '240px' }"
+      nzTableLayout="fixed"
+      [nzScroll]="{y:'240px'}"
     >
       <thead>
         <tr>
-          <th class="table-head" nzAlign="center" nzCustomFilter nzWidth="61%">
+          <th class="table-head" nzAlign="center" nzCustomFilter nzWidth="75%">
             Name
             <nz-filter-trigger
               [(nzVisible)]="visible"
               [nzActive]="searchValue.length > 0"
               [nzDropdownMenu]="menu"
             >
-              <span nz-icon nzType="search" style="font-size: 15px"></span>
+              <span nz-icon nzType="search"></span>
             </nz-filter-trigger>
           </th>
-          <th class="table-head" nzAlign="center">Quantity</th>
+          <th class="table-head" nzAlign="center">Qty</th>
         </tr>
       </thead>
       <tbody>
-        <tr *ngFor="let data of tableData">
+        <tr *ngFor="let data of table.data">
           <td
             *ngIf="data && data.word"
             nzAlign="center"
