@@ -10,6 +10,7 @@ import { ThemeConstantService } from './services/theme-constant.service';
 import { SearchPipe } from './pipes/search.pipe';
 import { NzTableModule } from 'ng-zorro-antd/table';
 import { TableBlurDirective } from './directives/table-blur.directive';
+import { VariationPipe } from './pipes/variation.pipe';
 
 @NgModule({
   exports: [
@@ -31,7 +32,7 @@ import { TableBlurDirective } from './directives/table-blur.directive';
     PerfectScrollbarModule,
     NzTableModule,
   ],
-  declarations: [SearchPipe, TableBlurDirective],
+  declarations: [SearchPipe, TableBlurDirective, VariationPipe],
   providers: [ThemeConstantService],
 })
 export class SharedModule {}
