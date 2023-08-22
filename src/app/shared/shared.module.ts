@@ -33,6 +33,6 @@ import { VariationPipe } from './pipes/variation.pipe';
     NzTableModule,
   ],
   declarations: [SearchPipe, TableBlurDirective, VariationPipe],
-  providers: [ThemeConstantService],
+  providers: [ThemeConstantService, VariationPipe],
 })
 export class SharedModule {}
