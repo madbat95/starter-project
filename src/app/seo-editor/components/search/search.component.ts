@@ -46,7 +46,6 @@ export class SearchComponent {
         this.dataCleaning(mainContent);
 
         this.editorContentService.updateScrapedData(mainContent.innerHTML);
-        // this.summernote.onEditorKeyUp(mainContent);
         this.tableLoaderService.summernoteLoader = false;
       },
       error: (error) => {

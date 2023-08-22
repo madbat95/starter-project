@@ -59,9 +59,11 @@ export class FileSelectorComponent implements OnInit {
                 count: { summer_note: 0, meta: 0 },
               });
             }
-            this.wordCounterService.wordObject[entityKey] = entityArray
+            this.wordCounterService.wordObject[entityKey] = entityArray;
             //updating count
-            this.summernote.onEditorKeyUp(this.summernote.editorContent);
+            this.summernote.onEditorContentChange(
+              this.summernote.editorContent
+            );
             this.tableLoader.variationTableLoader = false;
           });
       }
