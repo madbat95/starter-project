@@ -6,5 +6,5 @@
   *ngIf="!tableLoaderService.summernoteLoader"
   [ngxSummernote]="editorConfig"
   [(ngModel)]="editorContent"
-  (ngModelChange)="onEditorKeyUp($event)"
+  (ngModelChange)="onEditorContentChange($event)"
 ></div>
