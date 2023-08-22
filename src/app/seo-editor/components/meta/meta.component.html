@@ -2,6 +2,7 @@
   <nz-card nz-col nzSpan="24" class="p-0 custom-meta-card">
     <div class="card-label">Meta Title</div>
     <textarea
+      [disabled]="this.tableLoaderService.summernoteLoader"
       nz-input
       nzSize="default"
       style="width: 100%"
@@ -15,6 +16,7 @@
   <nz-card nz-col nzSpan="24" class="p-0 custom-meta-card">
     <div class="card-label">Meta Description</div>
     <textarea
+      [disabled]="this.tableLoaderService.summernoteLoader"
       nz-input
       nzSize="default"
       style="width: 100%"

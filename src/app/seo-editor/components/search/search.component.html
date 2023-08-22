@@ -1,21 +1,26 @@
 <!-- <div nz-row [nzGutter]="[2, 8]" nzJustify="center" nzAlign="middle"> -->
-  <!-- <div nz-col> -->
-    <nz-input-group [nzAddOnAfter]="suffixIconSearch" class="scrap-button">
-    <input
-      nz-input
-      placeholder="Welcome to scrape"
-      nzSize="small"
-      id="websiteUrl"
-      [(ngModel)]="url"
-    />
+<!-- <div nz-col> -->
+<nz-input-group [nzAddOnAfter]="suffixIconSearch" class="scrap-button">
+  <input
+    nz-input
+    placeholder="Welcome to scrape"
+    nzSize="small"
+    id="websiteUrl"
+    [(ngModel)]="url"
+  />
   <!-- </div> -->
   <!-- <div nz-col> -->
-    
-  </nz-input-group>
-  <ng-template #suffixIconSearch>
-    <button nzSearch nz-button nzType="primary" (click)="scrapeWebsite()">
-      <span nz-icon nzType="scissor" nzTheme="outline"></span>
-    </button>
-  </ng-template>
-  <!-- </div> -->
+</nz-input-group>
+<ng-template #suffixIconSearch>
+  <button
+    nzSearch
+    nz-button
+    nzType="primary"
+    (click)="scrapeWebsite()"
+    [disabled]="this.tableLoaderService.summernoteLoader"
+  >
+    <span nz-icon nzType="scissor" nzTheme="outline"></span>
+  </button>
+</ng-template>
+<!-- </div> -->
 <!-- </div> -->
