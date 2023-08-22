@@ -26,6 +26,8 @@ export class FileSelectorComponent implements OnInit {
   ngOnInit(): void {
     this.uploadFileService.getFiles().subscribe((files) => {
       this.files = files;
+      this.selectedFile = this.files[this.files.length - 1];
+      this.onFileSelectionChange();
     });
 
     this.uploadFileService.getAllFiles().subscribe({

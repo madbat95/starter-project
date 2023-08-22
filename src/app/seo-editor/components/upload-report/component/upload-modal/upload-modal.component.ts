@@ -99,13 +99,16 @@ export class UploadModalComponent {
             const entityType = entityTypes[i];
             const wordsResponse = wordsResponses[i];
 
-            const entityArray = this.wordCounterService.wordObject[entityType];
             for (const wordInfo of wordsResponse) {
               const word = wordInfo.label;
 
               // Add the word to the wordObject if it doesn't exist
-              if (!entityArray.some((entity) => entity.word === word)) {
-                entityArray.push({
+              if (
+                !this.wordCounterService.wordObject[entityType].some(
+                  (entity) => entity.word === word
+                )
+              ) {
+                this.wordCounterService.wordObject[entityType].push({
                   word: word,
                   count: { summer_note: 0, meta: 0 },
                 });
