@@ -16,13 +16,25 @@ export class UploadFileService {
 
   addFiles(files: NzUploadFile | NzUploadFile[]): void {
     if (Array.isArray(files)) {
-      this.files.push(...files);
+      for (const file of files) {
+        const existingFile = this.files.find(
+          (existing) => existing.filename === file.filename
+        );
+        if (!existingFile) {
+          this.files.push(file);
+        }
+      }
     } else {
-      this.files.push(files);
+      const existingFile = this.files.find(
+        (existing) => existing.filename === files.filename
+      );
+      if (!existingFile) {
+        this.files.push(files);
+      }
     }
     this.filesSubject.next([...this.files]);
   }
-  
+
   getFiles(): Observable<any[]> {
     return this.filesSubject.asObservable();
   }

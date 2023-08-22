@@ -1,7 +1,26 @@
-<div nz-row nzJustify="center" [nzGutter]="[0, 16]">
+<div nz-row nzJustify="center" [nzGutter]="[0, 2]">
+  <div nz-col>
+    <nz-input-group
+      [nzSize]="'small'"
+      style="width: 100%"
+      [nzPrefix]="prefixTemplateUser"
+    >
+      <input
+        type="text"
+        nz-input
+        placeholder="Search Word"
+        [(ngModel)]="searchValue"
+        (ngModelChange)="filterTable()"
+      />
+    </nz-input-group>
+  </div>
+  <ng-template #prefixTemplateUser
+    ><span nz-icon nzType="search"></span
+  ></ng-template>
+
   <div nz-col>
     <nz-table
-    class="variation-table"
+      class="variation-table"
       *ngIf="!this.tableLoader.variationTableLoader"
       #virtualTable
       nzBordered
@@ -12,67 +31,35 @@
       [nzVirtualItemSize]="10"
       [nzVirtualForTrackBy]="trackByIndex"
       nzTableLayout="fixed"
-      [nzScroll]="{y:'240px'}"
+      [nzScroll]="{ y: '240px' }"
     >
       <thead>
         <tr>
           <th class="table-head" nzAlign="center" nzCustomFilter nzWidth="75%">
             Name
-            <nz-filter-trigger
-              [(nzVisible)]="visible"
-              [nzActive]="searchValue.length > 0"
-              [nzDropdownMenu]="menu"
-            >
-              <span nz-icon nzType="search"></span>
-            </nz-filter-trigger>
           </th>
           <th class="table-head" nzAlign="center">Qty</th>
         </tr>
       </thead>
       <tbody>
         <ng-template nz-virtual-scroll let-data let-index="index">
-        <tr>
-          <td
-            nzAlign="center"
-            class="cell-hover-show"
-          >
-            <span
-              nz-icon
-              nzType="close-circle"
-              [nzTheme]="'outline'"
-              class="icon-hover-show"
-              (click)="deleteRow(data.word)"
-            ></span>
-            <span class="ml-2">{{ data.word }}</span>
-          </td>
-          <td *ngIf="data && data.count" nzAlign="center">
-            <badge [data]="data.count.summer_note + data.count.meta"></badge>
-          </td>
-        </tr>
-      </ng-template>
+          <tr>
+            <td nzAlign="center" class="cell-hover-show">
+              <span
+                nz-icon
+                nzType="close-circle"
+                [nzTheme]="'outline'"
+                class="icon-hover-show"
+                (click)="deleteRow(data.word)"
+              ></span>
+              <span class="ml-2">{{ data.word }}</span>
+            </td>
+            <td *ngIf="data && data.count" nzAlign="center">
+              <badge [data]="data.count.summer_note + data.count.meta"></badge>
+            </td>
+          </tr>
+        </ng-template>
       </tbody>
     </nz-table>
-    <nz-dropdown-menu #menu="nzDropdownMenu">
-      <div class="ant-table-filter-dropdown">
-        <div class="search-box">
-          <input
-            type="text"
-            nz-input
-            placeholder="Search name"
-            [(ngModel)]="searchValue"
-          />
-          <button
-            nz-button
-            nzSize="small"
-            nzType="primary"
-            (click)="search()"
-            class="search-button"
-          >
-            Search
-          </button>
-          <button nz-button nzSize="small" (click)="reset()">Reset</button>
-        </div>
-      </div>
-    </nz-dropdown-menu>
   </div>
 </div>

@@ -51,109 +51,6 @@ export class UploadModalComponent {
     return false;
   };
 
-  // submitForm(): void {
-  //   if (this.fileList.length === 0) {
-  //     return;
-  //   }
-  //   this.loading = true;
-  //   const formData = new FormData();
-  //   if (this.fileList.length > 0) {
-  //     formData.append('configuration_file', this.fileList[0] as any);
-  //   }
-
-  //   this.uploadFileService
-  //     .postFile(formData)
-  //     .pipe(
-  //       switchMap((postResponse: any) => {
-  //         this.notificationService.success('File uploaded.');
-  //         return this.uploadFileService.getFile(this.fileName);
-  //       }),
-  //       switchMap((fileResponse: any) => {
-  //         const latestObject = fileResponse[fileResponse.length - 1];
-  //         return this.uploadFileService.getWordsFromFiles(
-  //           'Entity',
-  //           latestObject.filename
-  //         );
-  //       }),
-  //       catchError((error: any) => {
-  //         this.notificationService.error('Failed to upload file.');
-  //         return error;
-  //       })
-  //     )
-  //     .subscribe(
-  //       (wordResponse: any) => {
-  //         console.log('Words from file:', wordResponse);
-
-  //         // Append the wordResponse data to the fileData array
-  //         this.fileData.push(wordResponse);
-
-  //         this.loading = false;
-  //         this.modal.close();
-  //       },
-  //       (error: any) => {
-  //         console.error('Failed to get file:', error);
-  //         this.loading = false;
-  //       }
-  //     );
-  // }
-
-  // submitForm(): void {
-  //   if (this.fileList.length === 0) {
-  //     return;
-  //   }
-  //   this.loading = true;
-  //   const formData = new FormData();
-  //   if (this.fileList.length > 0) {
-  //     formData.append('configuration_file', this.fileList[0] as any);
-  //   }
-
-  //   this.uploadFileService
-  //     .postFile(formData)
-  //     .pipe(
-  //       switchMap((postResponse: any) => {
-  //         this.notificationService.success('File uploaded.');
-  //         return this.uploadFileService.getFile(this.fileName);
-  //       }),
-  //       switchMap((fileResponse: any) => {
-  //         const latestObject = fileResponse[fileResponse.length - 1];
-  //         return this.uploadFileService.getWordsFromFiles(
-  //           'Entity',
-  //           latestObject.filename
-  //         );
-  //       }),
-  //       catchError((error: any) => {
-  //         this.notificationService.error('Failed to upload file.');
-  //         return error;
-  //       })
-  //     )
-  //     .subscribe(
-  //       (wordResponse: any) => {
-  //         console.log('Words from file:', wordResponse);
-
-  //         // Update the wordObject with labels from the wordResponse
-  //         const entityType = 'Entity'; // Adjust if needed
-  //         const entityArray = this.wordCounterService.wordObject[entityType];
-  //         for (const wordInfo of wordResponse) {
-  //           const word = wordInfo.label;
-
-  //           // Add the word to the wordObject if it doesn't exist
-  //           if (!entityArray.some((entity) => entity.word === word)) {
-  //             entityArray.push({
-  //               word: word,
-  //               count: { summer_note: 0, meta: 0 },
-  //             });
-  //           }
-  //         }
-
-  //         this.loading = false;
-  //         this.modal.close();
-  //       },
-  //       (error: any) => {
-  //         console.error('Failed to get file:', error);
-  //         this.loading = false;
-  //       }
-  //     );
-  // }
   submitForm(): void {
     if (this.fileList.length === 0) {
       return;
@@ -202,21 +99,28 @@ export class UploadModalComponent {
             const entityType = entityTypes[i];
             const wordsResponse = wordsResponses[i];
 
-            const entityArray = this.wordCounterService.wordObject[entityType];
             for (const wordInfo of wordsResponse) {
               const word = wordInfo.label;
 
               // Add the word to the wordObject if it doesn't exist
-              if (!entityArray.some((entity) => entity.word === word)) {
-                entityArray.push({
+              if (
+                !this.wordCounterService.wordObject[entityType].some(
+                  (entity) => entity.word === word
+                )
+              ) {
+                this.wordCounterService.wordObject[entityType].push({
                   word: word,
                   count: { summer_note: 0, meta: 0 },
                 });
               }
             }
           }
+          console.log(
+            'in upload component',
+            this.wordCounterService.wordObject
+          );
 
-          this.summernote.onEditorKeyUp(this.summernote.editorContent);
+          this.summernote.onEditorContentChange(this.summernote.editorContent);
           this.tableLoader.variationTableLoader = false;
           this.isLoading = false;
           this.modal.close();

@@ -46,7 +46,6 @@ export class SearchComponent {
         this.dataCleaning(mainContent);
 
         this.editorContentService.updateScrapedData(mainContent.innerHTML);
-        // this.summernote.onEditorKeyUp(mainContent);
         this.tableLoaderService.summernoteLoader = false;
       },
       error: (error) => {
@@ -57,11 +56,17 @@ export class SearchComponent {
   }
 
   dataCleaning(mainContent: any) {
-    // Remove images
-    mainContent.querySelectorAll('img').forEach((image) => image.remove());
+    // Remove images if they exist
+    const images = mainContent.querySelectorAll('img');
+    if (images.length > 0) {
+      images.forEach((image) => image.remove());
+    }
 
-    // Remove forms
-    mainContent.querySelectorAll('form').forEach((form) => form.remove());
+    // Remove forms if they exist
+    const forms = mainContent.querySelectorAll('form');
+    if (forms.length > 0) {
+      forms.forEach((form) => form.remove());
+    }
 
     // Remove header (assuming it's inside a common container with a specific ID or class)
     const headerContainer = mainContent.querySelector('#header-container');
@@ -75,14 +80,23 @@ export class SearchComponent {
       footerContainer.remove();
     }
 
-    // Remove iframes
-    mainContent.querySelectorAll('iframe').forEach((iframe) => iframe.remove());
+    // Remove iframes if they exist
+    const iframes = mainContent.querySelectorAll('iframe');
+    if (iframes.length > 0) {
+      iframes.forEach((iframe) => iframe.remove());
+    }
 
-    // Remove <nav> element
-    mainContent.querySelectorAll('nav').forEach((nav) => nav.remove());
+    // Remove <nav> elements if they exist
+    const navs = mainContent.querySelectorAll('nav');
+    if (navs.length > 0) {
+      navs.forEach((nav) => nav.remove());
+    }
 
-    // Remove <aside> element and its content
-    mainContent.querySelectorAll('aside').forEach((aside) => aside.remove());
+    // Remove <aside> elements if they exist
+    const asides = mainContent.querySelectorAll('aside');
+    if (asides.length > 0) {
+      asides.forEach((aside) => aside.remove());
+    }
 
     // Remove empty tags with no content and skipping lines
     mainContent.querySelectorAll('*').forEach((element) => {

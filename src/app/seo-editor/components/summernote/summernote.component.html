@@ -1,5 +1,5 @@
 <div *ngIf="tableLoaderService.summernoteLoader">
-  <nz-spin nzSimple [nzSize]="'large'"></nz-spin>
+  <nz-skeleton [nzActive]="true" [nzParagraph]="{ rows: 8 }"></nz-skeleton>
 </div>
 
 <div

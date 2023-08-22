@@ -1,4 +1,11 @@
-import { Component, EventEmitter, OnInit, OnDestroy, Output, Input } from '@angular/core';
+import {
+  Component,
+  EventEmitter,
+  OnInit,
+  OnDestroy,
+  Output,
+  Input,
+} from '@angular/core';
 import { WordCounterService } from '../../service/word-counter.service';
 import { ActivatedRoute, ParamMap } from '@angular/router';
 import { switchMap, catchError, debounceTime, takeUntil } from 'rxjs/operators';
@@ -21,13 +28,13 @@ export class SummernoteComponent implements OnInit, OnDestroy {
     public tableLoaderService: TableLoaderService
   ) {
     this.contentChange$
-    .pipe(
-      debounceTime(500), // Adjust the debounce time as needed (e.g., 500 milliseconds)
-      takeUntil(this.destroy$)
-    )
-    .subscribe((content: string) => {
-      this.onEditorKeyUp(content);
-    });
+      .pipe(
+        debounceTime(500), // Adjust the debounce time as needed (e.g., 500 milliseconds)
+        takeUntil(this.destroy$)
+      )
+      .subscribe((content: string) => {
+        this.onEditorKeyUp(content);
+      });
   }
 
   onEditorContentChange(content: string) {
@@ -36,7 +43,7 @@ export class SummernoteComponent implements OnInit, OnDestroy {
 
   private contentChange$ = new Subject<string>();
   private destroy$ = new Subject<void>();
-  
+
   id: any;
   editorContent = '';
   isLoading = false;
@@ -49,16 +56,10 @@ export class SummernoteComponent implements OnInit, OnDestroy {
     uploadImagePath: '/api/upload',
     toolbar: [
       ['misc', ['undo', 'redo']],
-      [
-        'font',
-        [
-          'bold',
-          'italic'
-        ],
-      ],
+      ['font', ['bold', 'italic']],
       ['fontsize', ['fontname', 'color']],
       ['para', ['style', 'ul', 'ol', 'paragraph', 'height']],
-      ['insert', [ 'link', 'hr']],
+      ['insert', ['link', 'hr']],
     ],
     fontNames: [
       'Helvetica',
@@ -79,7 +80,7 @@ export class SummernoteComponent implements OnInit, OnDestroy {
       .getScrapedDataObservable()
       .subscribe((data: string) => {
         this.editorContent = data;
-        this.onEditorKeyUp(data);
+        this.onEditorContentChange(data);
       });
 
     this.route.paramMap
@@ -90,8 +91,13 @@ export class SummernoteComponent implements OnInit, OnDestroy {
         })
       )
       .subscribe((response: any) => {
-        if (response.length) this.editorContent = response[0].content;
-        this.onEditorKeyUp(this.editorContent);
+        this.contentSerevice.contentRetrieved = false;
+        if (response.length) {
+          this.id = response[0].id;
+          this.editorContent = response[0].content;
+          this.contentSerevice.contentRetrieved = true;
+          this.onEditorContentChange(this.editorContent);
+        }
       });
   }
 

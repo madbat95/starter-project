@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { WordCounterService } from '../../service/word-counter.service';
 import { MetaDataService } from 'src/app/shared/services/meta-data.service';
+import { TableLoaderService } from 'src/app/shared/services/table-loader.service';
 
 @Component({
   selector: 'meta-button',
@@ -13,7 +14,8 @@ export class MetaComponent implements OnInit {
 
   constructor(
     private wordCounter: WordCounterService,
-    private metaDataService: MetaDataService
+    private metaDataService: MetaDataService,
+    public tableLoaderService: TableLoaderService
   ) {
     this.metaDataService.getMetaTitle$().subscribe((title) => {
       this.metaTitle = title;

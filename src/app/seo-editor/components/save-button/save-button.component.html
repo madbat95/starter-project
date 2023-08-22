@@ -2,7 +2,7 @@
   nz-button
   nzType="primary"
   nzSize="small"
-  [disabled]="loading"
+  [disabled]="loading || this.tableLoaderService.summernoteLoader"
   (click)="onSave()"
 >
   Save
