@@ -5,7 +5,7 @@ import { HttpClient } from '@angular/common/http';
   providedIn: 'root',
 })
 export class HtmlContentService {
-  contentRetrieved: boolean = false;
+  contentRetrieved: boolean;
   constructor(private http: HttpClient) {}
 
   getContents() {

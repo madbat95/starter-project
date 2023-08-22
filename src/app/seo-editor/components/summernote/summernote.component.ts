@@ -31,16 +31,10 @@ export class SummernoteComponent implements OnInit {
     uploadImagePath: '/api/upload',
     toolbar: [
       ['misc', ['undo', 'redo']],
-      [
-        'font',
-        [
-          'bold',
-          'italic'
-        ],
-      ],
+      ['font', ['bold', 'italic']],
       ['fontsize', ['fontname', 'color']],
       ['para', ['style', 'ul', 'ol', 'paragraph', 'height']],
-      ['insert', [ 'link', 'hr']],
+      ['insert', ['link', 'hr']],
     ],
     fontNames: [
       'Helvetica',
@@ -72,8 +66,13 @@ export class SummernoteComponent implements OnInit {
         })
       )
       .subscribe((response: any) => {
-        if (response.length) this.editorContent = response[0].content;
-        this.onEditorKeyUp(this.editorContent);
+        this.contentSerevice.contentRetrieved = false;
+        if (response.length) {
+          this.id = response[0].id;
+          this.editorContent = response[0].content;
+          this.contentSerevice.contentRetrieved = true;
+          this.onEditorKeyUp(this.editorContent);
+        }
       });
   }
 

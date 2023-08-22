@@ -1,6 +1,10 @@
-<div nz-row nzJustify="center" [nzGutter]="[0, 0]">
-  <div>
-    <nz-input-group [nzPrefix]="prefixTemplateUser">
+<div nz-row nzJustify="center" [nzGutter]="[0, 2]">
+  <div nz-col>
+    <nz-input-group
+      [nzSize]="'small'"
+      style="width: 100%"
+      [nzPrefix]="prefixTemplateUser"
+    >
       <input
         type="text"
         nz-input
