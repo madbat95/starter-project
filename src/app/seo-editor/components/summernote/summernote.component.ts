@@ -52,7 +52,7 @@ export class SummernoteComponent implements OnInit, OnDestroy {
     theme: 'bs4-dark',
     placeholder: 'Add text here...',
     tabsize: 2,
-    height: 300,
+    height: 330,
     uploadImagePath: '/api/upload',
     toolbar: [
       ['misc', ['undo', 'redo']],
