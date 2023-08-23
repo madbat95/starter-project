@@ -1,9 +1,5 @@
 @import '../../../../assets/scss/variables';
 
-.variation-table {
-  filter: drop-shadow(0 0 10px lighten($brand-primary, 30%));
-}
-
 .search-box {
   padding: 8px;
 }
@@ -34,6 +30,7 @@
   visibility: hidden;
   opacity: 0;
   transition: opacity 0.3s, visibility 0.3s;
+  float: right;
 }
 
 .cell-hover-show:hover .icon-hover-show {

@@ -1,8 +1,7 @@
-<div nz-row nzJustify="center" [nzGutter]="[0, 2]">
-  <div nz-col>
+<div nz-row nzJustify="center" [nzGutter]="[0, 8]">
     <nz-input-group
-      [nzSize]="'small'"
-      style="width: 100%"
+    nz-col
+    nzSize="large"
       [nzPrefix]="prefixTemplateUser"
     >
       <input
@@ -13,14 +12,12 @@
         (ngModelChange)="filterTable()"
       />
     </nz-input-group>
-  </div>
   <ng-template #prefixTemplateUser
     ><span nz-icon nzType="search"></span
   ></ng-template>
 
-  <div nz-col>
     <nz-table
-      class="variation-table"
+    nz-col
       *ngIf="!this.tableLoader.variationTableLoader"
       #virtualTable
       nzBordered
@@ -35,7 +32,7 @@
     >
       <thead>
         <tr>
-          <th class="table-head" nzAlign="center" nzCustomFilter nzWidth="75%">
+          <th class="table-head" nzCustomFilter nzWidth="75%">
             Name
           </th>
           <th class="table-head" nzAlign="center">Qty</th>
@@ -44,7 +41,8 @@
       <tbody>
         <ng-template nz-virtual-scroll let-data let-index="index">
           <tr>
-            <td nzAlign="center" class="cell-hover-show">
+            <td class="cell-hover-show">
+              <span class="ml-2">{{ data.word }}</span>
               <span
                 nz-icon
                 nzType="close-circle"
@@ -52,7 +50,6 @@
                 class="icon-hover-show"
                 (click)="deleteRow(data.word)"
               ></span>
-              <span class="ml-2">{{ data.word }}</span>
             </td>
             <td *ngIf="data && data.count" nzAlign="center">
               <badge [data]="data.count.summer_note + data.count.meta"></badge>
@@ -62,4 +59,3 @@
       </tbody>
     </nz-table>
   </div>
-</div>

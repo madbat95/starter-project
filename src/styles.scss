@@ -14,10 +14,16 @@
   }
 }
 
+
+
 @import url("./assets/lib/hljs/styles/atom-one-light.css");
 @import url("../node_modules/ng-zorro-antd/src/ng-zorro-antd.min.css");
 @import url("../node_modules/@fortawesome/fontawesome-free/css/all.min.css");
 @import "./assets/scss/app.scss";
+
+.shadow {
+  filter: drop-shadow(0 0 10px lighten($brand-primary, 30%));
+}
 
 // @import url("https://fonts.googleapis.com/css2?family=Lato&display=swap");
 // // @import "~tui-image-editor/dist/tui-image-editor.min.css";
