@@ -30,13 +30,12 @@
     >
       <thead>
         <tr>
-          <th class="table-head" nzCustomFilter nzWidth="75%">
+          <th class="table-head" nzCustomFilter nzWidth="70%">
             Name
-            <badge [data]="virtualTable.data.length"></badge>
           </th>
           <th class="table-head" nzAlign="center">
             Qty
-            <badge [data]="calculatePositiveCount(virtualTable.data)"></badge>
+            &nbsp;<badge [data]="calculatePositiveCount(virtualTable.data)"></badge>
           </th>
         </tr>
       </thead>
