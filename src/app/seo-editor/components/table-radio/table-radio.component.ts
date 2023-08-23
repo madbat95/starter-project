@@ -1,4 +1,5 @@
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
+import { WordCounterService } from '../../service/word-counter.service';
 
 @Component({
   selector: 'app-table-radio',
@@ -8,7 +9,7 @@ import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 export class TableRadioComponent implements OnInit {
   selectedTable: string = 'Entity';
   @Output() selectedTableChange = new EventEmitter<string>();
-  constructor() {}
+  constructor(private wordCounterService: WordCounterService) {}
   ngOnInit(): void {
     this.onTableSelectionChange();
   }
@@ -22,5 +23,8 @@ export class TableRadioComponent implements OnInit {
     } else if (this.selectedTable === 'Variations') {
       this.selectedTableChange.emit(this.selectedTable);
     }
+  }
+  calculateRadioLength(selectedTable: any): number {
+    return this.wordCounterService.wordObject[selectedTable].length;
   }
 }

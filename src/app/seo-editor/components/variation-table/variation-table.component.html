@@ -1,10 +1,8 @@
 <div nz-row nzJustify="center" [nzGutter]="[0, 8]">
-    <nz-input-group
-    nz-col
-    nzSize="large"
-      [nzPrefix]="prefixTemplateUser"
-    >
+  <div nz-col style="width: 100%">
+    <nz-input-group nz-col nzSize="large" [nzPrefix]="prefixTemplateUser">
       <input
+        style="width: 100%"
         type="text"
         nz-input
         placeholder="Search Word"
@@ -12,12 +10,12 @@
         (ngModelChange)="filterTable()"
       />
     </nz-input-group>
-  <ng-template #prefixTemplateUser
-    ><span nz-icon nzType="search"></span
-  ></ng-template>
+    <ng-template #prefixTemplateUser
+      ><span nz-icon nzType="search"></span
+    ></ng-template>
 
     <nz-table
-    nz-col
+      nz-col
       *ngIf="!this.tableLoader.variationTableLoader"
       #virtualTable
       nzBordered
@@ -34,8 +32,12 @@
         <tr>
           <th class="table-head" nzCustomFilter nzWidth="75%">
             Name
+            <badge [data]="virtualTable.data.length"></badge>
           </th>
-          <th class="table-head" nzAlign="center">Qty</th>
+          <th class="table-head" nzAlign="center">
+            Qty
+            <badge [data]="calculatePositiveCount(virtualTable.data)"></badge>
+          </th>
         </tr>
       </thead>
       <tbody>
@@ -59,3 +61,4 @@
       </tbody>
     </nz-table>
   </div>
+</div>
