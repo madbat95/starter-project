@@ -41,3 +41,7 @@
 .header-click {
   cursor: pointer;
 }
+
+.required:not(.focused){
+  filter: grayscale(0.4);
+}
