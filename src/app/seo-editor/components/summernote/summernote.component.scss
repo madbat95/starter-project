@@ -11,6 +11,6 @@
 }
 
 ::ng-deep .note-editor .note-toolbar {
-    // background-color: $brand-primary;
-    // background-color: lighten($brand-primary, 8%);
+    filter: grayscale(0.60);
+    background-color: $brand-primary;
 }
