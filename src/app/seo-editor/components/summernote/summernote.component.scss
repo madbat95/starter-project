@@ -7,5 +7,10 @@
 }
 
 ::ng-deep .note-editor {
-    filter: drop-shadow(0 0 10px lighten($brand-primary, 30%));
+    // filter: drop-shadow(0 0 10px lighten($brand-primary, 30%));
+}
+
+::ng-deep .note-editor .note-toolbar {
+    // background-color: $brand-primary;
+    // background-color: lighten($brand-primary, 8%);
 }
