@@ -1,10 +1,12 @@
+@import '../../../../assets/scss/variables';
+
 .card-label {
   padding-top: 5px;
   padding-bottom: 5px;
   padding-left: 5px;
   padding-right: 5px;
   font-weight: bold;
-  background-color: #7d8479;
+  background-color: $brand-primary;
   color: white;
 }
 
