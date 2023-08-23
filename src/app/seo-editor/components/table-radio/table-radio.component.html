@@ -1,4 +1,4 @@
-<nz-radio-group
+<!-- <nz-radio-group
   [(ngModel)]="selectedTable"
   nzSize="small"
   nzButtonStyle="solid"
@@ -16,4 +16,28 @@
     >Entities
     <badge [data]="calculateRadioLength('Entity')"></badge>
   </label>
-</nz-radio-group>
+</nz-radio-group> -->
+
+<nz-segmented [nzOptions]="options" [nzLabelTemplate]="templateRef" (nzValueChange)="handleIndexChange(options[$event])"></nz-segmented>
+
+<ng-template #temp let-index="index">
+  <ng-container>
+    <badge [data]="calculateRadioLength(options[index].value)"></badge>
+    <!-- <nz-avatar nzSrc="https://joeschmoe.io/api/v1/random"></nz-avatar> -->
+    <div>{{options[index].label}}</div>
+  </ng-container>
+  <!-- <ng-container [ngSwitch]="index"> -->
+    <!-- <ng-container *ngSwitchCase="0">
+      <nz-avatar nzSrc="https://joeschmoe.io/api/v1/random"></nz-avatar>
+      <div>{{options[index].label}}</div>
+    </ng-container> -->
+    <!-- <ng-container *ngSwitchCase="1">
+      <nz-avatar nzText="K"></nz-avatar>
+      <div>User 2</div>
+    </ng-container>
+    <ng-container *ngSwitchCase="2">
+      <nz-avatar nzIcon="user"></nz-avatar>
+      <div>User 3</div>
+    </ng-container>
+  </ng-container> -->
+</ng-template>

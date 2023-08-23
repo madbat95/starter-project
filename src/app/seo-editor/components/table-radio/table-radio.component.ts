@@ -1,5 +1,6 @@
-import { Component, EventEmitter, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output, TemplateRef, ViewChild } from '@angular/core';
 import { WordCounterService } from '../../service/word-counter.service';
+import { NzSegmentedOption } from 'ng-zorro-antd/segmented';
 
 @Component({
   selector: 'app-table-radio',
@@ -7,11 +8,26 @@ import { WordCounterService } from '../../service/word-counter.service';
   styleUrls: ['./table-radio.component.scss'],
 })
 export class TableRadioComponent implements OnInit {
+  @ViewChild('temp', { static: true, read: TemplateRef }) templateRef!: TemplateRef<{
+    $implicit: NzSegmentedOption;
+    index: number;
+  }>;
   selectedTable: string = 'Entity';
   @Output() selectedTableChange = new EventEmitter<string>();
   constructor(private wordCounterService: WordCounterService) {}
+  // options = ['Entities', 'Variations','LSI KWs',]
+  options = [
+    { label: 'Entities', value: 'Entity', useTemplate: true },
+    { label: 'Variations', value: 'Variations', useTemplate: true },
+    { label: 'LSI KWs', value: 'LSIKeywords', useTemplate: true }
+  ];
+
+  handleIndexChange(e: any): void {
+      this.selectedTableChange.emit(e.value);
+  }
   ngOnInit(): void {
-    this.onTableSelectionChange();
+    this.handleIndexChange('Entity')
+    // this.onTableSelectionChange();
   }
 
   onTableSelectionChange(): void {

@@ -48,6 +48,7 @@ import { FileSelectorComponent } from './components/file-selector/file-selector.
 import { NzSelectModule } from 'ng-zorro-antd/select';
 import { SaveButtonComponent } from './components/save-button/save-button.component';
 import { NzSpinModule } from 'ng-zorro-antd/spin';
+import { NzSegmentedModule } from 'ng-zorro-antd/segmented';
 
 const antdModule = [
   NzButtonModule,
@@ -78,6 +79,7 @@ const antdModule = [
   NzUploadModule,
   NzSelectModule,
   NzSpinModule,
+  NzSegmentedModule
 ];
 
 @NgModule({
