@@ -15,7 +15,6 @@ export class TableRadioComponent implements OnInit {
   selectedTable: string = 'Entity';
   @Output() selectedTableChange = new EventEmitter<string>();
   constructor(private wordCounterService: WordCounterService) {}
-  // options = ['Entities', 'Variations','LSI KWs',]
   options = [
     { label: 'Entities', value: 'Entity', useTemplate: true },
     { label: 'Variations', value: 'Variations', useTemplate: true },
@@ -23,10 +22,9 @@ export class TableRadioComponent implements OnInit {
   ];
 
   handleIndexChange(e: any): void {
-      this.selectedTableChange.emit(e.value);
+    this.selectedTableChange.emit(e.value);
   }
   ngOnInit(): void {
-    this.handleIndexChange('Entity')
     // this.onTableSelectionChange();
   }
 
