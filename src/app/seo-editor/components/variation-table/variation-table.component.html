@@ -41,7 +41,7 @@
       </thead>
       <tbody>
         <ng-template nz-virtual-scroll let-data let-index="index">
-          <tr>
+          <tr [ngClass]="{'bg-success': (data.count.summer_note + data.count.meta) > 0}">
             <td class="cell-hover-show">
               <span class="ml-2">{{ data.word }}</span>
               <span
