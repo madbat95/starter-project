@@ -5,7 +5,7 @@
     [nzSm]="22"
     [nzMd]="22"
     [nzLg]="22"
-    [nzXl]="4"
+    [nzXl]="3"
     style="text-align: center"
     [nzPercent]="75"
     [nzWidth]="100"
@@ -17,11 +17,10 @@
     [nzSm]="22"
     [nzMd]="22"
     [nzLg]="22"
-    [nzXl]="15"
+    [nzXl]="16"
   ></app-suggestion-table>
 
   <div
-    nz-col
     nz-col
     [nzXs]="22"
     [nzSm]="22"
@@ -48,8 +47,8 @@
 </div>
 <br /><br />
 <div nz-row nzJustify="space-around" [nzGutter]="[8, 8]">
-  <div nz-col [nzMd]="24" [nzLg]="6" [nzXl]="6">
-    <div nz-row nzJustify="center" nzAlign="middle" [nzGutter]="[0, 8]">
+  <div nz-col [nzMd]="24" [nzLg]="6" [nzXl]="5">
+    <div nz-row nzJustify="center" nzAlign="middle" [nzGutter]="[7, 8]">
       <div nz-col>
         <app-table-radio
           (selectedTableChange)="onTableSelection($event)"
@@ -61,19 +60,19 @@
     </div>
   </div>
 
-  <div nz-col [nzMd]="24" [nzLg]="13" [nzXl]="13">
+  <div nz-col [nzMd]="24" [nzLg]="13" [nzXl]="13.5">
     <app-summernote
       (onEditorContent)="onEditorContent($event)"
     ></app-summernote>
   </div>
   <div nz-col [nzMd]="24" [nzLg]="5" [nzXl]="5">
     <div nz-row nzJustify="center" nzAlign="middle" [nzGutter]="[8, 8]">
-      <div nz-col>
-        <app-save-button [editorContent]="editorContent"></app-save-button>
-      </div>
       <div>
         <meta-button></meta-button>
       </div>
     </div>
   </div>
+</div>
+<div class="bottom-btn shadow">
+  <app-save-button [editorContent]="editorContent"></app-save-button>
 </div>
