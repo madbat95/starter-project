@@ -4,7 +4,16 @@
   nzButtonStyle="solid"
   (ngModelChange)="onTableSelectionChange()"
 >
-  <label nz-radio-button nzValue="Variations">Variation</label>
-  <label nz-radio-button nzValue="LSIKeywords">LSI KWs</label>
-  <label nz-radio-button nzValue="Entity">Entities</label>
+  <label nz-radio-button nzValue="Variations"
+    >Variation
+    <badge [data]="calculateRadioLength('Variations')"></badge>
+  </label>
+  <label nz-radio-button nzValue="LSIKeywords"
+    >LSI KWs
+    <badge [data]="calculateRadioLength('LSIKeywords')"></badge>
+  </label>
+  <label nz-radio-button nzValue="Entity"
+    >Entities
+    <badge [data]="calculateRadioLength('Entity')"></badge>
+  </label>
 </nz-radio-group>
