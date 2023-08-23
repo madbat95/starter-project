@@ -72,4 +72,9 @@ export class VariationTableComponent {
       this.searchValue
     );
   }
+  calculatePositiveCount(tableData: any): number {
+    return tableData.filter(
+      (item) => item.count.meta > 0 || item.count.summer_note > 0
+    ).length;
+  }
 }
