@@ -119,9 +119,16 @@
 }
 
 .is-side-nav-dark {
-  color: white !important;
+  // color: white !important;
   .side-nav {
     background-color: $menu-dark-bg !important;
+    border-color: $menu-dark-bg !important;
+  }
+  .ant-badge,
+  .ant-badge-count p,
+  .ant-badge-count {
+    color: white !important;
+    box-shadow: unset !important;
   }
 
   .ant-card,
@@ -148,18 +155,38 @@
   .ant-breadcrumb > nz-breadcrumb-item:last-child a,
   .ant-btn,
   .bold-label,
-  .text-dark {
+  .text-dark,
+  .ant-progress-circle .ant-progress-text {
     color: white !important;
   }
+
+  .ant-segmented-item-selected,
+  .ant-segmented-thumb {
+    background-color: $menu-dark-bg !important;
+    color: white;
+  }
+  .ant-segmented {
+    color: white;
+  }
+
+  .header,
+  .footer,
+  .header .logo,
+  .footer .footer-content {
+    background-color: $menu-dark-bg;
+    border-color: $menu-dark-bg;
+  }
+
   .ant-table,
   .ant-btn-primary.disabled,
   .ant-btn-primary[disabled],
-  .ant-timeline-item-head {
-    color: white;
+  .ant-timeline-item-head,
+  .note-editable {
+    $table-border: lighten($menu-dark-bg, 20%) !important;
+    color: white !important;
     background-color: $menu-dark-bg !important;
   }
-  .header,
-  .footer,
+
   .page-container .main-content,
   .ant-input,
   .ant-input-affix-wrapper,
