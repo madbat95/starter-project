@@ -123,7 +123,7 @@
   .side-nav {
     background-color: $menu-dark-bg !important;
   }
-  .footer,
+
   .ant-card,
   .ant-card-body,
   .ant-card-head {
@@ -147,13 +147,28 @@
   .ant-breadcrumb > nz-breadcrumb-item:last-child,
   .ant-breadcrumb > nz-breadcrumb-item:last-child a,
   .ant-btn,
-  .bold-label {
-    color: white;
+  .bold-label,
+  .text-dark {
+    color: white !important;
   }
+  .ant-table,
+  .ant-btn-primary.disabled,
+  .ant-btn-primary[disabled],
+  .ant-timeline-item-head {
+    color: white;
+    background-color: $menu-dark-bg !important;
+  }
+  .header,
+  .footer,
   .page-container .main-content,
   .ant-input,
-  .ant-input-affix-wrapper {
+  .ant-input-affix-wrapper,
+  .ant-select-single:not(.ant-select-customize-input) .ant-select-selector,
+  .ant-radio,
+  .ant-radio-wrapper,
+  a.ant-btn {
     background-color: lighten($menu-dark-bg, 10%) !important;
+    color: white;
   }
 }
 
