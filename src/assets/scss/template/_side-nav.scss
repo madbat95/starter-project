@@ -124,12 +124,30 @@
     background-color: $menu-dark-bg !important;
     border-color: $menu-dark-bg !important;
   }
+
   .ant-badge,
   .ant-badge-count p,
-  .ant-badge-count {
+  .ant-badge-count,
+  .anticon {
     color: white !important;
     box-shadow: unset !important;
   }
+
+  .ant-input-group-addon:last-child {
+    border: none !important;
+    border-top-left-radius: none !important;
+    border-bottom-left-radius: none !important;
+  }
+  // .ant-radio-button-wrapper-checked .ant-radio-button-wrapper-disabled {
+  //   color: $white !important;
+  //   border: $menu-dark-bg !important;
+  //   background-color: lighten($menu-dark-bg, 20%) !important;
+  // }
+  // .ant-radio-button-wrapper {
+  //   color: $white !important;
+  //   border: $menu-dark-bg !important;
+  //   background-color: lighten($menu-dark-bg, 40%) !important;
+  // }
 
   .ant-card,
   .ant-card-body,
