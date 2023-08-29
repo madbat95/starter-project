@@ -89,7 +89,6 @@ export class AuthService {
   }
 
   getLoggedInUserProfile(): Observable<any> {
-    // return this.http.get('profile/me/');
     return this.getLoggedInUser();
   }
 

@@ -170,12 +170,6 @@ export class ProfileSettingComponent {
         first_name: loggedInUser.first_name,
         last_name: loggedInUser.last_name,
         email: loggedInUser.email,
-        // phone_number: loggedInUserProfile.phone_number,
-        // address: loggedInUserProfile.address,
-        // state: loggedInUserProfile.state,
-        // country: loggedInUserProfile.country,
-        // date_of_birth: loggedInUserProfile.date_of_birth,
-        // avatar: loggedInUserProfile.avatar,
       };
 
       this.profileForm.patchValue({
@@ -183,19 +177,8 @@ export class ProfileSettingComponent {
         last_name: this.user.last_name,
         email: this.user.email,
         username: this.user.username,
-        // phone_number: this.user.phone_number,
-        // date_of_birth: this.user.date_of_birth,
-        // address: this.user.address,
-        // state: this.user.state,
-        // country: this.user.country,
       });
       console.log(this.user);
-    });
-
-    this.changePWForm = this.fb.group({
-      oldPassword: [null, [Validators.required]],
-      newPassword: [null, [Validators.required]],
-      confirmPassword: [null, [Validators.required]],
     });
   }
 

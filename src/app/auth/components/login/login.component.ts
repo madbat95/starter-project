@@ -6,6 +6,7 @@ import { Router } from '@angular/router';
 // import { AuthRoleService } from 'src/app/shared/services/auth-role.service';
 import { AuthService } from 'src/app/shared/services/auth.service';
 import { AuthRoleService } from 'src/app/shared/services/auth-role.service';
+import { User } from 'src/app/shared/interfaces/user.type';
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
@@ -14,13 +15,16 @@ import { AuthRoleService } from 'src/app/shared/services/auth-role.service';
 export class LoginComponent implements OnInit {
   logInForm!: FormGroup;
   loading = false;
+  passwordVisible: boolean = false;
+  user: User;
+  // userProfile: UserProfile;
 
   showPassword = false;
 
   constructor(
     private fb: FormBuilder,
     private router: Router,
-    private authService: AuthService, // private authRoleService: AuthRoleService
+    private authService: AuthService,
     private authRoleService: AuthRoleService
   ) {}
 
@@ -32,11 +36,7 @@ export class LoginComponent implements OnInit {
   }
 
   submitForm(): void {
-    console.log('this is my login');
-    const user = {
-      profile: null,
-      detail: null,
-    };
+    console.log('Login');
     if (this.logInForm.valid) {
       this.loading = true;
       this.authService
@@ -46,20 +46,16 @@ export class LoginComponent implements OnInit {
             this.authService.setAccessToken(response.access);
             this.authService.setRefreshToken(response.refresh);
             return this.authService.getLoggedInUser();
-          }),
-          switchMap((userRes: any) => {
-            user.detail = userRes;
-            return this.authService.getLoggedInUserProfile();
           })
         )
         .subscribe({
-          next: (userProfile) => {
-            user.profile = userProfile;
+          next: (user: User) => {
             this.authService.setUserDetails(user);
             this.router.navigate([this.authRoleService.getHomePage]);
           },
           error: (error) => {
             this.loading = false;
+            // console.log(error);
           },
         });
     } else {
