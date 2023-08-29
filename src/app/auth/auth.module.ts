@@ -17,9 +17,10 @@ import { NzFormModule } from 'ng-zorro-antd/form';
 import { NzCheckboxModule } from 'ng-zorro-antd/checkbox';
 import { SignupComponent } from './components/signup/signup.component';
 import { EditProfileComponent } from './components/edit-profile/edit-profile.component';
+import { PasswordResetComponent } from './components/password-reset/password-reset.component';
+import { ForgotPasswordComponent } from './components/forgot-password/forgot-password.component';
 
-
-const antdModule= [
+const antdModule = [
   NzFormModule,
   NzInputModule,
   NzButtonModule,
@@ -28,23 +29,26 @@ const antdModule= [
   NzTypographyModule,
   NzIconModule,
   NzGridModule,
-]
-
+];
 
 @NgModule({
-  declarations: [LoginComponent, AuthBaseComponent, SignupComponent, EditProfileComponent],
+  declarations: [
+    LoginComponent,
+    AuthBaseComponent,
+    SignupComponent,
+    EditProfileComponent,
+    ForgotPasswordComponent,
+    PasswordResetComponent,
+  ],
   imports: [
-    
     CommonModule,
     AuthRoutingModule,
     FormsModule,
     ReactiveFormsModule,
     SharedModule,
-    ...antdModule
+    ...antdModule,
   ],
 
-  providers: [
-    
-],
+  providers: [],
 })
 export class AuthModule {}
