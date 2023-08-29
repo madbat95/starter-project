@@ -46,8 +46,8 @@ export class ActivateComponent implements OnInit {
       },
       error: (error: any) => {
         this.message.error('error:', error);
-        this.router.navigate(['auth/login']);
         this.loading = false;
+        this.router.navigate(['auth/login']);
       },
     });
   }
