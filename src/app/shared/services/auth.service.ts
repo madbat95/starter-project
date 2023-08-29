@@ -115,4 +115,8 @@ export class AuthService {
     const refreshToken = this.getRefreshToken();
     return this.http.post('auth/jwt/refresh', { refresh: refreshToken });
   }
+
+  activateAccount(requestBody: any) {
+    return this.http.post('auth/users/activation/', requestBody);
+  }
 }
