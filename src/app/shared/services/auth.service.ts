@@ -69,6 +69,14 @@ export class AuthService {
     return !this.jwtHelper.isTokenExpired(token);
   }
 
+  recoverAccount(data) {
+    return this.http.post('auth/users/reset_password/', data);
+  }
+
+  resetAccount(data) {
+    return this.http.post('auth/users/reset_password_confirm/', data);
+  }
+
   isAuthenticated(): boolean {
     const accessToken = this.getAccessToken();
     if (accessToken) {
