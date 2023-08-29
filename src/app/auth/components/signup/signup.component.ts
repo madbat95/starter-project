@@ -9,6 +9,7 @@ import {
 } from '@angular/forms';
 import { AuthService } from 'src/app/shared/services/auth.service';
 import { Router } from '@angular/router';
+import { NzModalService } from 'ng-zorro-antd/modal';
 
 @Component({
   templateUrl: './signup.component.html',
@@ -20,7 +21,8 @@ export class SignupComponent {
   constructor(
     private fb: FormBuilder,
     private authService: AuthService,
-    private router: Router
+    private router: Router,
+    private modal: NzModalService
   ) {}
 
   ngOnInit(): void {
@@ -30,44 +32,30 @@ export class SignupComponent {
       username: [null, [Validators.required]],
       email: [null, [Validators.required]],
       password: [null, [Validators.required]],
-      checkPassword: [null, [Validators.required, this.confirmationValidator]],
+      re_password: [null, [Validators.required]],
+      // checkPassword: [null, [Validators.required, this.confirmationValidator]],
     });
   }
 
   submitForm(): void {
     if (this.signupForm.valid) {
       this.loading = true;
-      this.authService
-        .signup(this.signupForm.value)
-        .pipe(
-          switchMap((user) =>
-            this.authService.login({
-              username: this.signupForm.get('username').value,
-              password: this.signupForm.get('password').value,
-            })
-          ),
-          switchMap((response) => {
-            this.authService.setAccessToken(response.access);
-            this.authService.setRefreshToken(response.refresh);
-            return this.authService.createProfile({
-              phone_number: 1234678,
-              address: 'Test address',
-            });
-          }),
-          switchMap((userDetail) => {
-            return this.authService.getLoggedInUser();
-          })
-        )
-        .subscribe({
-          next: (res) => {
-            console.log(res);
-            this.router.navigate(['/new-quote/step/1']);
-            this.loading = false;
-          },
-          error: (error) => {
-            this.loading = false;
-          },
-        });
+      this.authService.signup(this.signupForm.value).subscribe({
+        next: (res) => {
+          console.log(res);
+          this.modal.info({
+            nzTitle: 'Sign Up Successful',
+            nzContent:
+              'Please Check your regiestered email for verification purposes',
+            nzOnOk: () => console.log('Info OK'),
+          });
+
+          this.loading = false;
+        },
+        error: (error) => {
+          this.loading = false;
+        },
+      });
     } else {
       Object.values(this.signupForm.controls).forEach((control) => {
         if (control.invalid) {
