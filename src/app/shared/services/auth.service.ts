@@ -95,7 +95,7 @@ export class AuthService {
   }
 
   updateUser(data: any) {
-    return this.http.put('auth/users/me/', data);
+    return this.http.patch('auth/users/me/', data);
   }
   updateLoggedInUserProfile(data: any): Observable<any> {
     return this.http.post('profile/me/', data);

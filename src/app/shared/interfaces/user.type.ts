@@ -6,10 +6,10 @@ export interface User {
   email: string;
   password?: string;
   token?: string;
-  phone_number: string;
-  address: string;
-  state: string;
-  country: string;
-  date_of_birth: string;
-  avatar: string;
+  // phone_number: string;
+  // address: string;
+  // state: string;
+  // country: string;
+  // date_of_birth: string;
+  // avatar: string;
 }

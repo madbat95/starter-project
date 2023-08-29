@@ -149,11 +149,11 @@ export class ProfileSettingComponent {
       last_name: new FormControl(''),
       username: new FormControl('', [Validators.required]),
       email: new FormControl({ value: '', disabled: true }),
-      phone_number: new FormControl(''),
-      date_of_birth: new FormControl(''),
-      address: new FormControl(''),
-      state: new FormControl(''),
-      country: new FormControl(''),
+      // phone_number: new FormControl(''),
+      // date_of_birth: new FormControl(''),
+      // address: new FormControl(''),
+      // state: new FormControl(''),
+      // country: new FormControl(''),
     });
 
     forkJoin([
@@ -166,12 +166,12 @@ export class ProfileSettingComponent {
         first_name: loggedInUser.first_name,
         last_name: loggedInUser.last_name,
         email: loggedInUser.email,
-        phone_number: loggedInUserProfile.phone_number,
-        address: loggedInUserProfile.address,
-        state: loggedInUserProfile.state,
-        country: loggedInUserProfile.country,
-        date_of_birth: loggedInUserProfile.date_of_birth,
-        avatar: loggedInUserProfile.avatar,
+        // phone_number: loggedInUserProfile.phone_number,
+        // address: loggedInUserProfile.address,
+        // state: loggedInUserProfile.state,
+        // country: loggedInUserProfile.country,
+        // date_of_birth: loggedInUserProfile.date_of_birth,
+        // avatar: loggedInUserProfile.avatar,
       };
 
       this.profileForm.patchValue({
@@ -179,11 +179,11 @@ export class ProfileSettingComponent {
         last_name: this.user.last_name,
         email: this.user.email,
         username: this.user.username,
-        phone_number: this.user.phone_number,
-        date_of_birth: this.user.date_of_birth,
-        address: this.user.address,
-        state: this.user.state,
-        country: this.user.country,
+        // phone_number: this.user.phone_number,
+        // date_of_birth: this.user.date_of_birth,
+        // address: this.user.address,
+        // state: this.user.state,
+        // country: this.user.country,
       });
       console.log(this.user);
     });
@@ -227,40 +227,38 @@ export class ProfileSettingComponent {
 
   updateProfile(): void {
     if (this.profileForm.valid) {
-      // const updatedUser: User = { ...this.user, ...this.profileForm.value };
-
       const updatedUser = {
         username: this.profileForm.value.username,
         first_name: this.profileForm.value.first_name,
         last_name: this.profileForm.value.last_name,
       };
-      const updatedUserProfile = {
-        user_id: this.user.id,
-        phone_number: this.profileForm.value.phone_number,
-        address: this.profileForm.value.address,
-        state: this.profileForm.value.state,
-        country: this.profileForm.value.country,
-        date_of_birth: this.profileForm.value.date_of_birth,
-      };
+      // const updatedUserProfile = {
+      //   user_id: this.user.id,
+      //   phone_number: this.profileForm.value.phone_number,
+      //   address: this.profileForm.value.address,
+      //   state: this.profileForm.value.state,
+      //   country: this.profileForm.value.country,
+      //   date_of_birth: this.profileForm.value.date_of_birth,
+      // };
 
-      forkJoin([
-        this.authService.updateUser(updatedUser),
-        this.authService.updateLoggedInUserProfile(updatedUserProfile),
-      ]).subscribe(
-        ([updatedUserData, updatedProfileData]) => {
+      // forkJoin([
+      //   this.authService.updateUser(updatedUser),
+      //   this.authService.updateLoggedInUserProfile(updatedUserProfile),
+      // ])
+      this.authService.updateUser(updatedUser).subscribe({
+        next: (updatedUserData) => {
           this.message.success('Profile updated successfully!');
 
           this.user = {
             ...this.user,
             ...updatedUserData,
-            ...updatedProfileData,
           };
         },
-        (error) => {
+        error: (error) => {
           // Handle error
           this.message.error('Error updating profile.');
-        }
-      );
+        },
+      });
     } else {
       this.message.warning('Please fill all required fields correctly.');
     }
