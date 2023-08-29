@@ -11,6 +11,7 @@ import { SearchPipe } from './pipes/search.pipe';
 import { NzTableModule } from 'ng-zorro-antd/table';
 import { TableBlurDirective } from './directives/table-blur.directive';
 import { VariationPipe } from './pipes/variation.pipe';
+import { NzModalModule } from 'ng-zorro-antd/modal';
 
 @NgModule({
   exports: [
@@ -31,6 +32,7 @@ import { VariationPipe } from './pipes/variation.pipe';
     NzToolTipModule,
     PerfectScrollbarModule,
     NzTableModule,
+    NzModalModule,
   ],
   declarations: [SearchPipe, TableBlurDirective, VariationPipe],
   providers: [ThemeConstantService, VariationPipe],
