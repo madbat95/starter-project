@@ -4,6 +4,8 @@ import { LoginComponent } from './components/login/login.component';
 import { AuthBaseComponent } from './components/auth-base/auth-base.component';
 import { SignupComponent } from './components/signup/signup.component';
 import { EditProfileComponent } from './components/edit-profile/edit-profile.component';
+import { ForgotPasswordComponent } from './components/forgot-password/forgot-password.component';
+import { PasswordResetComponent } from './components/password-reset/password-reset.component';
 
 const routes: Routes = [
   {
@@ -17,6 +19,14 @@ const routes: Routes = [
       {
         path: 'signup',
         component: SignupComponent,
+      },
+      {
+        path: 'recover',
+        component: ForgotPasswordComponent,
+      },
+      {
+        path: 'password-reset/:uid/:token',
+        component: PasswordResetComponent,
       },
     ],
   },
