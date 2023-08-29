@@ -19,6 +19,7 @@ import { SignupComponent } from './components/signup/signup.component';
 import { EditProfileComponent } from './components/edit-profile/edit-profile.component';
 import { PasswordResetComponent } from './components/password-reset/password-reset.component';
 import { ForgotPasswordComponent } from './components/forgot-password/forgot-password.component';
+import { ActivateComponent } from './components/activate/activate.component';
 
 const antdModule = [
   NzFormModule,
@@ -39,6 +40,7 @@ const antdModule = [
     EditProfileComponent,
     ForgotPasswordComponent,
     PasswordResetComponent,
+    ActivateComponent,
   ],
   imports: [
     CommonModule,
