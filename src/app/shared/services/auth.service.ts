@@ -52,10 +52,9 @@ export class AuthService {
     return this.http.post('profile/me/', requestBody);
   }
 
-  // storeTokens(accessToken: string, refreshToken: string): void {
-  //   localStorage.setItem(this.accessTokenKey, accessToken);
-  //   localStorage.setItem(this.accessTokenKey, refreshToken);
-  // }
+  updatePassword(requestBody) {
+    return this.http.post('auth/users/set_password/', requestBody);
+  }
 
   getAccessToken(): string {
     return localStorage.getItem(this.accessTokenKey);

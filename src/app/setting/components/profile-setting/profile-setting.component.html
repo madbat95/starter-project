@@ -167,18 +167,14 @@
   </nz-card>
 
   <nz-card nzTitle="Change Password">
-    <form
-      nz-form
-      [formGroup]="changePWForm"
-      (ngSubmit)="submitchangePassword()"
-    >
+    <form nz-form [formGroup]="changePWForm">
       <div class="row">
         <div class="col-md-3">
           <nz-form-item>
             <nz-form-label nzFor="oldPassword">Old Password</nz-form-label>
             <nz-form-control nzErrorTip="Please input your old password!">
               <input
-                formControlName="oldPassword"
+                formControlName="current_password"
                 nz-input
                 type="password"
                 placeholder="Old Password"
@@ -191,7 +187,7 @@
             <nz-form-label nzFor="newPassword">New Password</nz-form-label>
             <nz-form-control nzErrorTip="Please input your New Password!">
               <input
-                formControlName="newPassword"
+                formControlName="new_password"
                 nz-input
                 type="password"
                 placeholder="New Password"
@@ -204,7 +200,7 @@
             <nz-form-label nzFor="confirmPassword">Confirm</nz-form-label>
             <nz-form-control nzErrorTip="Please confirm your New Password!">
               <input
-                formControlName="confirmPassword"
+                formControlName="re_new_password"
                 nz-input
                 type="password"
                 placeholder="Confirm Password"
@@ -219,6 +215,7 @@
                 nz-button
                 nzType="primary"
                 [disabled]="!changePWForm.valid"
+                (click)="submitchangePassword()"
               >
                 Change
               </button>

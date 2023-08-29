@@ -17,13 +17,16 @@ import { forkJoin } from 'rxjs';
   templateUrl: './profile-setting.component.html',
 })
 export class ProfileSettingComponent {
-  changePWForm: UntypedFormGroup;
-  avatarUrl: string =
-    'http://www.themenate.net/applicator/dist/assets/images/avatars/thumb-13.jpg';
+  // avatarUrl: string =
+  //   'http://www.themenate.net/applicator/dist/assets/images/avatars/thumb-13.jpg';
   selectedCountry: any;
   selectedLanguage: any;
   user!: User;
   profileForm!: FormGroup;
+  changePWForm!: UntypedFormGroup;
+  currentPasswordVisible: boolean = false;
+  newPasswordVisible: boolean = false;
+  reNewPasswordVisible: boolean = false;
 
   // networkList = [
   //     {
@@ -141,21 +144,22 @@ export class ProfileSettingComponent {
     private modalService: NzModalService,
     private message: NzMessageService,
     private authService: AuthService
-  ) {}
-
-  ngOnInit(): void {
+  ) {
     this.profileForm = this.fb.group({
       first_name: new FormControl(''),
       last_name: new FormControl(''),
       username: new FormControl('', [Validators.required]),
       email: new FormControl({ value: '', disabled: true }),
-      // phone_number: new FormControl(''),
-      // date_of_birth: new FormControl(''),
-      // address: new FormControl(''),
-      // state: new FormControl(''),
-      // country: new FormControl(''),
     });
 
+    this.changePWForm = this.fb.group({
+      current_password: new FormControl(null, Validators.required),
+      new_password: new FormControl(null, Validators.required),
+      re_new_password: new FormControl(null, Validators.required),
+    });
+  }
+
+  ngOnInit(): void {
     forkJoin([
       this.authService.getLoggedInUser(),
       this.authService.getLoggedInUserProfile(),
@@ -204,24 +208,34 @@ export class ProfileSettingComponent {
     });
   }
 
-  submitchangePassword(): void {
-    for (const i in this.changePWForm.controls) {
-      this.changePWForm.controls[i].markAsDirty();
-      this.changePWForm.controls[i].updateValueAndValidity();
-    }
-
-    this.showConfirm();
-  }
-
   private getBase64(img: File, callback: (img: {}) => void): void {
     const reader = new FileReader();
     reader.addEventListener('load', () => callback(reader.result));
     reader.readAsDataURL(img);
   }
 
-  handleChange(info: { file: NzUploadFile }): void {
-    this.getBase64(info.file.originFileObj, (img: string) => {
-      this.avatarUrl = img;
+  // handleChange(info: { file: NzUploadFile }): void {
+  //   this.getBase64(info.file.originFileObj, (img: string) => {
+  //     this.avatarUrl = img;
+  //   });
+  // }
+
+  submitchangePassword(): void {
+    // this.showConfirm();
+
+    const passBody = {
+      current_password: this.changePWForm.get('current_password')?.value,
+      new_password: this.changePWForm.get('new_password')?.value,
+      re_new_password: this.changePWForm.get('re_new_password')?.value,
+    };
+
+    this.authService.updatePassword(passBody).subscribe({
+      next: () => {
+        this.message.success('Password Updated');
+      },
+      error: () => {
+        this.message.error('Password Update Failed');
+      },
     });
   }
 
