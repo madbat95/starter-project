@@ -160,29 +160,22 @@ export class ProfileSettingComponent {
   }
 
   ngOnInit(): void {
-    forkJoin([
-      this.authService.getLoggedInUser(),
-      this.authService.getLoggedInUserProfile(),
-    ]).subscribe(([loggedInUser, loggedInUserProfile]) => {
-      this.user = {
-        id: loggedInUser.id,
-        username: loggedInUser.username,
-        first_name: loggedInUser.first_name,
-        last_name: loggedInUser.last_name,
-        email: loggedInUser.email,
-      };
-
-      this.profileForm.patchValue({
-        first_name: this.user.first_name,
-        last_name: this.user.last_name,
-        email: this.user.email,
-        username: this.user.username,
-      });
-      console.log(this.user);
+    this.authService.getLoggedInUser().subscribe({
+      next: (user: User) => {
+        this.user = {
+          id: user.id,
+          username: user.username,
+          first_name: user.first_name,
+          last_name: user.last_name,
+          email: user.email,
+        };
+        console.log('this is my user in profile componenet', this.user);
+      },
+      error: (error: any) => {
+        this.message.error(error);
+      },
     });
   }
-
-  loadProfile(): void {}
 
   showConfirm(): void {
     this.modalService.confirm({
@@ -197,15 +190,7 @@ export class ProfileSettingComponent {
     reader.readAsDataURL(img);
   }
 
-  // handleChange(info: { file: NzUploadFile }): void {
-  //   this.getBase64(info.file.originFileObj, (img: string) => {
-  //     this.avatarUrl = img;
-  //   });
-  // }
-
   submitchangePassword(): void {
-    // this.showConfirm();
-
     const passBody = {
       current_password: this.changePWForm.get('current_password')?.value,
       new_password: this.changePWForm.get('new_password')?.value,
@@ -229,19 +214,7 @@ export class ProfileSettingComponent {
         first_name: this.profileForm.value.first_name,
         last_name: this.profileForm.value.last_name,
       };
-      // const updatedUserProfile = {
-      //   user_id: this.user.id,
-      //   phone_number: this.profileForm.value.phone_number,
-      //   address: this.profileForm.value.address,
-      //   state: this.profileForm.value.state,
-      //   country: this.profileForm.value.country,
-      //   date_of_birth: this.profileForm.value.date_of_birth,
-      // };
 
-      // forkJoin([
-      //   this.authService.updateUser(updatedUser),
-      //   this.authService.updateLoggedInUserProfile(updatedUserProfile),
-      // ])
       this.authService.updateUser(updatedUser).subscribe({
         next: (updatedUserData) => {
           this.message.success('Profile updated successfully!');
@@ -252,7 +225,6 @@ export class ProfileSettingComponent {
           };
         },
         error: (error) => {
-          // Handle error
           this.message.error('Error updating profile.');
         },
       });
