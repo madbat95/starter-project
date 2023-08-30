@@ -7,6 +7,7 @@ import { EditProfileComponent } from './components/edit-profile/edit-profile.com
 import { ForgotPasswordComponent } from './components/forgot-password/forgot-password.component';
 import { PasswordResetComponent } from './components/password-reset/password-reset.component';
 import { ActivateComponent } from './components/activate/activate.component';
+import { WaitingScreenComponent } from './components/waiting-screen/waiting-screen.component';
 
 const routes: Routes = [
   {
@@ -33,6 +34,8 @@ const routes: Routes = [
         path: 'activate/:uid/:token',
         component: ActivateComponent,
       },
+
+      { path: 'waiting', component: WaitingScreenComponent },
     ],
   },
 ];
