@@ -119,4 +119,8 @@ export class AuthService {
   activateAccount(requestBody: any) {
     return this.http.post('auth/users/activation/', requestBody);
   }
+
+  resendActivationMail(requestBody: any) {
+    return this.http.post('auth/users/resend_activation/', requestBody);
+  }
 }
