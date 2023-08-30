@@ -92,13 +92,18 @@
                   >Password</nz-form-label
                 >
                 <nz-form-control nzErrorTip="Please input your Password!">
-                  <input
-                    type="password"
-                    nz-input
-                    formControlName="password"
-                    placeholder="Password"
-                    id="password"
-                  />
+                  <nz-input-group
+                    [nzSuffix]="suffixTemplate"
+                    [nzPrefix]="prefixLock"
+                  >
+                    <input
+                      [type]="showPassword ? 'text' : 'password'"
+                      nz-input
+                      formControlName="password"
+                      placeholder="Password"
+                      id="password"
+                    />
+                  </nz-input-group>
                 </nz-form-control>
               </nz-form-item>
               <nz-form-item>
@@ -106,13 +111,19 @@
                   >Confirm Password</nz-form-label
                 >
                 <nz-form-control nzErrorTip="Please confirm your password!">
-                  <input
-                    nz-input
-                    type="password"
-                    formControlName="re_password"
-                    placeholder="Confirm Password"
-                    id="checkPassword"
-                  />
+                  <nz-input-group
+                    [nzSuffix]="suffixTemplate"
+                    [nzPrefix]="prefixLock"
+                  >
+                    <input
+                      [type]="showPassword ? 'text' : 'password'"
+                      nz-input
+                      type="password"
+                      formControlName="re_password"
+                      placeholder="Confirm Password"
+                      id="checkPassword"
+                    />
+                  </nz-input-group>
                 </nz-form-control>
               </nz-form-item>
               <!-- <div class="d-flex align-items-center justify-content-start">
@@ -128,7 +139,7 @@
               <button
                 nz-button
                 nzBlock
-                [disabled]="!signupForm.valid"
+                [disabled]="!signupForm.valid || loading"
                 class="login-form-button"
                 [nzType]="'primary'"
                 [nzLoading]="loading"
@@ -154,3 +165,12 @@
     </div>
   </div>
 </div>
+<ng-template #suffixTemplate>
+  <span
+    style="cursor: pointer"
+    nz-icon
+    [nzType]="showPassword ? 'eye-invisible' : 'eye'"
+    (click)="showPassword = !showPassword"
+  ></span>
+</ng-template>
+<ng-template #prefixLock><i nz-icon nzType="lock"></i></ng-template>

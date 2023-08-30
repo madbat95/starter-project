@@ -17,7 +17,7 @@ import { NzModalService } from 'ng-zorro-antd/modal';
 export class SignupComponent {
   signupForm: FormGroup;
   loading: boolean = false;
-
+  showPassword = false;
   constructor(
     private fb: FormBuilder,
     private authService: AuthService,
