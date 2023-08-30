@@ -42,15 +42,11 @@ export class SignupComponent {
       this.loading = true;
       this.authService.signup(this.signupForm.value).subscribe({
         next: (res) => {
-          console.log(res);
-          this.modal.info({
-            nzTitle: 'Sign Up Successful',
-            nzContent:
-              'Please Check your regiestered email for verification purposes',
-            nzOnOk: () => console.log('Info OK'),
-          });
-
           this.loading = false;
+          this.router.navigate([
+            '/auth/waiting',
+            { email: this.signupForm.value.email },
+          ]);
         },
         error: (error) => {
           this.loading = false;
