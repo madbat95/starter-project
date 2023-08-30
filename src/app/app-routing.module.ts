@@ -45,7 +45,7 @@ const appRoutes: Routes = [
     path: 'admin',
     component: CommonLayoutComponent,
     children: CommonLayout_ROUTES,
-    // canActivate: [AuthGuard],
+    canActivate: [AuthGuard],
   },
 
   {

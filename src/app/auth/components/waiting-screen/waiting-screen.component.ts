@@ -19,7 +19,6 @@ export class WaitingScreenComponent implements OnInit {
 
   ngOnInit(): void {
     this.email = this.route.snapshot.paramMap.get('email');
-    console.log(this.email);
   }
 
   onSubmit() {
@@ -28,7 +27,7 @@ export class WaitingScreenComponent implements OnInit {
         this.message.success('Verification Email has been resent');
       },
       error: (error: any) => {
-        this.message.error(error);
+        this.message.error('User already exists');
       },
     });
   }

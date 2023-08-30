@@ -36,7 +36,6 @@ export class LoginComponent implements OnInit {
   }
 
   submitForm(): void {
-    console.log('Login');
     if (this.logInForm.valid) {
       this.loading = true;
       this.authService
@@ -45,7 +44,7 @@ export class LoginComponent implements OnInit {
           switchMap((response) => {
             this.authService.setAccessToken(response.access);
             this.authService.setRefreshToken(response.refresh);
-            console.log(this.authService.getLoggedInUser());
+
             return this.authService.getLoggedInUser();
           })
         )
@@ -56,7 +55,6 @@ export class LoginComponent implements OnInit {
           },
           error: (error) => {
             this.loading = false;
-            // console.log(error);
           },
         });
     } else {
