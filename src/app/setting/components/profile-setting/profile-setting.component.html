@@ -76,18 +76,23 @@
   </nz-card>
 
   <nz-card nzTitle="Change Password">
+    <div style="color: red; font-size: 12px">
+      *New Password must be alphanumeric and 8 characters long.
+    </div>
     <form nz-form [formGroup]="changePWForm">
       <div class="row">
         <div class="col-md-3">
           <nz-form-item>
             <nz-form-label nzFor="oldPassword">Old Password</nz-form-label>
             <nz-form-control nzErrorTip="Please input your old password!">
-              <input
-                formControlName="current_password"
-                nz-input
-                type="password"
-                placeholder="Old Password"
-              />
+              <nz-input-group [nzSuffix]="suffixTemplate">
+                <input
+                  [type]="currentPasswordVisible ? 'text' : 'password'"
+                  nz-input
+                  placeholder="Old Password"
+                  formControlName="current_password"
+                />
+              </nz-input-group>
             </nz-form-control>
           </nz-form-item>
         </div>
@@ -95,12 +100,14 @@
           <nz-form-item>
             <nz-form-label nzFor="newPassword">New Password</nz-form-label>
             <nz-form-control nzErrorTip="Please input your New Password!">
-              <input
-                formControlName="new_password"
-                nz-input
-                type="password"
-                placeholder="New Password"
-              />
+              <nz-input-group [nzSuffix]="newSuffixTemplate">
+                <input
+                  [type]="newPasswordVisible ? 'text' : 'password'"
+                  nz-input
+                  placeholder="New Password"
+                  formControlName="new_password"
+                />
+              </nz-input-group>
             </nz-form-control>
           </nz-form-item>
         </div>
@@ -108,12 +115,14 @@
           <nz-form-item>
             <nz-form-label nzFor="confirmPassword">Confirm</nz-form-label>
             <nz-form-control nzErrorTip="Please confirm your New Password!">
-              <input
-                formControlName="re_new_password"
-                nz-input
-                type="password"
-                placeholder="Confirm Password"
-              />
+              <nz-input-group [nzSuffix]="reNewSuffixTemplate">
+                <input
+                  [type]="reNewPasswordVisible ? 'text' : 'password'"
+                  nz-input
+                  placeholder="New Password"
+                  formControlName="re_new_password"
+                />
+              </nz-input-group>
             </nz-form-control>
           </nz-form-item>
         </div>
@@ -136,3 +145,27 @@
     </form>
   </nz-card>
 </div>
+<ng-template #suffixTemplate>
+  <span
+    style="cursor: pointer"
+    nz-icon
+    [nzType]="currentPasswordVisible ? 'eye-invisible' : 'eye'"
+    (click)="currentPasswordVisible = !currentPasswordVisible"
+  ></span>
+</ng-template>
+<ng-template #newSuffixTemplate>
+  <span
+    style="cursor: pointer"
+    nz-icon
+    [nzType]="newPasswordVisible ? 'eye-invisible' : 'eye'"
+    (click)="newPasswordVisible = !newPasswordVisible"
+  ></span>
+</ng-template>
+<ng-template #reNewSuffixTemplate>
+  <span
+    style="cursor: pointer"
+    nz-icon
+    [nzType]="reNewPasswordVisible ? 'eye-invisible' : 'eye'"
+    (click)="reNewPasswordVisible = !reNewPasswordVisible"
+  ></span>
+</ng-template>
