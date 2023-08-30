@@ -26,11 +26,8 @@ export class PasswordResetComponent implements OnInit {
   ngOnInit(): void {
     this.route.paramMap.subscribe({
       next: (response: any) => {
-        console.log('response', response);
         this.uid = response.params.uid;
-        console.log('uid:', this.uid);
         this.token = response.params.token;
-        console.log('token', this.token);
       },
     });
     this.newPasswordForm = this.fb.group({
@@ -54,7 +51,6 @@ export class PasswordResetComponent implements OnInit {
       },
       error: (error: any) => {
         this.message.error('Password reset failed');
-        this.router.navigate(['/auth/login']);
         this.loading = false;
       },
     });
