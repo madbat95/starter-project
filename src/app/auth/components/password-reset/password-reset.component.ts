@@ -51,7 +51,6 @@ export class PasswordResetComponent implements OnInit {
       },
       error: (error: any) => {
         this.message.error('Password reset failed');
-        this.router.navigate(['/auth/login']);
         this.loading = false;
       },
     });
