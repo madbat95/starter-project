@@ -45,6 +45,7 @@ export class LoginComponent implements OnInit {
           switchMap((response) => {
             this.authService.setAccessToken(response.access);
             this.authService.setRefreshToken(response.refresh);
+            console.log(this.authService.getLoggedInUser());
             return this.authService.getLoggedInUser();
           })
         )
