@@ -39,23 +39,15 @@ export class HeaderComponent {
 
     if (!this.loggedUser) {
       this.loading = true;
-      this.authService
-        .getLoggedInUser()
-        .pipe(
-          switchMap((userRes: User) => {
-            this.user = userRes;
-            return this.authService.getLoggedInUserProfile();
-          })
-        )
-        .subscribe({
-          next: (user: User) => {
-            this.authService.setUserDetails(user);
-            this.loading = false;
-          },
-          error: (error) => {
-            this.loading = false;
-          },
-        });
+      this.authService.getLoggedInUser().subscribe({
+        next: (user: User) => {
+          this.authService.setUserDetails(user);
+          this.loading = false;
+        },
+        error: (error) => {
+          this.loading = false;
+        },
+      });
     }
     this.themeService.isMenuFoldedChanges.subscribe(
       (isFolded) => (this.isFolded = isFolded)
