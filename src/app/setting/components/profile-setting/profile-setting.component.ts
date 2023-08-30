@@ -11,14 +11,11 @@ import { NzModalService } from 'ng-zorro-antd/modal';
 import { NzMessageService } from 'ng-zorro-antd/message';
 import { AuthService } from 'src/app/shared/services/auth.service';
 import { User } from 'src/app/shared/interfaces/user.type';
-import { forkJoin } from 'rxjs';
 
 @Component({
   templateUrl: './profile-setting.component.html',
 })
 export class ProfileSettingComponent {
-  // avatarUrl: string =
-  //   'http://www.themenate.net/applicator/dist/assets/images/avatars/thumb-13.jpg';
   selectedCountry: any;
   selectedLanguage: any;
   user!: User;
@@ -27,117 +24,6 @@ export class ProfileSettingComponent {
   currentPasswordVisible: boolean = false;
   newPasswordVisible: boolean = false;
   reNewPasswordVisible: boolean = false;
-
-  // networkList = [
-  //     {
-  //         name: 'Facebook',
-  //         icon: 'facebook',
-  //         avatarColor: '#4267b1',
-  //         avatarBg: 'rgba(66, 103, 177, 0.1)',
-  //         status: true,
-  //         link: 'https://facebook.com'
-  //     },
-  //     {
-  //         name: 'Instagram',
-  //         icon: 'instagram',
-  //         avatarColor: '#fff',
-  //         avatarBg: 'radial-gradient(circle at 30% 107%, #fdf497 0%, #fdf497 5%, #fd5949 45%,#d6249f 60%,#285AEB 90%)',
-  //         status: false,
-  //         link: 'https://instagram.com'
-  //     },
-  //     {
-  //         name: 'Twitter',
-  //         icon: 'twitter',
-  //         avatarColor: '#1ca1f2',
-  //         avatarBg: 'rgba(28, 161, 242, 0.1)',
-  //         status: true,
-  //         link: 'https://twitter.com'
-  //     },
-  //     {
-  //         name: 'Dribbble',
-  //         icon: 'dribbble',
-  //         avatarColor: '#d8487e',
-  //         avatarBg: 'rgba(216, 72, 126, 0.1)',
-  //         status: false,
-  //         link: 'https://dribbble.com'
-  //     },
-  //     {
-  //         name: 'Github',
-  //         icon: 'github',
-  //         avatarColor: '#323131',
-  //         avatarBg: 'rgba(50, 49, 49, 0.1)',
-  //         status: true,
-  //         link: 'https://github.com'
-  //     },
-  //     {
-  //         name: 'Linkedin',
-  //         icon: 'linkedin',
-  //         avatarColor: '#0174af',
-  //         avatarBg: 'rgba(1, 116, 175, 0.1)',
-  //         status: true,
-  //         link: 'https://linkedin.com'
-  //     },
-  //     {
-  //         name: 'Dropbox',
-  //         icon: 'dropbox',
-  //         avatarColor: '#005ef7',
-  //         avatarBg: 'rgba(0, 94, 247, 0.1)',
-  //         status: false,
-  //         link: 'https://dropbox.com'
-  //     }
-  // ];
-
-  // notificationConfigList = [
-  //     {
-  //         title: "Everyone can look me up",
-  //         desc: "Allow people found on your public.",
-  //         icon: "user",
-  //         color: "ant-avatar-blue",
-  //         status: true
-  //     },
-  //     {
-  //         title: "Everyone can contact me",
-  //         desc: "Allow any peole to contact.",
-  //         icon: "mobile",
-  //         color: "ant-avatar-cyan",
-  //         status: true
-  //     },
-  //     {
-  //         title: "Show my location",
-  //         desc: "Turning on Location lets you explore what's around you.",
-  //         icon: "environment",
-  //         color: "ant-avatar-gold",
-  //         status: false
-  //     },
-  //     {
-  //         title: "Email Notifications",
-  //         desc: "Receive daily email notifications.",
-  //         icon: "mail",
-  //         color: "ant-avatar-purple",
-  //         status: true
-  //     },
-  //     {
-  //         title: "Unknow Source ",
-  //         desc: "Allow all downloads from unknow source.",
-  //         icon: "question",
-  //         color: "ant-avatar-red",
-  //         status: false
-  //     },
-  //     {
-  //         title: "Data Synchronization",
-  //         desc: "Allow data synchronize with cloud server",
-  //         icon: "swap",
-  //         color: "ant-avatar-green",
-  //         status: true
-  //     },
-  //     {
-  //         title: "Groups Invitation",
-  //         desc: "Allow any groups invitation",
-  //         icon: "usergroup-add",
-  //         color: "ant-avatar-orange",
-  //         status: true
-  //     },
-  // ]
 
   constructor(
     private fb: FormBuilder,
@@ -162,14 +48,14 @@ export class ProfileSettingComponent {
   ngOnInit(): void {
     this.authService.getLoggedInUser().subscribe({
       next: (user: User) => {
-        this.user = {
-          id: user.id,
-          username: user.username,
-          first_name: user.first_name,
-          last_name: user.last_name,
-          email: user.email,
-        };
-        console.log('this is my user in profile componenet', this.user);
+        this.user = user;
+        this.profileForm.patchValue({
+          username: this.user.username,
+          first_name: this.user.first_name,
+          last_name: this.user.last_name,
+          email: this.user.email,
+        });
+        console.log(user);
       },
       error: (error: any) => {
         this.message.error(error);
@@ -218,11 +104,7 @@ export class ProfileSettingComponent {
       this.authService.updateUser(updatedUser).subscribe({
         next: (updatedUserData) => {
           this.message.success('Profile updated successfully!');
-
-          this.user = {
-            ...this.user,
-            ...updatedUserData,
-          };
+          this.authService.setUserDetails(updatedUserData);
         },
         error: (error) => {
           this.message.error('Error updating profile.');
