@@ -29,7 +29,6 @@
               [formGroup]="signupForm"
               class="login-form"
               nzLayout="vertical"
-              (ngSubmit)="submitForm()"
             >
               <div class="mt-4">
                 <nz-form-item>
@@ -133,6 +132,7 @@
                 class="login-form-button"
                 [nzType]="'primary'"
                 [nzLoading]="loading"
+                (click)="submitForm()"
               >
                 {{ loading ? "Signing up" : "Sign up" }}
               </button>
