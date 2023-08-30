@@ -58,8 +58,12 @@
                   >Forget Password?</a
                 >
                 <nz-form-control nzErrorTip="Please input your Password!">
-                  <nz-input-group [nzPrefix]="prefixLock">
+                  <nz-input-group
+                    [nzSuffix]="suffixTemplate"
+                    [nzPrefix]="prefixLock"
+                  >
                     <input
+                      [type]="showPassword ? 'text' : 'password'"
                       type="password"
                       nz-input
                       formControlName="password"
@@ -99,3 +103,11 @@
     </div>
   </div>
 </div>
+<ng-template #suffixTemplate>
+  <span
+    style="cursor: pointer"
+    nz-icon
+    [nzType]="showPassword ? 'eye-invisible' : 'eye'"
+    (click)="showPassword = !showPassword"
+  ></span>
+</ng-template>
