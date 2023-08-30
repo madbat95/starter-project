@@ -19,7 +19,6 @@ export class WaitingScreenComponent implements OnInit {
 
   ngOnInit(): void {
     this.email = this.route.snapshot.paramMap.get('email');
-    console.log(this.email);
   }
 
   onSubmit() {

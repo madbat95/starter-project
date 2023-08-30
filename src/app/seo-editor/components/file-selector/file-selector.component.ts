@@ -42,7 +42,6 @@ export class FileSelectorComponent implements OnInit {
 
   onFileSelectionChange() {
     if (this.selectedFile) {
-      console.log('selected file', this.selectedFile.filename);
       this.tableLoader.variationTableLoader = true;
 
       for (const entityKey of this.entityKeys) {

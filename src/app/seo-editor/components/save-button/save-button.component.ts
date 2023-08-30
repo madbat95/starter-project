@@ -61,10 +61,6 @@ export class SaveButtonComponent {
   //   }
   // }
   onSave(): any {
-    console.log({
-      content: this.editorContent.content,
-    });
-
     if (this.contentService.contentRetrieved) {
       if (this.id) {
         // Update existing content
