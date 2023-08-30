@@ -21,9 +21,11 @@ export class ProfileSettingComponent {
   user!: User;
   profileForm!: FormGroup;
   changePWForm!: UntypedFormGroup;
+  loading: boolean = false;
   currentPasswordVisible: boolean = false;
   newPasswordVisible: boolean = false;
   reNewPasswordVisible: boolean = false;
+  passwordLoading: boolean = false;
 
   constructor(
     private fb: FormBuilder,
@@ -77,23 +79,36 @@ export class ProfileSettingComponent {
   }
 
   submitchangePassword(): void {
-    const passBody = {
-      current_password: this.changePWForm.get('current_password')?.value,
-      new_password: this.changePWForm.get('new_password')?.value,
-      re_new_password: this.changePWForm.get('re_new_password')?.value,
-    };
+    if (this.changePWForm.valid) {
+      this.passwordLoading = true;
+      const passBody = {
+        current_password: this.changePWForm.get('current_password')?.value,
+        new_password: this.changePWForm.get('new_password')?.value,
+        re_new_password: this.changePWForm.get('re_new_password')?.value,
+      };
 
-    this.authService.updatePassword(passBody).subscribe({
-      next: () => {
-        this.message.success('Password Updated');
-      },
-      error: () => {
-        this.message.error('Password Update Failed');
-      },
-    });
+      this.authService.updatePassword(passBody).subscribe({
+        next: () => {
+          this.message.success('Password Updated');
+          this.passwordLoading = false;
+        },
+        error: () => {
+          this.message.error('Password Update Failed');
+          this.passwordLoading = false;
+        },
+      });
+    } else {
+      Object.values(this.changePWForm.controls).forEach((control) => {
+        if (control.invalid) {
+          control.markAsDirty();
+          control.updateValueAndValidity({ onlySelf: true });
+        }
+      });
+    }
   }
 
   updateProfile(): void {
+    this.loading = true;
     if (this.profileForm.valid) {
       const updatedUser = {
         username: this.profileForm.value.username,
@@ -105,9 +120,11 @@ export class ProfileSettingComponent {
         next: (updatedUserData) => {
           this.message.success('Profile updated successfully!');
           this.authService.setUserDetails(updatedUserData);
+          this.loading = false;
         },
         error: (error) => {
           this.message.error('Error updating profile.');
+          this.loading = false;
         },
       });
     } else {

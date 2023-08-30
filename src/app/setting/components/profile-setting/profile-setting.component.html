@@ -64,7 +64,8 @@
             nzType="primary"
             style="width: 100px"
             (click)="updateProfile()"
-            [disabled]="!profileForm.valid"
+            [disabled]="!profileForm.valid || loading"
+            [nzLoading]="loading"
           >
             Update
           </button>
@@ -122,8 +123,9 @@
               <button
                 nz-button
                 nzType="primary"
-                [disabled]="!changePWForm.valid"
                 (click)="submitchangePassword()"
+                [disabled]="!changePWForm.valid || passwordLoading"
+                [nzLoading]="loading"
               >
                 Change
               </button>
