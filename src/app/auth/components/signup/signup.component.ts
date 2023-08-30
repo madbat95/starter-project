@@ -10,6 +10,7 @@ import {
 import { AuthService } from 'src/app/shared/services/auth.service';
 import { Router } from '@angular/router';
 import { NzModalService } from 'ng-zorro-antd/modal';
+import { NzMessageService } from 'ng-zorro-antd/message';
 
 @Component({
   templateUrl: './signup.component.html',
@@ -22,6 +23,7 @@ export class SignupComponent {
     private fb: FormBuilder,
     private authService: AuthService,
     private router: Router,
+    private message: NzMessageService,
     private modal: NzModalService
   ) {}
 
@@ -50,6 +52,7 @@ export class SignupComponent {
         },
         error: (error) => {
           this.loading = false;
+          this.message.error('Signup Failed', error);
         },
       });
     } else {

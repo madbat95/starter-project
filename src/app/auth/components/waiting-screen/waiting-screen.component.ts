@@ -27,7 +27,7 @@ export class WaitingScreenComponent implements OnInit {
         this.message.success('Verification Email has been resent');
       },
       error: (error: any) => {
-        this.message.error(error);
+        this.message.error('User already exists');
       },
     });
   }
