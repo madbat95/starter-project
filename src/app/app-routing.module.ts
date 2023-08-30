@@ -7,6 +7,8 @@ import { CommonLayout_ROUTES } from './shared/routes/common-layout.routes';
 import { AppGuard } from './shared/guards/app.guard';
 import { AuthGuard } from './shared/guards/auth.guard';
 import { EditProfileComponent } from './auth/components/edit-profile/edit-profile.component';
+import { ActivateComponent } from './auth/components/activate/activate.component';
+import { WaitingScreenComponent } from './auth/components/waiting-screen/waiting-screen.component';
 
 const appRoutes: Routes = [
   {

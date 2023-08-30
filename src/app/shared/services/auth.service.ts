@@ -52,10 +52,9 @@ export class AuthService {
     return this.http.post('profile/me/', requestBody);
   }
 
-  // storeTokens(accessToken: string, refreshToken: string): void {
-  //   localStorage.setItem(this.accessTokenKey, accessToken);
-  //   localStorage.setItem(this.accessTokenKey, refreshToken);
-  // }
+  updatePassword(requestBody) {
+    return this.http.post('auth/users/set_password/', requestBody);
+  }
 
   getAccessToken(): string {
     return localStorage.getItem(this.accessTokenKey);
@@ -67,6 +66,14 @@ export class AuthService {
 
   verifyToken(token: string): boolean {
     return !this.jwtHelper.isTokenExpired(token);
+  }
+
+  recoverAccount(data) {
+    return this.http.post('auth/users/reset_password/', data);
+  }
+
+  resetAccount(data) {
+    return this.http.post('auth/users/reset_password_confirm/', data);
   }
 
   isAuthenticated(): boolean {
@@ -82,12 +89,11 @@ export class AuthService {
   }
 
   getLoggedInUserProfile(): Observable<any> {
-    // return this.http.get('profile/me/');
     return this.getLoggedInUser();
   }
 
   updateUser(data: any) {
-    return this.http.put('auth/users/me/', data);
+    return this.http.patch('auth/users/me/', data);
   }
   updateLoggedInUserProfile(data: any): Observable<any> {
     return this.http.post('profile/me/', data);
@@ -108,5 +114,13 @@ export class AuthService {
   refreshToken(): Observable<any> {
     const refreshToken = this.getRefreshToken();
     return this.http.post('auth/jwt/refresh', { refresh: refreshToken });
+  }
+
+  activateAccount(requestBody: any) {
+    return this.http.post('auth/users/activation/', requestBody);
+  }
+
+  resendActivationMail(requestBody: any) {
+    return this.http.post('auth/users/resend_activation/', requestBody);
   }
 }

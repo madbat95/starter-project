@@ -29,41 +29,37 @@
               [formGroup]="signupForm"
               class="login-form"
               nzLayout="vertical"
-              (ngSubmit)="submitForm()"
             >
-              <div class="mt-4" nz-row nzJustify="space-between">
-                <nz-col>
-                  <nz-form-item>
-                    <nz-form-label nzRequired nzFor="first_name"
-                      >Firstname</nz-form-label
-                    >
-                    <nz-form-control nzErrorTip="Please input your firstname!">
-                      <input
-                        type="text"
-                        nz-input
-                        formControlName="first_name"
-                        placeholder="Firstname"
-                        id="first_name"
-                      />
-                    </nz-form-control>
-                  </nz-form-item>
-                </nz-col>
-                <nz-col>
-                  <nz-form-item>
-                    <nz-form-label nzRequired nzFor="last_name"
-                      >Lastname</nz-form-label
-                    >
-                    <nz-form-control nzErrorTip="Please input your lastname!">
-                      <input
-                        type="text"
-                        nz-input
-                        formControlName="last_name"
-                        placeholder="Lastname"
-                        id="last_name"
-                      />
-                    </nz-form-control>
-                  </nz-form-item>
-                </nz-col>
+              <div class="mt-4">
+                <nz-form-item>
+                  <nz-form-label nzRequired nzFor="first_name"
+                    >Firstname</nz-form-label
+                  >
+                  <nz-form-control nzErrorTip="Please input your firstname!">
+                    <input
+                      type="text"
+                      nz-input
+                      formControlName="first_name"
+                      placeholder="Firstname"
+                      id="first_name"
+                    />
+                  </nz-form-control>
+                </nz-form-item>
+
+                <nz-form-item>
+                  <nz-form-label nzRequired nzFor="last_name"
+                    >Lastname</nz-form-label
+                  >
+                  <nz-form-control nzErrorTip="Please input your lastname!">
+                    <input
+                      type="text"
+                      nz-input
+                      formControlName="last_name"
+                      placeholder="Lastname"
+                      id="last_name"
+                    />
+                  </nz-form-control>
+                </nz-form-item>
               </div>
               <nz-form-item>
                 <nz-form-label nzRequired nzFor="username"
@@ -96,13 +92,18 @@
                   >Password</nz-form-label
                 >
                 <nz-form-control nzErrorTip="Please input your Password!">
-                  <input
-                    type="password"
-                    nz-input
-                    formControlName="password"
-                    placeholder="Password"
-                    id="password"
-                  />
+                  <nz-input-group
+                    [nzSuffix]="suffixTemplate"
+                    [nzPrefix]="prefixLock"
+                  >
+                    <input
+                      [type]="showPassword ? 'text' : 'password'"
+                      nz-input
+                      formControlName="password"
+                      placeholder="Password"
+                      id="password"
+                    />
+                  </nz-input-group>
                 </nz-form-control>
               </nz-form-item>
               <nz-form-item>
@@ -110,13 +111,19 @@
                   >Confirm Password</nz-form-label
                 >
                 <nz-form-control nzErrorTip="Please confirm your password!">
-                  <input
-                    nz-input
-                    type="password"
-                    formControlName="checkPassword"
-                    placeholder="Confirm Password"
-                    id="checkPassword"
-                  />
+                  <nz-input-group
+                    [nzSuffix]="suffixTemplate"
+                    [nzPrefix]="prefixLock"
+                  >
+                    <input
+                      [type]="showPassword ? 'text' : 'password'"
+                      nz-input
+                      type="password"
+                      formControlName="re_password"
+                      placeholder="Confirm Password"
+                      id="checkPassword"
+                    />
+                  </nz-input-group>
                 </nz-form-control>
               </nz-form-item>
               <!-- <div class="d-flex align-items-center justify-content-start">
@@ -132,9 +139,11 @@
               <button
                 nz-button
                 nzBlock
+                [disabled]="!signupForm.valid || loading"
                 class="login-form-button"
                 [nzType]="'primary'"
                 [nzLoading]="loading"
+                (click)="submitForm()"
               >
                 {{ loading ? "Signing up" : "Sign up" }}
               </button>
@@ -156,3 +165,12 @@
     </div>
   </div>
 </div>
+<ng-template #suffixTemplate>
+  <span
+    style="cursor: pointer"
+    nz-icon
+    [nzType]="showPassword ? 'eye-invisible' : 'eye'"
+    (click)="showPassword = !showPassword"
+  ></span>
+</ng-template>
+<ng-template #prefixLock><i nz-icon nzType="lock"></i></ng-template>

@@ -3,6 +3,7 @@ import { ThemeConstantService } from '../../services/theme-constant.service';
 import { AuthService } from '../../services/auth.service';
 import { User } from '../../interfaces/user.type';
 import { NotificationService } from '../../services/notification.service';
+import { switchMap } from 'rxjs/operators';
 
 @Component({
   selector: 'app-header',
@@ -14,7 +15,8 @@ export class HeaderComponent {
   isFolded: boolean;
   isExpand: boolean;
   user!: User;
-
+  loggedUser: any;
+  loading: boolean = false;
   constructor(
     private themeService: ThemeConstantService,
     private authService: AuthService,
@@ -22,15 +24,31 @@ export class HeaderComponent {
   ) {}
 
   ngOnInit(): void {
-    this.authService.getLoggedInUser().subscribe({
-      next: (user: User) => {
-        this.user = user;
-      },
-      error: () => {
-        this.notificationService.error('Error fetching user details:');
-      },
+    // this.authService.getLoggedInUser().subscribe({
+    //   next: (user: User) => {
+    //     this.user = user;
+    //   },
+    //   error: () => {
+    //     this.notificationService.error('Error fetching user details:');
+    //   },
+    // });
+
+    this.authService.userDetails$.subscribe((userDetails) => {
+      this.loggedUser = userDetails;
     });
 
+    if (!this.loggedUser) {
+      this.loading = true;
+      this.authService.getLoggedInUser().subscribe({
+        next: (user: User) => {
+          this.authService.setUserDetails(user);
+          this.loading = false;
+        },
+        error: (error) => {
+          this.loading = false;
+        },
+      });
+    }
     this.themeService.isMenuFoldedChanges.subscribe(
       (isFolded) => (this.isFolded = isFolded)
     );
