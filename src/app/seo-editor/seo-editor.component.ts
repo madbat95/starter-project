@@ -41,7 +41,6 @@ export class SeoEditorComponent implements OnInit {
   }
 
   toggleFold() {
-    console.log('toggling from seoeditor');
     this.themeService.toggleFold(this.isFolded);
   }
 }

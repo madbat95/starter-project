@@ -51,7 +51,6 @@ export class HeaderComponent implements OnInit {
     }
 
     this.themeService.isMenuFoldedChanges.subscribe((isFolded) => {
-      console.log('state', isFolded);
       this.isFolded = isFolded;
     });
 
@@ -62,7 +61,6 @@ export class HeaderComponent implements OnInit {
 
   toggleFold() {
     this.isFolded = !this.isFolded;
-    console.log('togglefold from header', this.isFolded);
     this.themeService.toggleFold(this.isFolded);
   }
 

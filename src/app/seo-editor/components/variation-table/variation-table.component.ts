@@ -41,7 +41,7 @@ export class VariationTableComponent {
         ...val[i],
       });
     }
-    console.log('in table', this.tableData);
+
     this.tableLoader.variationTableLoader = false;
     this.originalData = [...this.tableData];
   }

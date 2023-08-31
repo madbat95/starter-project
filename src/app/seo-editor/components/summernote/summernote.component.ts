@@ -102,8 +102,6 @@ export class SummernoteComponent implements OnInit, OnDestroy {
   }
 
   onEditorKeyUp(text: any) {
-    console.log('loading true');
-
     this.onEditorContent.emit({
       report: this.id,
       content: this.editorContent,

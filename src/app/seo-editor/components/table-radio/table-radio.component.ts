@@ -1,4 +1,11 @@
-import { Component, EventEmitter, OnInit, Output, TemplateRef, ViewChild } from '@angular/core';
+import {
+  Component,
+  EventEmitter,
+  OnInit,
+  Output,
+  TemplateRef,
+  ViewChild,
+} from '@angular/core';
 import { WordCounterService } from '../../service/word-counter.service';
 import { NzSegmentedOption } from 'ng-zorro-antd/segmented';
 
@@ -8,7 +15,8 @@ import { NzSegmentedOption } from 'ng-zorro-antd/segmented';
   styleUrls: ['./table-radio.component.scss'],
 })
 export class TableRadioComponent implements OnInit {
-  @ViewChild('temp', { static: true, read: TemplateRef }) templateRef!: TemplateRef<{
+  @ViewChild('temp', { static: true, read: TemplateRef })
+  templateRef!: TemplateRef<{
     $implicit: NzSegmentedOption;
     index: number;
   }>;
@@ -18,7 +26,7 @@ export class TableRadioComponent implements OnInit {
   options = [
     { label: 'Entities', value: 'Entity', useTemplate: true },
     { label: 'Variations', value: 'Variations', useTemplate: true },
-    { label: 'LSI KWs', value: 'LSIKeywords', useTemplate: true }
+    { label: 'LSI KWs', value: 'LSIKeywords', useTemplate: true },
   ];
 
   handleIndexChange(e: any): void {
@@ -29,7 +37,6 @@ export class TableRadioComponent implements OnInit {
   }
 
   onTableSelectionChange(): void {
-    console.log('radiovalueemit', this.selectedTable);
     if (this.selectedTable === 'LSIKeywords') {
       this.selectedTableChange.emit(this.selectedTable);
     } else if (this.selectedTable === 'Entity') {

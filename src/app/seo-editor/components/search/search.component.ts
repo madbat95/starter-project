@@ -11,7 +11,8 @@ import { TableLoaderService } from 'src/app/shared/services/table-loader.service
 })
 export class SearchComponent {
   scrapedContent: string = '';
-  url: any = 'http://help.websiteos.com/websiteos/example_of_a_simple_html_page.htm';
+  url: any =
+    'http://help.websiteos.com/websiteos/example_of_a_simple_html_page.htm';
   constructor(
     private scrapeService: ScrapeService,
     private editorContentService: EditorContentService,
@@ -23,29 +24,29 @@ export class SearchComponent {
     this.tableLoaderService.summernoteLoader = true;
     this.scrapeService.getHTML(this.url).subscribe({
       next: (data: any) => {
-        // console.log('data', data);
         const parser = new DOMParser();
         const doc = parser.parseFromString(data, 'text/html');
 
         const metaTitle = doc.querySelector('title').textContent;
-        console.log('metaTitle', metaTitle)
+
         this.metaDataService.setMetaTitle(metaTitle);
 
-        const metaDescription = doc.querySelector("meta[name='description']")?.getAttribute('content') || '';
-        console.log("metaDescription", metaDescription)
+        const metaDescription =
+          doc
+            .querySelector("meta[name='description']")
+            ?.getAttribute('content') || '';
+
         this.metaDataService.setMetaDescription(metaDescription);
 
-        const mainContent = doc.querySelector('main') || doc.querySelector('body'); 
-        console.log('mainContent', mainContent)
+        const mainContent =
+          doc.querySelector('main') || doc.querySelector('body');
 
-        // console.log(mainContent);
         this.dataCleaning(mainContent);
 
         this.editorContentService.updateScrapedData(mainContent.innerHTML);
         this.tableLoaderService.summernoteLoader = false;
       },
       error: (error) => {
-        console.log('error:', error);
         this.tableLoaderService.summernoteLoader = false;
       },
     });
