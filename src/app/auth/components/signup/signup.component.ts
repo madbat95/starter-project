@@ -52,7 +52,7 @@ export class SignupComponent {
         },
         error: (error) => {
           this.loading = false;
-          this.message.error('Signup Failed', error);
+          this.message.error(error);
         },
       });
     } else {
