@@ -91,8 +91,6 @@ export class UploadModalComponent {
       )
       .subscribe(
         (wordsResponses: any[]) => {
-          console.log('Words from file for each entity type:', wordsResponses);
-
           // Update the wordObject for each entity type
           for (let i = 0; i < wordsResponses.length; i++) {
             const entityTypes = ['Entity', 'Variations', 'LSIKeywords'];
@@ -115,10 +113,6 @@ export class UploadModalComponent {
               }
             }
           }
-          console.log(
-            'in upload component',
-            this.wordCounterService.wordObject
-          );
 
           this.summernote.onEditorContentChange(this.summernote.editorContent);
           this.tableLoader.variationTableLoader = false;

@@ -79,7 +79,7 @@ const antdModule = [
   NzUploadModule,
   NzSelectModule,
   NzSpinModule,
-  NzSegmentedModule
+  NzSegmentedModule,
 ];
 
 @NgModule({
@@ -111,6 +111,6 @@ const antdModule = [
     FileSelectorComponent,
     SaveButtonComponent,
   ],
-  providers: [ThemeConstantService, WordCounterService],
+  // providers: [ThemeConstantService, WordCounterService],
 })
 export class SeoModule {}

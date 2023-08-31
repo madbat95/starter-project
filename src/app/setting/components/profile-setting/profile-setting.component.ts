@@ -57,7 +57,6 @@ export class ProfileSettingComponent {
           last_name: this.user.last_name,
           email: this.user.email,
         });
-        console.log(user);
       },
       error: (error: any) => {
         this.message.error(error);
