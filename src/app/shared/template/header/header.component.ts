@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { ThemeConstantService } from '../../services/theme-constant.service';
 import { AuthService } from '../../services/auth.service';
 import { User } from '../../interfaces/user.type';
@@ -9,7 +9,7 @@ import { switchMap } from 'rxjs/operators';
   selector: 'app-header',
   templateUrl: './header.component.html',
 })
-export class HeaderComponent {
+export class HeaderComponent implements OnInit {
   searchVisible: boolean = false;
   quickViewVisible: boolean = false;
   isFolded: boolean;
@@ -49,9 +49,12 @@ export class HeaderComponent {
         },
       });
     }
-    this.themeService.isMenuFoldedChanges.subscribe(
-      (isFolded) => (this.isFolded = isFolded)
-    );
+
+    this.themeService.isMenuFoldedChanges.subscribe((isFolded) => {
+      console.log('state', isFolded);
+      this.isFolded = isFolded;
+    });
+
     this.themeService.isExpandChanges.subscribe(
       (isExpand) => (this.isExpand = isExpand)
     );
@@ -59,6 +62,7 @@ export class HeaderComponent {
 
   toggleFold() {
     this.isFolded = !this.isFolded;
+    console.log('togglefold from header', this.isFolded);
     this.themeService.toggleFold(this.isFolded);
   }
 

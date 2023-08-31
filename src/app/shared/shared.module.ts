@@ -39,6 +39,7 @@ import { NzButtonModule } from 'ng-zorro-antd/button';
     NzButtonModule,
   ],
   declarations: [SearchPipe, TableBlurDirective, VariationPipe],
-  providers: [ThemeConstantService, VariationPipe],
+  // providers: [ThemeConstantService, VariationPipe],
+  providers: [VariationPipe],
 })
 export class SharedModule {}

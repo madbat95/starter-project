@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
-import { CommonModule } from "@angular/common";
+import { CommonModule } from '@angular/common';
 import { SharedModule } from '../shared/shared.module';
-import { DashboardRoutingModule } from "./dashboard-routing.module";
+import { DashboardRoutingModule } from './dashboard-routing.module';
 import { NgChartjsModule } from 'ng-chartjs';
 
 import { ThemeConstantService } from '../shared/services/theme-constant.service';
@@ -26,38 +26,36 @@ import { NzCheckboxModule } from 'ng-zorro-antd/checkbox';
 import { DefaultDashboardComponent } from './default/default-dashboard.component';
 
 const antdModule = [
-    NzButtonModule,
-    NzCardModule,
-    NzAvatarModule,
-    NzRateModule,
-    NzBadgeModule,
-    NzProgressModule,
-    NzRadioModule,
-    NzTableModule,
-    NzDropDownModule,
-    NzTimelineModule,
-    NzTabsModule,
-    NzTagModule,
-    NzListModule,
-    NzCalendarModule,
-    NzToolTipModule,
-    NzCheckboxModule
-]
+  NzButtonModule,
+  NzCardModule,
+  NzAvatarModule,
+  NzRateModule,
+  NzBadgeModule,
+  NzProgressModule,
+  NzRadioModule,
+  NzTableModule,
+  NzDropDownModule,
+  NzTimelineModule,
+  NzTabsModule,
+  NzTagModule,
+  NzListModule,
+  NzCalendarModule,
+  NzToolTipModule,
+  NzCheckboxModule,
+];
 
 @NgModule({
-    imports: [
-        CommonModule,
-        SharedModule,
-        DashboardRoutingModule,
-        NgChartjsModule,
-        ...antdModule
-    ],
-    exports: [],
-    declarations: [
-        DefaultDashboardComponent,
-    ],
-    providers: [
-        ThemeConstantService
-    ],
+  imports: [
+    CommonModule,
+    SharedModule,
+    DashboardRoutingModule,
+    NgChartjsModule,
+    ...antdModule,
+  ],
+  exports: [],
+  declarations: [DefaultDashboardComponent],
+  // providers: [
+  //     ThemeConstantService
+  // ],
 })
-export class DashboardModule { }
+export class DashboardModule {}

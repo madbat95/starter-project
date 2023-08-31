@@ -82,6 +82,6 @@ const antdModule = [
     ReportsTableComponent,
     ReportPipe,
   ],
-  providers: [ThemeConstantService],
+  // providers: [ThemeConstantService],
 })
 export class ReportModule {}

@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { WordCounterService } from './service/word-counter.service';
+import { ThemeConstantService } from '../shared/services/theme-constant.service';
 
 @Component({
   selector: 'app-seo-editor',
@@ -12,7 +13,11 @@ export class SeoEditorComponent implements OnInit {
   tableData: any[] = [];
   selectedTable: string = 'Entity';
   editorContent: any;
-  constructor(public wordCounter: WordCounterService) {}
+  isFolded: boolean = true;
+  constructor(
+    public wordCounter: WordCounterService,
+    private themeService: ThemeConstantService
+  ) {}
 
   onTableSelection(selectedTable: any): void {
     this.selectedTable = selectedTable;
@@ -30,5 +35,13 @@ export class SeoEditorComponent implements OnInit {
     return this.wordCounter.wordCount;
   }
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    // this.themeService.toggleFold(V);
+    this.toggleFold();
+  }
+
+  toggleFold() {
+    console.log('toggling from seoeditor');
+    this.themeService.toggleFold(this.isFolded);
+  }
 }
