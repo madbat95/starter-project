@@ -27,7 +27,7 @@
       </tr>
     </thead>
     <tbody>
-      <tr *ngFor="let data of reports | report : searchKeyword">
+      <tr *ngFor="let data of basicTable.data | report : searchKeyword">
         <td nzAlign="center">
           <a [routerLink]="'/admin/report/' + data.id"> {{ data.keyword }}</a>
         </td>
