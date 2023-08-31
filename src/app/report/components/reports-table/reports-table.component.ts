@@ -14,7 +14,7 @@ export class ReportsTableComponent {
 
   @Input() set newReport(val: any) {
     if (val) {
-      this.reports.push(val);
+      this.reports = [...this.reports, val];
     }
   }
 
