@@ -114,6 +114,22 @@ export class SuggestionTableComponent implements OnInit {
     this.tableData = this.wordCounter.wordCount;
   }
 
+  cellClass(metaTitle: number, metaTitleR: number): string {
+    const ratio = metaTitle / metaTitleR;
+    console.log();
+    if (ratio >= 0 && ratio <= 0.5) {
+      return 'bad';
+    } else if (ratio >= 0.6 && ratio <= 0.7) {
+      return 'better';
+    } else if (ratio >= 0.8 && ratio <= 0.9) {
+      return 'perfect';
+    } else if (ratio >= 1.0) {
+      return 'over-optimized';
+    } else {
+      return '';
+    }
+  }
+
   // titleBlur(): void {
   //   console.log('button pressed');
 

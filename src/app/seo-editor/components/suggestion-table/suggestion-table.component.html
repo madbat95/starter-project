@@ -1,5 +1,5 @@
 <nz-table
-class="suggestions-table"
+  class="suggestions-table"
   #groupingTable
   nzBordered
   nzSize="small"
@@ -99,7 +99,7 @@ class="suggestions-table"
       <th nzAlign="center" id="DescrCount">C</th>
       <th nzAlign="center" id="DescrRequired" class="required">R</th>
       <th nzAlign="center" id="H1Count">C</th>
-      <th nzAlign="center" id="H1Required"class="required">R</th>
+      <th nzAlign="center" id="H1Required" class="required">R</th>
       <th nzAlign="center" id="H2Count">C</th>
       <th nzAlign="center" id="H2Required" class="required">R</th>
       <th nzAlign="center" id="H3Count">C</th>
@@ -117,7 +117,16 @@ class="suggestions-table"
   <tbody>
     <tr>
       <td nzLeft nzAlign="center" class="table-col">Entities</td>
-      <td nzAlign="center" id="entityTitleCount">
+      <td
+        nzAlign="center"
+        id="entityTitleCount"
+        [ngClass]="
+          cellClass(
+            tableData.Entity?.metaTitle ?? 0,
+            tableData.Entity?.metaTitleR ?? 0
+          )
+        "
+      >
         <badge [data]="tableData.Entity?.metaTitle ?? 0"></badge>
       </td>
       <td nzAlign="center" id="entityTitleRequired" class="required">
@@ -174,7 +183,16 @@ class="suggestions-table"
     </tr>
     <tr>
       <td nzLeft nzAlign="center" class="table-col">LSI KWs</td>
-      <td nzAlign="center" id="lsiTitleCount">
+      <td
+        nzAlign="center"
+        id="lsiTitleCount"
+        [ngClass]="
+          cellClass(
+            tableData.LSIKeywords.metaTitle ?? 0,
+            tableData.LSIKeywords?.metaTitleR ?? 0
+          )
+        "
+      >
         <badge [data]="tableData['LSIKeywords']?.metaTitle ?? 0"></badge>
       </td>
       <td nzAlign="center" id="lsiTitleRequired" class="required">
@@ -186,7 +204,7 @@ class="suggestions-table"
       <td nzAlign="center" id="lsiDescrRequired" class="required">
         <badge [data]="tableData['LSIKeywords']?.metaDescriptionR"></badge>
       </td>
-      <td nzAlign="center" id="lsiH1Count" >
+      <td nzAlign="center" id="lsiH1Count">
         <badge [data]="tableData['LSIKeywords']?.headers?.H1 ?? 0"></badge>
       </td>
       <td nzAlign="center" id="lsiH1Required" class="required">

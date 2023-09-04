@@ -5,6 +5,8 @@ import {
   OnDestroy,
   Output,
   Input,
+  ViewChild,
+  ElementRef,
 } from '@angular/core';
 import { WordCounterService } from '../../service/word-counter.service';
 import { ActivatedRoute, ParamMap } from '@angular/router';
@@ -20,6 +22,8 @@ import { Subject } from 'rxjs';
   styleUrls: ['./summernote.component.scss'],
 })
 export class SummernoteComponent implements OnInit, OnDestroy {
+  @ViewChild('editor', { static: false }) editor: ElementRef;
+
   constructor(
     private wordCounter: WordCounterService,
     private route: ActivatedRoute,
@@ -47,7 +51,7 @@ export class SummernoteComponent implements OnInit, OnDestroy {
   id: any;
   editorContent = '';
   isLoading = false;
-
+  isHighlightedStates = {};
   editorConfig = {
     theme: 'bs4-dark',
     placeholder: 'Add text here...',
@@ -152,6 +156,23 @@ export class SummernoteComponent implements OnInit, OnDestroy {
         headerTag,
         this.editorContent
       );
+    }
+  }
+
+  highlightTag(tag: string) {
+    const tagToBeHighlighted = `<${tag}`;
+    const highlightStyle = `style="background-color:rgb(255, 255, 0);"`;
+
+    if (this.isHighlightedStates && this.isHighlightedStates[tag]) {
+      this.isHighlightedStates[tag] = false;
+      this.editorContent = this.editorContent
+        .split(`${tagToBeHighlighted} ${highlightStyle}`)
+        .join(`<${tag}`);
+    } else {
+      this.isHighlightedStates[tag] = true;
+      this.editorContent = this.editorContent
+        .split(`${tagToBeHighlighted}`)
+        .join(`<${tag} ${highlightStyle}`);
     }
   }
 
