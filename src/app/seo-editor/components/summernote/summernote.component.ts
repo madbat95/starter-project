@@ -113,6 +113,8 @@ export class SummernoteComponent implements OnInit, OnDestroy {
       content: this.editorContent,
     });
 
+    console.log(this.editorContent);
+
     const parser = new DOMParser();
     const doc = parser.parseFromString(text, 'text/html');
 
@@ -161,20 +163,61 @@ export class SummernoteComponent implements OnInit, OnDestroy {
     }
   }
 
-  highlightTag(tag: string) {
-    const tagToBeHighlighted = `<${tag}`;
-    const highlightStyle = `style="background-color:rgb(255, 255, 0);"`;
+  // highlightTag(tag: string) {
+  //   const tagToBeHighlighted = `<${tag}`;
+  //   const highlightStyle = `style="background-color:rgb(255, 255, 0);"`;
 
-    if (this.isHighlightedStates && this.isHighlightedStates[tag]) {
-      this.isHighlightedStates[tag] = false;
-      this.editorContent = this.editorContent
-        .split(`${tagToBeHighlighted} ${highlightStyle}`)
-        .join(`<${tag}`);
+  //   if (this.isHighlightedStates && this.isHighlightedStates[tag]) {
+  //     this.isHighlightedStates[tag] = false;
+  //     this.editorContent = this.editorContent
+  //       .split(`${tagToBeHighlighted} ${highlightStyle}`)
+  //       .join(`<${tag}`);
+  //   } else {
+  //     this.isHighlightedStates[tag] = true;
+  //     this.editorContent = this.editorContent
+  //       .split(`${tagToBeHighlighted}`)
+  //       .join(`<${tag} ${highlightStyle}`);
+  //   }
+  // }
+
+  highlightTag(tag: string) {
+    if (tag === 'content') {
+      const nonHeadingTags = ['p', 'div', 'span', 'a'];
+      const highlightStyle = `style="background-color:rgb(255, 255, 0);"`;
+
+      for (const nonHeadingTag of nonHeadingTags) {
+        const tagToBeHighlighted = `<${nonHeadingTag}`;
+        if (
+          this.isHighlightedStates &&
+          this.isHighlightedStates[nonHeadingTag]
+        ) {
+          this.isHighlightedStates[nonHeadingTag] = false;
+          this.editorContent = this.editorContent
+            .split(`${tagToBeHighlighted} ${highlightStyle}`)
+            .join(`<${nonHeadingTag}`);
+        } else {
+          this.isHighlightedStates[nonHeadingTag] = true;
+          this.editorContent = this.editorContent
+            .split(`${tagToBeHighlighted}`)
+            .join(`<${nonHeadingTag} ${highlightStyle}`);
+        }
+      }
     } else {
-      this.isHighlightedStates[tag] = true;
-      this.editorContent = this.editorContent
-        .split(`${tagToBeHighlighted}`)
-        .join(`<${tag} ${highlightStyle}`);
+      // Highlight the specified heading tag (e.g., 'h1', 'h2', 'h3', etc.)
+      const tagToBeHighlighted = `<${tag}`;
+      const highlightStyle = `style="background-color:rgb(255, 255, 0);"`;
+
+      if (this.isHighlightedStates && this.isHighlightedStates[tag]) {
+        this.isHighlightedStates[tag] = false;
+        this.editorContent = this.editorContent
+          .split(`${tagToBeHighlighted} ${highlightStyle}`)
+          .join(`<${tag}`);
+      } else {
+        this.isHighlightedStates[tag] = true;
+        this.editorContent = this.editorContent
+          .split(`${tagToBeHighlighted}`)
+          .join(`<${tag} ${highlightStyle}`);
+      }
     }
   }
 

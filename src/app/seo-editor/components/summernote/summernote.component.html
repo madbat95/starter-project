@@ -62,6 +62,15 @@
     nz-button
     [nzSize]="'small'"
     [nzType]="'primary'"
+    (click)="highlightTag('content')"
+  >
+    Content
+  </button>
+  <button
+    nz-col
+    nz-button
+    [nzSize]="'small'"
+    [nzType]="'primary'"
     (click)="highlightKey('Entity', '#87f6e5')"
   >
     Entity
