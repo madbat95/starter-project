@@ -15,6 +15,7 @@ import { HtmlContentService } from 'src/app/shared/services/html-content.service
 import { EditorContentService } from 'src/app/shared/services/editor-content.service';
 import { TableLoaderService } from 'src/app/shared/services/table-loader.service';
 import { Subject } from 'rxjs';
+import { Key } from 'protractor';
 
 @Component({
   selector: 'app-summernote',
@@ -52,6 +53,7 @@ export class SummernoteComponent implements OnInit, OnDestroy {
   editorContent = '';
   isLoading = false;
   isHighlightedStates = {};
+  isHighlightedKey = {};
   editorConfig = {
     theme: 'bs4-dark',
     placeholder: 'Add text here...',
@@ -173,6 +175,45 @@ export class SummernoteComponent implements OnInit, OnDestroy {
       this.editorContent = this.editorContent
         .split(`${tagToBeHighlighted}`)
         .join(`<${tag} ${highlightStyle}`);
+    }
+  }
+
+  highlightKey(key: string, color: string) {
+    const highlightedKeyStyle = `background-color: ${color};`;
+    // Clone the editorContent
+    const editorContentClone = this.editorContent;
+
+    if (this.isHighlightedKey && this.isHighlightedKey[key]) {
+      this.isHighlightedKey[key] = false;
+      // Get the words associated with the specified key
+      const words = this.wordCounter.wordObject[key];
+
+      if (!words || words.length === 0) {
+        return;
+      }
+
+      // Create a regular expression pattern to match the words
+      const wordPattern = words.map((word) => `\\b${word.word}\\b`).join('|');
+      const regex = new RegExp(`(${wordPattern})`, 'gi');
+
+      const highlightedContent = editorContentClone.replace(
+        regex,
+        `<span style="${highlightedKeyStyle}">$1</span>`
+      );
+
+      // Update the editorContent with the highlighted content
+      this.editorContent = highlightedContent;
+    } else {
+      this.isHighlightedKey[key] = true;
+
+      // for future reference, the else block is for adding a toggling effect. it will
+      //check if the isHighlightedState is already toggled then it removes the blue highlight
+      const regex = new RegExp(
+        `<span style="${highlightedKeyStyle}">(.*?)<\/span>`,
+        'gi'
+      );
+      const unhighlightedContent = editorContentClone.replace(regex, '$1');
+      this.editorContent = unhighlightedContent;
     }
   }
 
