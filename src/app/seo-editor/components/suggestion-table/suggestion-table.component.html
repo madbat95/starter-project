@@ -116,7 +116,16 @@
   </thead>
   <tbody>
     <tr>
-      <td nzLeft nzAlign="center" class="table-col">Entities</td>
+      <td
+        nzLeft
+        nzAlign="center"
+        class="table-col"
+        nz-button
+        (click)="highlightKey('Entity', '#87f6e5')"
+        style="cursor: pointer"
+      >
+        Entities
+      </td>
       <td
         nzAlign="center"
         id="entityTitleCount"
@@ -182,7 +191,15 @@
       </td>
     </tr>
     <tr>
-      <td nzLeft nzAlign="center" class="table-col">LSI KWs</td>
+      <td
+        nzLeft
+        nzAlign="center"
+        class="table-col"
+        (click)="highlightKey('LSIKeywords', '#f6a9a9')"
+        style="cursor: pointer"
+      >
+        LSI KWs
+      </td>
       <td
         nzAlign="center"
         id="lsiTitleCount"
@@ -248,7 +265,15 @@
       </td>
     </tr>
     <tr>
-      <td nzLeft nzAlign="center" class="table-col">Variations</td>
+      <td
+        nzLeft
+        nzAlign="center"
+        class="table-col"
+        (click)="highlightKey('Variations', '#e58d3e')"
+        style="cursor: pointer"
+      >
+        Variations
+      </td>
       <td nzAlign="center" id="variationTitleCount">
         <badge [data]="tableData['Variations']?.metaTitle ?? 0"></badge>
       </td>

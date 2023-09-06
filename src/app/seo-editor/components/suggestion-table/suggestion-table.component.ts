@@ -1,5 +1,6 @@
 import { Component, OnInit, Renderer2, ElementRef } from '@angular/core';
 import { WordCounterService } from '../../service/word-counter.service';
+import { HighlightService } from '../../service/highlight.service';
 
 @Component({
   selector: 'app-suggestion-table',
@@ -107,7 +108,8 @@ export class SuggestionTableComponent implements OnInit {
   constructor(
     private wordCounter: WordCounterService,
     private renderer: Renderer2,
-    private el: ElementRef
+    private el: ElementRef,
+    private highlightService: HighlightService
   ) {}
 
   ngOnInit(): void {
@@ -128,6 +130,10 @@ export class SuggestionTableComponent implements OnInit {
     } else {
       return '';
     }
+  }
+
+  highlightKey(key: string, color: string) {
+    this.highlightService.highlightKey(key, color);
   }
 
   // titleBlur(): void {
