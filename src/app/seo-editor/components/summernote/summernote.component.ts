@@ -75,8 +75,12 @@ export class SummernoteComponent implements OnInit, OnDestroy {
         this.onEditorKeyUp(content);
       });
 
-    this.highlightService.getHighlightObservable().subscribe((data) => {
+    this.highlightService.getHighlightKeyObservable().subscribe((data) => {
       this.highlightKey(data.key, data.color);
+    });
+
+    this.highlightService.getHighlightTagObservable().subscribe((data) => {
+      this.highlightTag(data);
     });
   }
 
@@ -164,7 +168,7 @@ export class SummernoteComponent implements OnInit, OnDestroy {
     }
   }
 
-  highlightTag(tag: string) {
+  highlightTag(tag: any) {
     if (tag === 'content') {
       const nonHeadingTags = ['p', 'div', 'span', 'a'];
       const highlightStyle = `style="background-color:rgb(255, 255, 0);"`;

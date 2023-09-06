@@ -5,14 +5,23 @@ import { Subject } from 'rxjs';
   providedIn: 'root',
 })
 export class HighlightService {
-  private highlightSubject = new Subject<{ key: string; color: string }>();
+  private highlightKeySubject = new Subject<{ key: string; color: string }>();
+  private highlightTagSubject = new Subject<{ tag: string }>();
   constructor() {}
 
-  getHighlightObservable() {
-    return this.highlightSubject.asObservable();
+  getHighlightKeyObservable() {
+    return this.highlightKeySubject.asObservable();
   }
 
   highlightKey(key: string, color: string) {
-    return this.highlightSubject.next({ key, color });
+    return this.highlightKeySubject.next({ key, color });
+  }
+
+  getHighlightTagObservable() {
+    return this.highlightTagSubject.asObservable();
+  }
+
+  highlightTag(tag: any) {
+    return this.highlightTagSubject.next(tag);
   }
 }

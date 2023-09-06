@@ -136,6 +136,9 @@ export class SuggestionTableComponent implements OnInit {
     this.highlightService.highlightKey(key, color);
   }
 
+  highlightTag(tag: string) {
+    this.highlightService.highlightTag(tag);
+  }
   // titleBlur(): void {
   //   console.log('button pressed');
 
