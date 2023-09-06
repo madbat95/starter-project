@@ -16,6 +16,7 @@ import { EditorContentService } from 'src/app/shared/services/editor-content.ser
 import { TableLoaderService } from 'src/app/shared/services/table-loader.service';
 import { Subject } from 'rxjs';
 import { Key } from 'protractor';
+import { HighlightService } from '../../service/highlight.service';
 
 @Component({
   selector: 'app-summernote',
@@ -62,7 +63,8 @@ export class SummernoteComponent implements OnInit, OnDestroy {
     private route: ActivatedRoute,
     private contentSerevice: HtmlContentService,
     private editorContentService: EditorContentService,
-    public tableLoaderService: TableLoaderService
+    public tableLoaderService: TableLoaderService,
+    private highlightService: HighlightService
   ) {
     this.contentChange$
       .pipe(
@@ -72,6 +74,10 @@ export class SummernoteComponent implements OnInit, OnDestroy {
       .subscribe((content: string) => {
         this.onEditorKeyUp(content);
       });
+
+    this.highlightService.getHighlightObservable().subscribe((data) => {
+      this.highlightKey(data.key, data.color);
+    });
   }
 
   onEditorContentChange(content: string) {
