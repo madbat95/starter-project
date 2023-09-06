@@ -23,29 +23,6 @@ import { Key } from 'protractor';
   styleUrls: ['./summernote.component.scss'],
 })
 export class SummernoteComponent implements OnInit, OnDestroy {
-  @ViewChild('editor', { static: false }) editor: ElementRef;
-
-  constructor(
-    private wordCounter: WordCounterService,
-    private route: ActivatedRoute,
-    private contentSerevice: HtmlContentService,
-    private editorContentService: EditorContentService,
-    public tableLoaderService: TableLoaderService
-  ) {
-    this.contentChange$
-      .pipe(
-        debounceTime(500), // Adjust the debounce time as needed (e.g., 500 milliseconds)
-        takeUntil(this.destroy$)
-      )
-      .subscribe((content: string) => {
-        this.onEditorKeyUp(content);
-      });
-  }
-
-  onEditorContentChange(content: string) {
-    this.contentChange$.next(content);
-  }
-
   private contentChange$ = new Subject<string>();
   private destroy$ = new Subject<void>();
 
@@ -80,6 +57,26 @@ export class SummernoteComponent implements OnInit, OnDestroy {
 
   @Input() isDisabled: boolean = false;
   @Output() onEditorContent = new EventEmitter<any>();
+  constructor(
+    private wordCounter: WordCounterService,
+    private route: ActivatedRoute,
+    private contentSerevice: HtmlContentService,
+    private editorContentService: EditorContentService,
+    public tableLoaderService: TableLoaderService
+  ) {
+    this.contentChange$
+      .pipe(
+        debounceTime(500), // Adjust the debounce time as needed (e.g., 500 milliseconds)
+        takeUntil(this.destroy$)
+      )
+      .subscribe((content: string) => {
+        this.onEditorKeyUp(content);
+      });
+  }
+
+  onEditorContentChange(content: string) {
+    this.contentChange$.next(content);
+  }
 
   ngOnInit(): void {
     this.editorContentService
@@ -208,6 +205,18 @@ export class SummernoteComponent implements OnInit, OnDestroy {
 
     if (this.isHighlightedKey && this.isHighlightedKey[key]) {
       this.isHighlightedKey[key] = false;
+
+      // for future reference, the else block is for adding a toggling effect. it will
+      //check if the isHighlightedState is already toggled then it removes the blue highlight
+      const regex = new RegExp(
+        `<span style="${highlightedKeyStyle}">(.*?)<\/span>`,
+        'gi'
+      );
+      const unhighlightedContent = editorContentClone.replace(regex, '$1');
+      this.editorContent = unhighlightedContent;
+    } else {
+      this.isHighlightedKey[key] = true;
+
       // Get the words associated with the specified key
       const words = this.wordCounter.wordObject[key];
 
@@ -226,17 +235,6 @@ export class SummernoteComponent implements OnInit, OnDestroy {
 
       // Update the editorContent with the highlighted content
       this.editorContent = highlightedContent;
-    } else {
-      this.isHighlightedKey[key] = true;
-
-      // for future reference, the else block is for adding a toggling effect. it will
-      //check if the isHighlightedState is already toggled then it removes the blue highlight
-      const regex = new RegExp(
-        `<span style="${highlightedKeyStyle}">(.*?)<\/span>`,
-        'gi'
-      );
-      const unhighlightedContent = editorContentClone.replace(regex, '$1');
-      this.editorContent = unhighlightedContent;
     }
   }
 
