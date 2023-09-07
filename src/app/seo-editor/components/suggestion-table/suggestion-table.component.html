@@ -128,21 +128,12 @@
         nzAlign="center"
         class="table-col"
         nz-button
-        (click)="highlightKey('Entity', '#87f6e5')"
+        (click)="EntityFunction()"
         style="cursor: pointer"
       >
         Entities
       </td>
-      <td
-        nzAlign="center"
-        id="entityTitleCount"
-        [ngClass]="
-          cellClass(
-            tableData.Entity?.metaTitle ?? 0,
-            tableData.Entity?.metaTitleR ?? 0
-          )
-        "
-      >
+      <td nzAlign="center" id="entityTitleCount">
         <badge [data]="tableData.Entity?.metaTitle ?? 0"></badge>
       </td>
       <td nzAlign="center" id="entityTitleRequired" class="required">
@@ -202,21 +193,12 @@
         nzLeft
         nzAlign="center"
         class="table-col"
-        (click)="highlightKey('LSIKeywords', '#f6a9a9')"
+        (click)="LSIKeywordsFunction()"
         style="cursor: pointer"
       >
         LSI KWs
       </td>
-      <td
-        nzAlign="center"
-        id="lsiTitleCount"
-        [ngClass]="
-          cellClass(
-            tableData.LSIKeywords.metaTitle ?? 0,
-            tableData.LSIKeywords?.metaTitleR ?? 0
-          )
-        "
-      >
+      <td nzAlign="center" id="lsiTitleCount">
         <badge [data]="tableData['LSIKeywords']?.metaTitle ?? 0"></badge>
       </td>
       <td nzAlign="center" id="lsiTitleRequired" class="required">
@@ -276,7 +258,7 @@
         nzLeft
         nzAlign="center"
         class="table-col"
-        (click)="highlightKey('Variations', '#e58d3e')"
+        (click)="VariationsFunction()"
         style="cursor: pointer"
       >
         Variations
