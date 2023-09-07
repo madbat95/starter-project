@@ -5,6 +5,12 @@ import { Subject } from 'rxjs';
   providedIn: 'root',
 })
 export class HighlightService {
+  private highlightMetaSubject = new Subject<{
+    meta: string;
+    key: string;
+    color: string;
+  }>();
+
   private highlightKeySubject = new Subject<{ key: string; color: string }>();
   private highlightTagSubject = new Subject<{ tag: string }>();
   constructor() {}
@@ -15,6 +21,14 @@ export class HighlightService {
 
   highlightKey(key: string, color: string) {
     return this.highlightKeySubject.next({ key, color });
+  }
+
+  getHighlightMetaObservable() {
+    return this.highlightMetaSubject.asObservable();
+  }
+
+  highlightMeta(meta: string, key: string, color: string) {
+    return this.highlightMetaSubject.next({ meta, key, color });
   }
 
   getHighlightTagObservable() {
