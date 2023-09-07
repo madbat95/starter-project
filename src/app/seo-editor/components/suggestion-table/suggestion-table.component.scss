@@ -62,6 +62,6 @@
   background-color: #ffbf86 !important;
 }
 
-.required-cell {
-  background-color: #bdbece !important;
+.required {
+  background-color: lighten(#bdbece, 10%) !important;
 }

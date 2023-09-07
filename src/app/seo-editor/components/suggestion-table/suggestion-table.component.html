@@ -102,23 +102,23 @@
     </tr>
     <tr>
       <th nzAlign="center" id="titleCount">C</th>
-      <th nzAlign="center" id="titleRequired" class="required">R</th>
+      <th nzAlign="center" id="titleRequired">R</th>
       <th nzAlign="center" id="DescrCount">C</th>
-      <th nzAlign="center" id="DescrRequired" class="required">R</th>
+      <th nzAlign="center" id="DescrRequired">R</th>
       <th nzAlign="center" id="H1Count">C</th>
-      <th nzAlign="center" id="H1Required" class="required">R</th>
+      <th nzAlign="center" id="H1Required">R</th>
       <th nzAlign="center" id="H2Count">C</th>
-      <th nzAlign="center" id="H2Required" class="required">R</th>
+      <th nzAlign="center" id="H2Required">R</th>
       <th nzAlign="center" id="H3Count">C</th>
-      <th nzAlign="center" id="H3Required" class="required">R</th>
+      <th nzAlign="center" id="H3Required">R</th>
       <th nzAlign="center" id="H4Count">C</th>
-      <th nzAlign="center" id="H4Required" class="required">R</th>
+      <th nzAlign="center" id="H4Required">R</th>
       <th nzAlign="center" id="H5Count">C</th>
-      <th nzAlign="center" id="H5Required" class="required">R</th>
+      <th nzAlign="center" id="H5Required">R</th>
       <th nzAlign="center" id="H6Count">C</th>
-      <th nzAlign="center" id="H6Required" class="required">R</th>
+      <th nzAlign="center" id="H6Required">R</th>
       <th nzAlign="center" id="contentCount">C</th>
-      <th nzAlign="center" id="contentRequired" class="required">R</th>
+      <th nzAlign="center" id="contentRequired">R</th>
     </tr>
   </thead>
   <tbody>
@@ -133,7 +133,16 @@
       >
         Entities
       </td>
-      <td nzAlign="center" id="entityTitleCount">
+      <td
+        nzAlign="center"
+        id="entityTitleCount"
+        [ngClass]="
+          cellClass(
+            tableData.Entity.metaTitle ?? 0,
+            tableData.Entity?.metaTitleR ?? 0
+          )
+        "
+      >
         <badge [data]="tableData.Entity?.metaTitle ?? 0"></badge>
       </td>
       <td nzAlign="center" id="entityTitleRequired" class="required">
