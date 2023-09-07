@@ -86,9 +86,9 @@ export class MetaComponent implements OnInit {
     let meta = ['metaTitle', 'metaDescription'];
 
     for (const property of meta) {
-      this.updateCountsForElement(this[property], property, parser);
-      this.wordCounter.wordCount['WordTags'][property] =
-        this.wordCounter.calculateTotalMetaWordCount(property);
+      const metaText = this[property];
+      this.wordCounter.wordCountCalculate(metaText, 'meta');
+      this.wordCounter.calculateMetaTagWordCount(metaText, property);
     }
   }
 
@@ -97,23 +97,6 @@ export class MetaComponent implements OnInit {
       this.wordCounter.wordObject[entityType].forEach((word) => {
         word.count.meta = 0;
       });
-    }
-  }
-
-  updateCountsForElement(
-    elementContent: string,
-    entityType: string,
-    parser: DOMParser
-  ) {
-    const docElement = parser.parseFromString(elementContent, 'text/html');
-    const elementContentWordCount =
-      this.wordCounter.countWordsInHeadersAndContent(docElement.body, []);
-
-    this.wordCounter.wordCountCalculate(elementContent, 'meta');
-
-    for (const type of ['Entity', 'Variations', 'LSIKeywords']) {
-      this.wordCounter.wordCount[type][entityType] =
-        elementContentWordCount[type].content;
     }
   }
 }

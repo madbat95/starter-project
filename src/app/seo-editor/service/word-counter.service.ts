@@ -120,14 +120,11 @@ export class WordCounterService {
     LSIKeywords: [],
   };
 
-  calculateTotalMetaWordCount(property: string): number {
-    let totalMetaWordCount = 0;
+  calculateMetaTagWordCount(metaText: string, property: string) {
+    const textContent = metaText.replace(/<[^>]*>/g, ' ');
+    const words = textContent.split(/\s+/).filter((word) => word.trim() !== '');
 
-    for (const entityType of ['Entity', 'Variations', 'LSIKeywords']) {
-      totalMetaWordCount += this.wordCount[entityType][property];
-    }
-
-    return totalMetaWordCount;
+    this.wordCount['WordTags'][property] = words.length;
   }
 
   isPhraseInWordObject(phrase, entityType) {
@@ -261,31 +258,22 @@ export class WordCounterService {
   }
 
   calculateHeaderTagWordCount(headerTag: string, editorContent: string): void {
-    for (const entityType of ['Entity', 'Variations', 'LSIKeywords']) {
-      let tagWordCount = 0;
+    const headerRegex = new RegExp(
+      `<${headerTag.toLowerCase()}[^>]*>(.*?)<\/${headerTag.toLowerCase()}>`,
+      'gi'
+    );
 
-      for (const wordObject of this.wordObject[entityType]) {
-        if (wordObject.count.summer_note > 0) {
-          const word = wordObject.word;
-          const regex = new RegExp(`\\b${word}\\b`, 'gi');
+    // Match the header tag in the editor content
+    const headerMatches = editorContent.match(headerRegex) || [];
 
-          // Create a regular expression for the specific header tag
-          const headerRegex = new RegExp(
-            `<${headerTag.toLowerCase()}[^>]*>(.*?)<\/${headerTag.toLowerCase()}>`,
-            'gi'
-          );
-          const headerMatches = editorContent.match(headerRegex) || [];
+    // Update the word count in this.wordCount['WordTags'].headers
+    this.wordCount['WordTags'].headers[headerTag] = headerMatches.length;
+  }
 
-          // Count the number of matches (i.e., number of <h1> tags)
-          for (const headerMatch of headerMatches) {
-            if (headerMatch.match(regex)) {
-              tagWordCount++;
-            }
-          }
-        }
-      }
+  calculateContentTagWordCount(editorContent: string) {
+    const textContent = editorContent.replace(/<[^>]*>/g, ' ');
+    const words = textContent.split(/\s+/).filter((word) => word.trim() !== '');
 
-      this.wordCount['WordTags'].headers[headerTag] = tagWordCount;
-    }
+    this.wordCount['WordTags'].content = words.length;
   }
 }
