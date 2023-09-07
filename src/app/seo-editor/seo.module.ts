@@ -2,9 +2,6 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { SharedModule } from '../shared/shared.module';
 import { NgChartjsModule } from 'ng-chartjs';
-
-import { ThemeConstantService } from '../shared/services/theme-constant.service';
-
 import { NzButtonModule } from 'ng-zorro-antd/button';
 import { NzCardModule } from 'ng-zorro-antd/card';
 import { NzAvatarModule } from 'ng-zorro-antd/avatar';
@@ -49,6 +46,7 @@ import { NzSelectModule } from 'ng-zorro-antd/select';
 import { SaveButtonComponent } from './components/save-button/save-button.component';
 import { NzSpinModule } from 'ng-zorro-antd/spin';
 import { NzSegmentedModule } from 'ng-zorro-antd/segmented';
+import { NzTypographyModule } from 'ng-zorro-antd/typography';
 
 const antdModule = [
   NzButtonModule,
@@ -80,6 +78,7 @@ const antdModule = [
   NzSelectModule,
   NzSpinModule,
   NzSegmentedModule,
+  NzTypographyModule,
 ];
 
 @NgModule({
