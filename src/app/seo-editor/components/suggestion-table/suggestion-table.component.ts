@@ -119,16 +119,14 @@ export class SuggestionTableComponent implements OnInit {
   cellClass(metaTitle: number, metaTitleR: number): string {
     const ratio = metaTitle / metaTitleR;
     console.log();
-    if (ratio >= 0 && ratio <= 0.5) {
+    if (ratio >= 0 && ratio < 0.6) {
       return 'bad';
-    } else if (ratio >= 0.6 && ratio <= 0.7) {
+    } else if (ratio >= 0.6 && ratio < 0.9) {
       return 'better';
-    } else if (ratio >= 0.8 && ratio <= 0.9) {
+    } else if (ratio >= 0.9 && ratio <= 1.2) {
       return 'perfect';
-    } else if (ratio >= 1.0) {
+    } else if (ratio > 1.2) {
       return 'over-optimized';
-    } else {
-      return '';
     }
   }
 
