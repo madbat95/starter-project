@@ -32,7 +32,6 @@ export class SummernoteComponent implements OnInit, OnDestroy {
   isHighlightedStates = {};
   isHighlightedKey = {};
   editorConfig = {
-    theme: 'bs4-dark',
     placeholder: 'Add text here...',
     tabsize: 2,
     height: 330,
