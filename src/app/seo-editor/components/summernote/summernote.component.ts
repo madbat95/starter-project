@@ -5,14 +5,17 @@ import {
   OnDestroy,
   Output,
   Input,
+  ViewChild,
+  ElementRef,
 } from '@angular/core';
 import { WordCounterService } from '../../service/word-counter.service';
 import { ActivatedRoute, ParamMap } from '@angular/router';
-import { switchMap, catchError, debounceTime, takeUntil } from 'rxjs/operators';
+import { switchMap, debounceTime, takeUntil } from 'rxjs/operators';
 import { HtmlContentService } from 'src/app/shared/services/html-content.service';
 import { EditorContentService } from 'src/app/shared/services/editor-content.service';
 import { TableLoaderService } from 'src/app/shared/services/table-loader.service';
 import { Subject } from 'rxjs';
+import { HighlightService } from '../../service/highlight.service';
 
 @Component({
   selector: 'app-summernote',
@@ -20,25 +23,14 @@ import { Subject } from 'rxjs';
   styleUrls: ['./summernote.component.scss'],
 })
 export class SummernoteComponent implements OnInit, OnDestroy {
-  constructor(
-    private wordCounter: WordCounterService,
-    private route: ActivatedRoute,
-    private contentSerevice: HtmlContentService,
-    private editorContentService: EditorContentService,
-    public tableLoaderService: TableLoaderService
-  ) {}
-
-  onEditorContentChange(content: string) {
-    this.contentChange$.next(content);
-  }
-
   private contentChange$ = new Subject<string>();
   private destroy$ = new Subject<void>();
 
   id: any;
   editorContent = '';
   isLoading = false;
-
+  isHighlightedStates = {};
+  isHighlightedKey = {};
   editorConfig = {
     theme: 'bs4-dark',
     placeholder: 'Add text here...',
@@ -65,6 +57,18 @@ export class SummernoteComponent implements OnInit, OnDestroy {
 
   @Input() isDisabled: boolean = false;
   @Output() onEditorContent = new EventEmitter<any>();
+  constructor(
+    private wordCounter: WordCounterService,
+    private route: ActivatedRoute,
+    private contentSerevice: HtmlContentService,
+    private editorContentService: EditorContentService,
+    public tableLoaderService: TableLoaderService,
+    private highlightService: HighlightService
+  ) {}
+
+  onEditorContentChange(content: string) {
+    this.contentChange$.next(content);
+  }
 
   ngOnInit(): void {
     this.editorContentService
@@ -99,6 +103,14 @@ export class SummernoteComponent implements OnInit, OnDestroy {
       .subscribe((content: string) => {
         this.onEditorKeyUp(content);
       });
+
+    this.highlightService.getHighlightKeyObservable().subscribe((data) => {
+      this.highlightKey(data.key, data.color);
+    });
+
+    this.highlightService.getHighlightTagObservable().subscribe((data) => {
+      this.highlightTag(data);
+    });
   }
 
   onEditorKeyUp(text: any) {
@@ -152,6 +164,86 @@ export class SummernoteComponent implements OnInit, OnDestroy {
         headerTag,
         this.editorContent
       );
+    }
+  }
+
+  highlightTag(tag: any) {
+    if (tag === 'content') {
+      const nonHeadingTags = ['p', 'div', 'span', 'a'];
+      const highlightStyle = `style="background-color:rgb(255, 255, 0);"`;
+
+      for (const nonHeadingTag of nonHeadingTags) {
+        const tagToBeHighlighted = `<${nonHeadingTag}`;
+        if (
+          this.isHighlightedStates &&
+          this.isHighlightedStates[nonHeadingTag]
+        ) {
+          this.isHighlightedStates[nonHeadingTag] = false;
+          this.editorContent = this.editorContent
+            .split(`${tagToBeHighlighted} ${highlightStyle}`)
+            .join(`<${nonHeadingTag}`);
+        } else {
+          this.isHighlightedStates[nonHeadingTag] = true;
+          this.editorContent = this.editorContent
+            .split(`${tagToBeHighlighted}`)
+            .join(`<${nonHeadingTag} ${highlightStyle}`);
+        }
+      }
+    } else {
+      const tagToBeHighlighted = `<${tag}`;
+      const highlightStyle = `style="background-color:rgb(255, 255, 0);"`;
+
+      if (this.isHighlightedStates && this.isHighlightedStates[tag]) {
+        this.isHighlightedStates[tag] = false;
+        this.editorContent = this.editorContent
+          .split(`${tagToBeHighlighted} ${highlightStyle}`)
+          .join(`<${tag}`);
+      } else {
+        this.isHighlightedStates[tag] = true;
+        this.editorContent = this.editorContent
+          .split(`${tagToBeHighlighted}`)
+          .join(`<${tag} ${highlightStyle}`);
+      }
+    }
+  }
+
+  highlightKey(key: string, color: string) {
+    const highlightedKeyStyle = `background-color: ${color};`;
+    // Clone the editorContent
+    const editorContentClone = this.editorContent;
+
+    if (this.isHighlightedKey && this.isHighlightedKey[key]) {
+      this.isHighlightedKey[key] = false;
+
+      // for future reference, the else block is for adding a toggling effect. it will
+      //check if the isHighlightedState is already toggled then it removes the blue highlight
+      const regex = new RegExp(
+        `<span style="${highlightedKeyStyle}">(.*?)<\/span>`,
+        'gi'
+      );
+      const unhighlightedContent = editorContentClone.replace(regex, '$1');
+      this.editorContent = unhighlightedContent;
+    } else {
+      this.isHighlightedKey[key] = true;
+
+      // Get the words associated with the specified key
+      const words = this.wordCounter.wordObject[key];
+
+      if (!words || words.length === 0) {
+        return;
+      }
+
+      // Create a regular expression pattern to match the words
+      const wordPattern = words.map((word) => `\\b${word.word}\\b`).join('|');
+      const regex = new RegExp(`(${wordPattern})`, 'gi');
+
+      const highlightedContent = editorContentClone.replace(
+        regex,
+        `<span style="${highlightedKeyStyle}">$1</span>`
+      );
+
+      // Update the editorContent with the highlighted content
+      this.editorContent = highlightedContent;
     }
   }
 

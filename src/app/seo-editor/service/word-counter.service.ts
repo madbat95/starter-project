@@ -237,21 +237,27 @@ export class WordCounterService {
     return result;
   }
 
-  wordCountCalculate(text: string, source: string) {
-    const words : any = text.trim().replace(/\s+/, " ");
-    if (!words) {
-      return;
-    }
+  wordCountCalculate(text, source: string) {
+    const words = text.split(/\s+/);
 
-    for (const entityType of ['Entity', 'Variations', 'LSIKeywords']) {
-      for (const {word, count} of  this.wordObject[entityType]) {
-        const matchRegex = new RegExp("\\b" + word + "\\b", "g")
-        const allMatches = [...words.matchAll(matchRegex)]
-        count[source] = allMatches.length
+    for (let i = 0; i < words.length; i++) {
+      for (let j = i + 1; j <= words.length; j++) {
+        const phrase = words.slice(i, j).join(' ');
+        if (phrase.trim().length > 0) {
+          for (const entityType of ['Entity', 'Variations', 'LSIKeywords']) {
+            if (this.isPhraseInWordObject(phrase, entityType)) {
+              const entityArray = this.wordObject[entityType];
+              const matchingPhrase = entityArray.find(
+                (entity) => entity.word === phrase
+              );
+              if (matchingPhrase) {
+                matchingPhrase.count[source]++;
+              }
+            }
+          }
+        }
       }
     }
-
-
   }
 
   calculateHeaderTagWordCount(headerTag: string, editorContent: string): void {

@@ -1,5 +1,5 @@
 <nz-table
-class="suggestions-table"
+  class="suggestions-table"
   #groupingTable
   nzBordered
   nzSize="small"
@@ -35,6 +35,7 @@ class="suggestions-table"
         class="header-click"
         colspan="2"
         nzAlign="center"
+        (click)="highlightTag('h1')"
       >
         H1
       </th>
@@ -44,6 +45,7 @@ class="suggestions-table"
         class="header-click"
         colspan="2"
         nzAlign="center"
+        (click)="highlightTag('h2')"
       >
         H2
       </th>
@@ -53,6 +55,7 @@ class="suggestions-table"
         class="header-click"
         colspan="2"
         nzAlign="center"
+        (click)="highlightTag('h3')"
       >
         H3
       </th>
@@ -62,6 +65,7 @@ class="suggestions-table"
         class="header-click"
         colspan="2"
         nzAlign="center"
+        (click)="highlightTag('h4')"
       >
         H4
       </th>
@@ -71,6 +75,7 @@ class="suggestions-table"
         class="header-click"
         colspan="2"
         nzAlign="center"
+        (click)="highlightTag('h5')"
       >
         H5
       </th>
@@ -80,6 +85,7 @@ class="suggestions-table"
         class="header-click"
         colspan="2"
         nzAlign="center"
+        (click)="highlightTag('h6')"
       >
         H6
       </th>
@@ -89,6 +95,7 @@ class="suggestions-table"
         class="header-click"
         colspan="2"
         nzAlign="center"
+        (click)="highlightTag('content')"
       >
         Content
       </th>
@@ -99,7 +106,7 @@ class="suggestions-table"
       <th nzAlign="center" id="DescrCount">C</th>
       <th nzAlign="center" id="DescrRequired" class="required">R</th>
       <th nzAlign="center" id="H1Count">C</th>
-      <th nzAlign="center" id="H1Required"class="required">R</th>
+      <th nzAlign="center" id="H1Required" class="required">R</th>
       <th nzAlign="center" id="H2Count">C</th>
       <th nzAlign="center" id="H2Required" class="required">R</th>
       <th nzAlign="center" id="H3Count">C</th>
@@ -116,7 +123,16 @@ class="suggestions-table"
   </thead>
   <tbody>
     <tr>
-      <td nzLeft nzAlign="center" class="table-col">Entities</td>
+      <td
+        nzLeft
+        nzAlign="center"
+        class="table-col"
+        nz-button
+        (click)="EntityFunction()"
+        style="cursor: pointer"
+      >
+        Entities
+      </td>
       <td nzAlign="center" id="entityTitleCount">
         <badge [data]="tableData.Entity?.metaTitle ?? 0"></badge>
       </td>
@@ -173,7 +189,15 @@ class="suggestions-table"
       </td>
     </tr>
     <tr>
-      <td nzLeft nzAlign="center" class="table-col">LSI KWs</td>
+      <td
+        nzLeft
+        nzAlign="center"
+        class="table-col"
+        (click)="LSIKeywordsFunction()"
+        style="cursor: pointer"
+      >
+        LSI KWs
+      </td>
       <td nzAlign="center" id="lsiTitleCount">
         <badge [data]="tableData['LSIKeywords']?.metaTitle ?? 0"></badge>
       </td>
@@ -186,7 +210,7 @@ class="suggestions-table"
       <td nzAlign="center" id="lsiDescrRequired" class="required">
         <badge [data]="tableData['LSIKeywords']?.metaDescriptionR"></badge>
       </td>
-      <td nzAlign="center" id="lsiH1Count" >
+      <td nzAlign="center" id="lsiH1Count">
         <badge [data]="tableData['LSIKeywords']?.headers?.H1 ?? 0"></badge>
       </td>
       <td nzAlign="center" id="lsiH1Required" class="required">
@@ -230,7 +254,15 @@ class="suggestions-table"
       </td>
     </tr>
     <tr>
-      <td nzLeft nzAlign="center" class="table-col">Variations</td>
+      <td
+        nzLeft
+        nzAlign="center"
+        class="table-col"
+        (click)="VariationsFunction()"
+        style="cursor: pointer"
+      >
+        Variations
+      </td>
       <td nzAlign="center" id="variationTitleCount">
         <badge [data]="tableData['Variations']?.metaTitle ?? 0"></badge>
       </td>

@@ -1,17 +1,17 @@
-@import '../../../../assets/scss/variables';
+@import "../../../../assets/scss/variables";
 
-.suggestions-table, .ant-table-tbody>tr>td{  
-  padding: 2px!important;
+.suggestions-table,
+.ant-table-tbody > tr > td {
+  padding: 2px !important;
 }
 
 .suggestions-table th {
-  padding: 2px!important;
+  padding: 2px !important;
 }
 
-.suggestions-table .ant-badge-count{
+.suggestions-table .ant-badge-count {
   background-color: green !important;
 }
-
 
 .table-col
 // , .ant-table-thead
@@ -42,6 +42,22 @@
   cursor: pointer;
 }
 
-.required:not(.focused){
+.required:not(.focused) {
   filter: grayscale(0.4);
+}
+
+.bad {
+  background-color: #f6a9a9 !important;
+}
+
+.better {
+  background-color: #fff47d !important;
+}
+
+.perfect {
+  background-color: #c2f784 !important;
+}
+
+.over-optimized {
+  background-color: #ffbf86 !important;
 }

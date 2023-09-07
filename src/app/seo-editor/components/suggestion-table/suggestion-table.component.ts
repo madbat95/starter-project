@@ -1,5 +1,6 @@
 import { Component, OnInit, Renderer2, ElementRef } from '@angular/core';
 import { WordCounterService } from '../../service/word-counter.service';
+import { HighlightService } from '../../service/highlight.service';
 
 @Component({
   selector: 'app-suggestion-table',
@@ -107,13 +108,59 @@ export class SuggestionTableComponent implements OnInit {
   constructor(
     private wordCounter: WordCounterService,
     private renderer: Renderer2,
-    private el: ElementRef
+    private el: ElementRef,
+    private highlightService: HighlightService
   ) {}
 
   ngOnInit(): void {
     this.tableData = this.wordCounter.wordCount;
   }
 
+  cellClass(metaTitle: number, metaTitleR: number): string {
+    const ratio = metaTitle / metaTitleR;
+    console.log();
+    if (ratio >= 0 && ratio <= 0.5) {
+      return 'bad';
+    } else if (ratio >= 0.6 && ratio <= 0.7) {
+      return 'better';
+    } else if (ratio >= 0.8 && ratio <= 0.9) {
+      return 'perfect';
+    } else if (ratio >= 1.0) {
+      return 'over-optimized';
+    } else {
+      return '';
+    }
+  }
+
+  EntityFunction() {
+    this.highlightKey('Entity', '#87f6e5');
+    this.highlightMeta('metaDescription', 'Entity', '#87f6e5');
+    this.highlightMeta('metaTitle', 'Entity', '#87f6e5');
+  }
+
+  VariationsFunction() {
+    this.highlightKey('Variations', '#e58d3e');
+    this.highlightMeta('metaDescription', 'Variations', '#e58d3e');
+    this.highlightMeta('metaTitle', 'Variations', '#e58d3e');
+  }
+
+  LSIKeywordsFunction() {
+    this.highlightKey('LSIKeywordsFunction', '#f6a9a9');
+    this.highlightMeta('metaDescription', 'LSIKeywordsFunction', '#f6a9a9');
+    this.highlightMeta('metaTitle', 'LSIKeywordsFunction', '#f6a9a9');
+  }
+
+  highlightKey(key: string, color: string) {
+    this.highlightService.highlightKey(key, color);
+  }
+
+  highlightTag(tag: string) {
+    this.highlightService.highlightTag(tag);
+  }
+
+  highlightMeta(meta: string, key: string, color: string) {
+    this.highlightService.highlightMeta(meta, key, color);
+  }
   // titleBlur(): void {
   //   console.log('button pressed');
 
