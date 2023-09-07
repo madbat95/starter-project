@@ -1,4 +1,4 @@
-@import '../../../../assets/scss/variables';
+@import "../../../../assets/scss/variables";
 
 .card-label {
   padding-top: 5px;
@@ -11,5 +11,5 @@
 }
 
 :host ::ng-deep .custom-meta-card .ant-card-body {
-  padding: 0 !important;
+  // padding: 0 !important;
 }
