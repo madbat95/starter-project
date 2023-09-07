@@ -10,12 +10,11 @@ import {
 } from '@angular/core';
 import { WordCounterService } from '../../service/word-counter.service';
 import { ActivatedRoute, ParamMap } from '@angular/router';
-import { switchMap, catchError, debounceTime, takeUntil } from 'rxjs/operators';
+import { switchMap, debounceTime, takeUntil } from 'rxjs/operators';
 import { HtmlContentService } from 'src/app/shared/services/html-content.service';
 import { EditorContentService } from 'src/app/shared/services/editor-content.service';
 import { TableLoaderService } from 'src/app/shared/services/table-loader.service';
 import { Subject } from 'rxjs';
-import { Key } from 'protractor';
 import { HighlightService } from '../../service/highlight.service';
 
 @Component({
