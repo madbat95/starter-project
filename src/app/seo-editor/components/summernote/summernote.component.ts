@@ -26,16 +26,7 @@ export class SummernoteComponent implements OnInit, OnDestroy {
     private contentSerevice: HtmlContentService,
     private editorContentService: EditorContentService,
     public tableLoaderService: TableLoaderService
-  ) {
-    this.contentChange$
-      .pipe(
-        debounceTime(500), // Adjust the debounce time as needed (e.g., 500 milliseconds)
-        takeUntil(this.destroy$)
-      )
-      .subscribe((content: string) => {
-        this.onEditorKeyUp(content);
-      });
-  }
+  ) {}
 
   onEditorContentChange(content: string) {
     this.contentChange$.next(content);
@@ -98,6 +89,15 @@ export class SummernoteComponent implements OnInit, OnDestroy {
           this.contentSerevice.contentRetrieved = true;
           this.onEditorContentChange(this.editorContent);
         }
+      });
+
+    this.contentChange$
+      .pipe(
+        debounceTime(500), // Adjust the debounce time as needed (e.g., 500 milliseconds)
+        takeUntil(this.destroy$)
+      )
+      .subscribe((content: string) => {
+        this.onEditorKeyUp(content);
       });
   }
 
