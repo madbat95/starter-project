@@ -165,6 +165,8 @@ export class SummernoteComponent implements OnInit, OnDestroy {
         this.editorContent
       );
     }
+
+    this.wordCounter.calculateContentTagWordCount(this.editorContent);
   }
 
   highlightTag(tag: any) {
