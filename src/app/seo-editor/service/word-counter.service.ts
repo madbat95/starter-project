@@ -75,7 +75,7 @@ export class WordCounterService {
         H6R: 0,
       },
     },
-    WordTags: {
+    Words: {
       metaTitle: 0,
       metaTitleR: 0,
       metaDescription: 0,
@@ -124,7 +124,7 @@ export class WordCounterService {
     const textContent = metaText.replace(/<[^>]*>/g, ' ');
     const words = textContent.split(/\s+/).filter((word) => word.trim() !== '');
 
-    this.wordCount['WordTags'][property] = words.length;
+    this.wordCount['Words'][property] = words.length;
   }
 
   isPhraseInWordObject(phrase, entityType) {
@@ -266,14 +266,14 @@ export class WordCounterService {
     // Match the header tag in the editor content
     const headerMatches = editorContent.match(headerRegex) || [];
 
-    // Update the word count in this.wordCount['WordTags'].headers
-    this.wordCount['WordTags'].headers[headerTag] = headerMatches.length;
+    // Update the word count in this.wordCount['Words'].headers
+    this.wordCount['Words'].headers[headerTag] = headerMatches.length;
   }
 
   calculateContentTagWordCount(editorContent: string) {
     const textContent = editorContent.replace(/<[^>]*>/g, ' ');
     const words = textContent.split(/\s+/).filter((word) => word.trim() !== '');
 
-    this.wordCount['WordTags'].content = words.length;
+    this.wordCount['Words'].content = words.length;
   }
 }

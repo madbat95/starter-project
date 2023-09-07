@@ -13,7 +13,7 @@ import { SummernoteComponent } from '../summernote/summernote.component';
 export class FileSelectorComponent implements OnInit {
   files: any[] = [];
   selectedFile: any;
-  entityKeys: any[] = ['Entity', 'Variations', 'LSIKeywords'];
+  entityKeys: any[] = ['Entity', 'Variations', 'LSIKeywords', 'Words'];
 
   constructor(
     private uploadFileService: UploadFileService,
@@ -44,12 +44,13 @@ export class FileSelectorComponent implements OnInit {
     if (this.selectedFile) {
       this.tableLoader.variationTableLoader = true;
 
+      ///////USE THIS BLOCK WHEN HASEEB IS DONE WITH UPLOAD API//////////
       for (const entityKey of this.entityKeys) {
         this.wordCounterService.updateWordCount(
           entityKey,
           this.selectedFile[entityKey]
         );
-
+        /////////////////////////////////////////////////////////////////////
         this.uploadFileService
           .getWordsFromFiles(entityKey, this.selectedFile.filename)
           .subscribe((response: any[]) => {
