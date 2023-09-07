@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { WordCounterService } from '../../service/word-counter.service';
 import { MetaDataService } from 'src/app/shared/services/meta-data.service';
 import { TableLoaderService } from 'src/app/shared/services/table-loader.service';
+import { HighlightService } from '../../service/highlight.service';
 
 @Component({
   selector: 'meta-button',
@@ -11,13 +12,17 @@ import { TableLoaderService } from 'src/app/shared/services/table-loader.service
 export class MetaComponent implements OnInit {
   metaTitle: string = '';
   metaDescription: string = '';
-  isHighlightedKey = {};
+  isTitleHighlightedKey = {};
+  isDescriptionHighlighted = {};
 
   constructor(
     private wordCounter: WordCounterService,
     private metaDataService: MetaDataService,
-    public tableLoaderService: TableLoaderService
-  ) {
+    public tableLoaderService: TableLoaderService,
+    private highlightService: HighlightService
+  ) {}
+
+  ngOnInit(): void {
     this.metaDataService.getMetaTitle$().subscribe((title) => {
       this.metaTitle = title;
       this.updateWordCounts();
@@ -27,18 +32,24 @@ export class MetaComponent implements OnInit {
       this.metaDescription = description;
       this.updateWordCounts();
     });
-  }
 
-  ngOnInit(): void {}
+    this.highlightService.getHighlightMetaObservable().subscribe((data) => {
+      this.highlightMeta(data.meta, data.key, data.color);
+    });
+  }
 
   highlightMeta(target: string, key: string, color: string) {
     const highlightedKeyStyle = `background-color: ${color};`;
 
-    // Clone the target content
+    const isHighlightedKey =
+      target === 'metaTitle'
+        ? this.isTitleHighlightedKey
+        : this.isDescriptionHighlighted;
+
     const metaClone = this[target];
 
-    if (this.isHighlightedKey && this.isHighlightedKey[key]) {
-      this.isHighlightedKey[key] = false;
+    if (isHighlightedKey[key]) {
+      isHighlightedKey[key] = false;
 
       const regex = new RegExp(
         `<span style="${highlightedKeyStyle}">(.*?)<\/span>`,
@@ -47,16 +58,14 @@ export class MetaComponent implements OnInit {
       const unhighlightedContent = metaClone.replace(regex, '$1');
       this[target] = unhighlightedContent;
     } else {
-      this.isHighlightedKey[key] = true;
+      isHighlightedKey[key] = true;
 
-      // Get the words associated with the specified key
       const words = this.wordCounter.wordObject[key];
 
       if (!words || words.length === 0) {
         return;
       }
 
-      // Create a regular expression pattern to match the words
       const wordPattern = words.map((word) => `\\b${word.word}\\b`).join('|');
       const regex = new RegExp(`(${wordPattern})`, 'gi');
 
@@ -65,7 +74,6 @@ export class MetaComponent implements OnInit {
         `<span style="${highlightedKeyStyle}">$1</span>`
       );
 
-      // Update the target content with the highlighted content
       this[target] = highlightedContent;
     }
   }
