@@ -14,10 +14,16 @@ export class SeoEditorComponent implements OnInit {
   selectedTable: string = 'Entity';
   editorContent: any;
   isFolded: boolean = true;
+  averageRatio: number = 0;
   constructor(
     public wordCounter: WordCounterService,
     private themeService: ThemeConstantService
   ) {}
+
+  onAverageRatioChanged(averageRatio: number): void {
+    this.averageRatio = averageRatio;
+    console.log('Average Ratio changed:', averageRatio);
+  }
 
   onTableSelection(selectedTable: any): void {
     this.selectedTable = selectedTable;
