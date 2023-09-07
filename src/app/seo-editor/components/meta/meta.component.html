@@ -1,21 +1,26 @@
-<div nz-row [nzGutter]="[0, 0]">
-  <nz-card nz-col nzSpan="24" class="p-0 custom-meta-card">
+<div nz-row [nzGutter]="[0, 8]">
+  <div nz-col nzSpan="24" class="custom-meta-card">
     <div class="card-label">Meta Title</div>
-    <textarea
-      [disabled]="this.tableLoaderService.summernoteLoader"
-      nz-input
-      nzSize="default"
-      style="width: 100%"
+    <button nz-button (click)="highlightMeta('metaTitle', 'Entity', '#87f6e5')">
+      entity
+    </button>
+    <div
+      [ngxSummernote]="{
+        placeholder: 'Add text here...',
+        tabsize: 2,
+        height: 50,
+    
+        toolbar: [],
+        fontNames: [],
+      }"
       [(ngModel)]="metaTitle"
-      (input)="updateWordCounts()"
-      rows="1"
-      placeholder="Title"
-    ></textarea>
-  </nz-card>
+      (ngModelChange)="updateWordCounts()"
+    ></div>
+  </div>
 
-  <nz-card nz-col nzSpan="24" class="p-0 custom-meta-card">
+  <div nz-col nzSpan="24" class="custom-meta-card">
     <div class="card-label">Meta Description</div>
-    <textarea
+    <!-- <textarea
       [disabled]="this.tableLoaderService.summernoteLoader"
       nz-input
       nzSize="default"
@@ -24,6 +29,24 @@
       (input)="updateWordCounts()"
       rows="2"
       placeholder="Description"
-    ></textarea>
-  </nz-card>
+    ></textarea> -->
+    <button
+      nz-button
+      (click)="highlightMeta('metaDescription', 'Entity', '#87f6e5')"
+    >
+      entity
+    </button>
+    <div
+      [ngxSummernote]="{
+      placeholder: 'Add text here...',
+      tabsize: 2,
+      height: 100,
+  
+      toolbar: [],
+      fontNames: [],
+    }"
+      [(ngModel)]="metaDescription"
+      (ngModelChange)="updateWordCounts()"
+    ></div>
+  </div>
 </div>

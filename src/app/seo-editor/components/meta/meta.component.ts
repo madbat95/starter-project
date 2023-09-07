@@ -11,6 +11,7 @@ import { TableLoaderService } from 'src/app/shared/services/table-loader.service
 export class MetaComponent implements OnInit {
   metaTitle: string = '';
   metaDescription: string = '';
+  isHighlightedKey = {};
 
   constructor(
     private wordCounter: WordCounterService,
@@ -29,6 +30,45 @@ export class MetaComponent implements OnInit {
   }
 
   ngOnInit(): void {}
+
+  highlightMeta(target: string, key: string, color: string) {
+    const highlightedKeyStyle = `background-color: ${color};`;
+
+    // Clone the target content
+    const metaClone = this[target];
+
+    if (this.isHighlightedKey && this.isHighlightedKey[key]) {
+      this.isHighlightedKey[key] = false;
+
+      const regex = new RegExp(
+        `<span style="${highlightedKeyStyle}">(.*?)<\/span>`,
+        'gi'
+      );
+      const unhighlightedContent = metaClone.replace(regex, '$1');
+      this[target] = unhighlightedContent;
+    } else {
+      this.isHighlightedKey[key] = true;
+
+      // Get the words associated with the specified key
+      const words = this.wordCounter.wordObject[key];
+
+      if (!words || words.length === 0) {
+        return;
+      }
+
+      // Create a regular expression pattern to match the words
+      const wordPattern = words.map((word) => `\\b${word.word}\\b`).join('|');
+      const regex = new RegExp(`(${wordPattern})`, 'gi');
+
+      const highlightedContent = metaClone.replace(
+        regex,
+        `<span style="${highlightedKeyStyle}">$1</span>`
+      );
+
+      // Update the target content with the highlighted content
+      this[target] = highlightedContent;
+    }
+  }
 
   updateWordCounts() {
     this.resetWordCounts();
