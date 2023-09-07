@@ -64,24 +64,7 @@ export class SummernoteComponent implements OnInit, OnDestroy {
     private editorContentService: EditorContentService,
     public tableLoaderService: TableLoaderService,
     private highlightService: HighlightService
-  ) {
-    this.contentChange$
-      .pipe(
-        debounceTime(500), // Adjust the debounce time as needed (e.g., 500 milliseconds)
-        takeUntil(this.destroy$)
-      )
-      .subscribe((content: string) => {
-        this.onEditorKeyUp(content);
-      });
-
-    this.highlightService.getHighlightKeyObservable().subscribe((data) => {
-      this.highlightKey(data.key, data.color);
-    });
-
-    this.highlightService.getHighlightTagObservable().subscribe((data) => {
-      this.highlightTag(data);
-    });
-  }
+  ) {}
 
   onEditorContentChange(content: string) {
     this.contentChange$.next(content);
@@ -111,6 +94,23 @@ export class SummernoteComponent implements OnInit, OnDestroy {
           this.onEditorContentChange(this.editorContent);
         }
       });
+
+    this.contentChange$
+      .pipe(
+        debounceTime(500), // Adjust the debounce time as needed (e.g., 500 milliseconds)
+        takeUntil(this.destroy$)
+      )
+      .subscribe((content: string) => {
+        this.onEditorKeyUp(content);
+      });
+
+    this.highlightService.getHighlightKeyObservable().subscribe((data) => {
+      this.highlightKey(data.key, data.color);
+    });
+
+    this.highlightService.getHighlightTagObservable().subscribe((data) => {
+      this.highlightTag(data);
+    });
   }
 
   onEditorKeyUp(text: any) {
