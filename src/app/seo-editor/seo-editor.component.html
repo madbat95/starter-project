@@ -7,11 +7,12 @@
     [nzLg]="22"
     [nzXl]="3"
     style="text-align: center"
-    [nzPercent]="75"
+    [nzPercent]="averageRatio"
     [nzWidth]="100"
     nzType="circle"
   ></nz-progress>
   <app-suggestion-table
+    (onAverageRatioChange)="onAverageRatioChanged($event)"
     nz-col
     [nzXs]="22"
     [nzSm]="22"
