@@ -81,8 +81,6 @@ export class MetaComponent implements OnInit {
   updateWordCounts() {
     this.resetWordCounts();
 
-    const parser = new DOMParser();
-
     let meta = ['metaTitle', 'metaDescription'];
 
     for (const property of meta) {
