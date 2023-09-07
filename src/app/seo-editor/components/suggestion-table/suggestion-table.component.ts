@@ -132,12 +132,34 @@ export class SuggestionTableComponent implements OnInit {
     }
   }
 
+  EntityFunction() {
+    this.highlightKey('Entity', '#87f6e5');
+    this.highlightMeta('metaDescription', 'Entity', '#87f6e5');
+    this.highlightMeta('metaTitle', 'Entity', '#87f6e5');
+  }
+
+  VariationsFunction() {
+    this.highlightKey('Variations', '#e58d3e');
+    this.highlightMeta('metaDescription', 'Variations', '#e58d3e');
+    this.highlightMeta('metaTitle', 'Variations', '#e58d3e');
+  }
+
+  LSIKeywordsFunction() {
+    this.highlightKey('LSIKeywordsFunction', '#f6a9a9');
+    this.highlightMeta('metaDescription', 'LSIKeywordsFunction', '#f6a9a9');
+    this.highlightMeta('metaTitle', 'LSIKeywordsFunction', '#f6a9a9');
+  }
+
   highlightKey(key: string, color: string) {
     this.highlightService.highlightKey(key, color);
   }
 
   highlightTag(tag: string) {
     this.highlightService.highlightTag(tag);
+  }
+
+  highlightMeta(meta: string, key: string, color: string) {
+    this.highlightService.highlightMeta(meta, key, color);
   }
   // titleBlur(): void {
   //   console.log('button pressed');
