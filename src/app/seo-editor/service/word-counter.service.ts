@@ -276,4 +276,90 @@ export class WordCounterService {
 
     this.wordCount['Words'].content = words.length;
   }
+
+  calculateAverageRatios(): number {
+    let totalRatio = 0;
+    let ratioCount = 0;
+
+    const elementsToCalculateRatiosFor = [
+      this.wordCount.Entity?.metaTitle,
+      this.wordCount.Entity?.metaTitleR,
+      this.wordCount.Entity?.metaDescription,
+      this.wordCount.Entity?.metaDescriptionR,
+      this.wordCount.Entity?.headers.H1,
+      this.wordCount.Entity?.headers.H1R,
+      this.wordCount.Entity?.headers.H2,
+      this.wordCount.Entity?.headers.H2R,
+      this.wordCount.Entity?.headers.H2,
+      this.wordCount.Entity?.headers.H2R,
+      this.wordCount.Entity?.headers.H3,
+      this.wordCount.Entity?.headers.H3R,
+      this.wordCount.Entity?.headers.H4,
+      this.wordCount.Entity?.headers.H4R,
+      this.wordCount.Entity?.headers.H5,
+      this.wordCount.Entity?.headers.H5R,
+      this.wordCount.Entity?.headers.H6,
+      this.wordCount.Entity?.headers.H6R,
+      this.wordCount.Entity?.content,
+      this.wordCount.Entity?.contentR,
+
+      this.wordCount.LSIKeywords?.metaTitle,
+      this.wordCount.LSIKeywords?.metaTitleR,
+      this.wordCount.LSIKeywords?.metaDescription,
+      this.wordCount.LSIKeywords?.metaDescriptionR,
+      this.wordCount.LSIKeywords?.headers.H1,
+      this.wordCount.LSIKeywords?.headers.H1R,
+      this.wordCount.LSIKeywords?.headers.H2,
+      this.wordCount.LSIKeywords?.headers.H2R,
+      this.wordCount.LSIKeywords?.headers.H2,
+      this.wordCount.LSIKeywords?.headers.H2R,
+      this.wordCount.LSIKeywords?.headers.H3,
+      this.wordCount.LSIKeywords?.headers.H3R,
+      this.wordCount.LSIKeywords?.headers.H4,
+      this.wordCount.LSIKeywords?.headers.H4R,
+      this.wordCount.LSIKeywords?.headers.H5,
+      this.wordCount.LSIKeywords?.headers.H5R,
+      this.wordCount.LSIKeywords?.headers.H6,
+      this.wordCount.LSIKeywords?.headers.H6R,
+      this.wordCount.LSIKeywords?.content,
+      this.wordCount.LSIKeywords?.contentR,
+
+      this.wordCount.Variations?.metaTitle,
+      this.wordCount.Variations?.metaTitleR,
+      this.wordCount.Variations?.metaDescription,
+      this.wordCount.Variations?.metaDescriptionR,
+      this.wordCount.Variations?.headers.H1,
+      this.wordCount.Variations?.headers.H1R,
+      this.wordCount.Variations?.headers.H2,
+      this.wordCount.Variations?.headers.H2R,
+      this.wordCount.Variations?.headers.H2,
+      this.wordCount.Variations?.headers.H2R,
+      this.wordCount.Variations?.headers.H3,
+      this.wordCount.Variations?.headers.H3R,
+      this.wordCount.Variations?.headers.H4,
+      this.wordCount.Variations?.headers.H4R,
+      this.wordCount.Variations?.headers.H5,
+      this.wordCount.Variations?.headers.H5R,
+      this.wordCount.Variations?.headers.H6,
+      this.wordCount.Variations?.headers.H6R,
+      this.wordCount.Variations?.content,
+      this.wordCount.Variations?.contentR,
+    ];
+
+    for (let i = 0; i < elementsToCalculateRatiosFor.length; i += 2) {
+      const count = elementsToCalculateRatiosFor[i];
+      const required = elementsToCalculateRatiosFor[i + 1];
+
+      if (count !== undefined && required !== undefined && required !== 0) {
+        const ratio = count / required;
+        totalRatio += ratio;
+        ratioCount++;
+      }
+    }
+
+    const averageRatio = Math.round((totalRatio / ratioCount) * 100);
+
+    // this.onAverageRatioChange.emit(averageRatio);
+    return averageRatio;
+  }
 }
