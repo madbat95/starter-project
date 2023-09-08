@@ -10,13 +10,11 @@ import { HighlightService } from '../../service/highlight.service';
   styleUrls: ['./meta.component.scss'],
 })
 export class MetaComponent implements OnInit {
-  metaTitle: string = '';
-  metaDescription: string = '';
   isTitleHighlightedKey = {};
   isDescriptionHighlighted = {};
 
   constructor(
-    private wordCounter: WordCounterService,
+    public wordCounter: WordCounterService,
     private metaDataService: MetaDataService,
     public tableLoaderService: TableLoaderService,
     private highlightService: HighlightService
@@ -24,12 +22,12 @@ export class MetaComponent implements OnInit {
 
   ngOnInit(): void {
     this.metaDataService.getMetaTitle$().subscribe((title) => {
-      this.metaTitle = title;
+      this.wordCounter.metaTitle = title
       this.updateWordCounts();
     });
 
     this.metaDataService.getMetaDescription$().subscribe((description) => {
-      this.metaDescription = description;
+      this.wordCounter.metaDescription = description
       this.updateWordCounts();
     });
 
@@ -46,7 +44,7 @@ export class MetaComponent implements OnInit {
         ? this.isTitleHighlightedKey
         : this.isDescriptionHighlighted;
 
-    const metaClone = this[target];
+    const metaClone = this.wordCounter[target];
 
     if (isHighlightedKey[key]) {
       isHighlightedKey[key] = false;
@@ -56,7 +54,7 @@ export class MetaComponent implements OnInit {
         'gi'
       );
       const unhighlightedContent = metaClone.replace(regex, '$1');
-      this[target] = unhighlightedContent;
+      this.wordCounter[target] = unhighlightedContent;
     } else {
       isHighlightedKey[key] = true;
 
@@ -74,7 +72,7 @@ export class MetaComponent implements OnInit {
         `<span style="${highlightedKeyStyle}">$1</span>`
       );
 
-      this[target] = highlightedContent;
+      this.wordCounter[target] = highlightedContent;
     }
   }
 
@@ -84,8 +82,8 @@ export class MetaComponent implements OnInit {
     let meta = ['metaTitle', 'metaDescription'];
 
     for (const property of meta) {
-      const metaText = this[property];
-      this.updateCountsForElement(this[property], property, parser);
+      const metaText = this.wordCounter[property];
+      this.updateCountsForElement(this.wordCounter[property], property, parser);
 
       this.wordCounter.calculateMetaTagWordCount(metaText, property);
     }

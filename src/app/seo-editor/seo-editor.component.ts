@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { WordCounterService } from './service/word-counter.service';
 import { ThemeConstantService } from '../shared/services/theme-constant.service';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-seo-editor',
@@ -14,8 +15,10 @@ export class SeoEditorComponent implements OnInit {
   selectedTable: string = 'Entity';
   editorContent: any;
   isFolded: boolean = true;
+  reportId!: number;
   averageRatio: number = 0;
   constructor(
+    private route: ActivatedRoute,
     public wordCounter: WordCounterService,
     private themeService: ThemeConstantService
   ) {}
@@ -42,6 +45,10 @@ export class SeoEditorComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.route.paramMap.subscribe(({params}: any)=>{      
+      this.reportId = +params.id;
+    })
+
     // this.themeService.toggleFold(V);
     this.toggleFold();
   }

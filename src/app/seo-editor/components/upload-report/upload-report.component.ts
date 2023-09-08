@@ -1,4 +1,4 @@
-import { Component, OnInit, Output } from '@angular/core';
+import { Component, Input, OnInit, Output } from '@angular/core';
 import { NzMessageService } from 'ng-zorro-antd/message';
 import { NzModalService } from 'ng-zorro-antd/modal';
 import { UploadModalComponent } from './component/upload-modal/upload-modal.component';
@@ -9,9 +9,10 @@ import { UploadModalComponent } from './component/upload-modal/upload-modal.comp
   styleUrls: ['./upload-report.component.scss'],
 })
 export class UploadReportComponent {
+  @Input() reportId: number;
+
   constructor(
-    private modalService: NzModalService,
-    private NzMessageService: NzMessageService
+    private modalService: NzModalService
   ) {}
 
   addCSV(): void {
@@ -21,6 +22,9 @@ export class UploadReportComponent {
       nzClosable: true,
       nzFooter: null,
       nzCentered: true,
+      nzComponentParams: {
+        reportId: this.reportId,
+      },  
       nzStyle: {
         'overflow-y': 'auto',
         'max-height': '85vh',
