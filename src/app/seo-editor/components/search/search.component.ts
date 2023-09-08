@@ -3,6 +3,7 @@ import { ScrapeService } from 'src/app/shared/services/scrape.service';
 import { EditorContentService } from 'src/app/shared/services/editor-content.service';
 import { MetaDataService } from 'src/app/shared/services/meta-data.service';
 import { TableLoaderService } from 'src/app/shared/services/table-loader.service';
+import { WordCounterService } from '../../service/word-counter.service';
 
 @Component({
   selector: 'scrape-search',
@@ -11,18 +12,17 @@ import { TableLoaderService } from 'src/app/shared/services/table-loader.service
 })
 export class SearchComponent {
   scrapedContent: string = '';
-  url: any =
-    'http://help.websiteos.com/websiteos/example_of_a_simple_html_page.htm';
   constructor(
     private scrapeService: ScrapeService,
     private editorContentService: EditorContentService,
     private metaDataService: MetaDataService,
-    private tableLoaderService: TableLoaderService
+    private tableLoaderService: TableLoaderService,
+    public wordCounterService: WordCounterService
   ) {}
 
   scrapeWebsite() {
     this.tableLoaderService.summernoteLoader = true;
-    this.scrapeService.getHTML(this.url).subscribe({
+    this.scrapeService.getHTML(this.wordCounterService.siteUrl).subscribe({
       next: (data: any) => {
         const parser = new DOMParser();
         const doc = parser.parseFromString(data, 'text/html');
@@ -43,6 +43,7 @@ export class SearchComponent {
 
         this.dataCleaning(mainContent);
 
+        this.wordCounterService.editorContent = mainContent.innerHTML;
         this.editorContentService.updateScrapedData(mainContent.innerHTML);
         this.tableLoaderService.summernoteLoader = false;
       },

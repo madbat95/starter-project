@@ -2,6 +2,9 @@ import { Component, Input, ViewChild, AfterViewInit } from '@angular/core';
 import { NzTableComponent } from 'ng-zorro-antd/table';
 import { VariationPipe } from 'src/app/shared/pipes/variation.pipe';
 import { TableLoaderService } from 'src/app/shared/services/table-loader.service';
+import { WordCounterService } from '../../service/word-counter.service';
+import { NotificationService } from 'src/app/shared/services/notification.service';
+import { finalize } from 'rxjs/operators';
 
 @Component({
   selector: 'app-variation-table',
@@ -9,7 +12,9 @@ import { TableLoaderService } from 'src/app/shared/services/table-loader.service
   styleUrls: ['./variation-table.component.scss'],
 })
 export class VariationTableComponent {
+  @Input() selectedTable: string;
   @ViewChild('virtualTable', { static: false })
+
   nzTableComponent?: NzTableComponent<
     {
       word: string;
@@ -19,7 +24,9 @@ export class VariationTableComponent {
   >;
   constructor(
     public tableLoader: TableLoaderService,
-    private variationPipe: VariationPipe
+    private variationPipe: VariationPipe,
+    private wordCounterService: WordCounterService,
+    private notificationService: NotificationService
   ) {}
 
   searchValue = '';
@@ -57,8 +64,23 @@ export class VariationTableComponent {
   //   );
   // }
 
-  deleteRow(word: string): void {
-    this.tableData = this.tableData.filter((deleted) => deleted.word !== word);
+  deleteRow(id: number): void {
+    this.tableLoader.variationTableLoader = true;
+    this.wordCounterService
+      .deleteWord(id)
+      .pipe(finalize(() => (this.tableLoader.variationTableLoader = false)))
+      .subscribe({
+        next: () => {
+          this.tableData = this.tableData.filter((data: any) => data.id !== id);
+          this.notificationService.success('Word removed.');
+
+          //updatig the radio count
+          this.wordCounterService.wordObject[this.selectedTable] =
+            this.wordCounterService.wordObject[this.selectedTable].filter(
+              (data: any) => data.id !== id
+            );
+        }
+      });
   }
 
   trackByIndex(_: number, data: any): number {

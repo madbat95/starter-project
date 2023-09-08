@@ -1,3 +1,4 @@
+import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Subject } from 'rxjs';
 import { WordObject } from 'src/app/shared/interfaces/word-object';
@@ -6,7 +7,13 @@ import { WordObject } from 'src/app/shared/interfaces/word-object';
   providedIn: 'root',
 })
 export class WordCounterService {
-  constructor() {}
+  constructor(private http:HttpClient) {}
+
+  editorId = ''
+  editorContent = ''
+  metaTitle = ''
+  metaDescription = ''
+  siteUrl = 'http://help.websiteos.com/websiteos/example_of_a_simple_html_page.htm'
 
   wordCount: any = {
     Entity: {
@@ -153,6 +160,10 @@ export class WordCounterService {
     }
 
     return count;
+  }
+
+  deleteWord(id: number) {
+    return this.http.delete(`/reporting/delete-word/${id}/`)
   }
 
   countWordsInHeadersAndContent(

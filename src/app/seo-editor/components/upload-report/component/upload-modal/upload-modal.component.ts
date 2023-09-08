@@ -1,4 +1,4 @@
-import { Component, Output, EventEmitter } from '@angular/core';
+import { Component, Output, EventEmitter, Input } from '@angular/core';
 import {
   FormBuilder,
   FormGroup,
@@ -21,6 +21,7 @@ import { SummernoteComponent } from '../../../summernote/summernote.component';
   styleUrls: ['./upload-modal.component.scss'],
 })
 export class UploadModalComponent {
+  @Input() reportId: number;
   @Output() onFile = new EventEmitter<any>();
   fileList: NzUploadFile[] = [];
   uploadForm!: FormGroup;
@@ -59,6 +60,7 @@ export class UploadModalComponent {
     this.isLoading = true;
     const formData = new FormData();
     if (this.fileList.length > 0) {
+      formData.append('report_id', this.reportId.toString());
       formData.append('configuration_file', this.fileList[0] as any);
     }
 
@@ -68,6 +70,15 @@ export class UploadModalComponent {
         switchMap((postResponse: any) => {
           this.notificationService.success('File uploaded.');
           this.uploadFileService.addFiles(postResponse);
+
+          const entityTypes = ['Entity', 'Variations', 'LSIKeywords', 'Words'];
+          entityTypes.forEach((entityKey) => {
+            this.wordCounterService.updateWordCount(
+              entityKey,
+              postResponse[entityKey]
+            );
+          });
+
           return this.uploadFileService.getFile(this.fileName);
         }),
         switchMap((fileResponse: any) => {
@@ -91,27 +102,28 @@ export class UploadModalComponent {
       )
       .subscribe(
         (wordsResponses: any[]) => {
+          this.tableLoader.variationTableLoader = true;
+
           // Update the wordObject for each entity type
+          const entityTypes = ['Entity', 'Variations', 'LSIKeywords'];
           for (let i = 0; i < wordsResponses.length; i++) {
-            const entityTypes = ['Entity', 'Variations', 'LSIKeywords'];
             const entityType = entityTypes[i];
             const wordsResponse = wordsResponses[i];
 
+            let entityArray = [];
             for (const wordInfo of wordsResponse) {
-              const word = wordInfo.label;
-
-              // Add the word to the wordObject if it doesn't exist
-              if (
-                !this.wordCounterService.wordObject[entityType].some(
-                  (entity) => entity.word === word
-                )
-              ) {
-                this.wordCounterService.wordObject[entityType].push({
-                  word: word,
-                  count: { summer_note: 0, meta: 0 },
-                });
-              }
+              entityArray.push({
+                id: wordInfo.id,
+                word: wordInfo.label,
+                count: { summer_note: 0, meta: 0 },
+              });
             }
+            this.wordCounterService.wordObject[entityType] = entityArray;
+            //updating count
+            this.summernote.onEditorContentChange(
+              this.summernote.editorContent
+            );
+            this.tableLoader.variationTableLoader = false;
           }
 
           this.summernote.onEditorContentChange(this.summernote.editorContent);

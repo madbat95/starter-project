@@ -26,7 +26,6 @@ export class SummernoteComponent implements OnInit, OnDestroy {
   private contentChange$ = new Subject<string>();
   private destroy$ = new Subject<void>();
 
-  id: any;
   editorContent = '';
   isLoading = false;
   isHighlightedStates = {};
@@ -55,6 +54,7 @@ export class SummernoteComponent implements OnInit, OnDestroy {
   };
 
   @Input() isDisabled: boolean = false;
+  @Input() reportId: number;
   @Output() onEditorContent = new EventEmitter<any>();
   constructor(
     private wordCounter: WordCounterService,
@@ -66,6 +66,7 @@ export class SummernoteComponent implements OnInit, OnDestroy {
   ) {}
 
   onEditorContentChange(content: string) {
+    this.wordCounter.editorContent = content
     this.contentChange$.next(content);
   }
 
@@ -74,23 +75,24 @@ export class SummernoteComponent implements OnInit, OnDestroy {
       .getScrapedDataObservable()
       .subscribe((data: string) => {
         this.editorContent = data;
+        this.wordCounter.editorContent = data;
         this.onEditorContentChange(data);
       });
 
-    this.route.paramMap
-      .pipe(
-        switchMap((params: ParamMap) => {
-          this.id = +params.get('id');
-          return this.contentSerevice.getContentById(this.id);
-        })
-      )
+    this.contentSerevice
+      .getContentById(this.reportId)
       .subscribe((response: any) => {
-        this.contentSerevice.contentRetrieved = false;
         if (response.length) {
-          this.id = response[0].id;
+          this.reportId = response[0].id;
           this.editorContent = response[0].content;
-          this.contentSerevice.contentRetrieved = true;
           this.onEditorContentChange(this.editorContent);
+
+          this.wordCounter.editorId = response[0].id
+          this.wordCounter.editorContent = response[0].content
+
+          this.wordCounter.metaTitle = response[0].meta_title
+          this.wordCounter.metaDescription = response[0].meta_description
+          this.wordCounter.siteUrl = response[0].site_url
         }
       });
 
@@ -114,7 +116,7 @@ export class SummernoteComponent implements OnInit, OnDestroy {
 
   onEditorKeyUp(text: any) {
     this.onEditorContent.emit({
-      report: this.id,
+      report: this.reportId,
       content: this.editorContent,
     });
 
@@ -183,6 +185,7 @@ export class SummernoteComponent implements OnInit, OnDestroy {
           this.editorContent = this.editorContent
             .split(`${tagToBeHighlighted} ${highlightStyle}`)
             .join(`<${nonHeadingTag}`);
+
         } else {
           this.isHighlightedStates[nonHeadingTag] = true;
           this.editorContent = this.editorContent
