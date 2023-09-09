@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { WordCounterService } from './service/word-counter.service';
 import { ThemeConstantService } from '../shared/services/theme-constant.service';
 import { ActivatedRoute } from '@angular/router';
@@ -8,7 +8,7 @@ import { ActivatedRoute } from '@angular/router';
   templateUrl: './seo-editor.component.html',
   styleUrls: ['./seo-editor.component.css'],
 })
-export class SeoEditorComponent implements OnInit {
+export class SeoEditorComponent implements OnInit, OnDestroy {
   wordObject: any; //this is for variation table
   wordCount: any; //this is for suggestion table
   tableData: any[] = [];
@@ -45,9 +45,9 @@ export class SeoEditorComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.route.paramMap.subscribe(({params}: any)=>{      
+    this.route.paramMap.subscribe(({ params }: any) => {
       this.reportId = +params.id;
-    })
+    });
 
     // this.themeService.toggleFold(V);
     this.toggleFold();
@@ -55,5 +55,105 @@ export class SeoEditorComponent implements OnInit {
 
   toggleFold() {
     this.themeService.toggleFold(this.isFolded);
+  }
+
+  ngOnDestroy(): void {
+    this.wordCounter.wordCount = {
+      Entity: {
+        metaTitle: 0,
+        metaTitleR: 0,
+        metaDescription: 0,
+        metaDescriptionR: 0,
+        content: 0,
+        contentR: 0,
+        headers: {
+          H1: 0,
+          H1R: 0,
+          H2: 0,
+          H2R: 0,
+          H3: 0,
+          H3R: 0,
+          H4: 0,
+          H4R: 0,
+          H5: 0,
+          H5R: 0,
+          H6: 0,
+          H6R: 0,
+        },
+      },
+      Variations: {
+        metaTitle: 0,
+        metaTitleR: 0,
+        metaDescription: 0,
+        metaDescriptionR: 0,
+        content: 0,
+        contentR: 0,
+        headers: {
+          H1: 0,
+          H1R: 0,
+          H2: 0,
+          H2R: 0,
+          H3: 0,
+          H3R: 0,
+          H4: 0,
+          H4R: 0,
+          H5: 0,
+          H5R: 0,
+          H6: 0,
+          H6R: 0,
+        },
+      },
+      LSIKeywords: {
+        metaTitle: 0,
+        metaTitleR: 0,
+        metaDescription: 0,
+        metaDescriptionR: 0,
+        content: 0,
+        contentR: 0,
+        headers: {
+          H1: 0,
+          H1R: 0,
+          H2: 0,
+          H2R: 0,
+          H3: 0,
+          H3R: 0,
+          H4: 0,
+          H4R: 0,
+          H5: 0,
+          H5R: 0,
+          H6: 0,
+          H6R: 0,
+        },
+      },
+      Words: {
+        metaTitle: 0,
+        metaTitleR: 0,
+        metaDescription: 0,
+        metaDescriptionR: 0,
+        content: 0,
+        contentR: 0,
+        headers: {
+          H1: 0,
+          H1R: 0,
+          H2: 0,
+          H2R: 0,
+          H3: 0,
+          H3R: 0,
+          H4: 0,
+          H4R: 0,
+          H5: 0,
+          H5R: 0,
+          H6: 0,
+          H6R: 0,
+        },
+      },
+    };
+    this.wordCounter.wordObject = {
+      Entity: [],
+      Variations: [],
+      LSIKeywords: [],
+    };
+    this.wordCounter.metaTitle = '';
+    this.wordCounter.metaDescription = '';
   }
 }
