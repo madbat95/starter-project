@@ -66,7 +66,7 @@ export class SummernoteComponent implements OnInit, OnDestroy {
   ) {}
 
   onEditorContentChange(content: string) {
-    this.wordCounter.editorContent = content
+    this.wordCounter.editorContent = content;
     this.contentChange$.next(content);
   }
 
@@ -87,12 +87,12 @@ export class SummernoteComponent implements OnInit, OnDestroy {
           this.editorContent = response[0].content;
           this.onEditorContentChange(this.editorContent);
 
-          this.wordCounter.editorId = response[0].id
-          this.wordCounter.editorContent = response[0].content
+          this.wordCounter.editorId = response[0].id;
+          this.wordCounter.editorContent = response[0].content;
 
-          this.wordCounter.metaTitle = response[0].meta_title
-          this.wordCounter.metaDescription = response[0].meta_description
-          this.wordCounter.siteUrl = response[0].site_url
+          this.wordCounter.metaTitle = response[0].meta_title;
+          this.wordCounter.metaDescription = response[0].meta_description;
+          this.wordCounter.siteUrl = response[0].site_url;
         }
       });
 
@@ -185,7 +185,6 @@ export class SummernoteComponent implements OnInit, OnDestroy {
           this.editorContent = this.editorContent
             .split(`${tagToBeHighlighted} ${highlightStyle}`)
             .join(`<${nonHeadingTag}`);
-
         } else {
           this.isHighlightedStates[nonHeadingTag] = true;
           this.editorContent = this.editorContent
