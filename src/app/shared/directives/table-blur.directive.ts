@@ -9,7 +9,6 @@ export class TableBlurDirective {
   @HostListener('click') onClick() {
     const table = this.el.nativeElement.closest('table');
     const columnIndex = this.getColumnIndex(this.el.nativeElement);
-
     const allCells = table.querySelectorAll('td, th');
 
     for (const cell of allCells) {
@@ -19,10 +18,11 @@ export class TableBlurDirective {
         (cellIndex === columnIndex + 1 && cell.tagName == 'TD') ||
         (cellIndex === columnIndex - 1 && cell.tagName == 'TH')
       ) {
-        if (cell.classList.contains('focused')) {
-          this.renderer.removeClass(cell, 'focused');
-        }
-      } else {
+        cell.classList.toggle('clicked');
+        cell.classList.contains('clicked')
+          ? this.renderer.removeClass(cell, 'focused')
+          : this.renderer.addClass(cell, 'focused');
+      } else if (!cell.classList.contains('clicked')) {
         this.renderer.addClass(cell, 'focused');
       }
     }
