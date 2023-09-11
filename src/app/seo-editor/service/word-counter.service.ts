@@ -7,13 +7,14 @@ import { WordObject } from 'src/app/shared/interfaces/word-object';
   providedIn: 'root',
 })
 export class WordCounterService {
-  constructor(private http:HttpClient) {}
+  constructor(private http: HttpClient) {}
 
-  editorId = ''
-  editorContent = ''
-  metaTitle = ''
-  metaDescription = ''
-  siteUrl = 'http://help.websiteos.com/websiteos/example_of_a_simple_html_page.htm'
+  editorId = '';
+  editorContent = '';
+  metaTitle = '';
+  metaDescription = '';
+  siteUrl =
+    'http://help.websiteos.com/websiteos/example_of_a_simple_html_page.htm';
 
   wordCount: any = {
     Entity: {
@@ -163,7 +164,7 @@ export class WordCounterService {
   }
 
   deleteWord(id: number) {
-    return this.http.delete(`/reporting/delete-word/${id}/`)
+    return this.http.delete(`/reporting/delete-word/${id}/`);
   }
 
   countWordsInHeadersAndContent(
