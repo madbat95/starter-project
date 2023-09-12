@@ -10,7 +10,8 @@ COPY package.json package-lock.json ./
 RUN npm ci 
 COPY . .
 RUN npm link @angular/cli
-RUN npm run build 
+#RUN npm run build
+RUN npm run build-dev-prod
 
 ### STAGE 2: Run ###
 FROM nginx:1.23.1-alpine

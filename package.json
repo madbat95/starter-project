@@ -6,6 +6,7 @@
     "serve": "ng serve",
     "start": "ng serve --port 4200 -o",
     "build": "ng build",
+    "build-dev-prod": "ng build --configuration production --aot --build-optimizer --common-chunk --optimization --vendor-chunk",
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e",
