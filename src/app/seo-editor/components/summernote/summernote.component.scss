@@ -19,3 +19,12 @@
   background-color: yellow; /* Change the background color as desired */
   /* Add any other styling you want for highlighted H1 headings */
 }
+
+::ng-deep .note-editable{
+  background-color: #f5f5f5;
+}
+
+::ng-deep .note-toolbar{
+  background-color: $brand-primary;
+}
+
