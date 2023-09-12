@@ -168,6 +168,16 @@ export class SuggestionTableComponent implements OnInit {
   highlightMeta(meta: string, key: string, color: string) {
     this.highlightService.highlightMeta(meta, key, color);
   }
+
+  unblurAll = () =>{
+    const table = this.el.nativeElement.getElementsByTagName('table')[0]
+    const allCells = table.querySelectorAll('td, th');
+    for (const cell of allCells) {
+        this.renderer.removeClass(cell, 'focused');
+        this.renderer.removeClass(cell, 'clicked');
+      }
+    }
+  
   // titleBlur(): void {
   //   console.log('button pressed');
 
