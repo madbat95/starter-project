@@ -14,6 +14,7 @@ import { VariationPipe } from './pipes/variation.pipe';
 import { NzModalModule } from 'ng-zorro-antd/modal';
 import { NzSkeletonModule } from 'ng-zorro-antd/skeleton';
 import { NzButtonModule } from 'ng-zorro-antd/button';
+import { NzAlertModule } from 'ng-zorro-antd/alert';
 
 @NgModule({
   exports: [
@@ -26,6 +27,7 @@ import { NzButtonModule } from 'ng-zorro-antd/button';
     SearchPipe,
     NzTableModule,
     TableBlurDirective,
+    NzAlertModule,
   ],
   imports: [
     RouterModule,
@@ -37,6 +39,7 @@ import { NzButtonModule } from 'ng-zorro-antd/button';
     NzModalModule,
     NzSkeletonModule,
     NzButtonModule,
+    NzAlertModule,
   ],
   declarations: [SearchPipe, TableBlurDirective, VariationPipe],
   // providers: [ThemeConstantService, VariationPipe],
