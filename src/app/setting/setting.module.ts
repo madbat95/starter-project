@@ -27,6 +27,7 @@ import { NzEmptyModule } from 'ng-zorro-antd/empty';
 import { ProfileSettingComponent } from './components/profile-setting/profile-setting.component';
 import { SettingRoutingModule } from './setting-routing.module';
 import { SharedModule } from '../shared/shared.module';
+import { SetPasswordComponent } from './components/set-password/set-password.component';
 
 const antdModule = [
   NzCardModule,
@@ -64,7 +65,7 @@ const antdModule = [
     SettingRoutingModule,
     ...antdModule,
   ],
-  declarations: [ProfileSettingComponent],
+  declarations: [ProfileSettingComponent, SetPasswordComponent],
   providers: [],
 })
 export class SettingModule {}
