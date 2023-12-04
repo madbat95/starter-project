@@ -22,6 +22,7 @@ export class ProfileSettingComponent {
   profileForm!: FormGroup;
   changePWForm!: UntypedFormGroup;
   loading: boolean = false;
+  isLoading: boolean;
   currentPasswordVisible: boolean = false;
   newPasswordVisible: boolean = false;
   reNewPasswordVisible: boolean = false;

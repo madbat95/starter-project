@@ -11,6 +11,49 @@
     [nzGutter]="[4, 4]"
   >
     <nz-card nz-col nzSpan="24" nzTitle="Personal Infomation">
+      <div class="media align-items-center">
+        <nz-skeleton
+          *ngIf="false"
+          [nzActive]="true"
+          [nzAvatar]="{ size: 80 }"
+          [nzParagraph]="{ rows: 2 }"
+        ></nz-skeleton>
+        <ng-container *ngIf="!isLoading">
+          <nz-avatar
+            *ngIf="avatarUrl; else defaultAvatar"
+            [nzSize]="80"
+            [nzSrc]="avatarUrl"
+          ></nz-avatar>
+          <ng-template #defaultAvatar>
+            <nz-avatar [nzSize]="80" nzIcon="user"></nz-avatar>
+          </ng-template>
+          <nz-form-item>
+            <div class="m-l-20 m-r-20">
+              <nz-form-label>
+                <h5 class="m-b-5 font-size-18">Change Avatar</h5>
+              </nz-form-label>
+              <p class="opacity-07 font-size-13 m-b-0">
+                Recommended Dimensions: <br />
+                120x120 Max fil size: 5MB
+              </p>
+            </div>
+            <nz-form-control>
+              <nz-upload
+                [nzBeforeUpload]="false"
+                nzName="avatar"
+                [nzShowUploadList]="false"
+                (nzChange)="handleChange($event)"
+              >
+                <button nz-button nzType="primary">
+                  <span>Upload</span>
+                </button>
+              </nz-upload>
+            </nz-form-control>
+          </nz-form-item>
+        </ng-container>
+      </div>
+      <hr class="m-v-25" />
+
       <div nz-row [nzGutter]="[16, 16]">
         <div nz-col [nzXs]="24" [nzSm]="24" [nzMd]="12">
           <nz-form-item>
