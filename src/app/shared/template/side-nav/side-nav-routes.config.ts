@@ -35,6 +35,14 @@ export const ROUTES: SideNavInterface[] = [
         submenu: [],
       },
       {
+        path: 'setting/documents',
+        title: 'Documents',
+        iconType: 'nzIcon',
+        icon: 'file-done',
+        iconTheme: 'outline',
+        submenu: [],
+      },
+      {
         path: 'setting/change-password',
         title: 'Settings',
         iconType: 'nzIcon',

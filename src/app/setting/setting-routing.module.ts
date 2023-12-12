@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { ProfileSettingComponent } from './components/profile-setting/profile-setting.component';
 import { SetPasswordComponent } from './components/set-password/set-password.component';
+import { IdentificationComponent } from './components/identification/identification.component';
 
 const routes: Routes = [
   {
@@ -9,6 +10,14 @@ const routes: Routes = [
     component: ProfileSettingComponent,
     data: {
       title: 'Profile',
+      headerDisplay: 'none',
+    },
+  },
+  {
+    path: 'documents',
+    component: IdentificationComponent,
+    data: {
+      title: 'Identification Documents',
       headerDisplay: 'none',
     },
   },
