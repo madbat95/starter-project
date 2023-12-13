@@ -183,10 +183,6 @@
 
         <div nz-col [nzXs]="24" [nzSm]="24" [nzMd]="12">
           <nz-alert nzType="info" [nzDescription]="message"> </nz-alert>
-          <ng-template #message
-            ><b>Important:</b> Make sure to upload the correct document as
-            selected above(1.). Image Clarity etc</ng-template
-          >
         </div>
       </div>
     </nz-card>
@@ -244,10 +240,6 @@
         </div>
         <div nz-col [nzXs]="24" [nzSm]="24" [nzMd]="12">
           <nz-alert nzType="info" [nzDescription]="message"> </nz-alert>
-          <ng-template #message
-            ><b>Important:</b> Make sure the above document information matches
-            the ones of your submitted document.</ng-template
-          >
         </div>
       </div>
     </nz-card>
@@ -315,7 +307,7 @@
         </div>
       </div>
 
-      <div nz-row [nzGutter]="[16, 16]">
+      <div nz-row [nzGutter]="[16, 16]" nzAlign="middle">
         <div nz-col [nzXs]="24" [nzSm]="24" [nzMd]="12">
           <nz-form-item>
             <nz-form-label nzRequired="true" [nzSpan]="24" nzFor="position">
@@ -335,7 +327,7 @@
         <div nz-col [nzXs]="24" [nzSm]="24" [nzMd]="12">
           <nz-alert nzType="info" [nzDescription]="message"> </nz-alert>
           <ng-template #message
-            ><b>Important:</b> Make sure the above personal information matches
+            ><b>Important:</b> Make sure the above document information matches
             the ones of your submitted document.</ng-template
           >
         </div>
@@ -344,3 +336,8 @@
   </form>
   >
 </div>
+
+<ng-template #message
+  ><b>Important:</b> Make sure the above document information matches the ones
+  of your submitted document.</ng-template
+>
