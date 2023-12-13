@@ -1,0 +1,343 @@
+<div class="page-header has-tab">
+  <h2 class="font-weight-normal">Identification Documents</h2>
+</div>
+
+<div class="container">
+  <form
+    style="padding-top: 40px"
+    [formGroup]="identificationForm"
+    nz-row
+    nzJustify="center"
+    nzAlign="middle"
+    [nzGutter]="[4, 4]"
+  >
+    <nz-card nz-col nzSpan="24" nzTitle="1. Select your document type ">
+      <div nz-row [nzGutter]="[24, 16]" nzJustify="center" nzAlign="middle">
+        <!-- <nz-radio-group formControlName="document_type">
+          <label
+            nz-col
+            [nzSpan]="6"
+            nz-radio
+            nzValue="A"
+            style="text-align: -webkit-center"
+            ><img
+              nz-image
+              width="100px"
+              height="100px"
+              nzSrc="error"
+              [nzFallback]="fallback"
+              alt=""
+            />Driver's<br />License</label
+          >
+          <label
+            nz-col
+            [nzSpan]="6"
+            nz-radio
+            nzValue="B"
+            style="text-align: -webkit-center"
+            ><img
+              nz-image
+              width="100px"
+              height="100px"
+              nzSrc="error"
+              [nzFallback]="fallback"
+              alt=""
+            />State-<br />Issued ID</label
+          >
+          <label
+            nz-col
+            [nzSpan]="6"
+            nz-radio
+            nzValue="C"
+            style="text-align: -webkit-center"
+            ><img
+              nz-image
+              width="100px"
+              height="100px"
+              nzSrc="error"
+              [nzFallback]="fallback"
+              alt=""
+            />Local/<br />Tribe-Issued ID</label
+          >
+          <label
+            nz-col
+            [nzSpan]="6"
+            nz-radio
+            nzValue="D"
+            style="text-align: -webkit-center"
+            ><img
+              nz-image
+              width="100px"
+              height="100px"
+              nzSrc="error"
+              [nzFallback]="fallback"
+              alt=""
+            />Passport<br />(US or Foreign)</label
+          >
+        </nz-radio-group> -->
+
+        <nz-col [nzXs]="24" [nzSm]="24" [nzMd]="12">
+          <h5 style="text-align: center">United States</h5>
+          <nz-radio-group formControlName="document_type">
+            <label
+              nz-col
+              [nzXs]="24"
+              [nzSm]="24"
+              [nzMd]="12"
+              nz-radio
+              nzValue="A"
+              style="text-align: -webkit-center"
+            >
+              <img
+                nz-image
+                width="100px"
+                height="100px"
+                nzSrc="error"
+                [nzFallback]="fallback"
+                alt=""
+              />
+              Driver's<br />License
+            </label>
+            <label
+              nz-col
+              [nzXs]="24"
+              [nzSm]="24"
+              [nzMd]="12"
+              nz-radio
+              nzValue="B"
+              style="text-align: -webkit-center"
+            >
+              <img
+                nz-image
+                width="100px"
+                height="100px"
+                nzSrc="error"
+                [nzFallback]="fallback"
+                alt=""
+              />
+              State-<br />Issued ID
+            </label>
+            <label
+              nz-col
+              [nzXs]="24"
+              [nzSm]="24"
+              [nzMd]="12"
+              nz-radio
+              nzValue="C"
+              style="text-align: -webkit-center"
+            >
+              <img
+                nz-image
+                width="100px"
+                height="100px"
+                nzSrc="error"
+                [nzFallback]="fallback"
+                alt=""
+              />
+              Local/<br />Tribe-Issued ID
+            </label>
+          </nz-radio-group>
+        </nz-col>
+
+        <nz-col [nzXs]="24" [nzSm]="24" [nzMd]="12" style="text-align: center">
+          <h5>United States and rest of the world</h5>
+          <nz-radio-group formControlName="document_type">
+            <!-- Label D for Foreigners -->
+            <label
+              nz-col
+              nz-radio
+              nzValue="D"
+              style="text-align: -webkit-center"
+            >
+              <img
+                nz-image
+                width="100px"
+                height="100px"
+                nzSrc="error"
+                [nzFallback]="fallback"
+                alt=""
+              />
+              Passport<br />(US or Foreign)
+            </label>
+          </nz-radio-group>
+        </nz-col>
+      </div>
+    </nz-card>
+
+    <nz-card
+      nz-col
+      nzSpan="24"
+      nzTitle="2. Upload your identification document"
+    >
+      <div nz-row [nzGutter]="[16, 16]" nzJustify="center" nzAlign="middle">
+        <div nz-col [nzXs]="24" [nzSm]="24" [nzMd]="12">
+          <nz-upload nzType="drag" [nzMultiple]="true">
+            <p class="ant-upload-drag-icon">
+              <span nz-icon nzType="inbox"></span>
+            </p>
+            <p class="ant-upload-text">
+              Click or drag file to this area to upload
+            </p>
+          </nz-upload>
+        </div>
+
+        <div nz-col [nzXs]="24" [nzSm]="24" [nzMd]="12">
+          <nz-alert nzType="info" [nzDescription]="message"> </nz-alert>
+        </div>
+      </div>
+    </nz-card>
+
+    <nz-card nz-col nzSpan="24" nzTitle="3.Document Infomation">
+      <div nz-row [nzGutter]="[16, 16]" nzAlign="middle">
+        <div nz-col [nzXs]="24" [nzSm]="24" [nzMd]="12">
+          <nz-form-item>
+            <nz-form-label nzRequired="true" [nzSpan]="24" nzFor="position">
+              Issuing Country
+            </nz-form-label>
+            <nz-form-control [nzSpan]="24">
+              <input
+                nzSize="large"
+                style="width: 100%"
+                required="true"
+                nz-input
+                placeholder="First Name"
+              />
+            </nz-form-control>
+          </nz-form-item>
+        </div>
+        <div nz-col [nzXs]="24" [nzSm]="24" [nzMd]="12">
+          <nz-form-item>
+            <nz-form-label
+              nzRequired="true"
+              [nzSpan]="24"
+              nzFor="employment-type"
+            >
+              Document Number
+            </nz-form-label>
+            <nz-form-control [nzSpan]="24">
+              <input nzSize="large" nz-input nzPlaceHolder="Middle Name" />
+            </nz-form-control>
+          </nz-form-item>
+        </div>
+      </div>
+
+      <div nz-row [nzGutter]="[16, 16]" nzAlign="middle">
+        <div nz-col [nzXs]="24" [nzSm]="24" [nzMd]="12">
+          <nz-form-item>
+            <nz-form-label nzRequired="true" [nzSpan]="24" nzFor="position">
+              Document Expiration Date
+            </nz-form-label>
+            <nz-form-control [nzSpan]="24">
+              <input
+                nzSize="large"
+                style="width: 100%"
+                required="true"
+                nz-input
+                placeholder="Last Name"
+              />
+            </nz-form-control>
+          </nz-form-item>
+        </div>
+        <div nz-col [nzXs]="24" [nzSm]="24" [nzMd]="12">
+          <nz-alert nzType="info" [nzDescription]="message"> </nz-alert>
+        </div>
+      </div>
+    </nz-card>
+
+    <nz-card nz-col nzSpan="24" nzTitle="4. Personal Infomation">
+      <div nz-row [nzGutter]="[16, 16]">
+        <div nz-col [nzXs]="24" [nzSm]="24" [nzMd]="12">
+          <nz-form-item>
+            <nz-form-label nzRequired="true" [nzSpan]="24" nzFor="position">
+              First Name
+            </nz-form-label>
+            <nz-form-control [nzSpan]="24">
+              <input
+                nzSize="large"
+                style="width: 100%"
+                required="true"
+                nz-input
+                placeholder="First Name"
+              />
+            </nz-form-control>
+          </nz-form-item>
+        </div>
+        <div nz-col [nzXs]="24" [nzSm]="24" [nzMd]="12">
+          <nz-form-item>
+            <nz-form-label
+              nzRequired="true"
+              [nzSpan]="24"
+              nzFor="employment-type"
+            >
+              Middle Name
+            </nz-form-label>
+            <nz-form-control [nzSpan]="24">
+              <input nzSize="large" nz-input nzPlaceHolder="Middle Name" />
+            </nz-form-control>
+          </nz-form-item>
+        </div>
+      </div>
+
+      <div nz-row [nzGutter]="[16, 16]">
+        <div nz-col [nzXs]="24" [nzSm]="24" [nzMd]="12">
+          <nz-form-item>
+            <nz-form-label nzRequired="true" [nzSpan]="24" nzFor="position">
+              Last Name
+            </nz-form-label>
+            <nz-form-control [nzSpan]="24">
+              <input
+                nzSize="large"
+                style="width: 100%"
+                required="true"
+                nz-input
+                placeholder="Last Name"
+              />
+            </nz-form-control>
+          </nz-form-item>
+        </div>
+        <div nz-col [nzXs]="24" [nzSm]="24" [nzMd]="12">
+          <nz-form-item>
+            <nz-form-label nzRequired="true" [nzSpan]="24">
+              Date Of Birth
+            </nz-form-label>
+            <nz-form-control [nzSpan]="24">
+              <input nzSize="large" nz-input nzPlaceHolder="Email" />
+            </nz-form-control>
+          </nz-form-item>
+        </div>
+      </div>
+
+      <div nz-row [nzGutter]="[16, 16]" nzAlign="middle">
+        <div nz-col [nzXs]="24" [nzSm]="24" [nzMd]="12">
+          <nz-form-item>
+            <nz-form-label nzRequired="true" [nzSpan]="24" nzFor="position">
+              Suffix
+            </nz-form-label>
+            <nz-form-control [nzSpan]="24">
+              <input
+                nzSize="large"
+                style="width: 100%"
+                required="true"
+                nz-input
+                placeholder="Suffix"
+              />
+            </nz-form-control>
+          </nz-form-item>
+        </div>
+        <div nz-col [nzXs]="24" [nzSm]="24" [nzMd]="12">
+          <nz-alert nzType="info" [nzDescription]="message"> </nz-alert>
+          <ng-template #message
+            ><b>Important:</b> Make sure the above document information matches
+            the ones of your submitted document.</ng-template
+          >
+        </div>
+      </div>
+    </nz-card>
+  </form>
+  >
+</div>
+
+<ng-template #message
+  ><b>Important:</b> Make sure the above document information matches the ones
+  of your submitted document.</ng-template
+>

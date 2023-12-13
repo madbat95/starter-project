@@ -28,6 +28,8 @@ import { ProfileSettingComponent } from './components/profile-setting/profile-se
 import { SettingRoutingModule } from './setting-routing.module';
 import { SharedModule } from '../shared/shared.module';
 import { SetPasswordComponent } from './components/set-password/set-password.component';
+import { IdentificationComponent } from './components/identification/identification.component';
+import { NzImageModule } from 'ng-zorro-antd/image';
 
 const antdModule = [
   NzCardModule,
@@ -55,6 +57,7 @@ const antdModule = [
   NzToolTipModule,
   NzModalModule,
   NzEmptyModule,
+  NzImageModule,
 ];
 
 @NgModule({
@@ -65,7 +68,11 @@ const antdModule = [
     SettingRoutingModule,
     ...antdModule,
   ],
-  declarations: [ProfileSettingComponent, SetPasswordComponent],
+  declarations: [
+    ProfileSettingComponent,
+    SetPasswordComponent,
+    IdentificationComponent,
+  ],
   providers: [],
 })
 export class SettingModule {}
