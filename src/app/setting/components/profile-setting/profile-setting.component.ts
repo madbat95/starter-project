@@ -20,12 +20,9 @@ export class ProfileSettingComponent {
   selectedLanguage: any;
   user!: User;
   profileForm!: FormGroup;
-  changePWForm!: UntypedFormGroup;
+
   loading: boolean = false;
-  currentPasswordVisible: boolean = false;
-  newPasswordVisible: boolean = false;
-  reNewPasswordVisible: boolean = false;
-  passwordLoading: boolean = false;
+  isLoading: boolean;
 
   constructor(
     private fb: FormBuilder,
@@ -38,12 +35,6 @@ export class ProfileSettingComponent {
       last_name: new FormControl(''),
       username: new FormControl('', [Validators.required]),
       email: new FormControl({ value: '', disabled: true }),
-    });
-
-    this.changePWForm = this.fb.group({
-      current_password: new FormControl(null, Validators.required),
-      new_password: new FormControl(null, Validators.required),
-      re_new_password: new FormControl(null, Validators.required),
     });
   }
 
@@ -64,46 +55,10 @@ export class ProfileSettingComponent {
     });
   }
 
-  showConfirm(): void {
-    this.modalService.confirm({
-      nzTitle: '<i>Do you want to change your password?</i>',
-      nzOnOk: () => this.message.success('Password Change Successfully'),
-    });
-  }
-
   private getBase64(img: File, callback: (img: {}) => void): void {
     const reader = new FileReader();
     reader.addEventListener('load', () => callback(reader.result));
     reader.readAsDataURL(img);
-  }
-
-  submitchangePassword(): void {
-    if (this.changePWForm.valid) {
-      this.passwordLoading = true;
-      const passBody = {
-        current_password: this.changePWForm.get('current_password')?.value,
-        new_password: this.changePWForm.get('new_password')?.value,
-        re_new_password: this.changePWForm.get('re_new_password')?.value,
-      };
-
-      this.authService.updatePassword(passBody).subscribe({
-        next: () => {
-          this.message.success('Password Updated');
-          this.passwordLoading = false;
-        },
-        error: () => {
-          this.message.error('Password Update Failed');
-          this.passwordLoading = false;
-        },
-      });
-    } else {
-      Object.values(this.changePWForm.controls).forEach((control) => {
-        if (control.invalid) {
-          control.markAsDirty();
-          control.updateValueAndValidity({ onlySelf: true });
-        }
-      });
-    }
   }
 
   updateProfile(): void {

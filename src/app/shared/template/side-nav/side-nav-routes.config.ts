@@ -18,12 +18,30 @@ export const ROUTES: SideNavInterface[] = [
   //   icon: 'diff',
   //   submenu: [],
   // },
+
   {
-    path: 'setting/profile',
-    title: 'Profile',
+    path: 'setting',
+    title: 'Personal Settings',
     iconType: 'nzIcon',
-    iconTheme: 'outline',
-    icon: 'user',
-    submenu: [],
+    icon: 'setting',
+    iconTheme: '',
+    submenu: [
+      {
+        path: 'setting/profile',
+        title: 'Profile',
+        iconType: 'nzIcon',
+        icon: 'user',
+        iconTheme: 'outline',
+        submenu: [],
+      },
+      {
+        path: 'setting/change-password',
+        title: 'Settings',
+        iconType: 'nzIcon',
+        icon: 'setting',
+        iconTheme: 'outline',
+        submenu: [],
+      },
+    ],
   },
 ];
