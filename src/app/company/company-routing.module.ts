@@ -3,6 +3,8 @@ import { Routes, RouterModule } from '@angular/router';
 import { CompanyInfoComponent } from './components/company-info/company-info.component';
 import { CompanyTableComponent } from './components/company-table/company-table.component';
 import { CompanyDetailsComponent } from './components/company-details/company-details.component';
+import { MembersComponent } from './components/members/members.component';
+import { InvitesComponent } from './components/invites/invites.component';
 
 const routes: Routes = [
   {
@@ -16,6 +18,16 @@ const routes: Routes = [
   {
     path: ':companydetails',
     component: CompanyDetailsComponent,
+  },
+
+  {
+    path: ':members',
+    component: MembersComponent,
+  },
+
+  {
+    path: ':invites',
+    component: InvitesComponent,
   },
 
   {

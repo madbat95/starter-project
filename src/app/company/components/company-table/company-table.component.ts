@@ -10,10 +10,11 @@ export class CompanyTableComponent {
   constructor(private router: Router, private route: ActivatedRoute) {}
   data = [
     {
-      memberName: 'John Malkovich',
-      beneficialOwner: 'Yes',
-      roles: 'Account Manager, Account Supervisor, Billing',
-      actions: 'Action',
+      companyName: 'John Malkovich',
+      companyType: 'Yes',
+      state: 'Texas',
+      role: 'Account Manager, Account Supervisor, Billing',
+      alert: 43,
     },
   ];
 
