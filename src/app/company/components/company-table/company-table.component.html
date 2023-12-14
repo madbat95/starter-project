@@ -1,1 +1,33 @@
-<p>company-table works!</p>
+<div class="page-header has-tab">
+  <h2 class="font-weight-normal">Companies</h2>
+</div>
+<div class="container" style="padding-top: 40px">
+  <div nz-row nzJustify="end" class="mb-2">
+    <button nz-button nzType="primary" nzSize="small" (click)="addCompany()">
+      Add a company
+    </button>
+  </div>
+
+  <nz-table #basicTable [nzData]="data">
+    <thead>
+      <tr>
+        <th nzAlign="center">Member Name</th>
+        <th nzAlign="center">Beneficial Owner</th>
+        <th nzAlign="center">Roles</th>
+        <th nzAlign="center">Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let data of basicTable.data">
+        <td nzAlign="center">{{ data.memberName }}</td>
+        <td nzAlign="center">{{ data.beneficialOwner }}</td>
+        <td nzAlign="center">{{ data.roles }}</td>
+        <td>
+          <a nzAlign="center">{{ data.actions }}</a>
+          <nz-divider nzType="vertical"></nz-divider>
+          <a>Delete</a>
+        </td>
+      </tr>
+    </tbody>
+  </nz-table>
+</div>
