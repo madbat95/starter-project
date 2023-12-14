@@ -28,6 +28,7 @@ import { SharedModule } from '../shared/shared.module';
 import { NzImageModule } from 'ng-zorro-antd/image';
 import { CompanyInfoComponent } from './components/company-info/company-info.component';
 import { CompanyRoutingModule } from './company-routing.module';
+import { CompanyTableComponent } from './components/company-table/company-table.component';
 
 const antdModule = [
   NzCardModule,
@@ -58,7 +59,7 @@ const antdModule = [
   NzImageModule,
 ];
 @NgModule({
-  declarations: [CompanyInfoComponent],
+  declarations: [CompanyInfoComponent, CompanyTableComponent],
   imports: [
     CommonModule,
     SharedModule,
