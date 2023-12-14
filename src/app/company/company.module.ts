@@ -27,8 +27,9 @@ import { NzEmptyModule } from 'ng-zorro-antd/empty';
 import { SharedModule } from '../shared/shared.module';
 import { NzImageModule } from 'ng-zorro-antd/image';
 import { CompanyInfoComponent } from './components/company-info/company-info.component';
-import { CompanyRoutingModule } from './company-routing.module';
+
 import { CompanyTableComponent } from './components/company-table/company-table.component';
+import { CompanyRoutingModule } from './company-routing.module';
 
 const antdModule = [
   NzCardModule,
@@ -64,8 +65,8 @@ const antdModule = [
     CommonModule,
     SharedModule,
     ReactiveFormsModule,
-    ...antdModule,
     CompanyRoutingModule,
+    ...antdModule,
   ],
   providers: [],
 })

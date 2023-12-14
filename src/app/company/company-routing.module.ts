@@ -1,16 +1,26 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { CompanyInfoComponent } from './components/company-info/company-info.component';
+import { CompanyTableComponent } from './components/company-table/company-table.component';
 
 const routes: Routes = [
   {
-    path: 'companyinfo',
-    component: CompanyInfoComponent,
+    path: 'companies',
+    component: CompanyTableComponent,
     data: {
-      title: 'Information',
+      title: 'Companies',
       headerDisplay: 'none',
     },
   },
+
+  // {
+  //   path: 'companyinfo',
+  //   component: CompanyInfoComponent,
+  //   data: {
+  //     title: 'Information',
+  //     headerDisplay: 'none',
+  //   },
+  // },
 ];
 
 @NgModule({
