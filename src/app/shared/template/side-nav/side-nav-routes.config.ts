@@ -53,21 +53,30 @@ export const ROUTES: SideNavInterface[] = [
     ],
   },
 
+  // {
+  //   path: 'company',
+  //   title: 'Company',
+  //   iconType: 'nzIcon',
+  //   icon: 'shop',
+  //   iconTheme: '',
+  //   submenu: [
+  //     {
+  //       path: 'company/companies',
+  //       title: 'Companies',
+  //       iconType: 'nzIcon',
+  //       icon: 'shop',
+  //       iconTheme: 'outline',
+  //       submenu: [],
+  //     },
+  //   ],
+  // },
+
   {
     path: 'company',
-    title: 'Company',
+    title: 'Companies',
     iconType: 'nzIcon',
+    iconTheme: 'outline',
     icon: 'shop',
-    iconTheme: '',
-    submenu: [
-      {
-        path: 'company/companies',
-        title: 'Companies',
-        iconType: 'nzIcon',
-        icon: 'shop',
-        iconTheme: 'outline',
-        submenu: [],
-      },
-    ],
+    submenu: [],
   },
 ];

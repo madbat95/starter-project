@@ -5,22 +5,17 @@ import { CompanyTableComponent } from './components/company-table/company-table.
 
 const routes: Routes = [
   {
-    path: 'companies',
+    path: '',
     component: CompanyTableComponent,
     data: {
-      title: 'Companies',
-      headerDisplay: 'none',
+      headerDisplay: 'Company',
     },
   },
 
-  // {
-  //   path: 'companyinfo',
-  //   component: CompanyInfoComponent,
-  //   data: {
-  //     title: 'Information',
-  //     headerDisplay: 'none',
-  //   },
-  // },
+  {
+    path: ':companyinfo',
+    component: CompanyInfoComponent,
+  },
 ];
 
 @NgModule({
