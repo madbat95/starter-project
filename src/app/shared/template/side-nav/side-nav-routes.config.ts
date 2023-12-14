@@ -52,4 +52,22 @@ export const ROUTES: SideNavInterface[] = [
       },
     ],
   },
+
+  {
+    path: 'company',
+    title: 'Company',
+    iconType: 'nzIcon',
+    icon: 'shop',
+    iconTheme: '',
+    submenu: [
+      {
+        path: 'company/companyinfo',
+        title: 'Information',
+        iconType: 'nzIcon',
+        icon: 'shop',
+        iconTheme: 'outline',
+        submenu: [],
+      },
+    ],
+  },
 ];
