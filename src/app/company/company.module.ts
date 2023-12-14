@@ -30,6 +30,7 @@ import { CompanyInfoComponent } from './components/company-info/company-info.com
 
 import { CompanyTableComponent } from './components/company-table/company-table.component';
 import { CompanyRoutingModule } from './company-routing.module';
+import { CompanyDetailsComponent } from './components/company-details/company-details.component';
 
 const antdModule = [
   NzCardModule,
@@ -60,7 +61,7 @@ const antdModule = [
   NzImageModule,
 ];
 @NgModule({
-  declarations: [CompanyInfoComponent, CompanyTableComponent],
+  declarations: [CompanyInfoComponent, CompanyTableComponent, CompanyDetailsComponent],
   imports: [
     CommonModule,
     SharedModule,

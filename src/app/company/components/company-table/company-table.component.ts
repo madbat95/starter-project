@@ -18,9 +18,9 @@ export class CompanyTableComponent {
   ];
 
   addCompany() {
-    this.router.navigate(['companyinfo'], {
+    this.router.navigate(['companydetails'], {
       relativeTo: this.route,
-      queryParams: { tab: 'estimates' },
+      queryParams: { tab: 'companyinfo' },
     });
   }
 }

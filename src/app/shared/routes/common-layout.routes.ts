@@ -23,17 +23,9 @@ export const CommonLayout_ROUTES: Routes = [
       import('../../setting/setting.module').then((m) => m.SettingModule),
   },
 
-  // {
-  //   path: 'company',
-  //   loadChildren: () =>
-  //     import('../../company/company.module').then((m) => m.CompanyModule),
-  // },
-
   {
     path: 'company',
-    // data: {
-    //   title: 'Leads ',
-    // },
+
     children: [
       {
         path: '',
