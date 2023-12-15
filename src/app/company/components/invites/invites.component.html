@@ -1,5 +1,5 @@
 <div class="page-header has-tab">
-  <h2 class="font-weight-normal">Members</h2>
+  <h2 class="font-weight-normal">Invites</h2>
 </div>
 <div class="container" style="padding-top: 40px">
   <div nz-row nzJustify="end" class="mb-2">
@@ -9,11 +9,12 @@
   <nz-table #basicTable [nzData]="data">
     <thead>
       <tr>
-        <th nzAlign="center">Date</th>
+        <th nzAlign="center">Created At</th>
         <th nzAlign="center">Sent to</th>
         <th nzAlign="center">Role</th>
         <th nzAlign="center">Invited By</th>
         <th nzAlign="center">Status</th>
+        <th nzAlign="center">Actions</th>
       </tr>
     </thead>
     <tbody>
@@ -25,9 +26,10 @@
         <td nzAlign="center">{{ data.status }}</td>
         <td nzAlign="center">
           <a>
+            <!-- <span nz-icon nzType="close-circle" nzTheme="twotone"></span> -->
             <span
               nz-icon
-              nzType="cross"
+              nzType="close-circle"
               [nzTheme]="'twotone'"
               [nzTwotoneColor]="'red'"
             ></span>

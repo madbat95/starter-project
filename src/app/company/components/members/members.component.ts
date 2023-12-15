@@ -13,5 +13,29 @@ export class MembersComponent {
       roles: 'Account Manager, Account Supervisor, Billing',
       actions: 'Action',
     },
+    {
+      memberName: 'John Malkovich',
+      beneficialOwner: 'Yes',
+      roles: 'Account Manager, Account Supervisor, Billing',
+      actions: 'Action',
+    },
+    {
+      memberName: 'John Malkovich',
+      beneficialOwner: 'Yes',
+      roles: 'Account Manager, Account Supervisor, Billing',
+      actions: 'Action',
+    },
+    {
+      memberName: 'John Malkovich',
+      beneficialOwner: 'Yes',
+      roles: 'Account Manager, Account Supervisor, Billing',
+      actions: 'Action',
+    },
+    {
+      memberName: 'John Malkovich',
+      beneficialOwner: 'Yes',
+      roles: 'Account Manager, Account Supervisor, Billing',
+      actions: 'Action',
+    },
   ];
 }

@@ -11,7 +11,28 @@ export class CompanyTableComponent {
   data = [
     {
       companyName: 'John Malkovich',
-      companyType: 'Yes',
+      companyType: '-',
+      state: 'Texas',
+      role: 'Account Manager, Account Supervisor, Billing',
+      alert: 43,
+    },
+    {
+      companyName: 'John Malkovich',
+      companyType: '-',
+      state: 'Texas',
+      role: 'Account Manager, Account Supervisor, Billing',
+      alert: 43,
+    },
+    {
+      companyName: 'John Malkovich',
+      companyType: '-',
+      state: 'Texas',
+      role: 'Account Manager, Account Supervisor, Billing',
+      alert: 43,
+    },
+    {
+      companyName: 'John Malkovich',
+      companyType: '-',
       state: 'Texas',
       role: 'Account Manager, Account Supervisor, Billing',
       alert: 43,
