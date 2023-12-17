@@ -5,6 +5,7 @@ import { CompanyTableComponent } from './components/company-table/company-table.
 import { CompanyDetailsComponent } from './components/company-details/company-details.component';
 import { MembersComponent } from './components/members/members.component';
 import { InvitesComponent } from './components/invites/invites.component';
+import { BoifTableComponent } from './components/boif-table/boif-table.component';
 
 const routes: Routes = [
   {
@@ -33,6 +34,11 @@ const routes: Routes = [
   {
     path: ':companyinfo',
     component: CompanyInfoComponent,
+  },
+
+  {
+    path: ':boif',
+    component: BoifTableComponent,
   },
 ];
 

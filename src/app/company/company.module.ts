@@ -33,6 +33,7 @@ import { CompanyRoutingModule } from './company-routing.module';
 import { CompanyDetailsComponent } from './components/company-details/company-details.component';
 import { MembersComponent } from './components/members/members.component';
 import { InvitesComponent } from './components/invites/invites.component';
+import { BoifTableComponent } from './components/boif-table/boif-table.component';
 
 const antdModule = [
   NzCardModule,
@@ -63,7 +64,14 @@ const antdModule = [
   NzImageModule,
 ];
 @NgModule({
-  declarations: [CompanyInfoComponent, CompanyTableComponent, CompanyDetailsComponent, MembersComponent, InvitesComponent],
+  declarations: [
+    CompanyInfoComponent,
+    CompanyTableComponent,
+    CompanyDetailsComponent,
+    MembersComponent,
+    InvitesComponent,
+    BoifTableComponent,
+  ],
   imports: [
     CommonModule,
     SharedModule,
