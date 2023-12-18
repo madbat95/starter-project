@@ -1,0 +1,53 @@
+<div class="">
+  <h2 class="font-weight-normal">BOIF Alerts</h2>
+</div>
+<div class="container" style="padding-top: 40px">
+  <div nz-row nzJustify="start" class="mb-2">
+    <button nz-button nzType="primary" nzSize="small">
+      Request a BOI Report Update
+    </button>
+  </div>
+
+  <nz-table #basicTable [nzData]="data">
+    <thead>
+      <tr>
+        <th nzAlign="center">Alert Time</th>
+        <th nzAlign="center">Company Member</th>
+        <th nzAlign="center">Alert Type</th>
+        <th nzAlign="center">Short Preview</th>
+
+        <th nzAlign="center">Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let data of basicTable.data">
+        <td nzAlign="center">{{ data.alertTime }}</td>
+        <td nzAlign="center">{{ data.companyMember }}</td>
+        <td nzAlign="center">{{ data.alertType }}</td>
+        <td nzAlign="center">{{ data.shortPreview }}</td>
+
+        <td nzAlign="center">
+          <a>
+            <span
+              nz-icon
+              nzType="eye"
+              [nzTheme]="'twotone'"
+              [nzTwotoneColor]="'blue'"
+            ></span>
+          </a>
+          <nz-divider nzType="vertical"></nz-divider>
+          <span
+            nz-icon
+            nzType="close-circle"
+            [nzTheme]="'twotone'"
+            [nzTwotoneColor]="'red'"
+          ></span>
+        </td>
+      </tr>
+    </tbody>
+  </nz-table>
+
+  <div nz-row nzJustify="end" class="mb-2">
+    <button nz-button nzType="primary" nzSize="small">Hide All</button>
+  </div>
+</div>
