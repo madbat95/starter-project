@@ -1,0 +1,43 @@
+<div class="page-header has-tab">
+  <h2 class="font-weight-normal">Members</h2>
+</div>
+<div class="container" style="padding-top: 40px">
+  <div nz-row nzJustify="end" class="mb-2">
+    <button nz-button nzType="primary" nzSize="small">Add a member</button>
+  </div>
+
+  <nz-table #basicTable [nzData]="data">
+    <thead>
+      <tr>
+        <th nzAlign="center">Member Name</th>
+        <th nzAlign="center">Beneficial Owner</th>
+        <th nzAlign="center">Roles</th>
+        <th nzAlign="center">Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let data of basicTable.data">
+        <td nzAlign="center">{{ data.memberName }}</td>
+        <td nzAlign="center">{{ data.beneficialOwner }}</td>
+        <td nzAlign="center">{{ data.roles }}</td>
+        <td nzAlign="center">
+          <a>
+            <span
+              nz-icon
+              nzType="edit"
+              [nzTheme]="'twotone'"
+              [nzTwotoneColor]="'yellow'"
+            ></span>
+          </a>
+          <nz-divider nzType="vertical"></nz-divider>
+          <span
+            nz-icon
+            nzType="delete"
+            [nzTheme]="'twotone'"
+            [nzTwotoneColor]="'red'"
+          ></span>
+        </td>
+      </tr>
+    </tbody>
+  </nz-table>
+</div>

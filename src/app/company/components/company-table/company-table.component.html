@@ -1,0 +1,49 @@
+<div class="page-header has-tab">
+  <h2 class="font-weight-normal">Companies</h2>
+</div>
+<div class="container" style="padding-top: 40px">
+  <div nz-row nzJustify="end" class="mb-2">
+    <button nz-button nzType="primary" nzSize="small" (click)="addCompany()">
+      Add a company
+    </button>
+  </div>
+
+  <nz-table #basicTable [nzData]="data">
+    <thead>
+      <tr>
+        <th nzAlign="center">Company Name</th>
+        <th nzAlign="center">Company Type</th>
+        <th nzAlign="center">State</th>
+        <th nzAlign="center">My Roles</th>
+        <th nzAlign="center">BOIF Alerts</th>
+        <th nzAlign="center">Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let data of basicTable.data">
+        <td nzAlign="center">{{ data.companyName }}</td>
+        <td nzAlign="center">{{ data.companyType }}</td>
+        <td nzAlign="center">{{ data.state }}</td>
+        <td nzAlign="center">{{ data.role }}</td>
+        <td nzAlign="center">{{ data.alert }}</td>
+        <td nzAlign="center">
+          <a>
+            <span
+              nz-icon
+              nzType="edit"
+              [nzTheme]="'twotone'"
+              [nzTwotoneColor]="'yellow'"
+            ></span>
+          </a>
+          <nz-divider nzType="vertical"></nz-divider>
+          <span
+            nz-icon
+            nzType="delete"
+            [nzTheme]="'twotone'"
+            [nzTwotoneColor]="'red'"
+          ></span>
+        </td>
+      </tr>
+    </tbody>
+  </nz-table>
+</div>

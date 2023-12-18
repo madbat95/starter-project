@@ -1,0 +1,41 @@
+<div class="page-header has-tab">
+  <h2 class="font-weight-normal">Invites</h2>
+</div>
+<div class="container" style="padding-top: 40px">
+  <div nz-row nzJustify="end" class="mb-2">
+    <button nz-button nzType="primary" nzSize="small">Send Invite</button>
+  </div>
+
+  <nz-table #basicTable [nzData]="data">
+    <thead>
+      <tr>
+        <th nzAlign="center">Created At</th>
+        <th nzAlign="center">Sent to</th>
+        <th nzAlign="center">Role</th>
+        <th nzAlign="center">Invited By</th>
+        <th nzAlign="center">Status</th>
+        <th nzAlign="center">Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let data of basicTable.data">
+        <td nzAlign="center">{{ data.date }}</td>
+        <td nzAlign="center">{{ data.sent }}</td>
+        <td nzAlign="center">{{ data.role }}</td>
+        <td nzAlign="center">{{ data.invitedBy }}</td>
+        <td nzAlign="center">{{ data.status }}</td>
+        <td nzAlign="center">
+          <a>
+            <!-- <span nz-icon nzType="close-circle" nzTheme="twotone"></span> -->
+            <span
+              nz-icon
+              nzType="close-circle"
+              [nzTheme]="'twotone'"
+              [nzTwotoneColor]="'red'"
+            ></span>
+          </a>
+        </td>
+      </tr>
+    </tbody>
+  </nz-table>
+</div>
