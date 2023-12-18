@@ -34,6 +34,7 @@ import { CompanyDetailsComponent } from './components/company-details/company-de
 import { MembersComponent } from './components/members/members.component';
 import { InvitesComponent } from './components/invites/invites.component';
 import { BoifTableComponent } from './components/boif-table/boif-table.component';
+import { BoifAlertsComponent } from './components/boif-alerts/boif-alerts.component';
 
 const antdModule = [
   NzCardModule,
@@ -71,6 +72,7 @@ const antdModule = [
     MembersComponent,
     InvitesComponent,
     BoifTableComponent,
+    BoifAlertsComponent,
   ],
   imports: [
     CommonModule,
