@@ -113,24 +113,5 @@
         </div>
       </ng-template>
     </nz-tab>
-
-    <nz-tab>
-      <a
-        *nzTabLink
-        nz-tab-link
-        [routerLink]="['.']"
-        [queryParams]="{ tab: 'information' }"
-        queryParamsHandling="merge"
-      >
-        <!-- <span nz-icon nzType="form"></span> -->
-        Billing Information
-      </a>
-
-      <ng-template nz-tab>
-        <div class="p-h-30 p-v-25">
-          <app-billing-information></app-billing-information>
-        </div>
-      </ng-template>
-    </nz-tab>
   </nz-tabset>
 </div>

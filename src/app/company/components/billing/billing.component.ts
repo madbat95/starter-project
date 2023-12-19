@@ -8,9 +8,5 @@ import { ActivatedRoute, Router } from '@angular/router';
 })
 export class BillingComponent implements OnInit {
   constructor(private route: ActivatedRoute) {}
-  ngOnInit() {
-    this.route.queryParams.subscribe((params) => {
-      const activeTab = params['tab'];
-    });
-  }
+  ngOnInit() {}
 }

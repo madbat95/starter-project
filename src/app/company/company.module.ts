@@ -39,6 +39,8 @@ import { BillingComponent } from './components/billing/billing.component';
 import { BillingOverviewComponent } from './components/billing/components/billing-overview/billing-overview.component';
 import { BillingInvoicesComponent } from './components/billing/components/billing-invoices/billing-invoices.component';
 import { BillingInformationComponent } from './components/billing/components/billing-information/billing-information.component';
+import { PaymentMethodsComponent } from './components/billing/components/payment-methods/payment-methods.component';
+import { AddOnsComponent } from './components/billing/components/add-ons/add-ons.component';
 
 const antdModule = [
   NzCardModule,
@@ -81,6 +83,8 @@ const antdModule = [
     BillingOverviewComponent,
     BillingInvoicesComponent,
     BillingInformationComponent,
+    PaymentMethodsComponent,
+    AddOnsComponent,
   ],
   imports: [
     CommonModule,

@@ -10,6 +10,7 @@ import { BoifAlertsComponent } from './components/boif-alerts/boif-alerts.compon
 import { BillingComponent } from './components/billing/billing.component';
 import { BillingOverviewComponent } from './components/billing/components/billing-overview/billing-overview.component';
 import { BillingInformationComponent } from './components/billing/components/billing-information/billing-information.component';
+import { PaymentMethodsComponent } from './components/billing/components/payment-methods/payment-methods.component';
 
 const routes: Routes = [
   {
@@ -21,47 +22,50 @@ const routes: Routes = [
   },
 
   {
-    path: ':companydetails',
+    path: 'companydetails',
     component: CompanyDetailsComponent,
   },
 
   {
-    path: ':members',
+    path: 'members',
     component: MembersComponent,
   },
 
   {
-    path: ':invites',
+    path: 'invites',
     component: InvitesComponent,
   },
 
   {
-    path: ':companyinfo',
+    path: 'companyinformation',
     component: CompanyInfoComponent,
   },
 
   {
-    path: ':boif',
+    path: 'boif',
     component: BoifTableComponent,
   },
 
   {
-    path: ':boif-alerts',
+    path: 'boif-alerts',
     component: BoifAlertsComponent,
   },
 
   {
-    path: ':information',
-    component: BillingInformationComponent,
-  },
-
-  {
-    path: ':billing',
+    path: 'billing',
     component: BillingComponent,
     children: [
       {
         path: 'overview',
         component: BillingOverviewComponent,
+      },
+      {
+        path: 'information',
+        component: BillingInformationComponent,
+      },
+      {
+        path: 'payment',
+        component: PaymentMethodsComponent,
       },
     ],
   },

@@ -1,1 +1,336 @@
-<p>billing-information works!</p>
+<div class="page-header has-tab">
+  <h2 class="font-weight-normal">Billing Information</h2>
+</div>
+
+<div class="container">
+  <form
+    style="padding-top: 40px"
+    [formGroup]="billingForm"
+    nz-row
+    nzJustify="center"
+    nzAlign="middle"
+    [nzGutter]="[4, 4]"
+  >
+    <div
+      nz-row
+      nzJustify="center"
+      nzAlign="middle"
+      style="padding-bottom: 40px"
+    >
+      <div nz-col [nzXs]="24" [nzSm]="24" [nzMd]="12">
+        <nz-alert
+          nzType="info"
+          nzMessage="This information will be included on all your billing invoices and will be used for calculating and taxes."
+        >
+        </nz-alert>
+      </div>
+    </div>
+    <nz-card nz-col nzSpan="24" nzTitle="Personal Infomation">
+      <div nz-row [nzGutter]="[16, 16]">
+        <div nz-col [nzXs]="24" [nzSm]="24" [nzMd]="12">
+          <nz-form-item>
+            <nz-form-label nzRequired="true" [nzSpan]="24" nzFor="position">
+              Company Name
+            </nz-form-label>
+            <nz-form-control [nzSpan]="24">
+              <input
+                nzSize="large"
+                style="width: 100%"
+                required="true"
+                nz-input
+                placeholder="Company Name"
+              />
+            </nz-form-control>
+          </nz-form-item>
+        </div>
+      </div>
+    </nz-card>
+
+    <nz-card nz-col nzSpan="24" nzTitle="Billing Address">
+      <div nz-row [nzGutter]="[16, 16]">
+        <div nz-col [nzXs]="24" [nzSm]="24" [nzMd]="12">
+          <nz-form-item>
+            <nz-form-label nzRequired="true" [nzSpan]="24" nzFor="position">
+              Address
+            </nz-form-label>
+            <nz-form-control [nzSpan]="24">
+              <input
+                nzSize="large"
+                style="width: 100%"
+                required="true"
+                nz-input
+                placeholder="Address"
+              />
+            </nz-form-control>
+          </nz-form-item>
+        </div>
+        <div nz-col [nzXs]="24" [nzSm]="24" [nzMd]="12">
+          <nz-form-item>
+            <nz-form-label nzRequired="true" [nzSpan]="24" nzFor="position">
+              Address2
+            </nz-form-label>
+            <nz-form-control [nzSpan]="24">
+              <input
+                nzSize="large"
+                style="width: 100%"
+                required="true"
+                nz-input
+                placeholder="Address"
+              />
+            </nz-form-control>
+          </nz-form-item>
+        </div>
+      </div>
+
+      <div nz-row [nzGutter]="[16, 16]">
+        <div nz-col [nzXs]="24" [nzSm]="24" [nzMd]="12">
+          <nz-form-item>
+            <nz-form-label nzRequired="true" [nzSpan]="24" nzFor="position">
+              Address3
+            </nz-form-label>
+            <nz-form-control [nzSpan]="24">
+              <input
+                nzSize="large"
+                style="width: 100%"
+                required="true"
+                nz-input
+                placeholder="Address"
+              />
+            </nz-form-control>
+          </nz-form-item>
+        </div>
+        <div nz-col [nzXs]="24" [nzSm]="24" [nzMd]="12">
+          <nz-form-item>
+            <nz-form-label nzRequired="true" [nzSpan]="24" nzFor="position">
+              City
+            </nz-form-label>
+            <nz-form-control [nzSpan]="24">
+              <input
+                nzSize="large"
+                style="width: 100%"
+                required="true"
+                nz-input
+                placeholder="City"
+              />
+            </nz-form-control>
+          </nz-form-item>
+        </div>
+      </div>
+
+      <div nz-row [nzGutter]="[16, 16]">
+        <div nz-col [nzXs]="24" [nzSm]="24" [nzMd]="12">
+          <nz-form-item>
+            <nz-form-label nzRequired="true" [nzSpan]="24">
+              Country
+            </nz-form-label>
+            <nz-form-control [nzSpan]="24">
+              <input nzSize="large" nz-input nzPlaceHolder="Country" />
+            </nz-form-control>
+          </nz-form-item>
+        </div>
+        <div nz-col [nzXs]="24" [nzSm]="24" [nzMd]="12">
+          <nz-form-item>
+            <nz-form-label nzRequired="true" [nzSpan]="24" nzFor="position">
+              State/Province
+            </nz-form-label>
+            <nz-form-control [nzSpan]="24">
+              <input
+                nzSize="large"
+                style="width: 100%"
+                required="true"
+                nz-input
+                placeholder="State/Province"
+              />
+            </nz-form-control>
+          </nz-form-item>
+        </div>
+      </div>
+      <div nz-row [nzGutter]="[16, 16]">
+        <div nz-col [nzXs]="24" [nzSm]="24" [nzMd]="12">
+          <nz-form-item>
+            <nz-form-label nzRequired="true" [nzSpan]="24">
+              Postal/ZIP Code
+            </nz-form-label>
+            <nz-form-control [nzSpan]="24">
+              <input nzSize="large" nz-input nzPlaceHolder="Postal/ZIP Code" />
+            </nz-form-control>
+          </nz-form-item>
+        </div>
+      </div>
+    </nz-card>
+
+    <nz-card nz-col nzSpan="24" nzTitle="Company Address">
+      <nz-form-item>
+        <nz-form-label nzRequired="true" [nzSpan]="24" nzFor="position">
+          Is the company address the same as billing address?
+        </nz-form-label>
+        <nz-form-control [nzSpan]="24">
+          <nz-radio-group formControlName="sameAddress">
+            <label
+              nz-col
+              [nzXs]="24"
+              [nzSm]="24"
+              [nzMd]="12"
+              nz-radio
+              nzValue="yes"
+              style="text-align: -webkit-center"
+            >
+              Yes
+            </label>
+            <label
+              nz-col
+              [nzXs]="24"
+              [nzSm]="24"
+              [nzMd]="12"
+              nz-radio
+              nzValue="no"
+              style="text-align: -webkit-center"
+            >
+              No
+            </label>
+          </nz-radio-group>
+        </nz-form-control>
+      </nz-form-item>
+      <div
+        nz-row
+        [nzGutter]="[16, 16]"
+        *ngIf="billingForm.get('sameAddress').value === 'no'"
+      >
+        <div nz-col [nzXs]="24" [nzSm]="24" [nzMd]="12">
+          <nz-form-item>
+            <nz-form-label nzRequired="true" [nzSpan]="24" nzFor="position">
+              Address
+            </nz-form-label>
+            <nz-form-control [nzSpan]="24">
+              <input
+                nzSize="large"
+                style="width: 100%"
+                required="true"
+                nz-input
+                placeholder="Address"
+              />
+            </nz-form-control>
+          </nz-form-item>
+        </div>
+        <div nz-col [nzXs]="24" [nzSm]="24" [nzMd]="12">
+          <nz-form-item>
+            <nz-form-label nzRequired="true" [nzSpan]="24" nzFor="position">
+              Address2
+            </nz-form-label>
+            <nz-form-control [nzSpan]="24">
+              <input
+                nzSize="large"
+                style="width: 100%"
+                required="true"
+                nz-input
+                placeholder="Address"
+              />
+            </nz-form-control>
+          </nz-form-item>
+        </div>
+      </div>
+
+      <div
+        nz-row
+        [nzGutter]="[16, 16]"
+        *ngIf="billingForm.get('sameAddress').value === 'no'"
+      >
+        <div nz-col [nzXs]="24" [nzSm]="24" [nzMd]="12">
+          <nz-form-item>
+            <nz-form-label nzRequired="true" [nzSpan]="24" nzFor="position">
+              Address3
+            </nz-form-label>
+            <nz-form-control [nzSpan]="24">
+              <input
+                nzSize="large"
+                style="width: 100%"
+                required="true"
+                nz-input
+                placeholder="Address"
+              />
+            </nz-form-control>
+          </nz-form-item>
+        </div>
+        <div nz-col [nzXs]="24" [nzSm]="24" [nzMd]="12">
+          <nz-form-item>
+            <nz-form-label nzRequired="true" [nzSpan]="24" nzFor="position">
+              City
+            </nz-form-label>
+            <nz-form-control [nzSpan]="24">
+              <input
+                nzSize="large"
+                style="width: 100%"
+                required="true"
+                nz-input
+                placeholder="City"
+              />
+            </nz-form-control>
+          </nz-form-item>
+        </div>
+      </div>
+
+      <div
+        nz-row
+        [nzGutter]="[16, 16]"
+        *ngIf="billingForm.get('sameAddress').value === 'no'"
+      >
+        <div nz-col [nzXs]="24" [nzSm]="24" [nzMd]="12">
+          <nz-form-item>
+            <nz-form-label nzRequired="true" [nzSpan]="24">
+              Country
+            </nz-form-label>
+            <nz-form-control [nzSpan]="24">
+              <input nzSize="large" nz-input nzPlaceHolder="Country" />
+            </nz-form-control>
+          </nz-form-item>
+        </div>
+        <div nz-col [nzXs]="24" [nzSm]="24" [nzMd]="12">
+          <nz-form-item>
+            <nz-form-label nzRequired="true" [nzSpan]="24" nzFor="position">
+              State/Province
+            </nz-form-label>
+            <nz-form-control [nzSpan]="24">
+              <input
+                nzSize="large"
+                style="width: 100%"
+                required="true"
+                nz-input
+                placeholder="State/Province"
+              />
+            </nz-form-control>
+          </nz-form-item>
+        </div>
+      </div>
+      <div
+        nz-row
+        [nzGutter]="[16, 16]"
+        *ngIf="billingForm.get('sameAddress').value === 'no'"
+      >
+        <div nz-col [nzXs]="24" [nzSm]="24" [nzMd]="12">
+          <nz-form-item>
+            <nz-form-label nzRequired="true" [nzSpan]="24">
+              Postal/ZIP Code
+            </nz-form-label>
+            <nz-form-control [nzSpan]="24">
+              <input nzSize="large" nz-input nzPlaceHolder="Postal/ZIP Code" />
+            </nz-form-control>
+          </nz-form-item>
+        </div>
+      </div>
+
+      <div nz-row nzJustify="center">
+        <div nz-col>
+          <button
+            nz-button
+            nzType="primary"
+            style="width: 100px"
+            (click)="updateInformataion()"
+            [nzLoading]="loading"
+          >
+            Save
+          </button>
+        </div>
+      </div>
+    </nz-card>
+  </form>
+</div>
