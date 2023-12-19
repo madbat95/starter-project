@@ -35,6 +35,10 @@ import { MembersComponent } from './components/members/members.component';
 import { InvitesComponent } from './components/invites/invites.component';
 import { BoifTableComponent } from './components/boif-table/boif-table.component';
 import { BoifAlertsComponent } from './components/boif-alerts/boif-alerts.component';
+import { BillingComponent } from './components/billing/billing.component';
+import { BillingOverviewComponent } from './components/billing/components/billing-overview/billing-overview.component';
+import { BillingInvoicesComponent } from './components/billing/components/billing-invoices/billing-invoices.component';
+import { BillingInformationComponent } from './components/billing/components/billing-information/billing-information.component';
 
 const antdModule = [
   NzCardModule,
@@ -73,6 +77,10 @@ const antdModule = [
     InvitesComponent,
     BoifTableComponent,
     BoifAlertsComponent,
+    BillingComponent,
+    BillingOverviewComponent,
+    BillingInvoicesComponent,
+    BillingInformationComponent,
   ],
   imports: [
     CommonModule,

@@ -7,6 +7,9 @@ import { MembersComponent } from './components/members/members.component';
 import { InvitesComponent } from './components/invites/invites.component';
 import { BoifTableComponent } from './components/boif-table/boif-table.component';
 import { BoifAlertsComponent } from './components/boif-alerts/boif-alerts.component';
+import { BillingComponent } from './components/billing/billing.component';
+import { BillingOverviewComponent } from './components/billing/components/billing-overview/billing-overview.component';
+import { BillingInformationComponent } from './components/billing/components/billing-information/billing-information.component';
 
 const routes: Routes = [
   {
@@ -45,6 +48,22 @@ const routes: Routes = [
   {
     path: ':boif-alerts',
     component: BoifAlertsComponent,
+  },
+
+  {
+    path: ':information',
+    component: BillingInformationComponent,
+  },
+
+  {
+    path: ':billing',
+    component: BillingComponent,
+    children: [
+      {
+        path: 'overview',
+        component: BillingOverviewComponent,
+      },
+    ],
   },
 ];
 
