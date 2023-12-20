@@ -1,6 +1,5 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { ReactiveFormsModule } from '@angular/forms';
 import { NzCardModule } from 'ng-zorro-antd/card';
 import { NzSkeletonModule } from 'ng-zorro-antd/skeleton';
 import { NzAvatarModule } from 'ng-zorro-antd/avatar';
@@ -26,21 +25,9 @@ import { NzSpinModule } from 'ng-zorro-antd/spin';
 import { NzEmptyModule } from 'ng-zorro-antd/empty';
 import { SharedModule } from '../shared/shared.module';
 import { NzImageModule } from 'ng-zorro-antd/image';
-import { CompanyInfoComponent } from './components/company-info/company-info.component';
-
-import { CompanyTableComponent } from './components/company-table/company-table.component';
-import { CompanyRoutingModule } from './company-routing.module';
-import { CompanyDetailsComponent } from './components/company-details/company-details.component';
-import { MembersComponent } from './components/members/members.component';
-import { InvitesComponent } from './components/invites/invites.component';
-import { BoifTableComponent } from './components/boif-table/boif-table.component';
-import { BoifAlertsComponent } from './components/boif-alerts/boif-alerts.component';
-import { BillingComponent } from './components/billing/billing.component';
-import { BillingOverviewComponent } from './components/billing/components/billing-overview/billing-overview.component';
-import { BillingInvoicesComponent } from './components/billing/components/billing-invoices/billing-invoices.component';
-import { BillingInformationComponent } from './components/billing/components/billing-information/billing-information.component';
-import { PaymentMethodsComponent } from './components/billing/components/payment-methods/payment-methods.component';
-import { AddOnsComponent } from './components/billing/components/add-ons/add-ons.component';
+import { ReactiveFormsModule } from '@angular/forms';
+import { NotificationsComponent } from './notifications.component';
+import { NotificationsRoutingModule } from './notifications-routing.module';
 
 const antdModule = [
   NzCardModule,
@@ -71,28 +58,14 @@ const antdModule = [
   NzImageModule,
 ];
 @NgModule({
-  declarations: [
-    CompanyInfoComponent,
-    CompanyTableComponent,
-    CompanyDetailsComponent,
-    MembersComponent,
-    InvitesComponent,
-    BoifTableComponent,
-    BoifAlertsComponent,
-    BillingComponent,
-    BillingOverviewComponent,
-    BillingInvoicesComponent,
-    BillingInformationComponent,
-    PaymentMethodsComponent,
-    AddOnsComponent,
-  ],
+  declarations: [NotificationsComponent],
+
   imports: [
     CommonModule,
     SharedModule,
     ReactiveFormsModule,
-    CompanyRoutingModule,
     ...antdModule,
+    NotificationsRoutingModule,
   ],
-  providers: [],
 })
-export class CompanyModule {}
+export class NotificationsModule {}

@@ -1,20 +1,53 @@
 <div>
-  <nz-tabset nzLinkRouter nzCentered>
+  <nz-tabset nzType="card" nzLinkRouter nzCentered>
     <nz-tab>
       <a
         *nzTabLink
         nz-tab-link
         [routerLink]="['.']"
-        [queryParams]="{ tab: 'companyinfo' }"
+        [queryParams]="{ tab2: 'overview' }"
         queryParamsHandling="merge"
       >
-        <!-- <span nz-icon nzType="form"></span> -->
-        Company Informtaion
+        Billing Overview
       </a>
 
       <ng-template nz-tab>
         <div class="p-h-30 p-v-25">
-          <app-company-info></app-company-info>
+          <app-billing-overview></app-billing-overview>
+        </div>
+      </ng-template>
+    </nz-tab>
+    <nz-tab>
+      <a
+        *nzTabLink
+        nz-tab-link
+        [routerLink]="['.']"
+        [queryParams]="{ tab2: 'invoices' }"
+        queryParamsHandling="merge"
+      >
+        Billing Invoices
+      </a>
+
+      <ng-template nz-tab>
+        <div class="p-h-30 p-v-25">
+          <app-billing-invoices></app-billing-invoices>
+        </div>
+      </ng-template>
+    </nz-tab>
+    <nz-tab>
+      <a
+        *nzTabLink
+        nz-tab-link
+        [routerLink]="['.']"
+        [queryParams]="{ tab2: 'information' }"
+        queryParamsHandling="merge"
+      >
+        Billing Infomation
+      </a>
+
+      <ng-template nz-tab>
+        <div class="p-h-30 p-v-25">
+          <app-billing-information></app-billing-information>
         </div>
       </ng-template>
     </nz-tab>
@@ -24,16 +57,15 @@
         *nzTabLink
         nz-tab-link
         [routerLink]="['.']"
-        [queryParams]="{ tab: 'members' }"
+        [queryParams]="{ tab2: 'payment' }"
         queryParamsHandling="merge"
       >
-        <!-- <span nz-icon nzType="form"></span> -->
-        Company Members
+        Payment Methods
       </a>
 
       <ng-template nz-tab>
         <div class="p-h-30 p-v-25">
-          <app-members></app-members>
+          <app-payment-methods></app-payment-methods>
         </div>
       </ng-template>
     </nz-tab>
@@ -43,73 +75,15 @@
         *nzTabLink
         nz-tab-link
         [routerLink]="['.']"
-        [queryParams]="{ tab: 'invites' }"
+        [queryParams]="{ tab2: 'add-ons' }"
         queryParamsHandling="merge"
       >
-        <!-- <span nz-icon nzType="form"></span> -->
-        Invites
+        Purchase Add-ons
       </a>
 
       <ng-template nz-tab>
         <div class="p-h-30 p-v-25">
-          <app-invites></app-invites>
-        </div>
-      </ng-template>
-    </nz-tab>
-
-    <nz-tab>
-      <a
-        *nzTabLink
-        nz-tab-link
-        [routerLink]="['.']"
-        [queryParams]="{ tab: 'boif' }"
-        queryParamsHandling="merge"
-      >
-        <!-- <span nz-icon nzType="form"></span> -->
-        BOI Filings
-      </a>
-
-      <ng-template nz-tab>
-        <div class="p-h-30 p-v-25">
-          <app-boif-table></app-boif-table>
-        </div>
-      </ng-template>
-    </nz-tab>
-
-    <nz-tab>
-      <a
-        *nzTabLink
-        nz-tab-link
-        [routerLink]="['.']"
-        [queryParams]="{ tab: 'boif-alerts' }"
-        queryParamsHandling="merge"
-      >
-        <!-- <span nz-icon nzType="form"></span> -->
-        BOIF Alerts
-      </a>
-
-      <ng-template nz-tab>
-        <div class="p-h-30 p-v-25">
-          <app-boif-alerts></app-boif-alerts>
-        </div>
-      </ng-template>
-    </nz-tab>
-
-    <nz-tab>
-      <a
-        *nzTabLink
-        nz-tab-link
-        [routerLink]="['.']"
-        [queryParams]="{ tab: 'billing' }"
-        queryParamsHandling="merge"
-      >
-        <!-- <span nz-icon nzType="form"></span> -->
-        Billing
-      </a>
-
-      <ng-template nz-tab>
-        <div class="p-h-30 p-v-25">
-          <app-billing></app-billing>
+          <app-add-ons></app-add-ons>
         </div>
       </ng-template>
     </nz-tab>

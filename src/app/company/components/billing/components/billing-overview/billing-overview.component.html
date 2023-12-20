@@ -1,0 +1,33 @@
+<div class="">
+  <h2 class="font-weight-normal">Billing Overview</h2>
+</div>
+<div class="container" style="padding-top: 40px">
+  <nz-table #basicTable [nzData]="data">
+    <thead>
+      <tr>
+        <th nzAlign="center">Utility</th>
+        <th nzAlign="center">Available</th>
+        <th nzAlign="center">Purchased</th>
+        <th nzAlign="center">Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let data of basicTable.data">
+        <td nzAlign="center">{{ data.fieldName }}</td>
+        <td nzAlign="center">{{ data.available }}</td>
+        <td nzAlign="center">{{ data.purchased }}</td>
+
+        <td nzAlign="center">
+          <a>
+            <span
+              nz-icon
+              nzType="plus-circle"
+              [nzTheme]="'twotone'"
+              [nzTwotoneColor]="'blue'"
+            ></span>
+          </a>
+        </td>
+      </tr>
+    </tbody>
+  </nz-table>
+</div>

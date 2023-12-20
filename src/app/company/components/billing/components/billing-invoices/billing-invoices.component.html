@@ -1,0 +1,37 @@
+<div class="">
+  <h2 class="font-weight-normal">Billing Invoices</h2>
+</div>
+<div class="container" style="padding-top: 40px">
+  <nz-table #basicTable [nzData]="data">
+    <thead>
+      <tr>
+        <th nzAlign="center">Date of Issuance</th>
+        <th nzAlign="center">Payment</th>
+        <th nzAlign="center">Description</th>
+        <th nzAlign="center">Price</th>
+        <th nzAlign="center">Status</th>
+        <th nzAlign="center">Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let data of basicTable.data">
+        <td nzAlign="center">{{ data.issuedDate }}</td>
+        <td nzAlign="center">{{ data.payment }}</td>
+        <td nzAlign="center">{{ data.description }}</td>
+        <td nzAlign="center">{{ data.price }}</td>
+        <td nzAlign="center">{{ data.status }}</td>
+
+        <td nzAlign="center">
+          <a>
+            <span
+              nz-icon
+              nzType="download"
+              [nzTheme]="'twotone'"
+              [nzTwotoneColor]="'blue'"
+            ></span>
+          </a>
+        </td>
+      </tr>
+    </tbody>
+  </nz-table>
+</div>
