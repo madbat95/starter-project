@@ -10,15 +10,14 @@ export const ROUTES: SideNavInterface[] = [
     submenu: [],
   },
 
-  // {
-  //   path: '/admin/report',
-  //   title: 'Report',
-  //   iconType: 'nzIcon',
-  //   iconTheme: 'outline',
-  //   icon: 'diff',
-  //   submenu: [],
-  // },
-
+  {
+    path: 'notifications',
+    title: 'Notifications',
+    iconType: 'nzIcon',
+    iconTheme: 'outline',
+    icon: 'bell',
+    submenu: [],
+  },
   {
     path: 'setting',
     title: 'Personal Settings',
@@ -52,24 +51,6 @@ export const ROUTES: SideNavInterface[] = [
       },
     ],
   },
-
-  // {
-  //   path: 'company',
-  //   title: 'Company',
-  //   iconType: 'nzIcon',
-  //   icon: 'shop',
-  //   iconTheme: '',
-  //   submenu: [
-  //     {
-  //       path: 'company/companies',
-  //       title: 'Companies',
-  //       iconType: 'nzIcon',
-  //       icon: 'shop',
-  //       iconTheme: 'outline',
-  //       submenu: [],
-  //     },
-  //   ],
-  // },
 
   {
     path: 'company',

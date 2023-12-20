@@ -17,19 +17,6 @@ const appRoutes: Routes = [
     canActivate: [AppGuard],
   },
 
-  // {
-  //   path: '',
-  //   loadChildren: () =>
-  //     import('./front/front.module').then((m) => m.FrontModule),
-  //   canActivate: [AuthGuard],
-  // },
-
-  // {
-  //   path: 'seo',
-  //   loadChildren: () =>
-  //     import('./seo-editor/seo.module').then((m) => m.SeoModule),
-  //   // canActivate: [AuthGuard],
-  // },
   {
     path: 'edit-profile',
     component: EditProfileComponent,

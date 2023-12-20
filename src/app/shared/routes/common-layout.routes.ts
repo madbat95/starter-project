@@ -7,20 +7,19 @@ export const CommonLayout_ROUTES: Routes = [
     loadChildren: () =>
       import('../../dashboard/dashboard.module').then((m) => m.DashboardModule),
   },
-  // {
-  //   path: 'seo',
-  //   loadChildren: () =>
-  //     import('../../seo-editor/seo.module').then((m) => m.SeoModule),
-  // },
-  // {
-  //   path: 'report',
-  //   loadChildren: () =>
-  //     import('../../report/report.module').then((m) => m.ReportModule),
-  // },
+
   {
     path: 'setting',
     loadChildren: () =>
       import('../../setting/setting.module').then((m) => m.SettingModule),
+  },
+
+  {
+    path: 'notifications',
+    loadChildren: () =>
+      import('../../notifications/notifications.module').then(
+        (m) => m.NotificationsModule
+      ),
   },
 
   {
