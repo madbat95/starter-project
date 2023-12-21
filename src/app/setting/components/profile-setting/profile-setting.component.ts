@@ -31,10 +31,12 @@ export class ProfileSettingComponent {
     private authService: AuthService
   ) {
     this.profileForm = this.fb.group({
-      first_name: new FormControl(''),
-      last_name: new FormControl(''),
+      first_name: new FormControl('', [Validators.required]),
+      last_name: new FormControl('', [Validators.required]),
       username: new FormControl('', [Validators.required]),
       email: new FormControl({ value: '', disabled: true }),
+      fincen_id: new FormControl('', [Validators.required]),
+      suffix: new FormControl('', [Validators.required]),
     });
   }
 
@@ -47,6 +49,8 @@ export class ProfileSettingComponent {
           first_name: this.user.first_name,
           last_name: this.user.last_name,
           email: this.user.email,
+          fincen_id: this.user.fincen_id,
+          suffix: this.user.suffix,
         });
       },
       error: (error: any) => {
@@ -68,6 +72,8 @@ export class ProfileSettingComponent {
         username: this.profileForm.value.username,
         first_name: this.profileForm.value.first_name,
         last_name: this.profileForm.value.last_name,
+        suffix: this.profileForm.value.suffix,
+        email: this.profileForm.value.email,
       };
 
       this.authService.updateUser(updatedUser).subscribe({
