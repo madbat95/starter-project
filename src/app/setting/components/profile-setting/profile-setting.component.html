@@ -67,6 +67,7 @@
                 required="true"
                 nz-input
                 placeholder="First Name"
+                formControlName="first_name"
               />
             </nz-form-control>
           </nz-form-item>
@@ -100,6 +101,7 @@
                 required="true"
                 nz-input
                 placeholder="Last Name"
+                formControlName="last_name"
               />
             </nz-form-control>
           </nz-form-item>
@@ -110,7 +112,14 @@
               Email
             </nz-form-label>
             <nz-form-control [nzSpan]="24">
-              <input nzSize="large" nz-input nzPlaceHolder="Email" />
+              <input
+                nzSize="large"
+                style="width: 100%"
+                required="true"
+                nz-input
+                placeholder="Email"
+                formControlName="email"
+              />
             </nz-form-control>
           </nz-form-item>
         </div>
@@ -129,6 +138,7 @@
                 required="true"
                 nz-input
                 placeholder="Suffix"
+                formControlName="suffix"
               />
             </nz-form-control>
           </nz-form-item>
@@ -139,13 +149,20 @@
               FINCEN ID
             </nz-form-label>
             <nz-form-control [nzSpan]="24">
-              <input nzSize="large" nz-input />
+              <input
+                nzSize="large"
+                style="width: 100%"
+                required="true"
+                nz-input
+                placeholder="Suffix"
+                formControlName="fincen_id"
+              />
             </nz-form-control>
           </nz-form-item>
         </div>
       </div>
 
-      <!-- <div nz-row nzJustify="center">
+      <div nz-row nzJustify="center">
         <div nz-col>
           <button
             nz-button
@@ -158,10 +175,10 @@
             Update
           </button>
         </div>
-      </div> -->
+      </div>
     </nz-card>
 
-    <nz-card nz-col nzSpan="24" nzTitle="Personal Contact">
+    <!-- <nz-card nz-col nzSpan="24" nzTitle="Personal Contact">
       <div nz-row nzJustify="center" nzAlign="middle">
         <div nz-col [nzXs]="24" [nzSm]="24" [nzMd]="12">
           <nz-alert
@@ -250,23 +267,10 @@
         </div>
       </div>
 
-      <!-- <div nz-row nzJustify="center">
-        <div nz-col>
-          <button
-            nz-button
-            nzType="primary"
-            style="width: 100px"
-            (click)="updateProfile()"
-            [disabled]="!profileForm.valid || loading"
-            [nzLoading]="loading"
-          >
-            Update
-          </button>
-        </div>
-      </div> -->
-    </nz-card>
 
-    <nz-card nz-col nzSpan="24" nzTitle="Business Contact">
+    </nz-card> -->
+
+    <!-- <nz-card nz-col nzSpan="24" nzTitle="Business Contact">
       <div nz-row nzJustify="center" nzAlign="middle">
         <div nz-col [nzXs]="24" [nzSm]="24" [nzMd]="12">
           <nz-alert
@@ -360,108 +364,13 @@
             nzType="primary"
             style="width: 100px"
             (click)="updateProfile()"
-            [disabled]="!profileForm.valid || loading"
+            [disabled]="!profileForm.valid"
             [nzLoading]="loading"
           >
             Update
           </button>
         </div>
       </div>
-    </nz-card>
+    </nz-card> -->
   </form>
-
-  <!-- <nz-card nzTitle="Change Password">
-    <div style="color: red; font-size: 12px">
-      *New Password must be alphanumeric and 8 characters long.
-    </div>
-    <form nz-form [formGroup]="changePWForm">
-      <div class="row">
-        <div class="col-md-3">
-          <nz-form-item>
-            <nz-form-label nzFor="oldPassword">Old Password</nz-form-label>
-            <nz-form-control nzErrorTip="Please input your old password!">
-              <nz-input-group [nzSuffix]="suffixTemplate">
-                <input
-                  [type]="currentPasswordVisible ? 'text' : 'password'"
-                  nz-input
-                  placeholder="Old Password"
-                  formControlName="current_password"
-                />
-              </nz-input-group>
-            </nz-form-control>
-          </nz-form-item>
-        </div>
-        <div class="col-md-3">
-          <nz-form-item>
-            <nz-form-label nzFor="newPassword">New Password</nz-form-label>
-            <nz-form-control nzErrorTip="Please input your New Password!">
-              <nz-input-group [nzSuffix]="newSuffixTemplate">
-                <input
-                  [type]="newPasswordVisible ? 'text' : 'password'"
-                  nz-input
-                  placeholder="New Password"
-                  formControlName="new_password"
-                />
-              </nz-input-group>
-            </nz-form-control>
-          </nz-form-item>
-        </div>
-        <div class="col-md-3">
-          <nz-form-item>
-            <nz-form-label nzFor="confirmPassword">Confirm</nz-form-label>
-            <nz-form-control nzErrorTip="Please confirm your New Password!">
-              <nz-input-group [nzSuffix]="reNewSuffixTemplate">
-                <input
-                  [type]="reNewPasswordVisible ? 'text' : 'password'"
-                  nz-input
-                  placeholder="New Password"
-                  formControlName="re_new_password"
-                />
-              </nz-input-group>
-            </nz-form-control>
-          </nz-form-item>
-        </div>
-        <div class="col-md-3">
-          <nz-form-item>
-            <nz-form-control>
-              <button
-                nz-button
-                nzType="primary"
-                (click)="submitchangePassword()"
-                [disabled]="!changePWForm.valid || passwordLoading"
-                [nzLoading]="passwordLoading"
-              >
-                Change
-              </button>
-            </nz-form-control>
-          </nz-form-item>
-        </div>
-      </div>
-    </form>
-  </nz-card> -->
 </div>
-
-<!-- <ng-template #suffixTemplate>
-  <span
-    style="cursor: pointer"
-    nz-icon
-    [nzType]="currentPasswordVisible ? 'eye-invisible' : 'eye'"
-    (click)="currentPasswordVisible = !currentPasswordVisible"
-  ></span>
-</ng-template>
-<ng-template #newSuffixTemplate>
-  <span
-    style="cursor: pointer"
-    nz-icon
-    [nzType]="newPasswordVisible ? 'eye-invisible' : 'eye'"
-    (click)="newPasswordVisible = !newPasswordVisible"
-  ></span>
-</ng-template>
-<ng-template #reNewSuffixTemplate>
-  <span
-    style="cursor: pointer"
-    nz-icon
-    [nzType]="reNewPasswordVisible ? 'eye-invisible' : 'eye'"
-    (click)="reNewPasswordVisible = !reNewPasswordVisible"
-  ></span>
-</ng-template> -->

@@ -6,6 +6,8 @@ export interface User {
   email: string;
   password?: string;
   token?: string;
+  fincen_id: string;
+  suffix: string;
   // phone_number: string;
   // address: string;
   // state: string;
