@@ -41,7 +41,10 @@ import { BillingInvoicesComponent } from './components/billing/components/billin
 import { BillingInformationComponent } from './components/billing/components/billing-information/billing-information.component';
 import { PaymentMethodsComponent } from './components/billing/components/payment-methods/payment-methods.component';
 import { AddOnsComponent } from './components/billing/components/add-ons/add-ons.component';
-
+import { AddCompanyComponent } from './components/company-table/components/add-company/add-company.component';
+import { NzPopconfirmModule } from 'ng-zorro-antd/popconfirm';
+import { AddMemberComponent } from './components/members/components/add-member/add-member.component';
+import { EditMemberRolesComponent } from './components/members/components/edit-member-roles/edit-member-roles.component';
 const antdModule = [
   NzCardModule,
   NzSkeletonModule,
@@ -69,6 +72,7 @@ const antdModule = [
   NzModalModule,
   NzEmptyModule,
   NzImageModule,
+  NzPopconfirmModule,
 ];
 @NgModule({
   declarations: [
@@ -85,6 +89,9 @@ const antdModule = [
     BillingInformationComponent,
     PaymentMethodsComponent,
     AddOnsComponent,
+    AddCompanyComponent,
+    AddMemberComponent,
+    EditMemberRolesComponent,
   ],
   imports: [
     CommonModule,

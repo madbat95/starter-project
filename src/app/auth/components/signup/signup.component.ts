@@ -45,10 +45,11 @@ export class SignupComponent {
       this.authService.signup(this.signupForm.value).subscribe({
         next: (res) => {
           this.loading = false;
-          this.router.navigate([
-            '/auth/waiting',
-            { email: this.signupForm.value.email },
-          ]);
+          // this.router.navigate([
+          //   '/auth/waiting',
+          //   { email: this.signupForm.value.email },
+          // ]
+          this.router.navigate(['/auth/login']);
         },
         error: (error) => {
           this.loading = false;

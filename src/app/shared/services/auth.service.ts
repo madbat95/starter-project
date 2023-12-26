@@ -88,15 +88,20 @@ export class AuthService {
     return this.http.get('auth/users/me/');
   }
 
-  getLoggedInUserProfile(): Observable<any> {
-    return this.getLoggedInUser();
+  getLoggedInUserProfile(id: any): Observable<any> {
+    return this.http.get(`user/${id}/profile/`);
   }
 
-  updateUser(data: any) {
-    return this.http.patch('auth/users/me/', data);
+  updateLoggedInUserProfile(
+    id: any,
+    profileId: any,
+    requestBody: any
+  ): Observable<any> {
+    return this.http.get(`user/${id}/profile/${profileId}/`, requestBody);
   }
-  updateLoggedInUserProfile(data: any): Observable<any> {
-    return this.http.post('profile/me/', data);
+
+  updateUser(id: any, data: any) {
+    return this.http.patch(`user/${id}/`, data);
   }
 
   getRefreshToken(): string {

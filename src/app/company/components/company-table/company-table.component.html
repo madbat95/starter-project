@@ -3,12 +3,17 @@
 </div>
 <div class="container" style="padding-top: 40px">
   <div nz-row nzJustify="end" class="mb-2">
-    <button nz-button nzType="primary" nzSize="small" (click)="addCompany()">
+    <button
+      nz-button
+      nzType="primary"
+      nzSize="small"
+      (click)="createOrganization()"
+    >
       Add a company
     </button>
   </div>
 
-  <nz-table #basicTable [nzData]="data">
+  <nz-table #basicTable [nzData]="organizations" [nzLoading]="loading">
     <thead>
       <tr>
         <th nzAlign="center">Company Name</th>
@@ -21,27 +26,49 @@
     </thead>
     <tbody>
       <tr *ngFor="let data of basicTable.data">
-        <td nzAlign="center">{{ data.companyName }}</td>
-        <td nzAlign="center">{{ data.companyType }}</td>
-        <td nzAlign="center">{{ data.state }}</td>
-        <td nzAlign="center">{{ data.role }}</td>
-        <td nzAlign="center">{{ data.alert }}</td>
         <td nzAlign="center">
-          <a>
+          <a (click)="viewCompany(data.id)">{{ data.name }}</a>
+        </td>
+        <td nzAlign="center">
+          {{
+            data.organization_info?.type_display
+              ? data.organization_info?.type_display
+              : "-"
+          }}
+        </td>
+        <td nzAlign="center">
+          {{
+            data.organization_info?.organization_addresses[0]?.state
+              ? data.organization_info?.organization_addresses[0]?.state
+              : "-"
+          }}
+        </td>
+        <td nzAlign="center">{{ "-" }}</td>
+        <td nzAlign="center">{{ "-" }}</td>
+        <td nzAlign="center">
+          <a (click)="editOrganization(data.id)">
             <span
               nz-icon
               nzType="edit"
               [nzTheme]="'twotone'"
-              [nzTwotoneColor]="'yellow'"
+              [nzTwotoneColor]="'#ffa900'"
             ></span>
           </a>
           <nz-divider nzType="vertical"></nz-divider>
-          <span
-            nz-icon
-            nzType="delete"
-            [nzTheme]="'twotone'"
-            [nzTwotoneColor]="'red'"
-          ></span>
+          <a
+            nz-popconfirm
+            nzPopconfirmTitle="Are you sure delete this company?"
+            (nzOnConfirm)="deleteOrganization(data.id)"
+            nzPopconfirmPlacement="top"
+            [nzLoading]="isLoading"
+          >
+            <span
+              nz-icon
+              nzType="delete"
+              nzTheme="twotone"
+              [nzTwotoneColor]="'red'"
+            ></span>
+          </a>
         </td>
       </tr>
     </tbody>

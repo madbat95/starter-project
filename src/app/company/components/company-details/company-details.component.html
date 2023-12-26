@@ -5,7 +5,7 @@
         *nzTabLink
         nz-tab-link
         [routerLink]="['.']"
-        [queryParams]="{ tab: 'companyinfo' }"
+        [queryParams]="{ tab: 'companyinformation' }"
         queryParamsHandling="merge"
       >
         <!-- <span nz-icon nzType="form"></span> -->
@@ -14,7 +14,7 @@
 
       <ng-template nz-tab>
         <div class="p-h-30 p-v-25">
-          <app-company-info></app-company-info>
+          <app-company-info [companyId]="companyId"></app-company-info>
         </div>
       </ng-template>
     </nz-tab>
