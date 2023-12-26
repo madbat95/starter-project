@@ -88,9 +88,7 @@ export class CompanyTableComponent implements OnInit {
     });
 
     modal.afterClose.subscribe((res) => {
-      if (res) {
-        this.organizations.push(res);
-      }
+      this.getOrganizations();
     });
   }
 }

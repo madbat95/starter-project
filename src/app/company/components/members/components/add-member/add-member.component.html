@@ -13,15 +13,16 @@
             <nz-form-label nzRequired="true" [nzSpan]="24" nzFor="position">
               Role
             </nz-form-label>
-            <nz-form-control [nzSpan]="24">
-              <input
-                nzSize="large"
-                style="width: 100%"
-                required="true"
-                nz-input
-                formControlName="role"
-              />
-            </nz-form-control>
+            <nz-transfer
+              [nzDataSource]="roles"
+              [nzTitles]="['Source', 'Target']"
+              (nzChange)="change($event)"
+              [nzRender]="renderItemTemplate"
+            >
+              <ng-template #renderItemTemplate let-item>
+                {{ item.name }}
+              </ng-template>
+            </nz-transfer>
           </nz-form-item>
         </div>
         <div nz-col [nzXs]="24" [nzSm]="24" [nzMd]="24">

@@ -8,7 +8,7 @@
     </button>
   </div>
 
-  <nz-table #basicTable [nzData]="data">
+  <nz-table #basicTable [nzData]="members" [nzLoading]="loading">
     <thead>
       <tr>
         <th nzAlign="center">Member Name</th>
@@ -19,9 +19,11 @@
     </thead>
     <tbody>
       <tr *ngFor="let data of basicTable.data">
-        <td nzAlign="center">{{ data.memberName }}</td>
-        <td nzAlign="center">{{ data.beneficialOwner }}</td>
-        <td nzAlign="center">{{ data.roles }}</td>
+        <td nzAlign="center">
+          {{ data.firstname ?? "-" }} {{ data.lastname ?? "-" }}
+        </td>
+        <td nzAlign="center">{{ hasBeneficialOwnerGroup(data) }}</td>
+        <td nzAlign="center">{{ data.groups }}</td>
         <td nzAlign="center">
           <a (click)="editMember()">
             <span

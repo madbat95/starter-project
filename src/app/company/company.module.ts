@@ -19,7 +19,7 @@ import { NzSelectModule } from 'ng-zorro-antd/select';
 import { NzSwitchModule } from 'ng-zorro-antd/switch';
 import { NzUploadModule } from 'ng-zorro-antd/upload';
 import { NzToolTipModule } from 'ng-zorro-antd/tooltip';
-import { NzModalModule } from 'ng-zorro-antd/modal';
+import { NzModalModule, NzModalRef } from 'ng-zorro-antd/modal';
 import { NzMessageModule } from 'ng-zorro-antd/message';
 import { NzInputModule } from 'ng-zorro-antd/input';
 import { NzSpinModule } from 'ng-zorro-antd/spin';
@@ -27,7 +27,7 @@ import { NzEmptyModule } from 'ng-zorro-antd/empty';
 import { SharedModule } from '../shared/shared.module';
 import { NzImageModule } from 'ng-zorro-antd/image';
 import { CompanyInfoComponent } from './components/company-info/company-info.component';
-
+import { NzTransferModule } from 'ng-zorro-antd/transfer';
 import { CompanyTableComponent } from './components/company-table/company-table.component';
 import { CompanyRoutingModule } from './company-routing.module';
 import { CompanyDetailsComponent } from './components/company-details/company-details.component';
@@ -69,10 +69,10 @@ const antdModule = [
   NzInputModule,
   NzSpinModule,
   NzToolTipModule,
-  NzModalModule,
   NzEmptyModule,
   NzImageModule,
   NzPopconfirmModule,
+  NzTransferModule,
 ];
 @NgModule({
   declarations: [

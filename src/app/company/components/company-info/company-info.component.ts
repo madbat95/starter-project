@@ -26,7 +26,8 @@ export class CompanyInfoComponent {
     private organizationService: OrganizationService,
     private fb: FormBuilder,
     private nzMessageService: NzMessageService
-  ) {
+  ) // private modal: NzModalRef
+  {
     this.companyForm = this.fb.group({
       name: new FormControl('', [Validators.required]),
       ein: new FormControl('', [Validators.required]),
@@ -34,7 +35,7 @@ export class CompanyInfoComponent {
       // company_formation_year: new FormControl(''), //not a field yet
       dba_name: new FormControl('', [Validators.required]), //info
       type: new FormControl('', [Validators.required]), // info
-      is_foreign: new FormControl('no', [Validators.required]), //info
+      is_foreign: new FormControl(false, [Validators.required]), //info
       address_line1: new FormControl('', [Validators.required]), //address
       address_line2: new FormControl(''), //address
       address_line3: new FormControl(''), //address
@@ -184,6 +185,8 @@ export class CompanyInfoComponent {
     submitObservable
       .pipe(
         switchMap((orgResponse: any) => {
+          this.organization_id = orgResponse.id;
+          console.log('orgResponse', orgResponse);
           const organizationInfoData = {
             dba_name: this.companyForm.value.dba_name,
             type: this.companyForm.value.type,
@@ -251,6 +254,9 @@ export class CompanyInfoComponent {
           this.nzMessageService.success(
             'Company information submitted successfully'
           );
+          if (this.companyId) {
+            // this.modal.close();
+          }
         },
         (error) => {
           this.loading = false;

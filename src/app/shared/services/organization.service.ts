@@ -23,7 +23,7 @@ export class OrganizationService {
     return this.http.get(`organizations/${id}/`);
   }
   updateOrganizationInfo(id: any, infoId: any, requestBody: any) {
-    return this.http.patch(`organizations/${id}/info/${infoId}`, requestBody);
+    return this.http.patch(`organizations/${id}/info/${infoId}/`, requestBody);
   }
   updateOrganizationAddress(id: any, addressId: any, requestBody: any) {
     return this.http.patch(
