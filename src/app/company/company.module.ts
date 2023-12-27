@@ -19,7 +19,7 @@ import { NzSelectModule } from 'ng-zorro-antd/select';
 import { NzSwitchModule } from 'ng-zorro-antd/switch';
 import { NzUploadModule } from 'ng-zorro-antd/upload';
 import { NzToolTipModule } from 'ng-zorro-antd/tooltip';
-import { NzModalModule } from 'ng-zorro-antd/modal';
+import { NzModalModule, NzModalRef } from 'ng-zorro-antd/modal';
 import { NzMessageModule } from 'ng-zorro-antd/message';
 import { NzInputModule } from 'ng-zorro-antd/input';
 import { NzSpinModule } from 'ng-zorro-antd/spin';
@@ -27,7 +27,7 @@ import { NzEmptyModule } from 'ng-zorro-antd/empty';
 import { SharedModule } from '../shared/shared.module';
 import { NzImageModule } from 'ng-zorro-antd/image';
 import { CompanyInfoComponent } from './components/company-info/company-info.component';
-
+import { NzTransferModule } from 'ng-zorro-antd/transfer';
 import { CompanyTableComponent } from './components/company-table/company-table.component';
 import { CompanyRoutingModule } from './company-routing.module';
 import { CompanyDetailsComponent } from './components/company-details/company-details.component';
@@ -41,7 +41,10 @@ import { BillingInvoicesComponent } from './components/billing/components/billin
 import { BillingInformationComponent } from './components/billing/components/billing-information/billing-information.component';
 import { PaymentMethodsComponent } from './components/billing/components/payment-methods/payment-methods.component';
 import { AddOnsComponent } from './components/billing/components/add-ons/add-ons.component';
-
+import { AddCompanyComponent } from './components/company-table/components/add-company/add-company.component';
+import { NzPopconfirmModule } from 'ng-zorro-antd/popconfirm';
+import { AddMemberComponent } from './components/members/components/add-member/add-member.component';
+import { EditMemberRolesComponent } from './components/members/components/edit-member-roles/edit-member-roles.component';
 const antdModule = [
   NzCardModule,
   NzSkeletonModule,
@@ -66,9 +69,10 @@ const antdModule = [
   NzInputModule,
   NzSpinModule,
   NzToolTipModule,
-  NzModalModule,
   NzEmptyModule,
   NzImageModule,
+  NzPopconfirmModule,
+  NzTransferModule,
 ];
 @NgModule({
   declarations: [
@@ -85,6 +89,9 @@ const antdModule = [
     BillingInformationComponent,
     PaymentMethodsComponent,
     AddOnsComponent,
+    AddCompanyComponent,
+    AddMemberComponent,
+    EditMemberRolesComponent,
   ],
   imports: [
     CommonModule,

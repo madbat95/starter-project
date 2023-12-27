@@ -11,21 +11,25 @@
     [nzGutter]="[4, 4]"
   >
     <nz-card nz-col nzSpan="24" nzTitle="Company Details">
-      <nz-form-item>
-        <nz-form-label nzRequired="true" [nzSpan]="24" nzFor="position">
-          Company Name
-        </nz-form-label>
-        <nz-form-control [nzSpan]="24">
-          <input
-            nzSize="large"
-            style="width: 100%"
-            required="true"
-            nz-input
-            placeholder="Company Name"
-          />
-        </nz-form-control>
-      </nz-form-item>
       <div nz-row [nzGutter]="[16, 16]">
+        <div nz-col [nzXs]="24" [nzSm]="24" [nzMd]="12">
+          <nz-form-item>
+            <nz-form-label nzRequired="true" [nzSpan]="24" nzFor="position">
+              Company Name
+            </nz-form-label>
+            <nz-form-control [nzSpan]="24">
+              <input
+                nzSize="large"
+                style="width: 100%"
+                required="true"
+                nz-input
+                placeholder="Company Name"
+                formControlName="name"
+              />
+            </nz-form-control>
+          </nz-form-item>
+        </div>
+
         <div nz-col [nzXs]="24" [nzSm]="24" [nzMd]="12">
           <nz-form-item>
             <nz-form-label nzRequired="true" [nzSpan]="24" nzFor="position">
@@ -38,24 +42,7 @@
                 required="true"
                 nz-input
                 placeholder="Company EIN"
-              />
-            </nz-form-control>
-          </nz-form-item>
-        </div>
-        <div nz-col [nzXs]="24" [nzSm]="24" [nzMd]="12">
-          <nz-form-item>
-            <nz-form-label
-              nzRequired="true"
-              [nzSpan]="24"
-              nzFor="employment-type"
-            >
-              Company FinCEN ID
-            </nz-form-label>
-            <nz-form-control [nzSpan]="24">
-              <input
-                nzSize="large"
-                nz-input
-                nzPlaceHolder="Company FinCEN ID"
+                formControlName="ein"
               />
             </nz-form-control>
           </nz-form-item>
@@ -75,23 +62,11 @@
                 required="true"
                 nz-input
                 placeholder="Company Type"
+                formControlName="type"
               />
             </nz-form-control>
           </nz-form-item>
         </div>
-        <div nz-col [nzXs]="24" [nzSm]="24" [nzMd]="12">
-          <nz-form-item>
-            <nz-form-label nzRequired="true" [nzSpan]="24">
-              State
-            </nz-form-label>
-            <nz-form-control [nzSpan]="24">
-              <input nzSize="large" nz-input nzPlaceHolder="State" />
-            </nz-form-control>
-          </nz-form-item>
-        </div>
-      </div>
-
-      <div nz-row [nzGutter]="[16, 16]">
         <div nz-col [nzXs]="24" [nzSm]="24" [nzMd]="12">
           <nz-form-item>
             <nz-form-label nzRequired="true" [nzSpan]="24" nzFor="position">
@@ -108,13 +83,35 @@
             </nz-form-control>
           </nz-form-item>
         </div>
+      </div>
+
+      <div nz-row [nzGutter]="[16, 16]">
+        <div nz-col [nzXs]="24" [nzSm]="24" [nzMd]="12">
+          <nz-form-item>
+            <nz-form-label
+              nzRequired="true"
+              [nzSpan]="24"
+              nzFor="employment-type"
+            >
+              Company FinCEN ID
+            </nz-form-label>
+            <nz-form-control [nzSpan]="24">
+              <input
+                nzSize="large"
+                nz-input
+                nzPlaceHolder="Company FinCEN ID"
+                formControlName="fincen_id"
+              />
+            </nz-form-control>
+          </nz-form-item>
+        </div>
         <div nz-col [nzXs]="24" [nzSm]="24" [nzMd]="12">
           <nz-form-item>
             <nz-form-label nzRequired="true" [nzSpan]="24">
               DBA Name
             </nz-form-label>
             <nz-form-control [nzSpan]="24">
-              <input nzSize="large" nz-input />
+              <input nzSize="large" nz-input formControlName="dba_name" />
             </nz-form-control>
           </nz-form-item>
         </div>
@@ -137,21 +134,60 @@
     </nz-card>
 
     <nz-card nz-col nzSpan="24" nzTitle="Company Address">
-      <nz-form-item>
-        <nz-form-label nzRequired="true" [nzSpan]="24" nzFor="position">
-          Address
-        </nz-form-label>
-        <nz-form-control [nzSpan]="24">
-          <input
-            nzSize="large"
-            style="width: 100%"
-            required="true"
-            nz-input
-            placeholder="Address"
-          />
-        </nz-form-control>
-      </nz-form-item>
       <div nz-row [nzGutter]="[16, 16]">
+        <div nz-col [nzXs]="24" [nzSm]="24" [nzMd]="12">
+          <nz-form-item>
+            <nz-form-label nzRequired="true" [nzSpan]="24" nzFor="position">
+              Address1
+            </nz-form-label>
+            <nz-form-control [nzSpan]="24">
+              <input
+                nzSize="large"
+                style="width: 100%"
+                required="true"
+                nz-input
+                placeholder="Address1"
+                formControlName="address_line1"
+              />
+            </nz-form-control>
+          </nz-form-item>
+        </div>
+        <div nz-col [nzXs]="24" [nzSm]="24" [nzMd]="12">
+          <nz-form-item>
+            <nz-form-label nzRequired="true" [nzSpan]="24" nzFor="position">
+              Address2
+            </nz-form-label>
+            <nz-form-control [nzSpan]="24">
+              <input
+                nzSize="large"
+                required="true"
+                nz-input
+                placeholder="Address2"
+                formControlName="address_line2"
+              />
+            </nz-form-control>
+          </nz-form-item>
+        </div>
+      </div>
+
+      <div nz-row [nzGutter]="[16, 16]">
+        <div nz-col [nzXs]="24" [nzSm]="24" [nzMd]="12">
+          <nz-form-item>
+            <nz-form-label nzRequired="true" [nzSpan]="24" nzFor="position">
+              Address3
+            </nz-form-label>
+            <nz-form-control [nzSpan]="24">
+              <input
+                nzSize="large"
+                style="width: 100%"
+                required="true"
+                nz-input
+                placeholder="Address3"
+                formControlName="address_line3"
+              />
+            </nz-form-control>
+          </nz-form-item>
+        </div>
         <div nz-col [nzXs]="24" [nzSm]="24" [nzMd]="12">
           <nz-form-item>
             <nz-form-label nzRequired="true" [nzSpan]="24" nzFor="position">
@@ -164,10 +200,14 @@
                 required="true"
                 nz-input
                 placeholder="City"
+                formControlName="city"
               />
             </nz-form-control>
           </nz-form-item>
         </div>
+      </div>
+
+      <div nz-row [nzGutter]="[16, 16]">
         <div nz-col [nzXs]="24" [nzSm]="24" [nzMd]="12">
           <nz-form-item>
             <nz-form-label
@@ -178,13 +218,15 @@
               State/Province
             </nz-form-label>
             <nz-form-control [nzSpan]="24">
-              <input nzSize="large" nz-input nzPlaceHolder="State/Province" />
+              <input
+                nzSize="large"
+                nz-input
+                nzPlaceHolder="State/Province"
+                formControlName="state"
+              />
             </nz-form-control>
           </nz-form-item>
         </div>
-      </div>
-
-      <div nz-row [nzGutter]="[16, 16]">
         <div nz-col [nzXs]="24" [nzSm]="24" [nzMd]="12">
           <nz-form-item>
             <nz-form-label nzRequired="true" [nzSpan]="24" nzFor="position">
@@ -197,17 +239,26 @@
                 required="true"
                 nz-input
                 placeholder="Postal/Zip Code"
+                formControlName="zip_code"
               />
             </nz-form-control>
           </nz-form-item>
         </div>
+      </div>
+
+      <div nz-row [nzGutter]="[16, 16]">
         <div nz-col [nzXs]="24" [nzSm]="24" [nzMd]="12">
           <nz-form-item>
             <nz-form-label nzRequired="true" [nzSpan]="24">
               Country
             </nz-form-label>
             <nz-form-control [nzSpan]="24">
-              <input nzSize="large" nz-input nzPlaceHolder="Country" />
+              <input
+                nzSize="large"
+                nz-input
+                nzPlaceHolder="Country"
+                formControlName="country"
+              />
             </nz-form-control>
           </nz-form-item>
         </div>
@@ -220,14 +271,14 @@
           Foreign Company
         </nz-form-label>
         <nz-form-control [nzSpan]="24">
-          <nz-radio-group formControlName="foreign">
+          <nz-radio-group formControlName="is_foreign">
             <label
               nz-col
               [nzXs]="24"
               [nzSm]="24"
               [nzMd]="12"
               nz-radio
-              nzValue="no"
+              [nzValue]="false"
               style="text-align: -webkit-center"
             >
               No
@@ -238,7 +289,7 @@
               [nzSm]="24"
               [nzMd]="12"
               nz-radio
-              nzValue="yes"
+              [nzValue]="true"
               style="text-align: -webkit-center"
             >
               Yes
@@ -249,7 +300,7 @@
 
       <div nz-row [nzGutter]="[16, 16]">
         <div nz-col [nzXs]="24" [nzSm]="24" [nzMd]="12">
-          <nz-form-item *ngIf="companyForm.get('foreign').value === 'yes'">
+          <nz-form-item *ngIf="companyForm.get('is_foreign').value === true">
             <nz-form-label nzRequired="true" [nzSpan]="24" nzFor="position">
               Foreign Company Jurisdiction
             </nz-form-label>
@@ -260,12 +311,13 @@
                 required="true"
                 nz-input
                 placeholder="Foreign Company Jurisdiction"
+                formControlName="origin_country"
               />
             </nz-form-control>
           </nz-form-item>
         </div>
         <div nz-col [nzXs]="24" [nzSm]="24" [nzMd]="12">
-          <nz-form-item *ngIf="companyForm.get('foreign').value === 'yes'">
+          <nz-form-item *ngIf="companyForm.get('is_foreign').value === true">
             <nz-form-label nzRequired="true" [nzSpan]="24">
               US State (First Registered A)
             </nz-form-label>
@@ -274,6 +326,7 @@
                 nzSize="large"
                 nz-input
                 nzPlaceHolder="US State (First Registered A)"
+                formControlName="registered_at"
               />
             </nz-form-control>
           </nz-form-item>
@@ -310,7 +363,7 @@
             nz-button
             nzType="primary"
             style="width: 100px"
-            (click)="updateCompany()"
+            (click)="submitCompany()"
             [disabled]="!companyForm.valid || loading"
             [nzLoading]="loading"
           >

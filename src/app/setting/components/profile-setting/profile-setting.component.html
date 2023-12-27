@@ -161,7 +161,146 @@
           </nz-form-item>
         </div>
       </div>
+    </nz-card>
 
+    <nz-card nz-col nzSpan="24" nzTitle="Personal Contact">
+      <div nz-row nzJustify="center" nzAlign="middle">
+        <div nz-col [nzXs]="24" [nzSm]="24" [nzMd]="12">
+          <nz-alert
+            nzType="info"
+            nzMessage="Provide your personal, physical mailing address. For federal
+        requirements,this should be an actual location where you receive
+        mail, nota Post Office box."
+          >
+          </nz-alert>
+        </div>
+      </div>
+      <div nz-row [nzGutter]="[16, 16]">
+        <div nz-col [nzXs]="24" [nzSm]="24" [nzMd]="12">
+          <nz-form-item>
+            <nz-form-label nzRequired="true" [nzSpan]="24" nzFor="position">
+              Address1
+            </nz-form-label>
+            <nz-form-control [nzSpan]="24">
+              <input
+                nzSize="large"
+                style="width: 100%"
+                required="true"
+                nz-input
+                placeholder="Address"
+                formControlName="address_line1"
+              />
+            </nz-form-control>
+          </nz-form-item>
+        </div>
+        <div nz-col [nzXs]="24" [nzSm]="24" [nzMd]="12">
+          <nz-form-item>
+            <nz-form-label nzRequired="true" [nzSpan]="24" nzFor="position">
+              Address2
+            </nz-form-label>
+            <nz-form-control [nzSpan]="24">
+              <input
+                nzSize="large"
+                style="width: 100%"
+                required="true"
+                nz-input
+                placeholder="Address"
+                formControlName="address_line2"
+              />
+            </nz-form-control>
+          </nz-form-item>
+        </div>
+      </div>
+
+      <div nz-row [nzGutter]="[16, 16]">
+        <div nz-col [nzXs]="24" [nzSm]="24" [nzMd]="12">
+          <nz-form-item>
+            <nz-form-label nzRequired="true" [nzSpan]="24" nzFor="position">
+              Address3
+            </nz-form-label>
+            <nz-form-control [nzSpan]="24">
+              <input
+                nzSize="large"
+                style="width: 100%"
+                required="true"
+                nz-input
+                placeholder="Address"
+                formControlName="address_line3"
+              />
+            </nz-form-control>
+          </nz-form-item>
+        </div>
+        <div nz-col [nzXs]="24" [nzSm]="24" [nzMd]="12">
+          <nz-form-item>
+            <nz-form-label nzRequired="true" [nzSpan]="24" nzFor="position">
+              City
+            </nz-form-label>
+            <nz-form-control [nzSpan]="24">
+              <input
+                nzSize="large"
+                style="width: 100%"
+                required="true"
+                nz-input
+                placeholder="City"
+                formControlName="city"
+              />
+            </nz-form-control>
+          </nz-form-item>
+        </div>
+      </div>
+
+      <div nz-row [nzGutter]="[16, 16]">
+        <div nz-col [nzXs]="24" [nzSm]="24" [nzMd]="12">
+          <nz-form-item>
+            <nz-form-label nzRequired="true" [nzSpan]="24">
+              Country
+            </nz-form-label>
+            <nz-form-control [nzSpan]="24">
+              <input
+                nzSize="large"
+                nz-input
+                nzPlaceHolder="Country"
+                formControlName="country"
+              />
+            </nz-form-control>
+          </nz-form-item>
+        </div>
+        <div nz-col [nzXs]="24" [nzSm]="24" [nzMd]="12">
+          <nz-form-item>
+            <nz-form-label nzRequired="true" [nzSpan]="24" nzFor="position">
+              State/Province
+            </nz-form-label>
+            <nz-form-control [nzSpan]="24">
+              <input
+                nzSize="large"
+                style="width: 100%"
+                required="true"
+                nz-input
+                placeholder="State/Province"
+                formControlName="state"
+              />
+            </nz-form-control>
+          </nz-form-item>
+        </div>
+      </div>
+
+      <div nz-row [nzGutter]="[16, 16]">
+        <div nz-col [nzXs]="24" [nzSm]="24" [nzMd]="12">
+          <nz-form-item>
+            <nz-form-label nzRequired="true" [nzSpan]="24">
+              Postal/ZIP Code
+            </nz-form-label>
+            <nz-form-control [nzSpan]="24">
+              <input
+                nzSize="large"
+                nz-input
+                nzPlaceHolder="Postal/ZIP Code"
+                formControlName="zip_code"
+              />
+            </nz-form-control>
+          </nz-form-item>
+        </div>
+      </div>
       <div nz-row nzJustify="center">
         <div nz-col>
           <button
@@ -178,98 +317,6 @@
       </div>
     </nz-card>
 
-    <!-- <nz-card nz-col nzSpan="24" nzTitle="Personal Contact">
-      <div nz-row nzJustify="center" nzAlign="middle">
-        <div nz-col [nzXs]="24" [nzSm]="24" [nzMd]="12">
-          <nz-alert
-            nzType="info"
-            nzMessage="Provide your personal, physical mailing address. For federal
-        requirements,this should be an actual location where you receive
-        mail, nota Post Office box."
-          >
-          </nz-alert>
-        </div>
-      </div>
-      <div nz-row [nzGutter]="[16, 16]">
-        <div nz-col [nzXs]="24" [nzSm]="24" [nzMd]="24">
-          <nz-form-item>
-            <nz-form-label nzRequired="true" [nzSpan]="24" nzFor="position">
-              Address
-            </nz-form-label>
-            <nz-form-control [nzSpan]="24">
-              <input
-                nzSize="large"
-                style="width: 100%"
-                required="true"
-                nz-input
-                placeholder="Address"
-              />
-            </nz-form-control>
-          </nz-form-item>
-        </div>
-      </div>
-
-      <div nz-row [nzGutter]="[16, 16]">
-        <div nz-col [nzXs]="24" [nzSm]="24" [nzMd]="12">
-          <nz-form-item>
-            <nz-form-label nzRequired="true" [nzSpan]="24" nzFor="position">
-              City
-            </nz-form-label>
-            <nz-form-control [nzSpan]="24">
-              <input
-                nzSize="large"
-                style="width: 100%"
-                required="true"
-                nz-input
-                placeholder="City"
-              />
-            </nz-form-control>
-          </nz-form-item>
-        </div>
-        <div nz-col [nzXs]="24" [nzSm]="24" [nzMd]="12">
-          <nz-form-item>
-            <nz-form-label nzRequired="true" [nzSpan]="24">
-              Country
-            </nz-form-label>
-            <nz-form-control [nzSpan]="24">
-              <input nzSize="large" nz-input nzPlaceHolder="Country" />
-            </nz-form-control>
-          </nz-form-item>
-        </div>
-      </div>
-
-      <div nz-row [nzGutter]="[16, 16]">
-        <div nz-col [nzXs]="24" [nzSm]="24" [nzMd]="12">
-          <nz-form-item>
-            <nz-form-label nzRequired="true" [nzSpan]="24" nzFor="position">
-              State/Province
-            </nz-form-label>
-            <nz-form-control [nzSpan]="24">
-              <input
-                nzSize="large"
-                style="width: 100%"
-                required="true"
-                nz-input
-                placeholder="State/Province"
-              />
-            </nz-form-control>
-          </nz-form-item>
-        </div>
-        <div nz-col [nzXs]="24" [nzSm]="24" [nzMd]="12">
-          <nz-form-item>
-            <nz-form-label nzRequired="true" [nzSpan]="24">
-              Postal/ZIP Code
-            </nz-form-label>
-            <nz-form-control [nzSpan]="24">
-              <input nzSize="large" nz-input nzPlaceHolder="Postal/ZIP Code" />
-            </nz-form-control>
-          </nz-form-item>
-        </div>
-      </div>
-
-
-    </nz-card> -->
-
     <!-- <nz-card nz-col nzSpan="24" nzTitle="Business Contact">
       <div nz-row nzJustify="center" nzAlign="middle">
         <div nz-col [nzXs]="24" [nzSm]="24" [nzMd]="12">
@@ -281,10 +328,10 @@
         </div>
       </div>
       <div nz-row [nzGutter]="[16, 16]">
-        <div nz-col [nzXs]="24" [nzSm]="24" [nzMd]="24">
+        <div nz-col [nzXs]="24" [nzSm]="24" [nzMd]="12">
           <nz-form-item>
             <nz-form-label nzRequired="true" [nzSpan]="24" nzFor="position">
-              Address
+              Address1
             </nz-form-label>
             <nz-form-control [nzSpan]="24">
               <input
@@ -293,6 +340,24 @@
                 required="true"
                 nz-input
                 placeholder="Address"
+                formControlName="personal_address_1"
+              />
+            </nz-form-control>
+          </nz-form-item>
+        </div>
+        <div nz-col [nzXs]="24" [nzSm]="24" [nzMd]="12">
+          <nz-form-item>
+            <nz-form-label nzRequired="true" [nzSpan]="24" nzFor="position">
+              Address2
+            </nz-form-label>
+            <nz-form-control [nzSpan]="24">
+              <input
+                nzSize="large"
+                style="width: 100%"
+                required="true"
+                nz-input
+                placeholder="Address"
+                formControlName="personal_address_2"
               />
             </nz-form-control>
           </nz-form-item>
@@ -300,6 +365,23 @@
       </div>
 
       <div nz-row [nzGutter]="[16, 16]">
+        <div nz-col [nzXs]="24" [nzSm]="24" [nzMd]="12">
+          <nz-form-item>
+            <nz-form-label nzRequired="true" [nzSpan]="24" nzFor="position">
+              Address3
+            </nz-form-label>
+            <nz-form-control [nzSpan]="24">
+              <input
+                nzSize="large"
+                style="width: 100%"
+                required="true"
+                nz-input
+                placeholder="Address"
+                formControlName="personal_address_3"
+              />
+            </nz-form-control>
+          </nz-form-item>
+        </div>
         <div nz-col [nzXs]="24" [nzSm]="24" [nzMd]="12">
           <nz-form-item>
             <nz-form-label nzRequired="true" [nzSpan]="24" nzFor="position">
@@ -312,23 +394,29 @@
                 required="true"
                 nz-input
                 placeholder="City"
+                formControlName="city"
               />
-            </nz-form-control>
-          </nz-form-item>
-        </div>
-        <div nz-col [nzXs]="24" [nzSm]="24" [nzMd]="12">
-          <nz-form-item>
-            <nz-form-label nzRequired="true" [nzSpan]="24">
-              Country
-            </nz-form-label>
-            <nz-form-control [nzSpan]="24">
-              <input nzSize="large" nz-input nzPlaceHolder="Country" />
             </nz-form-control>
           </nz-form-item>
         </div>
       </div>
 
       <div nz-row [nzGutter]="[16, 16]">
+        <div nz-col [nzXs]="24" [nzSm]="24" [nzMd]="12">
+          <nz-form-item>
+            <nz-form-label nzRequired="true" [nzSpan]="24">
+              Country
+            </nz-form-label>
+            <nz-form-control [nzSpan]="24">
+              <input
+                nzSize="large"
+                nz-input
+                nzPlaceHolder="Country"
+                formControlName="country"
+              />
+            </nz-form-control>
+          </nz-form-item>
+        </div>
         <div nz-col [nzXs]="24" [nzSm]="24" [nzMd]="12">
           <nz-form-item>
             <nz-form-label nzRequired="true" [nzSpan]="24" nzFor="position">
@@ -341,17 +429,22 @@
                 required="true"
                 nz-input
                 placeholder="State/Province"
+                formControlName="state"
               />
             </nz-form-control>
           </nz-form-item>
         </div>
+      </div>
+
+      <div nz-row [nzGutter]="[16, 16]">
         <div nz-col [nzXs]="24" [nzSm]="24" [nzMd]="12">
           <nz-form-item>
             <nz-form-label nzRequired="true" [nzSpan]="24">
               Postal/ZIP Code
             </nz-form-label>
             <nz-form-control [nzSpan]="24">
-              <input nzSize="large" nz-input nzPlaceHolder="Postal/ZIP Code" />
+              <input nzSize="large" nz-input nzPlaceHolder="Postal/ZIP Code"
+              formControlName="zip_code" />
             </nz-form-control>
           </nz-form-item>
         </div>
@@ -364,7 +457,7 @@
             nzType="primary"
             style="width: 100px"
             (click)="updateProfile()"
-            [disabled]="!profileForm.valid"
+            [disabled]="!profileForm.valid || loading"
             [nzLoading]="loading"
           >
             Update

@@ -21,7 +21,6 @@ export class EditProfileComponent implements OnInit {
 
   ngOnInit(): void {
     this.editUserForm = this.fb.group({
-      id: [''],
       username: ['', Validators.required],
       first_name: ['', Validators.required],
       last_name: ['', Validators.required],
@@ -31,8 +30,8 @@ export class EditProfileComponent implements OnInit {
     // Fetch the logged-in user data
     this.authService.getLoggedInUser().subscribe({
       next: (user) => {
+        console.log('user', user.results[0].id);
         this.editUserForm.patchValue({
-          id: user.id,
           username: user.username,
           first_name: user.first_name,
           last_name: user.last_name,
@@ -48,17 +47,19 @@ export class EditProfileComponent implements OnInit {
   submitForm(): void {
     if (this.editUserForm.valid) {
       this.loading = true;
-      this.authService.updateUser(this.editUserForm.value).subscribe({
-        next: () => {
-          this.notificationService.success('User profile updated');
-          this.router.navigate(['/new-quote/step/1']);
-          this.loading = false;
-        },
-        error: (error: any) => {
-          this.notificationService.error(error);
-          this.loading = false;
-        },
-      });
+      this.authService
+        .updateUser(this.editUserForm.value.id, this.editUserForm.value)
+        .subscribe({
+          next: () => {
+            this.notificationService.success('User profile updated');
+            this.router.navigate(['/new-quote/step/1']);
+            this.loading = false;
+          },
+          error: (error: any) => {
+            this.notificationService.error(error);
+            this.loading = false;
+          },
+        });
     } else {
       Object.values(this.editUserForm.controls).forEach((control) => {
         if (control.invalid) {

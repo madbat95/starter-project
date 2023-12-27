@@ -1,0 +1,23 @@
+<div>
+  <h2 nz-row nzJustify="center">John Malkovic</h2>
+</div>
+
+<nz-table #roleTable [nzData]="data" [nzShowPagination]="false">
+  <thead>
+    <tr>
+      <th>Select</th>
+      <th>Role</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let data of roleTable.data">
+      <td [nzChecked]="true"></td>
+      <td>{{ data.role }}</td>
+      <td>{{ data.Description }}</td>
+    </tr>
+  </tbody>
+</nz-table>
+<div nz-row nzJustify="end" style="padding-top: 10px">
+  <button nz-button nzType="primary">Update</button>
+</div>
